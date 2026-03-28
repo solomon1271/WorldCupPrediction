@@ -1,0 +1,42 @@
+{
+  "name": "world-cup-picks",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm run db:generate && NEXT_DIST_DIR=.next-dev node scripts/reset-next-cache.mjs && NEXT_DIST_DIR=.next-dev next dev",
+    "build": "NEXT_DIST_DIR=.next-build next build",
+    "start": "NEXT_DIST_DIR=.next-build next start",
+    "postinstall": "prisma generate --schema prisma/schema.prisma",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate --schema prisma/schema.prisma",
+    "db:push": "prisma db push --schema prisma/schema.prisma",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:generate:prod": "prisma generate --schema prisma/schema.postgres.prisma",
+    "db:migrate:prod": "prisma migrate dev --schema prisma/schema.postgres.prisma",
+    "db:deploy:prod": "prisma migrate deploy --schema prisma/schema.postgres.prisma",
+    "db:status:prod": "prisma migrate status --schema prisma/schema.postgres.prisma",
+    "db:seed:prod": "npm run db:generate:prod && tsx prisma/seed.ts",
+    "vercel-build": "npm run db:generate:prod && npm run db:deploy:prod && npm run build"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.17.1",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.2",
+    "next": "^15.5.14",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "prisma": "^6.17.1",
+    "tsx": "^4.21.0",
+    "typescript": "5.8.3"
+  }
+}

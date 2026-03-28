@@ -1,0 +1,27 @@
+import { cache } from "react";
+import { redirect } from "next/navigation";
+
+import { prisma } from "@/lib/prisma";
+import { readSessionCookie } from "@/lib/auth/session";
+
+export const getCurrentUser = cache(async () => {
+  const session = await readSessionCookie();
+
+  if (!session?.sub) {
+    return null;
+  }
+
+  return prisma.user.findUnique({
+    where: { id: session.sub }
+  });
+});
+
+export async function requireUser() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  return user;
+}
