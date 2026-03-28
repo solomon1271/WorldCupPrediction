@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "npm run db:generate && NEXT_DIST_DIR=.next-dev node scripts/reset-next-cache.mjs && NEXT_DIST_DIR=.next-dev next dev",
-    "build": "NEXT_DIST_DIR=.next-build next build",
-    "start": "NEXT_DIST_DIR=.next-build next start",
+    "build": "next build",
+    "start": "next start",
     "postinstall": "prisma generate --schema prisma/schema.prisma",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
