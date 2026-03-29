@@ -25,8 +25,10 @@ export function MatchesBoard({ matches, predictions }: MatchesBoardProps) {
           const isFinished = Boolean(match.finalScore);
           const summaryStatus = isFinished ? "Finished" : prediction ? "Pick saved" : match.locked ? "Locked" : "Open";
 
+          const isLocked = match.locked && !isFinished;
+
           return (
-            <details className={`match-card${isFinished ? " match-card--finished" : ""}`} key={match.id}>
+            <details className={`match-card${isFinished ? " match-card--finished" : ""}${isLocked ? " match-card--locked" : ""}`} key={match.id}>
               <summary className="match-card__summary">
                 <div className="match-card__summary-main">
                   <strong>

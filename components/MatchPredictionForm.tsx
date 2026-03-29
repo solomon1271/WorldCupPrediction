@@ -30,7 +30,7 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
   const isFinished = Boolean(match.finalScore);
 
   if (match.locked || isFinished) {
-    return <p className="status-note">Predictions are locked for this match.</p>;
+    return <p className="status-note status-note--locked">Predictions are locked for this match.</p>;
   }
 
   return (
