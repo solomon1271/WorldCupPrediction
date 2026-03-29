@@ -144,10 +144,19 @@ A full example lives at `docs/match-sync-feed.example.json`.
 If you want to run the maintenance logic manually or outside Vercel, these commands still work:
 
 ```bash
+npm run matches:feed:local
 npm run matches:sync
 npm run matches:lock
 npm run matches:maintain
 ```
+
+`matches:feed:local` writes your current seed fixtures to `public/match-sync.json`, which is handy for local testing. While your app is running locally, you can point `MATCH_SYNC_URL` at:
+
+```bash
+http://localhost:3000/match-sync.json
+```
+
+Then edit `public/match-sync.json`, change one of the placeholder/playoff teams, and run `npm run matches:sync` to verify the database updates.
 
 ### Vercel cron setup
 
