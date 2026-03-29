@@ -10,7 +10,8 @@ export function Header({ currentUserName, isAdmin = false, variant = "home" }: H
     variant === "help"
       ? [
           { label: "Home", href: "/" },
-          { label: "Scoring", href: "#rules" }
+          { label: "Scoring", href: "#rules" },
+          { label: "Prod Ops", href: "#prod-ops" }
         ]
       : variant === "admin"
         ? [
