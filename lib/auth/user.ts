@@ -25,3 +25,13 @@ export async function requireUser() {
 
   return user;
 }
+
+export async function requireAdmin() {
+  const user = await requireUser();
+
+  if (!user.isAdmin) {
+    redirect("/");
+  }
+
+  return user;
+}

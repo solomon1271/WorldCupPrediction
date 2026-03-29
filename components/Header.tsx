@@ -1,9 +1,10 @@
 type HeaderProps = {
   currentUserName: string;
-  variant?: "home" | "help";
+  isAdmin?: boolean;
+  variant?: "home" | "help" | "admin";
 };
 
-export function Header({ currentUserName, variant = "home" }: HeaderProps) {
+export function Header({ currentUserName, isAdmin = false, variant = "home" }: HeaderProps) {
   const firstName = currentUserName.trim().split(/\s+/)[0] || "Player";
   const navItems =
     variant === "help"
@@ -11,10 +12,17 @@ export function Header({ currentUserName, variant = "home" }: HeaderProps) {
           { label: "Home", href: "/" },
           { label: "Scoring", href: "#rules" }
         ]
+      : variant === "admin"
+        ? [
+            { label: "Dashboard", href: "/" },
+            { label: "User Control", href: "#admin-users" },
+            { label: "Help", href: "/help" }
+          ]
       : [
           { label: "Fixtures", href: "#matches" },
           { label: "Top Picks", href: "#tournament-picks" },
           { label: "Leaderboard", href: "#leaderboard" },
+          ...(isAdmin ? [{ label: "Admin", href: "/admin" }] : []),
           { label: "Help", href: "/help" }
         ];
 

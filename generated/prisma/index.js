@@ -172,7 +172,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/solomonmekuria/Documents/Playground/generated/prisma",
+      "value": "/Users/solomonmekuria/code/Playground/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -186,7 +186,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/solomonmekuria/Documents/Playground/prisma/schema.prisma",
+    "sourceFilePath": "/Users/solomonmekuria/code/Playground/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

@@ -17,14 +17,15 @@ export function AuthForm({ mode }: AuthFormProps) {
     <section className="auth-shell">
       <div className="auth-card">
         <p className="eyebrow">{mode === "login" ? "Welcome back" : "Private league access"}</p>
-        <h1>{mode === "login" ? "Sign in to your picks dashboard" : "Create your account for the group"}</h1>
+        <h1>{mode === "login" ? "Miles Apart Fairwind League" : "Create your account for the group"}</h1>
         <p className="auth-copy">
           {mode === "login"
-            ? "Use the account you created for this private World Cup challenge."
+            ? "Use the account you created for this private prediction league."
             : "Only people with the invite code can join this prediction league."}
         </p>
         <form
           className="auth-form"
+          autoComplete="off"
           onSubmit={(event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
@@ -67,21 +68,21 @@ export function AuthForm({ mode }: AuthFormProps) {
           {mode === "signup" ? (
             <label>
               <span>Display name</span>
-              <input name="displayName" type="text" placeholder="Solomon" required />
+              <input name="displayName" type="text" placeholder="Your name" autoComplete="off" required />
             </label>
           ) : null}
           <label>
             <span>Email</span>
-            <input name="email" type="email" placeholder="you@example.com" required />
+            <input name="email" type="email" placeholder="you@example.com" autoComplete="off" required />
           </label>
           <label>
             <span>Password</span>
-            <input name="password" type="password" placeholder="At least 8 characters" required />
+            <input name="password" type="password" placeholder="At least 8 characters" autoComplete="new-password" required />
           </label>
           {mode === "signup" ? (
             <label>
               <span>Invite code</span>
-              <input name="inviteCode" type="text" placeholder="League invite code" required />
+              <input name="inviteCode" type="text" placeholder="League invite code" autoComplete="off" required />
             </label>
           ) : null}
           {error ? <p className="form-error">{error}</p> : null}

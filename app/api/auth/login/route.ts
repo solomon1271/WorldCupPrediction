@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
+import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
 import { createSessionCookie } from "@/lib/auth/session";
 import { verifyPassword } from "@/lib/auth/password";
 
@@ -31,10 +32,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Incorrect password." }, { status: 400 });
   }
 
+  const userForSession =
+    !user.isAdmin && isConfiguredAdminEmail(user.email)
+      ? await prisma.user.update({
+          where: { id: user.id },
+          data: { isAdmin: true }
+        })
+      : user;
+
   await createSessionCookie({
-    sub: user.id,
-    email: user.email,
-    displayName: user.displayName
+    sub: userForSession.id,
+    email: userForSession.email,
+    displayName: userForSession.displayName
   });
 
   return NextResponse.json({ ok: true });

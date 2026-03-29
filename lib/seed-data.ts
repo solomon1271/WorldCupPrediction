@@ -1,7 +1,7 @@
 const et = (date: string, time: string) => new Date(`${date}T${time}:00-04:00`);
 
 export const seedMatches = [
-  { id: 1, stage: "Group A", kickoff: et("2026-06-11", "15:00"), venue: "Estadio Azteca, Mexico City", homeTeam: "Mexico", awayTeam: "South Africa", isLocked: false, finalHomeScore: 2, finalAwayScore: 0, finalYellowCards: 4 },
+  { id: 1, stage: "Group A", kickoff: et("2026-06-11", "15:00"), venue: "Estadio Azteca, Mexico City", homeTeam: "Mexico", awayTeam: "South Africa", isLocked: false },
   { id: 2, stage: "Group A", kickoff: et("2026-06-11", "22:00"), venue: "Estadio Akron, Guadalajara", homeTeam: "South Korea", awayTeam: "UEFA playoff D", isLocked: false },
   { id: 3, stage: "Group B", kickoff: et("2026-06-12", "15:00"), venue: "BMO Field, Toronto", homeTeam: "Canada", awayTeam: "UEFA playoff A", isLocked: false },
   { id: 4, stage: "Group D", kickoff: et("2026-06-12", "21:00"), venue: "SoFi Stadium, Los Angeles", homeTeam: "USA", awayTeam: "Paraguay", isLocked: false },

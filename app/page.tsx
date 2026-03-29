@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <main className="page-shell">
-      <Header currentUserName={dashboard.currentUserName} />
+      <Header currentUserName={dashboard.currentUserName} isAdmin={user.isAdmin} />
       <MatchesBoard matches={dashboard.matches} predictions={dashboard.myPredictions} />
       <TournamentPicks prediction={dashboard.tournamentPrediction} />
       <LeaderboardNote />

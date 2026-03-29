@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 import { createSessionCookie } from "@/lib/auth/session";
+import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
 import { hashPassword } from "@/lib/auth/password";
 
 const schema = z.object({
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
       displayName,
       email,
       passwordHash: await hashPassword(password),
+      isAdmin: isConfiguredAdminEmail(email),
       tournamentPrediction: {
         create: {
           groupWinners: "{}"

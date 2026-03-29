@@ -9,7 +9,7 @@ export default async function HelpPage() {
 
   return (
     <main className="page-shell">
-      <Header currentUserName={dashboard.currentUserName} variant="help" />
+      <Header currentUserName={dashboard.currentUserName} isAdmin={user.isAdmin} variant="help" />
       <section className="section">
         <div className="section__heading">
           <p className="eyebrow">Help</p>
