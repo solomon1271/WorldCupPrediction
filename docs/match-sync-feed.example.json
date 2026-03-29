@@ -1,0 +1,16 @@
+{
+  "matches": [
+    {
+      "id": 2,
+      "homeTeam": "South Korea",
+      "awayTeam": "Ukraine",
+      "kickoff": "2026-06-11T22:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "homeTeam": "Canada",
+      "awayTeam": "Wales",
+      "kickoff": "2026-06-12T19:00:00.000Z"
+    }
+  ]
+}

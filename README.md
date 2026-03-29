@@ -105,3 +105,51 @@ npm run db:seed:prod
 - `npm run db:deploy:prod` - apply Postgres migrations in production
 - `npm run db:seed:prod` - upsert the production fixture schedule
 - `npm run vercel-build` - Vercel build pipeline
+- `npm run matches:sync` - sync fixture changes from the configured JSON feed
+- `npm run matches:lock` - lock picks for matches that start within the configured lead time
+- `npm run matches:maintain` - run both sync and lock in one pass
+
+## Match maintenance cron
+
+You do not need a separate scheduler per match. A single cron that runs every minute is simpler and reliably locks any game whose kickoff is close.
+
+### What it does
+
+- `matches:sync` checks a fixture feed and updates changed matchups, kickoff times, venues, or lock state in the database
+- `matches:lock` locks any match whose kickoff is within `MATCH_LOCK_LEAD_MINUTES` minutes of now
+- The app already uses dynamic rendering on the dashboard, so database changes show up on the next request without a rebuild
+
+### Feed format
+
+Set `MATCH_SYNC_URL` to a JSON endpoint that returns either:
+
+- a raw array of matches, or
+- an object with a `matches` array
+
+Each fixture can include:
+
+```json
+{
+  "id": 2,
+  "homeTeam": "South Korea",
+  "awayTeam": "Ukraine",
+  "kickoff": "2026-06-11T22:00:00.000Z"
+}
+```
+
+A full example lives at `docs/match-sync-feed.example.json`.
+
+### Cron example
+
+Run this every minute on the machine that has access to your production environment variables:
+
+```cron
+* * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:maintain >> /tmp/world-cup-picks-cron.log 2>&1
+```
+
+If you want to keep syncing less often, split it into two jobs:
+
+```cron
+*/15 * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:sync >> /tmp/world-cup-picks-sync.log 2>&1
+* * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:lock >> /tmp/world-cup-picks-lock.log 2>&1
+```

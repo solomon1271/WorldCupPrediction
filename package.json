@@ -20,6 +20,9 @@
     "db:deploy:prod": "prisma migrate deploy --schema prisma/schema.postgres.prisma",
     "db:status:prod": "prisma migrate status --schema prisma/schema.postgres.prisma",
     "db:seed:prod": "npm run db:generate:prod && tsx prisma/seed.ts",
+    "matches:sync": "tsx scripts/sync-matches.ts",
+    "matches:lock": "tsx scripts/lock-matches.ts",
+    "matches:maintain": "tsx scripts/run-match-maintenance.ts",
     "vercel-build": "npm run db:generate:prod && npm run db:deploy:prod && npm run build"
   },
   "dependencies": {
