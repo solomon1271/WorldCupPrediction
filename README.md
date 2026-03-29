@@ -111,13 +111,13 @@ npm run db:seed:prod
 
 ## Match maintenance cron
 
-You do not need a separate scheduler per match. A single cron that runs every minute is simpler and reliably locks any game whose kickoff is close.
+You do not need a separate scheduler per match. A single recurring job for locking, plus a slower recurring job for fixture refresh, is simpler and reliably handles kickoff cutoffs and playoff-based matchup changes.
 
 ### What it does
 
 - `matches:sync` checks a fixture feed and updates changed matchups, kickoff times, venues, or lock state in the database
 - `matches:lock` locks any match whose kickoff is within `MATCH_LOCK_LEAD_MINUTES` minutes of now
-- The app already uses dynamic rendering on the dashboard, so database changes show up on the next request without a rebuild
+- the dashboard already uses dynamic rendering, so database changes show up on the next request without a rebuild
 
 ### Feed format
 
@@ -139,17 +139,42 @@ Each fixture can include:
 
 A full example lives at `docs/match-sync-feed.example.json`.
 
-### Cron example
+### Local/manual execution
 
-Run this every minute on the machine that has access to your production environment variables:
+If you want to run the maintenance logic manually or outside Vercel, these commands still work:
 
-```cron
-* * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:maintain >> /tmp/world-cup-picks-cron.log 2>&1
+```bash
+npm run matches:sync
+npm run matches:lock
+npm run matches:maintain
 ```
 
-If you want to keep syncing less often, split it into two jobs:
+### Vercel cron setup
 
-```cron
-*/15 * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:sync >> /tmp/world-cup-picks-sync.log 2>&1
-* * * * * cd /path/to/Playground && /opt/homebrew/bin/npm run matches:lock >> /tmp/world-cup-picks-lock.log 2>&1
+In production on Vercel, use Vercel Cron Jobs instead of machine-level `crontab`.
+
+The project includes these protected routes:
+
+- `/api/cron/matches-sync`
+- `/api/cron/matches-lock`
+- `/api/cron/matches-maintain`
+
+Set these environment variables in Vercel:
+
+- `CRON_SECRET`
+- `MATCH_SYNC_URL`
+- `MATCH_LOCK_LEAD_MINUTES`
+- plus your normal database/auth variables
+
+The cron routes expect:
+
+```http
+Authorization: Bearer <CRON_SECRET>
 ```
+
+The provided `vercel.json` schedules:
+
+- `matches-sync` every 15 minutes
+- `matches-lock` every minute
+
+That split is usually the sweet spot: fixture sources do not need minutely polling, but prediction locks do.
