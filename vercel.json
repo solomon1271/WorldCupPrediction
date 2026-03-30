@@ -1,13 +1,3 @@
 {
-  "buildCommand": "npm run vercel-build",
-  "crons": [
-    {
-      "path": "/api/cron/matches-sync",
-      "schedule": "*/15 * * * *"
-    },
-    {
-      "path": "/api/cron/matches-lock",
-      "schedule": "* * * * *"
-    }
-  ]
+  "buildCommand": "npm run vercel-build"
 }
