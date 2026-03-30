@@ -1,21 +1,11 @@
 import { NextResponse } from "next/server";
 
+import { isCronAuthorized } from "@/lib/cron-auth";
 import { syncMatchFixtures } from "@/lib/match-sync";
-
-function isAuthorized(request: Request) {
-  const cronSecret = process.env.CRON_SECRET?.trim();
-
-  if (!cronSecret) {
-    throw new Error("CRON_SECRET is not configured.");
-  }
-
-  const authHeader = request.headers.get("authorization");
-  return authHeader === `Bearer ${cronSecret}`;
-}
 
 export async function GET(request: Request) {
   try {
-    if (!isAuthorized(request)) {
+    if (!isCronAuthorized(request)) {
       return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
     }
 
