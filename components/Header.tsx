@@ -29,7 +29,7 @@ export function Header({ currentUserName, isAdmin = false, variant = "home" }: H
   return (
     <header className="hero" id="top">
       <div className="hero__topbar">
-        <div className="hero__badge">Miles Apart Prediction League</div>
+        <div className="hero__badge">NewRez World Cup Prediction</div>
         <div className="hero__account">
           <span className="hero__account-name">{firstName}</span>
           <a className="ghost-button ghost-button--link" href="/logout">

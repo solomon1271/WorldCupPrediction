@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { isCronAuthorized } from "@/lib/cron-auth";
 import { lockMatchesNearKickoff, syncMatchFixtures } from "@/lib/match-sync";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   try {
     if (!isCronAuthorized(request)) {

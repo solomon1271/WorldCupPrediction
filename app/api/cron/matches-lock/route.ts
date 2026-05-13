@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { isCronAuthorized } from "@/lib/cron-auth";
 import { lockMatchesNearKickoff } from "@/lib/match-sync";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   try {
     if (!isCronAuthorized(request)) {
@@ -13,6 +15,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: true, lock });
   } catch (error) {
     console.error("matches-lock cron failed", error);
-    return NextResponse.json({ ok: false, error: "Cron execution failed." }, { status: 500 });
+    const detail = error instanceof Error ? error.message : "Cron execution failed.";
+    const message = process.env.NODE_ENV === "development" ? detail : "Cron execution failed.";
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }

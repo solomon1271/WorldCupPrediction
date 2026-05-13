@@ -15,7 +15,7 @@
             "kickoff": "2026-06-12T02:00:00.000Z",
             "venue": "Estadio Akron, Guadalajara",
             "homeTeam": "South Korea",
-            "awayTeam": "UEFA playoff D",
+            "awayTeam": "Czech Republic",
             "isLocked": false
     },
     {
@@ -24,7 +24,7 @@
       "kickoff": "2026-06-12T19:00:00.000Z",
       "venue": "BMO Field, Toronto",
       "homeTeam": "Canada",
-      "awayTeam": "UEFA playoff A",
+      "awayTeam": "Bosnia and Herzegovina",
       "isLocked": false
     },
     {
@@ -69,7 +69,7 @@
       "kickoff": "2026-06-14T04:00:00.000Z",
       "venue": "BC Place, Vancouver",
       "homeTeam": "Australia",
-      "awayTeam": "UEFA playoff C",
+      "awayTeam": "Turkey",
       "isLocked": false
     },
     {
@@ -104,7 +104,7 @@
       "stage": "Group F",
       "kickoff": "2026-06-15T02:00:00.000Z",
       "venue": "Estadio BBVA, Monterrey",
-      "homeTeam": "UEFA playoff B",
+      "homeTeam": "Sweden",
       "awayTeam": "Tunisia",
       "isLocked": false
     },
@@ -158,7 +158,7 @@
       "stage": "Group I",
       "kickoff": "2026-06-16T22:00:00.000Z",
       "venue": "Gillette Stadium, Boston",
-      "homeTeam": "Inter-confederation playoff 2",
+      "homeTeam": "Iraq",
       "awayTeam": "Norway",
       "isLocked": false
     },
@@ -186,7 +186,7 @@
       "kickoff": "2026-06-17T17:00:00.000Z",
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Portugal",
-      "awayTeam": "Inter-confederation playoff 1",
+      "awayTeam": "DR Congo",
       "isLocked": false
     },
     {
@@ -221,7 +221,7 @@
       "stage": "Group A",
       "kickoff": "2026-06-18T16:00:00.000Z",
       "venue": "Mercedes-Benz Stadium, Atlanta",
-      "homeTeam": "UEFA playoff D",
+      "homeTeam": "Czech Republic",
       "awayTeam": "South Africa",
       "isLocked": false
     },
@@ -231,7 +231,7 @@
       "kickoff": "2026-06-18T19:00:00.000Z",
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "Switzerland",
-      "awayTeam": "UEFA playoff A",
+      "awayTeam": "Bosnia and Herzegovina",
       "isLocked": false
     },
     {
@@ -284,7 +284,7 @@
       "stage": "Group D",
       "kickoff": "2026-06-20T04:00:00.000Z",
       "venue": "Levi's Stadium, San Francisco Bay Area",
-      "homeTeam": "UEFA playoff C",
+      "homeTeam": "Turkey",
       "awayTeam": "Paraguay",
       "isLocked": false
     },
@@ -312,7 +312,7 @@
       "kickoff": "2026-06-20T17:00:00.000Z",
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Netherlands",
-      "awayTeam": "UEFA playoff B",
+      "awayTeam": "Sweden",
       "isLocked": false
     },
     {
@@ -366,7 +366,7 @@
       "kickoff": "2026-06-22T21:00:00.000Z",
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "France",
-      "awayTeam": "Inter-confederation playoff 2",
+      "awayTeam": "Iraq",
       "isLocked": false
     },
     {
@@ -429,7 +429,7 @@
       "kickoff": "2026-06-24T02:00:00.000Z",
       "venue": "Estadio Akron, Guadalajara",
       "homeTeam": "Colombia",
-      "awayTeam": "Inter-confederation playoff 1",
+      "awayTeam": "DR Congo",
       "isLocked": false
     },
     {
@@ -455,7 +455,7 @@
       "stage": "Group A",
       "kickoff": "2026-06-25T01:00:00.000Z",
       "venue": "Estadio Azteca, Mexico City",
-      "homeTeam": "UEFA playoff D",
+      "homeTeam": "Czech Republic",
       "awayTeam": "Mexico",
       "isLocked": false
     },
@@ -482,7 +482,7 @@
       "stage": "Group B",
       "kickoff": "2026-06-24T19:00:00.000Z",
       "venue": "Lumen Field, Seattle",
-      "homeTeam": "UEFA playoff A",
+      "homeTeam": "Bosnia and Herzegovina",
       "awayTeam": "Qatar",
       "isLocked": false
     },
@@ -518,7 +518,7 @@
       "stage": "Group D",
       "kickoff": "2026-06-26T02:00:00.000Z",
       "venue": "SoFi Stadium, Los Angeles",
-      "homeTeam": "UEFA playoff C",
+      "homeTeam": "Turkey",
       "awayTeam": "USA",
       "isLocked": false
     },
@@ -591,7 +591,7 @@
       "kickoff": "2026-06-26T19:00:00.000Z",
       "venue": "BMO Field, Toronto",
       "homeTeam": "Senegal",
-      "awayTeam": "Inter-confederation playoff 2",
+      "awayTeam": "Iraq",
       "isLocked": false
     },
     {
@@ -626,7 +626,7 @@
       "stage": "Group K",
       "kickoff": "2026-06-27T23:30:00.000Z",
       "venue": "Mercedes-Benz Stadium, Atlanta",
-      "homeTeam": "Inter-confederation playoff 1",
+      "homeTeam": "DR Congo",
       "awayTeam": "Uzbekistan",
       "isLocked": false
     },
@@ -645,7 +645,7 @@
       "kickoff": "2026-06-25T23:00:00.000Z",
       "venue": "AT&T Stadium, Dallas",
       "homeTeam": "Japan",
-      "awayTeam": "UEFA playoff B",
+      "awayTeam": "Sweden",
       "isLocked": false
     },
     {

@@ -11,6 +11,7 @@ export type MatchSyncFixture = {
   isLocked?: boolean;
 };
 
+/** Lock when kickoff is within this many minutes from now (e.g. 1 = lock at T−1m). */
 const DEFAULT_LOCK_LEAD_MINUTES = 1;
 
 function parsePositiveInteger(value: string | undefined, fallback: number) {
@@ -88,8 +89,7 @@ export async function syncMatchFixtures() {
       kickoff,
       venue: fixture.venue,
       homeTeam: fixture.homeTeam,
-      awayTeam: fixture.awayTeam,
-      ...(typeof fixture.isLocked === "boolean" ? { isLocked: fixture.isLocked } : {})
+      awayTeam: fixture.awayTeam
     };
 
     if (!existing) {
@@ -105,7 +105,7 @@ export async function syncMatchFixtures() {
           venue: payload.venue,
           homeTeam: payload.homeTeam,
           awayTeam: payload.awayTeam,
-          isLocked: payload.isLocked ?? false
+          isLocked: false
         }
       });
       created += 1;
@@ -119,7 +119,6 @@ export async function syncMatchFixtures() {
     if (payload.venue && payload.venue !== existing.venue) changes.venue = payload.venue;
     if (payload.homeTeam && payload.homeTeam !== existing.homeTeam) changes.homeTeam = payload.homeTeam;
     if (payload.awayTeam && payload.awayTeam !== existing.awayTeam) changes.awayTeam = payload.awayTeam;
-    if (typeof payload.isLocked === "boolean" && payload.isLocked !== existing.isLocked) changes.isLocked = payload.isLocked;
 
     if (Object.keys(changes).length === 0) {
       unchanged += 1;

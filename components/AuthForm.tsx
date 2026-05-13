@@ -17,7 +17,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     <section className="auth-shell">
       <div className="auth-card">
         <p className="eyebrow">{mode === "login" ? "Welcome back" : "Private league access"}</p>
-        <h1>{mode === "login" ? "Miles Apart Fairwind League" : "Create your account for the group"}</h1>
+        <h1>{mode === "login" ? "NewRez World Cup Prediction" : "Create your account for the group"}</h1>
         <p className="auth-copy">
           {mode === "login"
             ? "Use the account you created for this private prediction league."

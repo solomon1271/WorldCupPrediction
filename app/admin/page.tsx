@@ -76,6 +76,15 @@ export default async function AdminPage() {
           <article className="card card--feature">
             <p className="card__label">What still needs your help</p>
             <ol className="next-list">
+              <li>
+                <strong>Match prediction lock cron:</strong> <code>vercel.json</code> defines{" "}
+                <code>GET /api/cron/matches-lock</code> every minute; Vercel sends <code>Authorization: Bearer CRON_SECRET</code> when
+                set. On <strong>Vercel Hobby</strong>, schedules more frequent than <strong>once per day</strong> are not allowed—those
+                crons are <strong>not registered</strong>, so <strong>Settings → Cron Jobs can stay empty</strong> even though the
+                route works if you <code>curl</code> it. Use <strong>Pro</strong> for Vercel-managed minutely crons, or an{" "}
+                <strong>external</strong> HTTP ping every minute. Remove the <code>crons</code> block from <code>vercel.json</code> on
+                Hobby if deploy ever fails because of it.
+              </li>
               <li>In Neon SQL Editor, clear any stale production test results if a real match is showing as finished when it should not be.</li>
               <li>In Vercel Settings → Environment Variables, confirm DATABASE_URL, AUTH_SECRET, INVITE_CODE, ADMIN_EMAIL, CRON_SECRET, MATCH_SYNC_URL, and MATCH_LOCK_LEAD_MINUTES are all set.</li>
               <li>In Vercel Deployments, verify the latest deployment is green and open the live URL from there.</li>

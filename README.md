@@ -1,4 +1,4 @@
-# Miles Apart Prediction League
+# NewRez World Cup Prediction
 
 Private 2026 World Cup prediction app for a single friend group.
 

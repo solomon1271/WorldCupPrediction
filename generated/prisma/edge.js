@@ -171,7 +171,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/solomonmekuria/code/Playground/generated/prisma",
+      "value": "/Users/solomonmekuria/Developer/WorldCupPrediction/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -185,7 +185,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/solomonmekuria/code/Playground/prisma/schema.prisma",
+    "sourceFilePath": "/Users/solomonmekuria/Developer/WorldCupPrediction/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
