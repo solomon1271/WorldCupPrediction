@@ -53,10 +53,20 @@ export function AuthForm({ mode }: AuthFormProps) {
                 body: JSON.stringify(payload)
               });
 
-              const result = (await response.json()) as { error?: string };
+              const raw = await response.text();
+              let result: { error?: string; ok?: boolean } = {};
+              if (raw.trim()) {
+                try {
+                  result = JSON.parse(raw) as { error?: string; ok?: boolean };
+                } catch {
+                  setError("The server returned an unexpected response. Please try again.");
+                  return;
+                }
+              }
 
               if (!response.ok) {
-                setError(result.error || (mode === "login" ? "Could not sign in." : "Could not create account."));
+                const code = "code" in result && typeof (result as { code?: string }).code === "string" ? ` (${(result as { code: string }).code})` : "";
+                setError((result.error || (mode === "login" ? "Could not sign in." : "Could not create account.")) + code);
                 return;
               }
 

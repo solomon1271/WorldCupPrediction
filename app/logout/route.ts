@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 
-import { clearSessionCookie } from "@/lib/auth/session";
+import { clearSessionCookieOnResponse } from "@/lib/auth/session";
 
 export async function GET(request: Request) {
-  await clearSessionCookie();
-  return NextResponse.redirect(new URL("/login", request.url));
+  const response = NextResponse.redirect(new URL("/login", request.url));
+  clearSessionCookieOnResponse(response);
+  return response;
 }
 
 export async function POST(request: Request) {
-  await clearSessionCookie();
-  return NextResponse.redirect(new URL("/login", request.url));
+  const response = NextResponse.redirect(new URL("/login", request.url));
+  clearSessionCookieOnResponse(response);
+  return response;
 }

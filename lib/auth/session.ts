@@ -1,51 +1,43 @@
-import { SignJWT, jwtVerify } from "jose";
+import type { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-const SESSION_COOKIE = "world-cup-session";
-const encoder = new TextEncoder();
+import { SESSION_COOKIE_NAME, sessionCookieOptions } from "@/lib/auth/session-constants";
+import { signNewSessionToken, verifySessionToken, type SessionPublicClaims } from "@/lib/auth/session-token";
 
-type SessionPayload = {
-  sub: string;
-  email: string;
-  displayName: string;
-};
+export type SessionPayload = SessionPublicClaims;
 
-const getSecret = () => encoder.encode(process.env.AUTH_SECRET || "change-me-before-sharing");
-
-export async function createSessionCookie(payload: SessionPayload) {
-  const token = await new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("14d")
-    .sign(getSecret());
-
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 14
-  });
+export async function issueSessionToken(payload: SessionPayload): Promise<string> {
+  return signNewSessionToken(payload);
 }
 
-export async function clearSessionCookie() {
-  const cookieStore = await cookies();
-  cookieStore.delete(SESSION_COOKIE);
+/** Set session on a Route Handler / Middleware response (avoids `cookies().set` errors in API routes). */
+export function attachSessionCookie(response: NextResponse, token: string) {
+  try {
+    response.cookies.set(SESSION_COOKIE_NAME, token, sessionCookieOptions());
+  } catch {
+    const opts = sessionCookieOptions();
+    const secure = opts.secure ? "; Secure" : "";
+    const header = `${SESSION_COOKIE_NAME}=${token}; Path=${opts.path}; Max-Age=${String(opts.maxAge)}; HttpOnly; SameSite=Lax${secure}`;
+    response.headers.append("Set-Cookie", header);
+  }
+}
+
+export function clearSessionCookieOnResponse(response: NextResponse) {
+  response.cookies.delete(SESSION_COOKIE_NAME);
 }
 
 export async function readSessionCookie() {
   const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE)?.value;
+  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
 
   if (!token) {
     return null;
   }
 
-  try {
-    const { payload } = await jwtVerify(token, getSecret());
-    return payload as SessionPayload;
-  } catch {
+  const verified = await verifySessionToken(token);
+  if (!verified.ok) {
     return null;
   }
+
+  return verified.claims;
 }
