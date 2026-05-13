@@ -11,3 +11,8 @@ export function isConfiguredAdminEmail(email: string) {
 
   return normalizeEmail(configured) === normalizeEmail(email);
 }
+
+/** True if the user is an admin in the database or matches configured ADMIN_EMAIL. */
+export function userHasAdminAccess(user: { email: string; isAdmin: boolean }) {
+  return user.isAdmin || isConfiguredAdminEmail(user.email);
+}

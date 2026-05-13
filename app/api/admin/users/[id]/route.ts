@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSessionUser } from "@/lib/auth/session-user";
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { prisma } from "@/lib/prisma";
 
 const schema = z.object({
@@ -11,7 +12,7 @@ const schema = z.object({
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const user = await getSessionUser();
 
-  if (!user?.isAdmin) {
+  if (!user || !userHasAdminAccess(user)) {
     return NextResponse.json({ error: "Admin access required." }, { status: 403 });
   }
 

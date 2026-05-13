@@ -12,6 +12,7 @@ async function main() {
       create: match
     });
   }
+  console.log(`Seed complete: ${seedMatches.length} matches upserted.`);
 }
 
 main()

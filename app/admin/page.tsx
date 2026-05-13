@@ -3,15 +3,17 @@ export const dynamic = "force-dynamic";
 import { AdminPortal } from "@/components/AdminPortal";
 import { Header } from "@/components/Header";
 import { getAdminDashboardData } from "@/lib/admin";
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireAdmin } from "@/lib/auth/user";
 
 export default async function AdminPage() {
   const user = await requireAdmin();
   const dashboard = await getAdminDashboardData();
+  const isAdmin = userHasAdminAccess(user);
 
   return (
     <main className="page-shell">
-      <Header currentUserName={user.displayName} isAdmin variant="admin" />
+      <Header currentUserName={user.displayName} isAdmin={isAdmin} variant="admin" />
       <AdminPortal currentUserId={user.id} users={dashboard.users} />
 
       <section className="section" id="prod-ops">

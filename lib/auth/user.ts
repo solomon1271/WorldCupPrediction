@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { redirect } from "next/navigation";
 
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { prisma } from "@/lib/prisma";
 import { readSessionCookie } from "@/lib/auth/session";
 
@@ -29,7 +30,7 @@ export async function requireUser() {
 export async function requireAdmin() {
   const user = await requireUser();
 
-  if (!user.isAdmin) {
+  if (!userHasAdminAccess(user)) {
     redirect("/");
   }
 

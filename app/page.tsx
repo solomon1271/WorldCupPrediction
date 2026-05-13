@@ -5,16 +5,18 @@ import { Leaderboard } from "@/components/Leaderboard";
 import { LeaderboardNote } from "@/components/LeaderboardNote";
 import { MatchesBoard } from "@/components/MatchesBoard";
 import { TournamentPicks } from "@/components/TournamentPicks";
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireUser } from "@/lib/auth/user";
 import { getDashboardData } from "@/lib/dashboard";
 
 export default async function Home() {
   const user = await requireUser();
   const dashboard = await getDashboardData(user.id);
+  const isAdmin = userHasAdminAccess(user);
 
   return (
     <main className="page-shell">
-      <Header currentUserName={dashboard.currentUserName} isAdmin={user.isAdmin} />
+      <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} />
       <MatchesBoard matches={dashboard.matches} predictions={dashboard.myPredictions} />
       <TournamentPicks prediction={dashboard.tournamentPrediction} />
       <LeaderboardNote />

@@ -4,13 +4,16 @@ type HeaderProps = {
   variant?: "home" | "help" | "admin";
 };
 
+const adminNavItem = { label: "Admin", href: "/admin" as const };
+
 export function Header({ currentUserName, isAdmin = false, variant = "home" }: HeaderProps) {
   const firstName = currentUserName.trim().split(/\s+/)[0] || "Player";
   const navItems =
     variant === "help"
       ? [
           { label: "Home", href: "/" },
-          { label: "Scoring", href: "#rules" }
+          { label: "Scoring", href: "#rules" },
+          ...(isAdmin ? [adminNavItem] : [])
         ]
       : variant === "admin"
         ? [
@@ -18,13 +21,13 @@ export function Header({ currentUserName, isAdmin = false, variant = "home" }: H
             { label: "User Control", href: "#admin-users" },
             { label: "Help", href: "/help" }
           ]
-      : [
-          { label: "Fixtures", href: "#matches" },
-          { label: "Top Picks", href: "#tournament-picks" },
-          { label: "Leaderboard", href: "#leaderboard" },
-          ...(isAdmin ? [{ label: "Admin", href: "/admin" }] : []),
-          { label: "Help", href: "/help" }
-        ];
+        : [
+            { label: "Fixtures", href: "#matches" },
+            { label: "Top Picks", href: "#tournament-picks" },
+            { label: "Leaderboard", href: "#leaderboard" },
+            ...(isAdmin ? [adminNavItem] : []),
+            { label: "Help", href: "/help" }
+          ];
 
   return (
     <header className="hero" id="top">

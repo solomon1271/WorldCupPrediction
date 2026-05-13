@@ -1,15 +1,17 @@
 import { Header } from "@/components/Header";
 import { RulesPanel } from "@/components/RulesPanel";
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireUser } from "@/lib/auth/user";
 import { getDashboardData } from "@/lib/dashboard";
 
 export default async function HelpPage() {
   const user = await requireUser();
   const dashboard = await getDashboardData(user.id);
+  const isAdmin = userHasAdminAccess(user);
 
   return (
     <main className="page-shell">
-      <Header currentUserName={dashboard.currentUserName} isAdmin={user.isAdmin} variant="help" />
+      <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} variant="help" />
       <section className="section">
         <div className="section__heading">
           <p className="eyebrow">Help</p>
