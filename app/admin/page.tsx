@@ -77,18 +77,22 @@ export default async function AdminPage() {
             <p className="card__label">What still needs your help</p>
             <ol className="next-list">
               <li>
-                <strong>Match prediction lock cron:</strong> <code>vercel.json</code> defines{" "}
-                <code>GET /api/cron/matches-lock</code> every minute; Vercel sends <code>Authorization: Bearer CRON_SECRET</code> when
-                set. On <strong>Vercel Hobby</strong>, schedules more frequent than <strong>once per day</strong> are not allowed—those
-                crons are <strong>not registered</strong>, so <strong>Settings → Cron Jobs can stay empty</strong> even though the
-                route works if you <code>curl</code> it. Use <strong>Pro</strong> for Vercel-managed minutely crons, or an{" "}
-                <strong>external</strong> HTTP ping every minute. Remove the <code>crons</code> block from <code>vercel.json</code> on
-                Hobby if deploy ever fails because of it.
+                <strong>Match prediction lock:</strong> <code>vercel.json</code> does <strong>not</strong> register Vercel Cron
+                (Hobby cannot run minutely schedules; see{" "}
+                <a href="https://vercel.com/docs/cron-jobs/usage-and-pricing" target="_blank" rel="noreferrer">
+                  Cron usage &amp; pricing
+                </a>
+                ). Call <code>GET /api/cron/matches-lock</code> yourself with{" "}
+                <code>Authorization: Bearer CRON_SECRET</code> on a schedule—e.g. an external HTTP cron every minute—or add a{" "}
+                <code>crons</code> block back in <code>vercel.json</code> if you move to <strong>Pro</strong>.
               </li>
               <li>In Neon SQL Editor, clear any stale production test results if a real match is showing as finished when it should not be.</li>
               <li>In Vercel Settings → Environment Variables, confirm DATABASE_URL, AUTH_SECRET, INVITE_CODE, ADMIN_EMAIL, CRON_SECRET, MATCH_SYNC_URL, and MATCH_LOCK_LEAD_MINUTES are all set.</li>
               <li>In Vercel Deployments, verify the latest deployment is green and open the live URL from there.</li>
-              <li>In Vercel Functions / Cron logs, verify /api/cron/matches-sync and /api/cron/matches-lock are executing on schedule.</li>
+              <li>
+                Optional: run <code>/api/cron/matches-sync</code> on a schedule (or manually) if you use <code>MATCH_SYNC_URL</code>; check
+                Vercel <strong>Functions</strong> logs when debugging.
+              </li>
               <li>When playoff winners become known, update public/match-sync.json in GitHub and push so production can pull the new matchup feed.</li>
             </ol>
           </article>
