@@ -29,6 +29,11 @@ export type Match = $Result.DefaultSelection<Prisma.$MatchPayload>
  */
 export type MatchPrediction = $Result.DefaultSelection<Prisma.$MatchPredictionPayload>
 /**
+ * Model LeaderboardState
+ * 
+ */
+export type LeaderboardState = $Result.DefaultSelection<Prisma.$LeaderboardStatePayload>
+/**
  * Model TournamentPrediction
  * 
  */
@@ -181,6 +186,16 @@ export class PrismaClient<
     * ```
     */
   get matchPrediction(): Prisma.MatchPredictionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.leaderboardState`: Exposes CRUD operations for the **LeaderboardState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LeaderboardStates
+    * const leaderboardStates = await prisma.leaderboardState.findMany()
+    * ```
+    */
+  get leaderboardState(): Prisma.LeaderboardStateDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.tournamentPrediction`: Exposes CRUD operations for the **TournamentPrediction** model.
@@ -634,6 +649,7 @@ export namespace Prisma {
     User: 'User',
     Match: 'Match',
     MatchPrediction: 'MatchPrediction',
+    LeaderboardState: 'LeaderboardState',
     TournamentPrediction: 'TournamentPrediction'
   };
 
@@ -653,7 +669,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "match" | "matchPrediction" | "tournamentPrediction"
+      modelProps: "user" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -879,6 +895,80 @@ export namespace Prisma {
           }
         }
       }
+      LeaderboardState: {
+        payload: Prisma.$LeaderboardStatePayload<ExtArgs>
+        fields: Prisma.LeaderboardStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LeaderboardStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LeaderboardStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          findFirst: {
+            args: Prisma.LeaderboardStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LeaderboardStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          findMany: {
+            args: Prisma.LeaderboardStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>[]
+          }
+          create: {
+            args: Prisma.LeaderboardStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          createMany: {
+            args: Prisma.LeaderboardStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LeaderboardStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>[]
+          }
+          delete: {
+            args: Prisma.LeaderboardStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          update: {
+            args: Prisma.LeaderboardStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.LeaderboardStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LeaderboardStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LeaderboardStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.LeaderboardStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaderboardStatePayload>
+          }
+          aggregate: {
+            args: Prisma.LeaderboardStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLeaderboardState>
+          }
+          groupBy: {
+            args: Prisma.LeaderboardStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LeaderboardStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LeaderboardStateCountArgs<ExtArgs>
+            result: $Utils.Optional<LeaderboardStateCountAggregateOutputType> | number
+          }
+        }
+      }
       TournamentPrediction: {
         payload: Prisma.$TournamentPredictionPayload<ExtArgs>
         fields: Prisma.TournamentPredictionFieldRefs
@@ -1052,6 +1142,7 @@ export namespace Prisma {
     user?: UserOmit
     match?: MatchOmit
     matchPrediction?: MatchPredictionOmit
+    leaderboardState?: LeaderboardStateOmit
     tournamentPrediction?: TournamentPredictionOmit
   }
 
@@ -4748,6 +4839,1020 @@ export namespace Prisma {
 
 
   /**
+   * Model LeaderboardState
+   */
+
+  export type AggregateLeaderboardState = {
+    _count: LeaderboardStateCountAggregateOutputType | null
+    _avg: LeaderboardStateAvgAggregateOutputType | null
+    _sum: LeaderboardStateSumAggregateOutputType | null
+    _min: LeaderboardStateMinAggregateOutputType | null
+    _max: LeaderboardStateMaxAggregateOutputType | null
+  }
+
+  export type LeaderboardStateAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LeaderboardStateSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LeaderboardStateMinAggregateOutputType = {
+    id: number | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type LeaderboardStateMaxAggregateOutputType = {
+    id: number | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type LeaderboardStateCountAggregateOutputType = {
+    id: number
+    ranksJson: number
+    previousRanksJson: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LeaderboardStateAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type LeaderboardStateSumAggregateInputType = {
+    id?: true
+  }
+
+  export type LeaderboardStateMinAggregateInputType = {
+    id?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type LeaderboardStateMaxAggregateInputType = {
+    id?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type LeaderboardStateCountAggregateInputType = {
+    id?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LeaderboardStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LeaderboardState to aggregate.
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaderboardStates to fetch.
+     */
+    orderBy?: LeaderboardStateOrderByWithRelationInput | LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LeaderboardStates
+    **/
+    _count?: true | LeaderboardStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LeaderboardStateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LeaderboardStateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LeaderboardStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LeaderboardStateMaxAggregateInputType
+  }
+
+  export type GetLeaderboardStateAggregateType<T extends LeaderboardStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateLeaderboardState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLeaderboardState[P]>
+      : GetScalarType<T[P], AggregateLeaderboardState[P]>
+  }
+
+
+
+
+  export type LeaderboardStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeaderboardStateWhereInput
+    orderBy?: LeaderboardStateOrderByWithAggregationInput | LeaderboardStateOrderByWithAggregationInput[]
+    by: LeaderboardStateScalarFieldEnum[] | LeaderboardStateScalarFieldEnum
+    having?: LeaderboardStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LeaderboardStateCountAggregateInputType | true
+    _avg?: LeaderboardStateAvgAggregateInputType
+    _sum?: LeaderboardStateSumAggregateInputType
+    _min?: LeaderboardStateMinAggregateInputType
+    _max?: LeaderboardStateMaxAggregateInputType
+  }
+
+  export type LeaderboardStateGroupByOutputType = {
+    id: number
+    ranksJson: string
+    previousRanksJson: string
+    updatedAt: Date
+    _count: LeaderboardStateCountAggregateOutputType | null
+    _avg: LeaderboardStateAvgAggregateOutputType | null
+    _sum: LeaderboardStateSumAggregateOutputType | null
+    _min: LeaderboardStateMinAggregateOutputType | null
+    _max: LeaderboardStateMaxAggregateOutputType | null
+  }
+
+  type GetLeaderboardStateGroupByPayload<T extends LeaderboardStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LeaderboardStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LeaderboardStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LeaderboardStateGroupByOutputType[P]>
+            : GetScalarType<T[P], LeaderboardStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LeaderboardStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["leaderboardState"]>
+
+  export type LeaderboardStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["leaderboardState"]>
+
+  export type LeaderboardStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["leaderboardState"]>
+
+  export type LeaderboardStateSelectScalar = {
+    id?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LeaderboardStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ranksJson" | "previousRanksJson" | "updatedAt", ExtArgs["result"]["leaderboardState"]>
+
+  export type $LeaderboardStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LeaderboardState"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      ranksJson: string
+      previousRanksJson: string
+      updatedAt: Date
+    }, ExtArgs["result"]["leaderboardState"]>
+    composites: {}
+  }
+
+  type LeaderboardStateGetPayload<S extends boolean | null | undefined | LeaderboardStateDefaultArgs> = $Result.GetResult<Prisma.$LeaderboardStatePayload, S>
+
+  type LeaderboardStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LeaderboardStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LeaderboardStateCountAggregateInputType | true
+    }
+
+  export interface LeaderboardStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LeaderboardState'], meta: { name: 'LeaderboardState' } }
+    /**
+     * Find zero or one LeaderboardState that matches the filter.
+     * @param {LeaderboardStateFindUniqueArgs} args - Arguments to find a LeaderboardState
+     * @example
+     * // Get one LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LeaderboardStateFindUniqueArgs>(args: SelectSubset<T, LeaderboardStateFindUniqueArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LeaderboardState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LeaderboardStateFindUniqueOrThrowArgs} args - Arguments to find a LeaderboardState
+     * @example
+     * // Get one LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LeaderboardStateFindUniqueOrThrowArgs>(args: SelectSubset<T, LeaderboardStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LeaderboardState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateFindFirstArgs} args - Arguments to find a LeaderboardState
+     * @example
+     * // Get one LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LeaderboardStateFindFirstArgs>(args?: SelectSubset<T, LeaderboardStateFindFirstArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LeaderboardState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateFindFirstOrThrowArgs} args - Arguments to find a LeaderboardState
+     * @example
+     * // Get one LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LeaderboardStateFindFirstOrThrowArgs>(args?: SelectSubset<T, LeaderboardStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LeaderboardStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LeaderboardStates
+     * const leaderboardStates = await prisma.leaderboardState.findMany()
+     * 
+     * // Get first 10 LeaderboardStates
+     * const leaderboardStates = await prisma.leaderboardState.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const leaderboardStateWithIdOnly = await prisma.leaderboardState.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LeaderboardStateFindManyArgs>(args?: SelectSubset<T, LeaderboardStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LeaderboardState.
+     * @param {LeaderboardStateCreateArgs} args - Arguments to create a LeaderboardState.
+     * @example
+     * // Create one LeaderboardState
+     * const LeaderboardState = await prisma.leaderboardState.create({
+     *   data: {
+     *     // ... data to create a LeaderboardState
+     *   }
+     * })
+     * 
+     */
+    create<T extends LeaderboardStateCreateArgs>(args: SelectSubset<T, LeaderboardStateCreateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LeaderboardStates.
+     * @param {LeaderboardStateCreateManyArgs} args - Arguments to create many LeaderboardStates.
+     * @example
+     * // Create many LeaderboardStates
+     * const leaderboardState = await prisma.leaderboardState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LeaderboardStateCreateManyArgs>(args?: SelectSubset<T, LeaderboardStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LeaderboardStates and returns the data saved in the database.
+     * @param {LeaderboardStateCreateManyAndReturnArgs} args - Arguments to create many LeaderboardStates.
+     * @example
+     * // Create many LeaderboardStates
+     * const leaderboardState = await prisma.leaderboardState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LeaderboardStates and only return the `id`
+     * const leaderboardStateWithIdOnly = await prisma.leaderboardState.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LeaderboardStateCreateManyAndReturnArgs>(args?: SelectSubset<T, LeaderboardStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LeaderboardState.
+     * @param {LeaderboardStateDeleteArgs} args - Arguments to delete one LeaderboardState.
+     * @example
+     * // Delete one LeaderboardState
+     * const LeaderboardState = await prisma.leaderboardState.delete({
+     *   where: {
+     *     // ... filter to delete one LeaderboardState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LeaderboardStateDeleteArgs>(args: SelectSubset<T, LeaderboardStateDeleteArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LeaderboardState.
+     * @param {LeaderboardStateUpdateArgs} args - Arguments to update one LeaderboardState.
+     * @example
+     * // Update one LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LeaderboardStateUpdateArgs>(args: SelectSubset<T, LeaderboardStateUpdateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LeaderboardStates.
+     * @param {LeaderboardStateDeleteManyArgs} args - Arguments to filter LeaderboardStates to delete.
+     * @example
+     * // Delete a few LeaderboardStates
+     * const { count } = await prisma.leaderboardState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LeaderboardStateDeleteManyArgs>(args?: SelectSubset<T, LeaderboardStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LeaderboardStates
+     * const leaderboardState = await prisma.leaderboardState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LeaderboardStateUpdateManyArgs>(args: SelectSubset<T, LeaderboardStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LeaderboardStates and returns the data updated in the database.
+     * @param {LeaderboardStateUpdateManyAndReturnArgs} args - Arguments to update many LeaderboardStates.
+     * @example
+     * // Update many LeaderboardStates
+     * const leaderboardState = await prisma.leaderboardState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LeaderboardStates and only return the `id`
+     * const leaderboardStateWithIdOnly = await prisma.leaderboardState.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LeaderboardStateUpdateManyAndReturnArgs>(args: SelectSubset<T, LeaderboardStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LeaderboardState.
+     * @param {LeaderboardStateUpsertArgs} args - Arguments to update or create a LeaderboardState.
+     * @example
+     * // Update or create a LeaderboardState
+     * const leaderboardState = await prisma.leaderboardState.upsert({
+     *   create: {
+     *     // ... data to create a LeaderboardState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LeaderboardState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LeaderboardStateUpsertArgs>(args: SelectSubset<T, LeaderboardStateUpsertArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateCountArgs} args - Arguments to filter LeaderboardStates to count.
+     * @example
+     * // Count the number of LeaderboardStates
+     * const count = await prisma.leaderboardState.count({
+     *   where: {
+     *     // ... the filter for the LeaderboardStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends LeaderboardStateCountArgs>(
+      args?: Subset<T, LeaderboardStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LeaderboardStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LeaderboardStateAggregateArgs>(args: Subset<T, LeaderboardStateAggregateArgs>): Prisma.PrismaPromise<GetLeaderboardStateAggregateType<T>>
+
+    /**
+     * Group by LeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaderboardStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LeaderboardStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LeaderboardStateGroupByArgs['orderBy'] }
+        : { orderBy?: LeaderboardStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LeaderboardStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLeaderboardStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LeaderboardState model
+   */
+  readonly fields: LeaderboardStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LeaderboardState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LeaderboardStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LeaderboardState model
+   */
+  interface LeaderboardStateFieldRefs {
+    readonly id: FieldRef<"LeaderboardState", 'Int'>
+    readonly ranksJson: FieldRef<"LeaderboardState", 'String'>
+    readonly previousRanksJson: FieldRef<"LeaderboardState", 'String'>
+    readonly updatedAt: FieldRef<"LeaderboardState", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LeaderboardState findUnique
+   */
+  export type LeaderboardStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter, which LeaderboardState to fetch.
+     */
+    where: LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * LeaderboardState findUniqueOrThrow
+   */
+  export type LeaderboardStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter, which LeaderboardState to fetch.
+     */
+    where: LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * LeaderboardState findFirst
+   */
+  export type LeaderboardStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter, which LeaderboardState to fetch.
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaderboardStates to fetch.
+     */
+    orderBy?: LeaderboardStateOrderByWithRelationInput | LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LeaderboardStates.
+     */
+    cursor?: LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LeaderboardStates.
+     */
+    distinct?: LeaderboardStateScalarFieldEnum | LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * LeaderboardState findFirstOrThrow
+   */
+  export type LeaderboardStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter, which LeaderboardState to fetch.
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaderboardStates to fetch.
+     */
+    orderBy?: LeaderboardStateOrderByWithRelationInput | LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LeaderboardStates.
+     */
+    cursor?: LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LeaderboardStates.
+     */
+    distinct?: LeaderboardStateScalarFieldEnum | LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * LeaderboardState findMany
+   */
+  export type LeaderboardStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter, which LeaderboardStates to fetch.
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaderboardStates to fetch.
+     */
+    orderBy?: LeaderboardStateOrderByWithRelationInput | LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LeaderboardStates.
+     */
+    cursor?: LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaderboardStates.
+     */
+    skip?: number
+    distinct?: LeaderboardStateScalarFieldEnum | LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * LeaderboardState create
+   */
+  export type LeaderboardStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LeaderboardState.
+     */
+    data: XOR<LeaderboardStateCreateInput, LeaderboardStateUncheckedCreateInput>
+  }
+
+  /**
+   * LeaderboardState createMany
+   */
+  export type LeaderboardStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LeaderboardStates.
+     */
+    data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
+  }
+
+  /**
+   * LeaderboardState createManyAndReturn
+   */
+  export type LeaderboardStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many LeaderboardStates.
+     */
+    data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
+  }
+
+  /**
+   * LeaderboardState update
+   */
+  export type LeaderboardStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LeaderboardState.
+     */
+    data: XOR<LeaderboardStateUpdateInput, LeaderboardStateUncheckedUpdateInput>
+    /**
+     * Choose, which LeaderboardState to update.
+     */
+    where: LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * LeaderboardState updateMany
+   */
+  export type LeaderboardStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LeaderboardStates.
+     */
+    data: XOR<LeaderboardStateUpdateManyMutationInput, LeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which LeaderboardStates to update
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * Limit how many LeaderboardStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LeaderboardState updateManyAndReturn
+   */
+  export type LeaderboardStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to update LeaderboardStates.
+     */
+    data: XOR<LeaderboardStateUpdateManyMutationInput, LeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which LeaderboardStates to update
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * Limit how many LeaderboardStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LeaderboardState upsert
+   */
+  export type LeaderboardStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LeaderboardState to update in case it exists.
+     */
+    where: LeaderboardStateWhereUniqueInput
+    /**
+     * In case the LeaderboardState found by the `where` argument doesn't exist, create a new LeaderboardState with this data.
+     */
+    create: XOR<LeaderboardStateCreateInput, LeaderboardStateUncheckedCreateInput>
+    /**
+     * In case the LeaderboardState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LeaderboardStateUpdateInput, LeaderboardStateUncheckedUpdateInput>
+  }
+
+  /**
+   * LeaderboardState delete
+   */
+  export type LeaderboardStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Filter which LeaderboardState to delete.
+     */
+    where: LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * LeaderboardState deleteMany
+   */
+  export type LeaderboardStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LeaderboardStates to delete
+     */
+    where?: LeaderboardStateWhereInput
+    /**
+     * Limit how many LeaderboardStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LeaderboardState without action
+   */
+  export type LeaderboardStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaderboardState
+     */
+    select?: LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaderboardState
+     */
+    omit?: LeaderboardStateOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model TournamentPrediction
    */
 
@@ -5917,6 +7022,16 @@ export namespace Prisma {
   export type MatchPredictionScalarFieldEnum = (typeof MatchPredictionScalarFieldEnum)[keyof typeof MatchPredictionScalarFieldEnum]
 
 
+  export const LeaderboardStateScalarFieldEnum: {
+    id: 'id',
+    ranksJson: 'ranksJson',
+    previousRanksJson: 'previousRanksJson',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LeaderboardStateScalarFieldEnum = (typeof LeaderboardStateScalarFieldEnum)[keyof typeof LeaderboardStateScalarFieldEnum]
+
+
   export const TournamentPredictionScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -6255,6 +7370,55 @@ export namespace Prisma {
     redCardsLine?: StringWithAggregatesFilter<"MatchPrediction"> | string
     createdAt?: DateTimeWithAggregatesFilter<"MatchPrediction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MatchPrediction"> | Date | string
+  }
+
+  export type LeaderboardStateWhereInput = {
+    AND?: LeaderboardStateWhereInput | LeaderboardStateWhereInput[]
+    OR?: LeaderboardStateWhereInput[]
+    NOT?: LeaderboardStateWhereInput | LeaderboardStateWhereInput[]
+    id?: IntFilter<"LeaderboardState"> | number
+    ranksJson?: StringFilter<"LeaderboardState"> | string
+    previousRanksJson?: StringFilter<"LeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"LeaderboardState"> | Date | string
+  }
+
+  export type LeaderboardStateOrderByWithRelationInput = {
+    id?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaderboardStateWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LeaderboardStateWhereInput | LeaderboardStateWhereInput[]
+    OR?: LeaderboardStateWhereInput[]
+    NOT?: LeaderboardStateWhereInput | LeaderboardStateWhereInput[]
+    ranksJson?: StringFilter<"LeaderboardState"> | string
+    previousRanksJson?: StringFilter<"LeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"LeaderboardState"> | Date | string
+  }, "id">
+
+  export type LeaderboardStateOrderByWithAggregationInput = {
+    id?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LeaderboardStateCountOrderByAggregateInput
+    _avg?: LeaderboardStateAvgOrderByAggregateInput
+    _max?: LeaderboardStateMaxOrderByAggregateInput
+    _min?: LeaderboardStateMinOrderByAggregateInput
+    _sum?: LeaderboardStateSumOrderByAggregateInput
+  }
+
+  export type LeaderboardStateScalarWhereWithAggregatesInput = {
+    AND?: LeaderboardStateScalarWhereWithAggregatesInput | LeaderboardStateScalarWhereWithAggregatesInput[]
+    OR?: LeaderboardStateScalarWhereWithAggregatesInput[]
+    NOT?: LeaderboardStateScalarWhereWithAggregatesInput | LeaderboardStateScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"LeaderboardState"> | number
+    ranksJson?: StringWithAggregatesFilter<"LeaderboardState"> | string
+    previousRanksJson?: StringWithAggregatesFilter<"LeaderboardState"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LeaderboardState"> | Date | string
   }
 
   export type TournamentPredictionWhereInput = {
@@ -6633,6 +7797,55 @@ export namespace Prisma {
     yellowCardsLine?: StringFieldUpdateOperationsInput | string
     redCardsLine?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaderboardStateCreateInput = {
+    id?: number
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type LeaderboardStateUncheckedCreateInput = {
+    id?: number
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type LeaderboardStateUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaderboardStateUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaderboardStateCreateManyInput = {
+    id?: number
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type LeaderboardStateUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaderboardStateUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7031,6 +8244,35 @@ export namespace Prisma {
     matchId?: SortOrder
     homeScore?: SortOrder
     awayScore?: SortOrder
+  }
+
+  export type LeaderboardStateCountOrderByAggregateInput = {
+    id?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaderboardStateAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type LeaderboardStateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaderboardStateMinOrderByAggregateInput = {
+    id?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaderboardStateSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {

@@ -4,7 +4,12 @@
       "id": 2,
       "homeTeam": "South Korea",
       "awayTeam": "Ukraine",
-      "kickoff": "2026-06-11T22:00:00.000Z"
+      "kickoff": "2026-06-11T22:00:00.000Z",
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 3,

@@ -1,9 +1,8 @@
 import { runDailyMatchMaintenance } from "@/lib/match-sync";
 
 async function main() {
-  const maintenance = await runDailyMatchMaintenance();
-
-  console.log(JSON.stringify({ ok: true, ...maintenance }, null, 2));
+  const result = await runDailyMatchMaintenance();
+  console.log(JSON.stringify({ ok: true, ...result }, null, 2));
 }
 
 main().catch((error) => {

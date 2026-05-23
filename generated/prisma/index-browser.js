@@ -159,6 +159,13 @@ exports.Prisma.MatchPredictionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LeaderboardStateScalarFieldEnum = {
+  id: 'id',
+  ranksJson: 'ranksJson',
+  previousRanksJson: 'previousRanksJson',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TournamentPredictionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -186,6 +193,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Match: 'Match',
   MatchPrediction: 'MatchPrediction',
+  LeaderboardState: 'LeaderboardState',
   TournamentPrediction: 'TournamentPrediction'
 };
 

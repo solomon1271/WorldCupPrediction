@@ -1,5 +1,10 @@
+import { readFile } from "node:fs/promises";
+import { isAbsolute, join } from "node:path";
+
+import { captureLeaderboardSnapshotForMaintenance, finalizeLeaderboardSnapshot } from "@/lib/leaderboard";
 import { prisma } from "@/lib/prisma";
 import { seedMatches } from "@/lib/seed-data";
+import { getZonedDayBounds } from "@/lib/timezone";
 
 export type MatchSyncFixture = {
   id: number;
@@ -9,7 +14,14 @@ export type MatchSyncFixture = {
   homeTeam?: string;
   awayTeam?: string;
   isLocked?: boolean;
+  finalHomeScore?: number | null;
+  finalAwayScore?: number | null;
+  finalYellowCards?: number | null;
+  finalTotalCorners?: number | null;
+  finalRedCards?: number | null;
 };
+
+const DEFAULT_CRON_TIMEZONE = "America/Chicago";
 
 /** Lock when kickoff is within this many minutes from now (e.g. 1 = lock at T−1m). */
 const DEFAULT_LOCK_LEAD_MINUTES = 1;
@@ -27,8 +39,69 @@ function normalizeFixture(input: MatchSyncFixture): MatchSyncFixture {
     venue: input.venue?.trim(),
     homeTeam: input.homeTeam?.trim(),
     awayTeam: input.awayTeam?.trim(),
-    isLocked: input.isLocked
+    isLocked: input.isLocked,
+    finalHomeScore: input.finalHomeScore,
+    finalAwayScore: input.finalAwayScore,
+    finalYellowCards: input.finalYellowCards,
+    finalTotalCorners: input.finalTotalCorners,
+    finalRedCards: input.finalRedCards
   };
+}
+
+function collectResultChanges(
+  existing: {
+    finalHomeScore: number | null;
+    finalAwayScore: number | null;
+    finalYellowCards: number | null;
+    finalTotalCorners: number | null;
+    finalRedCards: number | null;
+  },
+  fixture: MatchSyncFixture
+) {
+  const changes: Record<string, number | null> = {};
+
+  if (
+    typeof fixture.finalHomeScore === "number" &&
+    typeof fixture.finalAwayScore === "number" &&
+    (fixture.finalHomeScore !== existing.finalHomeScore || fixture.finalAwayScore !== existing.finalAwayScore)
+  ) {
+    changes.finalHomeScore = fixture.finalHomeScore;
+    changes.finalAwayScore = fixture.finalAwayScore;
+  }
+
+  if (typeof fixture.finalYellowCards === "number" && fixture.finalYellowCards !== existing.finalYellowCards) {
+    changes.finalYellowCards = fixture.finalYellowCards;
+  }
+
+  if (typeof fixture.finalTotalCorners === "number" && fixture.finalTotalCorners !== existing.finalTotalCorners) {
+    changes.finalTotalCorners = fixture.finalTotalCorners;
+  }
+
+  if (typeof fixture.finalRedCards === "number" && fixture.finalRedCards !== existing.finalRedCards) {
+    changes.finalRedCards = fixture.finalRedCards;
+  }
+
+  return changes;
+}
+
+function parseFixturePayload(payload: unknown): MatchSyncFixture[] {
+  const fixtures = Array.isArray(payload) ? payload : Array.isArray((payload as { matches?: unknown })?.matches) ? (payload as { matches: unknown[] }).matches : null;
+
+  if (!fixtures) {
+    throw new Error("Match sync feed must be a JSON array or an object with a matches array.");
+  }
+
+  return (fixtures as unknown[])
+    .filter((item): item is MatchSyncFixture => {
+      return Boolean(item && typeof item === "object" && "id" in item && typeof (item as { id?: unknown }).id === "number");
+    })
+    .map((item) => normalizeFixture(item));
+}
+
+async function loadFixturesFromFile(filePath: string) {
+  const absolutePath = isAbsolute(filePath) ? filePath : join(process.cwd(), filePath);
+  const payload = JSON.parse(await readFile(absolutePath, "utf8")) as unknown;
+  return parseFixturePayload(payload);
 }
 
 async function fetchJson(url: string) {
@@ -46,6 +119,12 @@ async function fetchJson(url: string) {
 }
 
 async function loadFixturesFromSource(): Promise<MatchSyncFixture[]> {
+  const filePath = process.env.MATCH_SYNC_FILE?.trim();
+
+  if (filePath) {
+    return loadFixturesFromFile(filePath);
+  }
+
   const sourceUrl = process.env.MATCH_SYNC_URL?.trim();
 
   if (!sourceUrl) {
@@ -61,17 +140,7 @@ async function loadFixturesFromSource(): Promise<MatchSyncFixture[]> {
   }
 
   const payload = await fetchJson(sourceUrl);
-  const fixtures = Array.isArray(payload) ? payload : Array.isArray(payload?.matches) ? payload.matches : null;
-
-  if (!fixtures) {
-    throw new Error("MATCH_SYNC_URL must return a JSON array or an object with a matches array.");
-  }
-
-  return (fixtures as unknown[])
-    .filter((item): item is MatchSyncFixture => {
-      return Boolean(item && typeof item === "object" && "id" in item && typeof (item as { id?: unknown }).id === "number");
-    })
-    .map((item) => normalizeFixture(item));
+  return parseFixturePayload(payload);
 }
 
 export async function syncMatchFixtures() {
@@ -79,6 +148,7 @@ export async function syncMatchFixtures() {
   let updated = 0;
   let unchanged = 0;
   let created = 0;
+  let resultsUpdated = 0;
 
   for (const fixture of fixtures) {
     const existing = await prisma.match.findUnique({ where: { id: fixture.id } });
@@ -97,6 +167,17 @@ export async function syncMatchFixtures() {
         continue;
       }
 
+      const resultFields = collectResultChanges(
+        {
+          finalHomeScore: null,
+          finalAwayScore: null,
+          finalYellowCards: null,
+          finalTotalCorners: null,
+          finalRedCards: null
+        },
+        fixture
+      );
+
       await prisma.match.create({
         data: {
           id: fixture.id,
@@ -105,10 +186,14 @@ export async function syncMatchFixtures() {
           venue: payload.venue,
           homeTeam: payload.homeTeam,
           awayTeam: payload.awayTeam,
-          isLocked: false
+          isLocked: false,
+          ...resultFields
         }
       });
       created += 1;
+      if (Object.keys(resultFields).length > 0) {
+        resultsUpdated += 1;
+      }
       continue;
     }
 
@@ -120,6 +205,11 @@ export async function syncMatchFixtures() {
     if (payload.homeTeam && payload.homeTeam !== existing.homeTeam) changes.homeTeam = payload.homeTeam;
     if (payload.awayTeam && payload.awayTeam !== existing.awayTeam) changes.awayTeam = payload.awayTeam;
 
+    const resultChanges = collectResultChanges(existing, fixture);
+    for (const [field, value] of Object.entries(resultChanges)) {
+      changes[field] = value;
+    }
+
     if (Object.keys(changes).length === 0) {
       unchanged += 1;
       continue;
@@ -130,14 +220,68 @@ export async function syncMatchFixtures() {
       data: changes
     });
     updated += 1;
+    if (Object.keys(resultChanges).length > 0) {
+      resultsUpdated += 1;
+    }
   }
 
   return {
     totalFixtures: fixtures.length,
     created,
     updated,
-    unchanged
+    unchanged,
+    resultsUpdated
   };
+}
+
+export async function lockMatchesForDailyMaintenance(referenceDate = new Date()) {
+  const timeZone = process.env.CRON_TIMEZONE?.trim() || DEFAULT_CRON_TIMEZONE;
+  const { start, end, dateLabel } = getZonedDayBounds(timeZone, referenceDate);
+
+  const [todayResult, overdueResult] = await Promise.all([
+    prisma.match.updateMany({
+      where: {
+        isLocked: false,
+        kickoff: {
+          gte: start,
+          lte: end
+        }
+      },
+      data: {
+        isLocked: true
+      }
+    }),
+    prisma.match.updateMany({
+      where: {
+        isLocked: false,
+        kickoff: {
+          lt: start
+        }
+      },
+      data: {
+        isLocked: true
+      }
+    })
+  ]);
+
+  return {
+    timeZone,
+    dateLabel,
+    start: start.toISOString(),
+    end: end.toISOString(),
+    todayLockedCount: todayResult.count,
+    overdueLockedCount: overdueResult.count,
+    lockedCount: todayResult.count + overdueResult.count
+  };
+}
+
+export async function runDailyMatchMaintenance(referenceDate = new Date()) {
+  const ranksBefore = await captureLeaderboardSnapshotForMaintenance();
+  const sync = await syncMatchFixtures();
+  const lock = await lockMatchesForDailyMaintenance(referenceDate);
+  const leaderboard = await finalizeLeaderboardSnapshot(ranksBefore);
+
+  return { sync, lock, leaderboard };
 }
 
 export async function lockMatchesNearKickoff() {

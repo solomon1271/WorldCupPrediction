@@ -57,6 +57,13 @@ model MatchPrediction {
   @@unique([userId, matchId])
 }
 
+model LeaderboardState {
+  id                Int      @id @default(1)
+  ranksJson         String   @default("{}")
+  previousRanksJson String   @default("{}")
+  updatedAt         DateTime @updatedAt
+}
+
 model TournamentPrediction {
   id              String   @id @default(cuid())
   userId          String   @unique

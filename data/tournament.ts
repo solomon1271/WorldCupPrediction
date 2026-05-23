@@ -109,7 +109,7 @@ export const tournamentPrediction: TournamentPrediction = {
 
 export const leaderboard: UserStanding[] = [
   { name: "Solomon", totalPoints: 34, exactScores: 3, outcomes: 6, bonusHits: 7, trend: "up" },
-  { name: "Nati", totalPoints: 31, exactScores: 2, outcomes: 7, bonusHits: 6, trend: "same" },
+  { name: "Nati", totalPoints: 31, exactScores: 2, outcomes: 7, bonusHits: 6, trend: "neutral" },
   { name: "Miki", totalPoints: 28, exactScores: 2, outcomes: 5, bonusHits: 7, trend: "up" },
   { name: "Rahel", totalPoints: 25, exactScores: 1, outcomes: 6, bonusHits: 5, trend: "down" }
 ];

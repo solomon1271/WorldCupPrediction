@@ -44,9 +44,8 @@ const globalForPrisma = globalThis as unknown as {
 
 const sqliteUrl = sqliteDatasourceUrlOverride();
 
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
+function createPrismaClient() {
+  return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["warn", "error"] : ["error"],
     ...(sqliteUrl
       ? {
@@ -56,7 +55,26 @@ export const prisma =
         }
       : {})
   });
-
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
 }
+
+function isLeaderboardStateReady(client: PrismaClient) {
+  return "leaderboardState" in client && Boolean(client.leaderboardState);
+}
+
+function getPrismaClient() {
+  const cached = globalForPrisma.prisma;
+
+  if (cached && isLeaderboardStateReady(cached)) {
+    return cached;
+  }
+
+  const client = createPrismaClient();
+
+  if (process.env.NODE_ENV !== "production") {
+    globalForPrisma.prisma = client;
+  }
+
+  return client;
+}
+
+export const prisma = getPrismaClient();

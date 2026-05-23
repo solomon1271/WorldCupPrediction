@@ -23,8 +23,10 @@
     "db:inspect:prod": "npm run db:generate:prod && tsx scripts/db-inspect-matches.ts",
     "matches:feed:local": "tsx scripts/generate-local-match-feed.ts",
     "matches:sync": "tsx scripts/sync-matches.ts",
+    "matches:sync:test": "MATCH_SYNC_FILE=public/match-sync-test.json tsx scripts/sync-matches.ts",
     "matches:lock": "tsx scripts/lock-matches.ts",
     "matches:maintain": "tsx scripts/run-match-maintenance.ts",
+    "matches:maintain:daily": "tsx scripts/daily-maintain.ts",
     "vercel-build": "npm run db:generate:prod && npm run db:deploy:prod && npm run build"
   },
   "dependencies": {

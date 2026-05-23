@@ -8,3 +8,5 @@ tsconfig.tsbuildinfo
 .env
 
 .next-dev
+public/match-sync-test.json
+public/match-sync-test.with-results.json

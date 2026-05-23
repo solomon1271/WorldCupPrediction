@@ -43,7 +43,7 @@ export type UserStanding = {
   exactScores: number;
   outcomes: number;
   bonusHits: number;
-  trend: "up" | "same" | "down";
+  trend: "neutral" | "up" | "down";
 };
 
 export type PointRule = {

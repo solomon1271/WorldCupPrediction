@@ -1,5 +1,5 @@
 import { DashboardStanding } from "@/lib/dashboard";
-import { trendLabel } from "@/lib/utils";
+import { MomentumBadge } from "@/components/MomentumBadge";
 
 type LeaderboardProps = {
   standings: DashboardStanding[];
@@ -21,7 +21,7 @@ export function Leaderboard({ standings }: LeaderboardProps) {
               <th>Exact Scores</th>
               <th>Correct Outcomes</th>
               <th>Bonus Hits</th>
-              <th>Momentum</th>
+              <th>Rank change</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +33,15 @@ export function Leaderboard({ standings }: LeaderboardProps) {
                 <td>{entry.exactScores}</td>
                 <td>{entry.outcomes}</td>
                 <td>{entry.bonusHits}</td>
-                <td>{trendLabel(entry.trend)}</td>
+                <td>
+                  <MomentumBadge
+                    momentum={entry.trend}
+                    rank={entry.rank}
+                    previousRank={entry.previousRank}
+                    afterRank={entry.afterRank}
+                    hasSnapshot={entry.hasSnapshot}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
