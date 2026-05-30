@@ -935,6 +935,15 @@
       "homeTeam": "Winner Match 101",
       "awayTeam": "Winner Match 102",
       "isLocked": false
+    },
+    {
+      "id": 9999,
+      "stage": "Cron lock test",
+      "kickoff": "2026-05-31T20:00:00.000Z",
+      "venue": "Test Arena, Chicago",
+      "homeTeam": "Cron Test Home",
+      "awayTeam": "Cron Test Away",
+      "isLocked": false
     }
   ]
 }
