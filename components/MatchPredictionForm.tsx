@@ -11,6 +11,7 @@ import {
 } from "@/lib/match-scoring";
 
 type MatchPredictionFormProps = {
+  leagueSlug: string;
   match: DashboardMatch;
   prediction?: DashboardMatchPrediction;
   onSaved: (prediction: DashboardMatchPrediction) => void;
@@ -26,7 +27,7 @@ const getDefaultWinner = (match: DashboardMatch, prediction?: DashboardMatchPred
   return "Draw";
 };
 
-export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredictionFormProps) {
+export function MatchPredictionForm({ leagueSlug, match, prediction, onSaved }: MatchPredictionFormProps) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -35,8 +36,24 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
   const [awayScore, setAwayScore] = useState(prediction?.awayScore?.toString() ?? "");
   const [winner, setWinner] = useState(getDefaultWinner(match, prediction));
   const [totalGoalsLine, setTotalGoalsLine] = useState(prediction?.totalGoalsLine ?? "0");
+  const [yellowCardsLine, setYellowCardsLine] = useState(prediction?.yellowCardsLine ?? "0");
+  const [totalCornersLine, setTotalCornersLine] = useState(prediction?.totalCornersLine ?? "0");
+  const [redCardsLine, setRedCardsLine] = useState(prediction?.redCardsLine ?? "No");
+
   const [winnerManual, setWinnerManual] = useState(false);
   const [totalGoalsManual, setTotalGoalsManual] = useState(false);
+
+  useEffect(() => {
+    setHomeScore(prediction?.homeScore?.toString() ?? "");
+    setAwayScore(prediction?.awayScore?.toString() ?? "");
+    setWinner(getDefaultWinner(match, prediction));
+    setTotalGoalsLine(prediction?.totalGoalsLine ?? "0");
+    setYellowCardsLine(prediction?.yellowCardsLine ?? "0");
+    setTotalCornersLine(prediction?.totalCornersLine ?? "0");
+    setRedCardsLine(prediction?.redCardsLine ?? "No");
+    setWinnerManual(false);
+    setTotalGoalsManual(false);
+  }, [match, prediction]);
 
   useEffect(() => {
     const home = homeScore === "" ? null : Number(homeScore);
@@ -62,6 +79,7 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const payload = {
+          leagueSlug,
           matchId: Number(formData.get("matchId")),
           homeScore: formData.get("homeScore") === "" ? null : Number(formData.get("homeScore")),
           awayScore: formData.get("awayScore") === "" ? null : Number(formData.get("awayScore")),
@@ -78,6 +96,7 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
 
           const response = await fetch("/api/predictions/match", {
             method: "POST",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json"
             },
@@ -176,7 +195,11 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
       <div className="score-grid">
         <label>
           <span>Yellow cards</span>
-          <select name="yellowCardsLine" defaultValue={prediction?.yellowCardsLine ?? "0"}>
+          <select
+            name="yellowCardsLine"
+            value={yellowCardsLine}
+            onChange={(event) => setYellowCardsLine(event.target.value)}
+          >
             {thresholdOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -186,7 +209,11 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
         </label>
         <label>
           <span>Total corners</span>
-          <select name="totalCornersLine" defaultValue={prediction?.totalCornersLine ?? "0"}>
+          <select
+            name="totalCornersLine"
+            value={totalCornersLine}
+            onChange={(event) => setTotalCornersLine(event.target.value)}
+          >
             {thresholdOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -198,7 +225,7 @@ export function MatchPredictionForm({ match, prediction, onSaved }: MatchPredict
       <div className="score-grid">
         <label>
           <span>Red cards</span>
-          <select name="redCardsLine" defaultValue={prediction?.redCardsLine ?? "No"}>
+          <select name="redCardsLine" value={redCardsLine} onChange={(event) => setRedCardsLine(event.target.value)}>
             <option value="No">No</option>
             <option value="Yes">Yes</option>
           </select>

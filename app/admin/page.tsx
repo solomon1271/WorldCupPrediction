@@ -1,19 +1,22 @@
 export const dynamic = "force-dynamic";
 
+import { AdminLeaguesPanel } from "@/components/AdminLeaguesPanel";
 import { AdminPortal } from "@/components/AdminPortal";
 import { Header } from "@/components/Header";
 import { getAdminDashboardData } from "@/lib/admin";
 import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireAdmin } from "@/lib/auth/user";
+import { listLeagues } from "@/lib/leagues";
 
 export default async function AdminPage() {
   const user = await requireAdmin();
-  const dashboard = await getAdminDashboardData();
+  const [dashboard, leagues] = await Promise.all([getAdminDashboardData(), listLeagues()]);
   const isAdmin = userHasAdminAccess(user);
 
   return (
     <main className="page-shell">
       <Header currentUserName={user.displayName} isAdmin={isAdmin} variant="admin" />
+      <AdminLeaguesPanel initialLeagues={leagues} />
       <AdminPortal currentUserId={user.id} users={dashboard.users} />
 
       <section className="section" id="prod-ops">
@@ -86,7 +89,11 @@ export default async function AdminPage() {
               </li>
               <li>In Neon SQL Editor, clear any stale production test results if a real match is showing as finished when it should not be.</li>
               <li>
-                In Vercel Settings → Environment Variables, confirm DATABASE_URL, AUTH_SECRET, INVITE_CODE, ADMIN_EMAIL, CRON_SECRET,
+                <strong>Leagues:</strong> open <a href="#admin-leagues">Admin → Leagues</a> to create a new private group with its
+                own invite code and page title. Share <code>/l/your-slug/signup</code> with that group.
+              </li>
+              <li>
+                In Vercel Settings → Environment Variables, confirm DATABASE_URL, AUTH_SECRET, ADMIN_EMAIL, CRON_SECRET,
                 CRON_TIMEZONE, MATCH_SYNC_URL, and MATCH_LOCK_LEAD_MINUTES are all set.
               </li>
               <li>In Vercel Deployments, verify the latest deployment is green and open the live URL from there.</li>

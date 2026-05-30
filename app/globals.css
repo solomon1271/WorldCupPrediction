@@ -529,6 +529,32 @@ a {
   border-top: 1px solid var(--line);
 }
 
+.league-share-list {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1.2rem 1.2rem;
+}
+
+.league-share-card {
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(12, 18, 42, 0.55);
+}
+
+.league-share-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.league-share-card dd a {
+  word-break: break-all;
+}
+
+.league-share-card code {
+  font-size: 0.95rem;
+}
+
 .card h3,
 .rule-card h3,
 .match-card strong {

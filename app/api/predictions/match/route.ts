@@ -1,10 +1,14 @@
+export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { requireLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
 
 const schema = z.object({
+  leagueSlug: z.string().trim().min(1),
   matchId: z.number().int().positive(),
   homeScore: z.number().int().min(0).max(20).nullable(),
   awayScore: z.number().int().min(0).max(20).nullable(),
@@ -29,8 +33,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message || "Invalid prediction." }, { status: 400 });
   }
 
-  const { matchId, homeScore, awayScore, winner, totalGoalsLine, totalCornersLine, yellowCardsLine, redCardsLine } =
+  const { leagueSlug, matchId, homeScore, awayScore, winner, totalGoalsLine, totalCornersLine, yellowCardsLine, redCardsLine } =
     parsed.data;
+  const membership = await requireLeagueMembership(user.id, leagueSlug);
+
+  if ("error" in membership) {
+    return NextResponse.json({ error: membership.error }, { status: 403 });
+  }
+
   const hasOnlyOneScore = (homeScore === null) !== (awayScore === null);
 
   if (hasOnlyOneScore) {
@@ -51,7 +61,8 @@ export async function POST(request: Request) {
 
   await prisma.matchPrediction.upsert({
     where: {
-      userId_matchId: {
+      leagueId_userId_matchId: {
+        leagueId: membership.league.id,
         userId: user.id,
         matchId
       }
@@ -66,6 +77,7 @@ export async function POST(request: Request) {
       redCardsLine
     },
     create: {
+      leagueId: membership.league.id,
       userId: user.id,
       matchId,
       winner,

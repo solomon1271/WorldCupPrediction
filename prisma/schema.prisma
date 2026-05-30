@@ -9,15 +9,42 @@ datasource db {
 }
 
 model User {
-  id                   String                @id @default(cuid())
-  email                String                @unique
-  displayName          String
-  passwordHash         String
-  isAdmin              Boolean               @default(false)
-  createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
-  matchPredictions     MatchPrediction[]
-  tournamentPrediction TournamentPrediction?
+  id                    String                 @id @default(cuid())
+  email                 String                 @unique
+  displayName           String
+  passwordHash          String
+  isAdmin               Boolean                @default(false)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  leagueMembers         LeagueMember[]
+  matchPredictions      MatchPrediction[]
+  tournamentPredictions TournamentPrediction[]
+}
+
+model League {
+  id                    String                 @id @default(cuid())
+  slug                  String                 @unique
+  name                  String
+  inviteCode            String                 @unique
+  subtitle              String                 @default("2026 World Cup Challenge")
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  members               LeagueMember[]
+  matchPredictions      MatchPrediction[]
+  tournamentPredictions TournamentPrediction[]
+  leaderboardState      LeaderboardState?
+}
+
+model LeagueMember {
+  id       String   @id @default(cuid())
+  leagueId String
+  userId   String
+  joinedAt DateTime @default(now())
+  league   League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId])
+  @@index([userId])
 }
 
 model Match {
@@ -40,6 +67,7 @@ model Match {
 
 model MatchPrediction {
   id               String   @id @default(cuid())
+  leagueId         String
   userId           String
   matchId          Int
   winner           String
@@ -51,22 +79,25 @@ model MatchPrediction {
   redCardsLine     String   @default("0")
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  league           League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
   match            Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, matchId])
+  @@unique([leagueId, userId, matchId])
 }
 
 model LeaderboardState {
-  id                Int      @id @default(1)
+  leagueId          String   @id
   ranksJson         String   @default("{}")
   previousRanksJson String   @default("{}")
   updatedAt         DateTime @updatedAt
+  league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
 }
 
 model TournamentPrediction {
   id              String   @id @default(cuid())
-  userId          String   @unique
+  leagueId        String
+  userId          String
   champion        String?
   runnerUp        String?
   goldenBoot      String?
@@ -74,5 +105,8 @@ model TournamentPrediction {
   groupWinners    String   @default("{}")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  league          League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId])
 }

@@ -17,17 +17,13 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
     prisma.matchPrediction.deleteMany({
       where: { userId: id }
     }),
-    prisma.tournamentPrediction.upsert({
+    prisma.tournamentPrediction.updateMany({
       where: { userId: id },
-      update: {
+      data: {
         champion: null,
         runnerUp: null,
         goldenBoot: null,
         bestYoungPlayer: null,
-        groupWinners: "{}"
-      },
-      create: {
-        userId: id,
         groupWinners: "{}"
       }
     })

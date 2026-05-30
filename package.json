@@ -24,9 +24,12 @@
     "matches:feed:local": "tsx scripts/generate-local-match-feed.ts",
     "matches:sync": "tsx scripts/sync-matches.ts",
     "matches:sync:test": "MATCH_SYNC_FILE=public/match-sync-test.json tsx scripts/sync-matches.ts",
+    "matches:reset:test": "tsx scripts/reset-test-matches.ts",
     "matches:lock": "tsx scripts/lock-matches.ts",
     "matches:maintain": "tsx scripts/run-match-maintenance.ts",
     "matches:maintain:daily": "tsx scripts/daily-maintain.ts",
+    "league:create": "tsx scripts/create-league.ts",
+    "db:backfill-leagues": "tsx scripts/backfill-local-leagues.ts",
     "vercel-build": "npm run db:generate:prod && npm run db:deploy:prod && npm run build"
   },
   "dependencies": {

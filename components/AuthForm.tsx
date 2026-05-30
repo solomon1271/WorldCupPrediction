@@ -1,28 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+
+import { LeagueBranding } from "@/lib/league-types";
 
 type AuthFormProps = {
   mode: "login" | "signup";
+  league?: LeagueBranding;
 };
 
-export function AuthForm({ mode }: AuthFormProps) {
-  const router = useRouter();
+export function AuthForm({ mode, league }: AuthFormProps) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const leagueName = league?.name || "World Cup Prediction";
+  const redirectPath = league ? `/l/${league.slug}` : "/";
 
   return (
     <section className="auth-shell">
       <div className="auth-card">
         <p className="eyebrow">{mode === "login" ? "Welcome back" : "Private league access"}</p>
-        <h1>{mode === "login" ? "NewRez World Cup Prediction" : "Create your account for the group"}</h1>
+        <h1>{mode === "login" ? leagueName : `Create your account for ${leagueName}`}</h1>
         <p className="auth-copy">
           {mode === "login"
-            ? "Use the account you created for this private prediction league."
+            ? `Use the account you created for ${leagueName}.`
             : "Only people with the invite code can join this prediction league."}
         </p>
+        {league ? <p className="auth-copy">{league.subtitle}</p> : null}
         <form
           className="auth-form"
           autoComplete="off"
@@ -33,7 +37,8 @@ export function AuthForm({ mode }: AuthFormProps) {
               mode === "login"
                 ? {
                     email: String(formData.get("email") || ""),
-                    password: String(formData.get("password") || "")
+                    password: String(formData.get("password") || ""),
+                    ...(league ? { leagueSlug: league.slug } : {})
                   }
                 : {
                     displayName: String(formData.get("displayName") || ""),
@@ -47,6 +52,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
               const response = await fetch(mode === "login" ? "/api/auth/login" : "/api/auth/signup", {
                 method: "POST",
+                credentials: "same-origin",
                 headers: {
                   "Content-Type": "application/json"
                 },
@@ -54,10 +60,10 @@ export function AuthForm({ mode }: AuthFormProps) {
               });
 
               const raw = await response.text();
-              let result: { error?: string; ok?: boolean } = {};
+              let result: { error?: string; ok?: boolean; leagueSlug?: string; redirectPath?: string } = {};
               if (raw.trim()) {
                 try {
-                  result = JSON.parse(raw) as { error?: string; ok?: boolean };
+                  result = JSON.parse(raw) as { error?: string; ok?: boolean; leagueSlug?: string; redirectPath?: string };
                 } catch {
                   setError("The server returned an unexpected response. Please try again.");
                   return;
@@ -65,13 +71,17 @@ export function AuthForm({ mode }: AuthFormProps) {
               }
 
               if (!response.ok) {
-                const code = "code" in result && typeof (result as { code?: string }).code === "string" ? ` (${(result as { code: string }).code})` : "";
+                const code =
+                  "code" in result && typeof (result as { code?: string }).code === "string"
+                    ? ` (${(result as { code: string }).code})`
+                    : "";
                 setError((result.error || (mode === "login" ? "Could not sign in." : "Could not create account.")) + code);
                 return;
               }
 
-              router.push("/");
-              router.refresh();
+              const nextPath =
+                result.redirectPath || (result.leagueSlug ? `/l/${result.leagueSlug}` : mode === "login" ? "/" : redirectPath);
+              window.location.assign(nextPath);
             });
           }}
         >
@@ -102,7 +112,10 @@ export function AuthForm({ mode }: AuthFormProps) {
         </form>
         <div className="auth-footer">
           <p className="auth-switch">{mode === "login" ? "Need an account?" : "Already in the group?"}</p>
-          <Link className="auth-secondary" href={mode === "login" ? "/signup" : "/login"}>
+          <Link
+            className="auth-secondary"
+            href={league ? `/l/${league.slug}/${mode === "login" ? "signup" : "login"}` : mode === "login" ? "/signup" : "/login"}
+          >
             {mode === "login" ? "Create one" : "Sign in"}
           </Link>
         </div>

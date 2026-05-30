@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { userBelongsToLeague, getLeagueBySlug } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
-import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
+import { isConfiguredAdminEmail, userHasAdminAccess } from "@/lib/auth/admin-email";
+import { getPostLoginRedirectPath } from "@/lib/auth/post-login-redirect";
 import { attachSessionCookie, issueSessionToken } from "@/lib/auth/session";
 import { verifyPassword } from "@/lib/auth/password";
 
@@ -10,7 +12,8 @@ export const runtime = "nodejs";
 
 const schema = z.object({
   email: z.email("Enter a valid email address.").transform((value) => value.toLowerCase()),
-  password: z.string().min(1, "Password is required.")
+  password: z.string().min(1, "Password is required."),
+  leagueSlug: z.string().trim().optional()
 });
 
 export async function POST(request: Request) {
@@ -28,7 +31,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: parsed.error.issues[0]?.message || "Could not sign in." }, { status: 400 });
     }
 
-    const { email, password } = parsed.data;
+    const { email, password, leagueSlug } = parsed.data;
 
     let user;
     try {
@@ -68,11 +71,26 @@ export async function POST(request: Request) {
           data: { isAdmin: true }
         });
       } catch (dbErr) {
-        // Non-fatal: configured admin email still gets access via userHasAdminAccess without this flag.
         console.error("login admin promotion skipped (DB update failed; sign-in continues)", dbErr);
         userForSession = user;
       }
     }
+
+    if (leagueSlug) {
+      const league = await getLeagueBySlug(leagueSlug);
+
+      if (!league) {
+        return NextResponse.json({ error: "League not found." }, { status: 404 });
+      }
+
+      const isMember = await userBelongsToLeague(userForSession.id, league.id);
+
+      if (!isMember && !userHasAdminAccess(userForSession)) {
+        return NextResponse.json({ error: "You are not a member of this league." }, { status: 403 });
+      }
+    }
+
+    const redirectPath = await getPostLoginRedirectPath(userForSession, leagueSlug);
 
     let token: string;
     try {
@@ -90,9 +108,9 @@ export async function POST(request: Request) {
     }
 
     try {
-      const response = new NextResponse(JSON.stringify({ ok: true }), {
-        status: 200,
-        headers: { "content-type": "application/json; charset=utf-8" }
+      const response = NextResponse.json({
+        ok: true,
+        redirectPath
       });
       attachSessionCookie(response, token);
       return response;

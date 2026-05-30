@@ -6,10 +6,11 @@ import { DashboardTournamentPrediction } from "@/lib/dashboard";
 import { TournamentPredictionForm } from "@/components/TournamentPredictionForm";
 
 type TournamentPicksProps = {
+  leagueSlug: string;
   prediction: DashboardTournamentPrediction;
 };
 
-export function TournamentPicks({ prediction }: TournamentPicksProps) {
+export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps) {
   const [localPrediction, setLocalPrediction] = useState(prediction);
 
   return (
@@ -42,7 +43,7 @@ export function TournamentPicks({ prediction }: TournamentPicksProps) {
         <article className="card">
           <span className="card__label">Editable picks</span>
           <h3>Save your tournament picks</h3>
-          <TournamentPredictionForm prediction={localPrediction} onSaved={setLocalPrediction} />
+          <TournamentPredictionForm leagueSlug={leagueSlug} prediction={localPrediction} onSaved={setLocalPrediction} />
         </article>
       </div>
       <a className="section__jump" href="#top">

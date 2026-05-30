@@ -127,6 +127,23 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LeagueScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  inviteCode: 'inviteCode',
+  subtitle: 'subtitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LeagueMemberScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  joinedAt: 'joinedAt'
+};
+
 exports.Prisma.MatchScalarFieldEnum = {
   id: 'id',
   stage: 'stage',
@@ -146,6 +163,7 @@ exports.Prisma.MatchScalarFieldEnum = {
 
 exports.Prisma.MatchPredictionScalarFieldEnum = {
   id: 'id',
+  leagueId: 'leagueId',
   userId: 'userId',
   matchId: 'matchId',
   winner: 'winner',
@@ -160,7 +178,7 @@ exports.Prisma.MatchPredictionScalarFieldEnum = {
 };
 
 exports.Prisma.LeaderboardStateScalarFieldEnum = {
-  id: 'id',
+  leagueId: 'leagueId',
   ranksJson: 'ranksJson',
   previousRanksJson: 'previousRanksJson',
   updatedAt: 'updatedAt'
@@ -168,6 +186,7 @@ exports.Prisma.LeaderboardStateScalarFieldEnum = {
 
 exports.Prisma.TournamentPredictionScalarFieldEnum = {
   id: 'id',
+  leagueId: 'leagueId',
   userId: 'userId',
   champion: 'champion',
   runnerUp: 'runnerUp',
@@ -191,6 +210,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  League: 'League',
+  LeagueMember: 'LeagueMember',
   Match: 'Match',
   MatchPrediction: 'MatchPrediction',
   LeaderboardState: 'LeaderboardState',

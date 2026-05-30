@@ -1,10 +1,14 @@
+export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { requireLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
 
 const schema = z.object({
+  leagueSlug: z.string().trim().min(1),
   champion: z.string().trim().min(2),
   runnerUp: z.string().trim().min(2),
   goldenBoot: z.string().trim().min(2),
@@ -25,20 +29,34 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message || "Invalid tournament prediction." }, { status: 400 });
   }
 
+  const membership = await requireLeagueMembership(user.id, parsed.data.leagueSlug);
+
+  if ("error" in membership) {
+    return NextResponse.json({ error: membership.error }, { status: 403 });
+  }
+
+  const { champion, runnerUp, goldenBoot, bestYoungPlayer } = parsed.data;
+
   await prisma.tournamentPrediction.upsert({
-    where: { userId: user.id },
+    where: {
+      leagueId_userId: {
+        leagueId: membership.league.id,
+        userId: user.id
+      }
+    },
     update: {
-      champion: parsed.data.champion,
-      runnerUp: parsed.data.runnerUp,
-      goldenBoot: parsed.data.goldenBoot,
-      bestYoungPlayer: parsed.data.bestYoungPlayer
+      champion,
+      runnerUp,
+      goldenBoot,
+      bestYoungPlayer
     },
     create: {
+      leagueId: membership.league.id,
       userId: user.id,
-      champion: parsed.data.champion,
-      runnerUp: parsed.data.runnerUp,
-      goldenBoot: parsed.data.goldenBoot,
-      bestYoungPlayer: parsed.data.bestYoungPlayer,
+      champion,
+      runnerUp,
+      goldenBoot,
+      bestYoungPlayer,
       groupWinners: "{}"
     }
   });

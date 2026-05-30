@@ -6,9 +6,9 @@ import { signRefreshedSessionToken, verifySessionToken } from "@/lib/auth/sessio
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  // Do not touch session cookies on auth POSTs — avoids edge cases where the
-  // client would otherwise receive a non-JSON error body (e.g. Safari + response.json()).
-  if (path === "/api/auth/login" || path === "/api/auth/signup") {
+
+  // API routes read the session cookie directly — avoid refreshing or deleting it here.
+  if (path.startsWith("/api/")) {
     return NextResponse.next();
   }
 

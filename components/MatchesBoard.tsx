@@ -8,6 +8,7 @@ import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
 import { formatKickoff } from "@/lib/utils";
 
 type MatchesBoardProps = {
+  leagueSlug: string;
   matches: DashboardMatch[];
   predictions: DashboardMatchPrediction[];
 };
@@ -71,7 +72,7 @@ function getBadgeClass(statusLabel: string) {
   return `match-card__badge--${statusLabel.toLowerCase()}`;
 }
 
-export function MatchesBoard({ matches, predictions }: MatchesBoardProps) {
+export function MatchesBoard({ leagueSlug, matches, predictions }: MatchesBoardProps) {
   const [localPredictions, setLocalPredictions] = useState(predictions);
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
 
@@ -155,6 +156,7 @@ export function MatchesBoard({ matches, predictions }: MatchesBoardProps) {
                   </>
                 ) : (
                   <MatchPredictionForm
+                    leagueSlug={leagueSlug}
                     match={match}
                     prediction={prediction}
                     onSaved={(savedPrediction) => {

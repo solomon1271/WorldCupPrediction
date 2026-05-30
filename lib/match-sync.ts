@@ -118,7 +118,7 @@ async function fetchJson(url: string) {
   return response.json();
 }
 
-async function loadFixturesFromSource(): Promise<MatchSyncFixture[]> {
+export async function loadFixturesFromSource(): Promise<MatchSyncFixture[]> {
   const filePath = process.env.MATCH_SYNC_FILE?.trim();
 
   if (filePath) {

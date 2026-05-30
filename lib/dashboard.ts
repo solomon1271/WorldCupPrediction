@@ -1,10 +1,4 @@
-import { Prisma, MatchPrediction, TournamentPrediction } from "../generated/prisma";
-
-import {
-  attachRankMomentum,
-  buildLeaderboardEntries,
-  loadLeaderboardSnapshot
-} from "@/lib/leaderboard";
+import { attachRankMomentum, buildLeaderboardEntries, loadLeaderboardSnapshot } from "@/lib/leaderboard";
 import {
   normalizeRedCardsLine,
   normalizeThresholdLine
@@ -64,23 +58,15 @@ export type DashboardStanding = {
   trend: PlayerMomentum;
 };
 
-type UserWithPredictions = Prisma.UserGetPayload<{
-  include: {
-    matchPredictions: {
-      include: {
-        match: true;
-      };
-    };
-    tournamentPrediction: true;
-  };
-}>;
-type MatchWithUserPrediction = Prisma.MatchGetPayload<{
-  include: {
-    predictions: true;
-  };
-}>;
-
-function normalizeTournamentPrediction(prediction: TournamentPrediction | null): DashboardTournamentPrediction {
+function normalizeTournamentPrediction(
+  prediction: {
+    champion: string | null;
+    runnerUp: string | null;
+    goldenBoot: string | null;
+    bestYoungPlayer: string | null;
+    groupWinners: string;
+  } | null
+): DashboardTournamentPrediction {
   return {
     champion: prediction?.champion || null,
     runnerUp: prediction?.runnerUp || null,
@@ -90,33 +76,65 @@ function normalizeTournamentPrediction(prediction: TournamentPrediction | null):
   };
 }
 
-export async function getDashboardData(currentUserId: string) {
-  const [matches, users] = await Promise.all([
+async function getLeagueUsersWithPredictions(leagueId: string) {
+  const members = await prisma.leagueMember.findMany({
+    where: { leagueId },
+    include: {
+      user: {
+        include: {
+          matchPredictions: {
+            where: { leagueId },
+            include: {
+              match: true
+            }
+          }
+        }
+      }
+    },
+    orderBy: [{ joinedAt: "asc" }]
+  });
+
+  return members.map((member) => member.user);
+}
+
+export async function getDashboardData(leagueId: string, currentUserId: string) {
+  const [matches, users, currentMember] = await Promise.all([
     prisma.match.findMany({
       orderBy: [{ kickoff: "asc" }],
       include: {
         predictions: {
-          where: { userId: currentUserId }
+          where: {
+            leagueId,
+            userId: currentUserId
+          }
         }
       }
     }),
-    prisma.user.findMany({
+    getLeagueUsersWithPredictions(leagueId),
+    prisma.leagueMember.findUnique({
+      where: {
+        leagueId_userId: {
+          leagueId,
+          userId: currentUserId
+        }
+      },
       include: {
-        matchPredictions: {
+        user: {
           include: {
-            match: true
+            tournamentPredictions: {
+              where: { leagueId },
+              take: 1
+            }
           }
-        },
-        tournamentPrediction: true
+        }
       }
     })
-  ]) as [MatchWithUserPrediction[], UserWithPredictions[]];
+  ]);
 
-  const currentUser = users.find((entry) => entry.id === currentUserId);
-  const snapshot = await loadLeaderboardSnapshot();
+  const currentUser = currentMember?.user;
+  const snapshot = await loadLeaderboardSnapshot(leagueId);
   const leaderboard = attachRankMomentum(buildLeaderboardEntries(users), snapshot);
-
-  const currentUserStanding = leaderboard.find((entry: DashboardStanding) => entry.id === currentUserId);
+  const currentUserStanding = leaderboard.find((entry) => entry.id === currentUserId);
 
   return {
     matches: matches.map((match) => ({
@@ -144,9 +162,9 @@ export async function getDashboardData(currentUserId: string) {
           : undefined
     })) as DashboardMatch[],
     myPredictions: matches
-      .map((match: MatchWithUserPrediction) => match.predictions[0])
-      .filter((prediction): prediction is MatchPrediction => Boolean(prediction))
-      .map((prediction: MatchPrediction) => ({
+      .map((match) => match.predictions[0])
+      .filter((prediction): prediction is NonNullable<typeof prediction> => Boolean(prediction))
+      .map((prediction) => ({
         matchId: prediction.matchId,
         winner: prediction.winner,
         homeScore: prediction.homeScore,
@@ -157,7 +175,7 @@ export async function getDashboardData(currentUserId: string) {
         redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
       })) as DashboardMatchPrediction[],
     leaderboard,
-    tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPrediction || null),
+    tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     currentUserName: currentUser?.displayName || "Manager",
     trendSummary: currentUserStanding ? momentumLabel(currentUserStanding.trend) : "No change",
     totalMatches: matches.length,

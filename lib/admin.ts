@@ -19,7 +19,7 @@ type UserWithAdminData = Prisma.UserGetPayload<{
         match: true;
       };
     };
-    tournamentPrediction: true;
+    tournamentPredictions: true;
   };
 }>;
 
@@ -31,13 +31,18 @@ export async function getAdminDashboardData() {
           match: true
         }
       },
-      tournamentPrediction: true
+      tournamentPredictions: true
     },
     orderBy: [{ createdAt: "asc" }]
   });
 
   return {
-    users: users.map((user) => {
+    users: users.map((user: UserWithAdminData) => {
+      const tournamentReady = user.tournamentPredictions.some(
+        (prediction) =>
+          prediction.champion && prediction.runnerUp && prediction.goldenBoot && prediction.bestYoungPlayer
+      );
+
       return {
         id: user.id,
         displayName: user.displayName,
@@ -45,12 +50,7 @@ export async function getAdminDashboardData() {
         isAdmin: user.isAdmin,
         createdAt: user.createdAt.toISOString(),
         matchPickCount: user.matchPredictions.length,
-        tournamentReady: Boolean(
-          user.tournamentPrediction?.champion &&
-            user.tournamentPrediction?.runnerUp &&
-            user.tournamentPrediction?.goldenBoot &&
-            user.tournamentPrediction?.bestYoungPlayer
-        )
+        tournamentReady
       };
     }) as AdminUser[]
   };

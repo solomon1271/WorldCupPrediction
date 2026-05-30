@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { addUserToLeague, getLeagueByInviteCode } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { attachSessionCookie, issueSessionToken } from "@/lib/auth/session";
 import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
@@ -31,9 +32,10 @@ export async function POST(request: Request) {
     }
 
     const { displayName, email, password, inviteCode } = parsed.data;
+    const league = await getLeagueByInviteCode(inviteCode);
 
-    if (inviteCode !== (process.env.INVITE_CODE || "WORLD-CUP-2026")) {
-      return NextResponse.json({ error: "Invite code does not match this private league." }, { status: 400 });
+    if (!league) {
+      return NextResponse.json({ error: "Invite code does not match any league." }, { status: 400 });
     }
 
     let existingUser;
@@ -48,7 +50,12 @@ export async function POST(request: Request) {
     }
 
     if (existingUser) {
-      return NextResponse.json({ error: "That email is already in use." }, { status: 400 });
+      return NextResponse.json(
+        {
+          error: "That email is already in use. Sign in, then join this league with the same invite code from your league page."
+        },
+        { status: 400 }
+      );
     }
 
     let passwordHash: string;
@@ -66,14 +73,10 @@ export async function POST(request: Request) {
           displayName,
           email,
           passwordHash,
-          isAdmin: isConfiguredAdminEmail(email),
-          tournamentPrediction: {
-            create: {
-              groupWinners: "{}"
-            }
-          }
+          isAdmin: isConfiguredAdminEmail(email)
         }
       });
+      await addUserToLeague(user.id, league.id);
     } catch (createErr) {
       console.error("signup prisma create error", createErr);
       return NextResponse.json({ error: "Could not create account. Please try again.", code: "E_DB_WRITE" }, { status: 500 });
@@ -95,10 +98,7 @@ export async function POST(request: Request) {
     }
 
     try {
-      const response = new NextResponse(JSON.stringify({ ok: true }), {
-        status: 200,
-        headers: { "content-type": "application/json; charset=utf-8" }
-      });
+      const response = NextResponse.json({ ok: true, leagueSlug: league.slug });
       attachSessionCookie(response, token);
       return response;
     } catch (cookieErr) {

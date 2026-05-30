@@ -57,14 +57,19 @@ function createPrismaClient() {
   });
 }
 
-function isLeaderboardStateReady(client: PrismaClient) {
-  return "leaderboardState" in client && Boolean(client.leaderboardState);
+function isPrismaClientReady(client: PrismaClient) {
+  return (
+    "leaderboardState" in client &&
+    Boolean(client.leaderboardState) &&
+    "league" in client &&
+    Boolean(client.league)
+  );
 }
 
 function getPrismaClient() {
   const cached = globalForPrisma.prisma;
 
-  if (cached && isLeaderboardStateReady(cached)) {
+  if (cached && isPrismaClientReady(cached)) {
     return cached;
   }
 

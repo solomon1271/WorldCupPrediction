@@ -83,17 +83,28 @@ function parseRankMap(value: string) {
   }
 }
 
-export async function computeCurrentRankMap() {
-  const users = await prisma.user.findMany({
+async function getLeagueUsersWithPredictions(leagueId: string) {
+  const members = await prisma.leagueMember.findMany({
+    where: { leagueId },
     include: {
-      matchPredictions: {
+      user: {
         include: {
-          match: true
+          matchPredictions: {
+            where: { leagueId },
+            include: {
+              match: true
+            }
+          }
         }
       }
     }
   });
 
+  return members.map((member) => member.user);
+}
+
+export async function computeCurrentRankMap(leagueId: string) {
+  const users = await getLeagueUsersWithPredictions(leagueId);
   return buildRankMap(buildLeaderboardEntries(users));
 }
 
@@ -111,7 +122,7 @@ export type LeaderboardSnapshot = {
   afterRanks: Record<string, number>;
 };
 
-export async function loadLeaderboardSnapshot(): Promise<LeaderboardSnapshot> {
+export async function loadLeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
   const leaderboardState = getLeaderboardStateClient();
 
   if (!leaderboardState) {
@@ -123,7 +134,7 @@ export async function loadLeaderboardSnapshot(): Promise<LeaderboardSnapshot> {
   }
 
   const state = await leaderboardState.findUnique({
-    where: { id: 1 }
+    where: { leagueId }
   });
 
   if (!state) {
@@ -141,13 +152,11 @@ export async function loadLeaderboardSnapshot(): Promise<LeaderboardSnapshot> {
   };
 }
 
-/** @deprecated Use loadLeaderboardSnapshot instead. */
-export async function loadLeaderboardComparisonRanks() {
-  const snapshot = await loadLeaderboardSnapshot();
-  return snapshot.previousRanks;
-}
-
-export async function recordLeaderboardSnapshot(ranksBefore: Record<string, number>, ranksAfter: Record<string, number>) {
+export async function recordLeaderboardSnapshot(
+  leagueId: string,
+  ranksBefore: Record<string, number>,
+  ranksAfter: Record<string, number>
+) {
   const leaderboardState = getLeaderboardStateClient();
 
   if (!leaderboardState) {
@@ -155,9 +164,9 @@ export async function recordLeaderboardSnapshot(ranksBefore: Record<string, numb
   }
 
   await leaderboardState.upsert({
-    where: { id: 1 },
+    where: { leagueId },
     create: {
-      id: 1,
+      leagueId,
       ranksJson: JSON.stringify(ranksAfter),
       previousRanksJson: JSON.stringify(ranksBefore)
     },
@@ -169,18 +178,28 @@ export async function recordLeaderboardSnapshot(ranksBefore: Record<string, numb
 }
 
 export async function captureLeaderboardSnapshotForMaintenance() {
-  const ranksBefore = await computeCurrentRankMap();
-  return ranksBefore;
+  const leagues = await prisma.league.findMany({
+    select: { id: true }
+  });
+  const ranksBeforeByLeague: Record<string, Record<string, number>> = {};
+
+  for (const league of leagues) {
+    ranksBeforeByLeague[league.id] = await computeCurrentRankMap(league.id);
+  }
+
+  return ranksBeforeByLeague;
 }
 
-export async function finalizeLeaderboardSnapshot(ranksBefore: Record<string, number>) {
-  const ranksAfter = await computeCurrentRankMap();
-  await recordLeaderboardSnapshot(ranksBefore, ranksAfter);
+export async function finalizeLeaderboardSnapshot(ranksBeforeByLeague: Record<string, Record<string, number>>) {
+  const leaderboard: Record<string, { ranksBefore: Record<string, number>; ranksAfter: Record<string, number> }> = {};
 
-  return {
-    ranksBefore,
-    ranksAfter
-  };
+  for (const [leagueId, ranksBefore] of Object.entries(ranksBeforeByLeague)) {
+    const ranksAfter = await computeCurrentRankMap(leagueId);
+    await recordLeaderboardSnapshot(leagueId, ranksBefore, ranksAfter);
+    leaderboard[leagueId] = { ranksBefore, ranksAfter };
+  }
+
+  return leaderboard;
 }
 
 export function attachRankMomentum(

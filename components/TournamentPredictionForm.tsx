@@ -5,11 +5,12 @@ import { useState, useTransition } from "react";
 import { DashboardTournamentPrediction } from "@/lib/dashboard";
 
 type TournamentPredictionFormProps = {
+  leagueSlug: string;
   prediction: DashboardTournamentPrediction;
   onSaved: (prediction: DashboardTournamentPrediction) => void;
 };
 
-export function TournamentPredictionForm({ prediction, onSaved }: TournamentPredictionFormProps) {
+export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: TournamentPredictionFormProps) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -22,6 +23,7 @@ export function TournamentPredictionForm({ prediction, onSaved }: TournamentPred
         const formData = new FormData(event.currentTarget);
 
         const payload = {
+          leagueSlug,
           champion: String(formData.get("champion") || ""),
           runnerUp: String(formData.get("runnerUp") || ""),
           goldenBoot: String(formData.get("goldenBoot") || ""),
@@ -34,6 +36,7 @@ export function TournamentPredictionForm({ prediction, onSaved }: TournamentPred
 
           const response = await fetch("/api/predictions/tournament", {
             method: "POST",
+            credentials: "same-origin",
             headers: {
               "Content-Type": "application/json"
             },
