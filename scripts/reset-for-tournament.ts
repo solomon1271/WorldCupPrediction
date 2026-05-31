@@ -4,15 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { seedMatches } from "@/lib/seed-data";
 
 const TEST_MATCH_IDS = [9001, 9002, 9003];
-const CRON_TEST_MATCH_ID = 1;
 
 async function main() {
-  const cronTestSeed = seedMatches.find((match) => match.id === CRON_TEST_MATCH_ID);
-
-  if (!cronTestSeed) {
-    throw new Error("Seed match 1 not found.");
-  }
-
   const deletedTestPredictions = await prisma.matchPrediction.deleteMany({
     where: { matchId: { in: TEST_MATCH_IDS } }
   });
@@ -21,57 +14,61 @@ async function main() {
     where: { id: { in: TEST_MATCH_IDS } }
   });
 
-  const deletedCronTestPredictions = await prisma.matchPrediction.deleteMany({
-    where: { matchId: CRON_TEST_MATCH_ID }
-  });
+  let upsertedMatches = 0;
 
-  await prisma.match.update({
-    where: { id: CRON_TEST_MATCH_ID },
+  for (const match of seedMatches) {
+    await prisma.match.upsert({
+      where: { id: match.id },
+      update: {
+        stage: match.stage,
+        kickoff: match.kickoff,
+        venue: match.venue,
+        homeTeam: match.homeTeam,
+        awayTeam: match.awayTeam,
+        isLocked: false,
+        finalHomeScore: null,
+        finalAwayScore: null,
+        finalYellowCards: null,
+        finalTotalCorners: null,
+        finalRedCards: null
+      },
+      create: match
+    });
+    upsertedMatches += 1;
+  }
+
+  const deletedPredictions = await prisma.matchPrediction.deleteMany();
+  const resetTournamentPredictions = await prisma.tournamentPrediction.updateMany({
     data: {
-      stage: cronTestSeed.stage,
-      kickoff: cronTestSeed.kickoff,
-      venue: cronTestSeed.venue,
-      homeTeam: cronTestSeed.homeTeam,
-      awayTeam: cronTestSeed.awayTeam,
-      isLocked: false,
-      finalHomeScore: null,
-      finalAwayScore: null,
-      finalYellowCards: null,
-      finalTotalCorners: null,
-      finalRedCards: null
+      champion: null,
+      runnerUp: null,
+      goldenBoot: null,
+      bestYoungPlayer: null,
+      groupWinners: "{}"
     }
   });
-
-  const clearedResults = await prisma.match.updateMany({
-    where: {
-      id: { notIn: TEST_MATCH_IDS }
-    },
-    data: {
-      isLocked: false,
-      finalHomeScore: null,
-      finalAwayScore: null,
-      finalYellowCards: null,
-      finalTotalCorners: null,
-      finalRedCards: null
-    }
-  });
-
   const clearedLeaderboard = await prisma.leaderboardState.deleteMany();
+
+  const match1 = await prisma.match.findUnique({ where: { id: 1 } });
 
   console.log(
     JSON.stringify(
       {
         ok: true,
-        restoredMatch1: {
-          homeTeam: cronTestSeed.homeTeam,
-          awayTeam: cronTestSeed.awayTeam
-        },
+        match1: match1
+          ? {
+              homeTeam: match1.homeTeam,
+              awayTeam: match1.awayTeam,
+              kickoff: match1.kickoff.toISOString()
+            }
+          : null,
+        upsertedMatches,
         deletedTestMatches: deletedTestMatches.count,
         deletedTestPredictions: deletedTestPredictions.count,
-        deletedCronTestPredictions: deletedCronTestPredictions.count,
-        clearedMatchResults: clearedResults.count,
+        deletedAllMatchPredictions: deletedPredictions.count,
+        resetTournamentPredictions: resetTournamentPredictions.count,
         clearedLeaderboardSnapshots: clearedLeaderboard.count,
-        note: "Push public/match-sync.json and run npm run matches:sync on production after updating DATABASE_URL."
+        note: "Push public/match-sync.json, run the Neon SQL, then trigger /api/cron/daily-maintain on production."
       },
       null,
       2
