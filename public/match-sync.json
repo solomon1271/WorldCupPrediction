@@ -1,27 +1,22 @@
 {
   "matches": [
-      {
-            "id": 1,
-            "stage": "Cron lock test",
-            "kickoff": "2026-05-31T20:00:00.000Z",
-            "venue": "Test Arena, Chicago",
-            "homeTeam": "Cron Test Home",
-            "awayTeam": "Cron Test Away",
-            "isLocked": false,
-            "finalHomeScore": 4,
-            "finalAwayScore": 3,
-            "finalTotalCorners": 8,
-            "finalYellowCards": 5,
-            "finalRedCards": 1
-     },
-     {
-            "id": 2,
-            "stage": "Group A",
-            "kickoff": "2026-06-12T02:00:00.000Z",
-            "venue": "Estadio Akron, Guadalajara",
-            "homeTeam": "South Korea",
-            "awayTeam": "Czech Republic",
-            "isLocked": false
+    {
+      "id": 1,
+      "stage": "Group A",
+      "kickoff": "2026-06-11T19:00:00.000Z",
+      "venue": "Estadio Azteca, Mexico City",
+      "homeTeam": "Mexico",
+      "awayTeam": "South Africa",
+      "isLocked": false
+    },
+    {
+      "id": 2,
+      "stage": "Group A",
+      "kickoff": "2026-06-12T02:00:00.000Z",
+      "venue": "Estadio Akron, Guadalajara",
+      "homeTeam": "South Korea",
+      "awayTeam": "Czech Republic",
+      "isLocked": false
     },
     {
       "id": 3,

@@ -109,20 +109,44 @@ export default async function AdminPage() {
         <section className="section section--compact">
           <div className="section__heading">
             <p className="eyebrow">Neon SQL</p>
-            <h2>One-off cleanup query</h2>
+            <h2>Tournament prep reset</h2>
           </div>
           <p className="section__copy">
-            If production is showing a fake or stale official result for Match 1, run this in Neon SQL Editor against the same database branch used by Vercel.
+            After pushing the restored <code>public/match-sync.json</code>, run this in Neon SQL Editor to remove cron/test
+            data, restore Match 1 (Mexico vs South Africa), clear all official results, and wipe leaderboard rank snapshots.
+            User accounts and real match picks stay in place except predictions on Match 1 and test match IDs.
           </p>
-          <pre className="code-block">{`UPDATE "Match"
+          <pre className="code-block">{`DELETE FROM "MatchPrediction"
+WHERE "matchId" IN (1, 9001, 9002, 9003);
+
+DELETE FROM "Match"
+WHERE "id" IN (9001, 9002, 9003);
+
+UPDATE "Match"
 SET
+  "stage" = 'Group A',
+  "kickoff" = '2026-06-11T19:00:00.000Z',
+  "venue" = 'Estadio Azteca, Mexico City',
+  "homeTeam" = 'Mexico',
+  "awayTeam" = 'South Africa',
+  "isLocked" = false,
   "finalHomeScore" = NULL,
   "finalAwayScore" = NULL,
   "finalYellowCards" = NULL,
   "finalTotalCorners" = NULL,
-  "finalRedCards" = NULL,
-  "isLocked" = false
-WHERE "id" = 1;`}</pre>
+  "finalRedCards" = NULL
+WHERE "id" = 1;
+
+UPDATE "Match"
+SET
+  "isLocked" = false,
+  "finalHomeScore" = NULL,
+  "finalAwayScore" = NULL,
+  "finalYellowCards" = NULL,
+  "finalTotalCorners" = NULL,
+  "finalRedCards" = NULL;
+
+DELETE FROM "LeaderboardState";`}</pre>
         </section>
 
         <a className="section__jump" href="#top">
