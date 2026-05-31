@@ -7,7 +7,12 @@
             "venue": "Test Arena, Chicago",
             "homeTeam": "Cron Test Home",
             "awayTeam": "Cron Test Away",
-            "isLocked": false
+            "isLocked": false,
+            "finalHomeScore": 4,
+            "finalAwayScore": 3,
+            "finalTotalCorners": 8,
+            "finalYellowCards": 5,
+            "finalRedCards": 1
      },
      {
             "id": 2,
