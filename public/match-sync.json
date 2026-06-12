@@ -21,7 +21,12 @@
       "venue": "Estadio Akron, Guadalajara",
       "homeTeam": "South Korea",
       "awayTeam": "Czech Republic",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 3,
