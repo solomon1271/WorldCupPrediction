@@ -33,7 +33,7 @@
     "matches:maintain:daily": "tsx scripts/daily-maintain.ts",
     "league:create": "tsx scripts/create-league.ts",
     "db:backfill-leagues": "tsx scripts/backfill-local-leagues.ts",
-    "vercel-build": "npm run db:generate:prod && npm run db:deploy:prod && npm run build"
+    "vercel-build": "npm run db:generate:prod && PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=1 npm run db:deploy:prod && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
