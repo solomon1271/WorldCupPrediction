@@ -3,6 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { isMatchLocked } from "@/lib/match-lock";
 import { requireLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Match not found." }, { status: 404 });
   }
 
-  if (match.isLocked) {
+  if (isMatchLocked(match)) {
     return NextResponse.json({ error: "This match is already locked." }, { status: 400 });
   }
 

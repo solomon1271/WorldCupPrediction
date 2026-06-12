@@ -48,10 +48,17 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
   return (
     <main className="page-shell">
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />
-      <MatchesBoard leagueSlug={league.slug} matches={dashboard.matches} predictions={dashboard.myPredictions} />
+      <MatchesBoard
+        leagueSlug={league.slug}
+        matches={dashboard.matches}
+        predictions={dashboard.myPredictions}
+        tomorrowLabel={dashboard.tomorrowLabel}
+        timezoneShortName={dashboard.timezoneShortName}
+        predictionTimeZone={dashboard.predictionTimeZone}
+      />
       <TournamentPicks leagueSlug={league.slug} prediction={dashboard.tournamentPrediction} />
       <LeaderboardNote />
-      <Leaderboard standings={dashboard.leaderboard} />
+      <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} />
     </main>
   );
 }

@@ -25,6 +25,7 @@
     "matches:sync": "tsx scripts/sync-matches.ts",
     "matches:sync:test": "MATCH_SYNC_FILE=public/match-sync-test.json tsx scripts/sync-matches.ts",
     "matches:reset:test": "tsx scripts/reset-test-matches.ts",
+    "matches:unlock": "tsx scripts/unlock-match-predictions.ts",
     "tournament:reset": "tsx scripts/reset-for-tournament.ts",
     "matches:lock": "tsx scripts/lock-matches.ts",
     "matches:maintain": "tsx scripts/run-match-maintenance.ts",

@@ -27,6 +27,7 @@ model League {
   name                  String
   inviteCode            String                 @unique
   subtitle              String                 @default("2026 World Cup Challenge")
+  officialAwardsJson    String                 @default("{}")
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   members               LeagueMember[]
@@ -48,21 +49,22 @@ model LeagueMember {
 }
 
 model Match {
-  id                Int               @id
-  stage             String
-  kickoff           DateTime
-  venue             String
-  homeTeam          String
-  awayTeam          String
-  isLocked          Boolean           @default(false)
-  finalHomeScore    Int?
-  finalAwayScore    Int?
-  finalYellowCards  Int?
-  finalTotalCorners Int?
-  finalRedCards     Int?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  predictions       MatchPrediction[]
+  id                    Int               @id
+  stage                 String
+  kickoff               DateTime
+  venue                 String
+  homeTeam              String
+  awayTeam              String
+  isLocked              Boolean           @default(false)
+  predictionUnlockUntil DateTime?
+  finalHomeScore        Int?
+  finalAwayScore        Int?
+  finalYellowCards      Int?
+  finalTotalCorners     Int?
+  finalRedCards         Int?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  predictions           MatchPrediction[]
 }
 
 model MatchPrediction {
@@ -102,6 +104,8 @@ model TournamentPrediction {
   runnerUp        String?
   goldenBoot      String?
   bestYoungPlayer String?
+  goldenGlove     String?
+  bestPlayer      String?
   groupWinners    String   @default("{}")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt

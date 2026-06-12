@@ -25,6 +25,22 @@ export function getRankMomentum(currentRank: number, previousRank?: number): Pla
   return "neutral";
 }
 
+export function getRankChange(previousRank: number, currentRank: number) {
+  return previousRank - currentRank;
+}
+
+export function formatRankChangeLabel(rankChange: number) {
+  if (rankChange > 0) {
+    return `+${rankChange}`;
+  }
+
+  if (rankChange < 0) {
+    return String(rankChange);
+  }
+
+  return "0";
+}
+
 /** @deprecated Use getRankMomentum instead. */
 export function getPlayerMomentum(_scoredMatches: number, _totalPoints: number): PlayerMomentum {
   return "neutral";

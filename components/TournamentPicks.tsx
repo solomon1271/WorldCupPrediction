@@ -1,14 +1,27 @@
- "use client";
+"use client";
 
 import { useState } from "react";
 
 import { DashboardTournamentPrediction } from "@/lib/dashboard";
 import { TournamentPredictionForm } from "@/components/TournamentPredictionForm";
+import { TOURNAMENT_AWARD_POINTS } from "@/lib/tournament-scoring";
 
 type TournamentPicksProps = {
   leagueSlug: string;
   prediction: DashboardTournamentPrediction;
 };
+
+const topPickFields: Array<{
+  key: "champion" | "runnerUp" | "goldenBoot" | "bestYoungPlayer" | "goldenGlove" | "bestPlayer";
+  label: string;
+}> = [
+  { key: "champion", label: "Champion" },
+  { key: "runnerUp", label: "Runner-up" },
+  { key: "goldenBoot", label: "Golden Boot" },
+  { key: "bestYoungPlayer", label: "Best Young Player" },
+  { key: "goldenGlove", label: "Golden Glove" },
+  { key: "bestPlayer", label: "Best Player" }
+];
 
 export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps) {
   const [localPrediction, setLocalPrediction] = useState(prediction);
@@ -17,27 +30,20 @@ export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps
     <section id="tournament-picks" className="section">
       <div className="section__heading">
         <p className="eyebrow">Beyond Single Matches</p>
+        <p className="section__copy">Each correct top pick earns {TOURNAMENT_AWARD_POINTS} points when official awards are announced.</p>
       </div>
       <div className="card-grid card-grid--wide">
         <article className="card card--feature">
-          <span className="card__label">Bracket futures</span>
+          <span className="card__label">Top picks</span>
           <dl className="details-list">
-            <div>
-              <dt>Champion</dt>
-              <dd>{localPrediction.champion || "Not picked yet"}</dd>
-            </div>
-            <div>
-              <dt>Runner-up</dt>
-              <dd>{localPrediction.runnerUp || "Not picked yet"}</dd>
-            </div>
-            <div>
-              <dt>Golden Boot</dt>
-              <dd>{localPrediction.goldenBoot || "Not picked yet"}</dd>
-            </div>
-            <div>
-              <dt>Best Young Player</dt>
-              <dd>{localPrediction.bestYoungPlayer || "Not picked yet"}</dd>
-            </div>
+            {topPickFields.map(({ key, label }) => (
+              <div key={key}>
+                <dt>
+                  {label} <span className="award-points-tag">{TOURNAMENT_AWARD_POINTS} pts</span>
+                </dt>
+                <dd>{localPrediction[key] || "Not picked yet"}</dd>
+              </div>
+            ))}
           </dl>
         </article>
         <article className="card">

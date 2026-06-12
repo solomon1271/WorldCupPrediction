@@ -2700,6 +2700,7 @@ export namespace Prisma {
     name: string | null
     inviteCode: string | null
     subtitle: string | null
+    officialAwardsJson: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2710,6 +2711,7 @@ export namespace Prisma {
     name: string | null
     inviteCode: string | null
     subtitle: string | null
+    officialAwardsJson: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2720,6 +2722,7 @@ export namespace Prisma {
     name: number
     inviteCode: number
     subtitle: number
+    officialAwardsJson: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2732,6 +2735,7 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2742,6 +2746,7 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2752,6 +2757,7 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2835,6 +2841,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle: string
+    officialAwardsJson: string
     createdAt: Date
     updatedAt: Date
     _count: LeagueCountAggregateOutputType | null
@@ -2862,6 +2869,7 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     members?: boolean | League$membersArgs<ExtArgs>
@@ -2877,6 +2885,7 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["league"]>
@@ -2887,6 +2896,7 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["league"]>
@@ -2897,11 +2907,12 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LeagueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "inviteCode" | "subtitle" | "createdAt" | "updatedAt", ExtArgs["result"]["league"]>
+  export type LeagueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "inviteCode" | "subtitle" | "officialAwardsJson" | "createdAt" | "updatedAt", ExtArgs["result"]["league"]>
   export type LeagueInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | League$membersArgs<ExtArgs>
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
@@ -2926,6 +2937,7 @@ export namespace Prisma {
       name: string
       inviteCode: string
       subtitle: string
+      officialAwardsJson: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["league"]>
@@ -3360,6 +3372,7 @@ export namespace Prisma {
     readonly name: FieldRef<"League", 'String'>
     readonly inviteCode: FieldRef<"League", 'String'>
     readonly subtitle: FieldRef<"League", 'String'>
+    readonly officialAwardsJson: FieldRef<"League", 'String'>
     readonly createdAt: FieldRef<"League", 'DateTime'>
     readonly updatedAt: FieldRef<"League", 'DateTime'>
   }
@@ -4946,6 +4959,7 @@ export namespace Prisma {
     homeTeam: string | null
     awayTeam: string | null
     isLocked: boolean | null
+    predictionUnlockUntil: Date | null
     finalHomeScore: number | null
     finalAwayScore: number | null
     finalYellowCards: number | null
@@ -4963,6 +4977,7 @@ export namespace Prisma {
     homeTeam: string | null
     awayTeam: string | null
     isLocked: boolean | null
+    predictionUnlockUntil: Date | null
     finalHomeScore: number | null
     finalAwayScore: number | null
     finalYellowCards: number | null
@@ -4980,6 +4995,7 @@ export namespace Prisma {
     homeTeam: number
     awayTeam: number
     isLocked: number
+    predictionUnlockUntil: number
     finalHomeScore: number
     finalAwayScore: number
     finalYellowCards: number
@@ -5017,6 +5033,7 @@ export namespace Prisma {
     homeTeam?: true
     awayTeam?: true
     isLocked?: true
+    predictionUnlockUntil?: true
     finalHomeScore?: true
     finalAwayScore?: true
     finalYellowCards?: true
@@ -5034,6 +5051,7 @@ export namespace Prisma {
     homeTeam?: true
     awayTeam?: true
     isLocked?: true
+    predictionUnlockUntil?: true
     finalHomeScore?: true
     finalAwayScore?: true
     finalYellowCards?: true
@@ -5051,6 +5069,7 @@ export namespace Prisma {
     homeTeam?: true
     awayTeam?: true
     isLocked?: true
+    predictionUnlockUntil?: true
     finalHomeScore?: true
     finalAwayScore?: true
     finalYellowCards?: true
@@ -5155,6 +5174,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked: boolean
+    predictionUnlockUntil: Date | null
     finalHomeScore: number | null
     finalAwayScore: number | null
     finalYellowCards: number | null
@@ -5191,6 +5211,7 @@ export namespace Prisma {
     homeTeam?: boolean
     awayTeam?: boolean
     isLocked?: boolean
+    predictionUnlockUntil?: boolean
     finalHomeScore?: boolean
     finalAwayScore?: boolean
     finalYellowCards?: boolean
@@ -5210,6 +5231,7 @@ export namespace Prisma {
     homeTeam?: boolean
     awayTeam?: boolean
     isLocked?: boolean
+    predictionUnlockUntil?: boolean
     finalHomeScore?: boolean
     finalAwayScore?: boolean
     finalYellowCards?: boolean
@@ -5227,6 +5249,7 @@ export namespace Prisma {
     homeTeam?: boolean
     awayTeam?: boolean
     isLocked?: boolean
+    predictionUnlockUntil?: boolean
     finalHomeScore?: boolean
     finalAwayScore?: boolean
     finalYellowCards?: boolean
@@ -5244,6 +5267,7 @@ export namespace Prisma {
     homeTeam?: boolean
     awayTeam?: boolean
     isLocked?: boolean
+    predictionUnlockUntil?: boolean
     finalHomeScore?: boolean
     finalAwayScore?: boolean
     finalYellowCards?: boolean
@@ -5253,7 +5277,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stage" | "kickoff" | "venue" | "homeTeam" | "awayTeam" | "isLocked" | "finalHomeScore" | "finalAwayScore" | "finalYellowCards" | "finalTotalCorners" | "finalRedCards" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
+  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stage" | "kickoff" | "venue" | "homeTeam" | "awayTeam" | "isLocked" | "predictionUnlockUntil" | "finalHomeScore" | "finalAwayScore" | "finalYellowCards" | "finalTotalCorners" | "finalRedCards" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
   export type MatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     predictions?: boolean | Match$predictionsArgs<ExtArgs>
     _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
@@ -5274,6 +5298,7 @@ export namespace Prisma {
       homeTeam: string
       awayTeam: string
       isLocked: boolean
+      predictionUnlockUntil: Date | null
       finalHomeScore: number | null
       finalAwayScore: number | null
       finalYellowCards: number | null
@@ -5712,6 +5737,7 @@ export namespace Prisma {
     readonly homeTeam: FieldRef<"Match", 'String'>
     readonly awayTeam: FieldRef<"Match", 'String'>
     readonly isLocked: FieldRef<"Match", 'Boolean'>
+    readonly predictionUnlockUntil: FieldRef<"Match", 'DateTime'>
     readonly finalHomeScore: FieldRef<"Match", 'Int'>
     readonly finalAwayScore: FieldRef<"Match", 'Int'>
     readonly finalYellowCards: FieldRef<"Match", 'Int'>
@@ -8426,6 +8452,8 @@ export namespace Prisma {
     runnerUp: string | null
     goldenBoot: string | null
     bestYoungPlayer: string | null
+    goldenGlove: string | null
+    bestPlayer: string | null
     groupWinners: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8439,6 +8467,8 @@ export namespace Prisma {
     runnerUp: string | null
     goldenBoot: string | null
     bestYoungPlayer: string | null
+    goldenGlove: string | null
+    bestPlayer: string | null
     groupWinners: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8452,6 +8482,8 @@ export namespace Prisma {
     runnerUp: number
     goldenBoot: number
     bestYoungPlayer: number
+    goldenGlove: number
+    bestPlayer: number
     groupWinners: number
     createdAt: number
     updatedAt: number
@@ -8467,6 +8499,8 @@ export namespace Prisma {
     runnerUp?: true
     goldenBoot?: true
     bestYoungPlayer?: true
+    goldenGlove?: true
+    bestPlayer?: true
     groupWinners?: true
     createdAt?: true
     updatedAt?: true
@@ -8480,6 +8514,8 @@ export namespace Prisma {
     runnerUp?: true
     goldenBoot?: true
     bestYoungPlayer?: true
+    goldenGlove?: true
+    bestPlayer?: true
     groupWinners?: true
     createdAt?: true
     updatedAt?: true
@@ -8493,6 +8529,8 @@ export namespace Prisma {
     runnerUp?: true
     goldenBoot?: true
     bestYoungPlayer?: true
+    goldenGlove?: true
+    bestPlayer?: true
     groupWinners?: true
     createdAt?: true
     updatedAt?: true
@@ -8579,6 +8617,8 @@ export namespace Prisma {
     runnerUp: string | null
     goldenBoot: string | null
     bestYoungPlayer: string | null
+    goldenGlove: string | null
+    bestPlayer: string | null
     groupWinners: string
     createdAt: Date
     updatedAt: Date
@@ -8609,6 +8649,8 @@ export namespace Prisma {
     runnerUp?: boolean
     goldenBoot?: boolean
     bestYoungPlayer?: boolean
+    goldenGlove?: boolean
+    bestPlayer?: boolean
     groupWinners?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8624,6 +8666,8 @@ export namespace Prisma {
     runnerUp?: boolean
     goldenBoot?: boolean
     bestYoungPlayer?: boolean
+    goldenGlove?: boolean
+    bestPlayer?: boolean
     groupWinners?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8639,6 +8683,8 @@ export namespace Prisma {
     runnerUp?: boolean
     goldenBoot?: boolean
     bestYoungPlayer?: boolean
+    goldenGlove?: boolean
+    bestPlayer?: boolean
     groupWinners?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8654,12 +8700,14 @@ export namespace Prisma {
     runnerUp?: boolean
     goldenBoot?: boolean
     bestYoungPlayer?: boolean
+    goldenGlove?: boolean
+    bestPlayer?: boolean
     groupWinners?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TournamentPredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "champion" | "runnerUp" | "goldenBoot" | "bestYoungPlayer" | "groupWinners" | "createdAt" | "updatedAt", ExtArgs["result"]["tournamentPrediction"]>
+  export type TournamentPredictionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "champion" | "runnerUp" | "goldenBoot" | "bestYoungPlayer" | "goldenGlove" | "bestPlayer" | "groupWinners" | "createdAt" | "updatedAt", ExtArgs["result"]["tournamentPrediction"]>
   export type TournamentPredictionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     league?: boolean | LeagueDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -8687,6 +8735,8 @@ export namespace Prisma {
       runnerUp: string | null
       goldenBoot: string | null
       bestYoungPlayer: string | null
+      goldenGlove: string | null
+      bestPlayer: string | null
       groupWinners: string
       createdAt: Date
       updatedAt: Date
@@ -9122,6 +9172,8 @@ export namespace Prisma {
     readonly runnerUp: FieldRef<"TournamentPrediction", 'String'>
     readonly goldenBoot: FieldRef<"TournamentPrediction", 'String'>
     readonly bestYoungPlayer: FieldRef<"TournamentPrediction", 'String'>
+    readonly goldenGlove: FieldRef<"TournamentPrediction", 'String'>
+    readonly bestPlayer: FieldRef<"TournamentPrediction", 'String'>
     readonly groupWinners: FieldRef<"TournamentPrediction", 'String'>
     readonly createdAt: FieldRef<"TournamentPrediction", 'DateTime'>
     readonly updatedAt: FieldRef<"TournamentPrediction", 'DateTime'>
@@ -9567,6 +9619,7 @@ export namespace Prisma {
     name: 'name',
     inviteCode: 'inviteCode',
     subtitle: 'subtitle',
+    officialAwardsJson: 'officialAwardsJson',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9592,6 +9645,7 @@ export namespace Prisma {
     homeTeam: 'homeTeam',
     awayTeam: 'awayTeam',
     isLocked: 'isLocked',
+    predictionUnlockUntil: 'predictionUnlockUntil',
     finalHomeScore: 'finalHomeScore',
     finalAwayScore: 'finalAwayScore',
     finalYellowCards: 'finalYellowCards',
@@ -9641,6 +9695,8 @@ export namespace Prisma {
     runnerUp: 'runnerUp',
     goldenBoot: 'goldenBoot',
     bestYoungPlayer: 'bestYoungPlayer',
+    goldenGlove: 'goldenGlove',
+    bestPlayer: 'bestPlayer',
     groupWinners: 'groupWinners',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9788,6 +9844,7 @@ export namespace Prisma {
     name?: StringFilter<"League"> | string
     inviteCode?: StringFilter<"League"> | string
     subtitle?: StringFilter<"League"> | string
+    officialAwardsJson?: StringFilter<"League"> | string
     createdAt?: DateTimeFilter<"League"> | Date | string
     updatedAt?: DateTimeFilter<"League"> | Date | string
     members?: LeagueMemberListRelationFilter
@@ -9802,6 +9859,7 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     members?: LeagueMemberOrderByRelationAggregateInput
@@ -9819,6 +9877,7 @@ export namespace Prisma {
     NOT?: LeagueWhereInput | LeagueWhereInput[]
     name?: StringFilter<"League"> | string
     subtitle?: StringFilter<"League"> | string
+    officialAwardsJson?: StringFilter<"League"> | string
     createdAt?: DateTimeFilter<"League"> | Date | string
     updatedAt?: DateTimeFilter<"League"> | Date | string
     members?: LeagueMemberListRelationFilter
@@ -9833,6 +9892,7 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: LeagueCountOrderByAggregateInput
@@ -9849,6 +9909,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"League"> | string
     inviteCode?: StringWithAggregatesFilter<"League"> | string
     subtitle?: StringWithAggregatesFilter<"League"> | string
+    officialAwardsJson?: StringWithAggregatesFilter<"League"> | string
     createdAt?: DateTimeWithAggregatesFilter<"League"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"League"> | Date | string
   }
@@ -9918,6 +9979,7 @@ export namespace Prisma {
     homeTeam?: StringFilter<"Match"> | string
     awayTeam?: StringFilter<"Match"> | string
     isLocked?: BoolFilter<"Match"> | boolean
+    predictionUnlockUntil?: DateTimeNullableFilter<"Match"> | Date | string | null
     finalHomeScore?: IntNullableFilter<"Match"> | number | null
     finalAwayScore?: IntNullableFilter<"Match"> | number | null
     finalYellowCards?: IntNullableFilter<"Match"> | number | null
@@ -9936,6 +9998,7 @@ export namespace Prisma {
     homeTeam?: SortOrder
     awayTeam?: SortOrder
     isLocked?: SortOrder
+    predictionUnlockUntil?: SortOrderInput | SortOrder
     finalHomeScore?: SortOrderInput | SortOrder
     finalAwayScore?: SortOrderInput | SortOrder
     finalYellowCards?: SortOrderInput | SortOrder
@@ -9957,6 +10020,7 @@ export namespace Prisma {
     homeTeam?: StringFilter<"Match"> | string
     awayTeam?: StringFilter<"Match"> | string
     isLocked?: BoolFilter<"Match"> | boolean
+    predictionUnlockUntil?: DateTimeNullableFilter<"Match"> | Date | string | null
     finalHomeScore?: IntNullableFilter<"Match"> | number | null
     finalAwayScore?: IntNullableFilter<"Match"> | number | null
     finalYellowCards?: IntNullableFilter<"Match"> | number | null
@@ -9975,6 +10039,7 @@ export namespace Prisma {
     homeTeam?: SortOrder
     awayTeam?: SortOrder
     isLocked?: SortOrder
+    predictionUnlockUntil?: SortOrderInput | SortOrder
     finalHomeScore?: SortOrderInput | SortOrder
     finalAwayScore?: SortOrderInput | SortOrder
     finalYellowCards?: SortOrderInput | SortOrder
@@ -10000,6 +10065,7 @@ export namespace Prisma {
     homeTeam?: StringWithAggregatesFilter<"Match"> | string
     awayTeam?: StringWithAggregatesFilter<"Match"> | string
     isLocked?: BoolWithAggregatesFilter<"Match"> | boolean
+    predictionUnlockUntil?: DateTimeNullableWithAggregatesFilter<"Match"> | Date | string | null
     finalHomeScore?: IntNullableWithAggregatesFilter<"Match"> | number | null
     finalAwayScore?: IntNullableWithAggregatesFilter<"Match"> | number | null
     finalYellowCards?: IntNullableWithAggregatesFilter<"Match"> | number | null
@@ -10174,6 +10240,8 @@ export namespace Prisma {
     runnerUp?: StringNullableFilter<"TournamentPrediction"> | string | null
     goldenBoot?: StringNullableFilter<"TournamentPrediction"> | string | null
     bestYoungPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
+    goldenGlove?: StringNullableFilter<"TournamentPrediction"> | string | null
+    bestPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
     groupWinners?: StringFilter<"TournamentPrediction"> | string
     createdAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
     updatedAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
@@ -10189,6 +10257,8 @@ export namespace Prisma {
     runnerUp?: SortOrderInput | SortOrder
     goldenBoot?: SortOrderInput | SortOrder
     bestYoungPlayer?: SortOrderInput | SortOrder
+    goldenGlove?: SortOrderInput | SortOrder
+    bestPlayer?: SortOrderInput | SortOrder
     groupWinners?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10208,6 +10278,8 @@ export namespace Prisma {
     runnerUp?: StringNullableFilter<"TournamentPrediction"> | string | null
     goldenBoot?: StringNullableFilter<"TournamentPrediction"> | string | null
     bestYoungPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
+    goldenGlove?: StringNullableFilter<"TournamentPrediction"> | string | null
+    bestPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
     groupWinners?: StringFilter<"TournamentPrediction"> | string
     createdAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
     updatedAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
@@ -10223,6 +10295,8 @@ export namespace Prisma {
     runnerUp?: SortOrderInput | SortOrder
     goldenBoot?: SortOrderInput | SortOrder
     bestYoungPlayer?: SortOrderInput | SortOrder
+    goldenGlove?: SortOrderInput | SortOrder
+    bestPlayer?: SortOrderInput | SortOrder
     groupWinners?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10242,6 +10316,8 @@ export namespace Prisma {
     runnerUp?: StringNullableWithAggregatesFilter<"TournamentPrediction"> | string | null
     goldenBoot?: StringNullableWithAggregatesFilter<"TournamentPrediction"> | string | null
     bestYoungPlayer?: StringNullableWithAggregatesFilter<"TournamentPrediction"> | string | null
+    goldenGlove?: StringNullableWithAggregatesFilter<"TournamentPrediction"> | string | null
+    bestPlayer?: StringNullableWithAggregatesFilter<"TournamentPrediction"> | string | null
     groupWinners?: StringWithAggregatesFilter<"TournamentPrediction"> | string
     createdAt?: DateTimeWithAggregatesFilter<"TournamentPrediction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TournamentPrediction"> | Date | string
@@ -10335,6 +10411,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
@@ -10349,6 +10426,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
@@ -10363,6 +10441,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
@@ -10377,6 +10456,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
@@ -10391,6 +10471,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10401,6 +10482,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10411,6 +10493,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10470,6 +10553,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
     finalHomeScore?: number | null
     finalAwayScore?: number | null
     finalYellowCards?: number | null
@@ -10488,6 +10572,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
     finalHomeScore?: number | null
     finalAwayScore?: number | null
     finalYellowCards?: number | null
@@ -10506,6 +10591,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10524,6 +10610,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10542,6 +10629,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
     finalHomeScore?: number | null
     finalAwayScore?: number | null
     finalYellowCards?: number | null
@@ -10559,6 +10647,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10576,6 +10665,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10748,6 +10838,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10763,6 +10855,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10774,6 +10868,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10789,6 +10885,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10802,6 +10900,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10813,6 +10913,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10826,6 +10928,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10971,6 +11075,7 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10981,6 +11086,7 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10991,6 +11097,7 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11042,6 +11149,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -11066,6 +11184,7 @@ export namespace Prisma {
     homeTeam?: SortOrder
     awayTeam?: SortOrder
     isLocked?: SortOrder
+    predictionUnlockUntil?: SortOrder
     finalHomeScore?: SortOrder
     finalAwayScore?: SortOrder
     finalYellowCards?: SortOrder
@@ -11092,6 +11211,7 @@ export namespace Prisma {
     homeTeam?: SortOrder
     awayTeam?: SortOrder
     isLocked?: SortOrder
+    predictionUnlockUntil?: SortOrder
     finalHomeScore?: SortOrder
     finalAwayScore?: SortOrder
     finalYellowCards?: SortOrder
@@ -11109,6 +11229,7 @@ export namespace Prisma {
     homeTeam?: SortOrder
     awayTeam?: SortOrder
     isLocked?: SortOrder
+    predictionUnlockUntil?: SortOrder
     finalHomeScore?: SortOrder
     finalAwayScore?: SortOrder
     finalYellowCards?: SortOrder
@@ -11141,6 +11262,20 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11278,6 +11413,8 @@ export namespace Prisma {
     runnerUp?: SortOrder
     goldenBoot?: SortOrder
     bestYoungPlayer?: SortOrder
+    goldenGlove?: SortOrder
+    bestPlayer?: SortOrder
     groupWinners?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11291,6 +11428,8 @@ export namespace Prisma {
     runnerUp?: SortOrder
     goldenBoot?: SortOrder
     bestYoungPlayer?: SortOrder
+    goldenGlove?: SortOrder
+    bestPlayer?: SortOrder
     groupWinners?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11304,6 +11443,8 @@ export namespace Prisma {
     runnerUp?: SortOrder
     goldenBoot?: SortOrder
     bestYoungPlayer?: SortOrder
+    goldenGlove?: SortOrder
+    bestPlayer?: SortOrder
     groupWinners?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11672,6 +11813,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -11876,6 +12021,17 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -11912,6 +12068,20 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12038,6 +12208,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12051,6 +12223,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12153,6 +12327,8 @@ export namespace Prisma {
     runnerUp?: StringNullableFilter<"TournamentPrediction"> | string | null
     goldenBoot?: StringNullableFilter<"TournamentPrediction"> | string | null
     bestYoungPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
+    goldenGlove?: StringNullableFilter<"TournamentPrediction"> | string | null
+    bestPlayer?: StringNullableFilter<"TournamentPrediction"> | string | null
     groupWinners?: StringFilter<"TournamentPrediction"> | string
     createdAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
     updatedAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
@@ -12224,6 +12400,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12237,6 +12415,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12345,6 +12525,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
@@ -12358,6 +12539,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
@@ -12416,6 +12598,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
@@ -12429,6 +12612,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
@@ -12532,6 +12716,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
@@ -12545,6 +12730,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
@@ -12565,6 +12751,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
     finalHomeScore?: number | null
     finalAwayScore?: number | null
     finalYellowCards?: number | null
@@ -12582,6 +12769,7 @@ export namespace Prisma {
     homeTeam: string
     awayTeam: string
     isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
     finalHomeScore?: number | null
     finalAwayScore?: number | null
     finalYellowCards?: number | null
@@ -12642,6 +12830,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
@@ -12655,6 +12844,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
@@ -12681,6 +12871,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12698,6 +12889,7 @@ export namespace Prisma {
     homeTeam?: StringFieldUpdateOperationsInput | string
     awayTeam?: StringFieldUpdateOperationsInput | string
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12748,6 +12940,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
@@ -12761,6 +12954,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
@@ -12790,6 +12984,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
@@ -12803,6 +12998,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
@@ -12816,6 +13012,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
@@ -12829,6 +13026,7 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
@@ -12887,6 +13085,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
@@ -12900,6 +13099,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
@@ -12970,6 +13170,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13044,6 +13246,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13057,6 +13261,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13069,6 +13275,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13102,6 +13310,8 @@ export namespace Prisma {
     runnerUp?: string | null
     goldenBoot?: string | null
     bestYoungPlayer?: string | null
+    goldenGlove?: string | null
+    bestPlayer?: string | null
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13176,6 +13386,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13189,6 +13401,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13201,6 +13415,8 @@ export namespace Prisma {
     runnerUp?: NullableStringFieldUpdateOperationsInput | string | null
     goldenBoot?: NullableStringFieldUpdateOperationsInput | string | null
     bestYoungPlayer?: NullableStringFieldUpdateOperationsInput | string | null
+    goldenGlove?: NullableStringFieldUpdateOperationsInput | string | null
+    bestPlayer?: NullableStringFieldUpdateOperationsInput | string | null
     groupWinners?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

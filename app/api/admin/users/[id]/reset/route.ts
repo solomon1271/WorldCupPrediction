@@ -24,6 +24,8 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
         runnerUp: null,
         goldenBoot: null,
         bestYoungPlayer: null,
+        goldenGlove: null,
+        bestPlayer: null,
         groupWinners: "{}"
       }
     })

@@ -27,7 +27,9 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
           champion: String(formData.get("champion") || ""),
           runnerUp: String(formData.get("runnerUp") || ""),
           goldenBoot: String(formData.get("goldenBoot") || ""),
-          bestYoungPlayer: String(formData.get("bestYoungPlayer") || "")
+          bestYoungPlayer: String(formData.get("bestYoungPlayer") || ""),
+          goldenGlove: String(formData.get("goldenGlove") || ""),
+          bestPlayer: String(formData.get("bestPlayer") || "")
         };
 
         startTransition(async () => {
@@ -74,6 +76,14 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
         <label>
           <span>Best Young Player</span>
           <input name="bestYoungPlayer" type="text" defaultValue={prediction.bestYoungPlayer ?? ""} required />
+        </label>
+        <label>
+          <span>Golden Glove</span>
+          <input name="goldenGlove" type="text" defaultValue={prediction.goldenGlove ?? ""} required />
+        </label>
+        <label>
+          <span>Best Player</span>
+          <input name="bestPlayer" type="text" defaultValue={prediction.bestPlayer ?? ""} required />
         </label>
       </div>
       {error ? <p className="form-error">{error}</p> : null}

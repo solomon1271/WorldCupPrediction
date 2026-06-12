@@ -71,3 +71,10 @@ export function getZonedDayBounds(timeZone: string, referenceDate = new Date()) 
 
   return { start, end, dateLabel };
 }
+
+export function getTomorrowDayBounds(timeZone: string, referenceDate = new Date()) {
+  const { end } = getZonedDayBounds(timeZone, referenceDate);
+  const tomorrowReference = new Date(end.getTime() + 1);
+
+  return getZonedDayBounds(timeZone, tomorrowReference);
+}

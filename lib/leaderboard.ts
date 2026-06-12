@@ -2,7 +2,13 @@ import { Prisma } from "../generated/prisma";
 
 import { scorePrediction } from "@/lib/match-scoring";
 import { prisma } from "@/lib/prisma";
-import { getRankMomentum, PlayerMomentum } from "@/lib/utils";
+import {
+  hasConfiguredOfficialAwards,
+  parseOfficialAwards,
+  scoreTournamentPrediction,
+  type TournamentAwards
+} from "@/lib/tournament-scoring";
+import { getRankChange, getRankMomentum, PlayerMomentum } from "@/lib/utils";
 
 export type LeaderboardTotals = {
   totalPoints: number;
@@ -16,13 +22,14 @@ export type LeaderboardEntry = LeaderboardTotals & {
   name: string;
 };
 
-type UserWithMatchPredictions = Prisma.UserGetPayload<{
+type UserWithPredictions = Prisma.UserGetPayload<{
   include: {
     matchPredictions: {
       include: {
         match: true;
       };
     };
+    tournamentPredictions: true;
   };
 }>;
 
@@ -33,7 +40,12 @@ export function sortLeaderboardEntries<T extends LeaderboardTotals>(entries: T[]
   );
 }
 
-export function buildLeaderboardEntries(users: UserWithMatchPredictions[]): LeaderboardEntry[] {
+export function buildLeaderboardEntries(
+  users: UserWithPredictions[],
+  officialAwards: TournamentAwards = {}
+): LeaderboardEntry[] {
+  const includeTournamentPoints = hasConfiguredOfficialAwards(officialAwards);
+
   return sortLeaderboardEntries(
     users.map((user) => {
       const totals = user.matchPredictions.reduce(
@@ -52,6 +64,16 @@ export function buildLeaderboardEntries(users: UserWithMatchPredictions[]): Lead
           bonusHits: 0
         }
       );
+
+      if (includeTournamentPoints) {
+        const tournamentPrediction = user.tournamentPredictions[0];
+
+        if (tournamentPrediction) {
+          const tournamentScore = scoreTournamentPrediction(tournamentPrediction, officialAwards);
+          totals.totalPoints += tournamentScore.points;
+          totals.bonusHits += tournamentScore.hits;
+        }
+      }
 
       return {
         id: user.id,
@@ -94,6 +116,10 @@ async function getLeagueUsersWithPredictions(leagueId: string) {
             include: {
               match: true
             }
+          },
+          tournamentPredictions: {
+            where: { leagueId },
+            take: 1
           }
         }
       }
@@ -103,9 +129,22 @@ async function getLeagueUsersWithPredictions(leagueId: string) {
   return members.map((member) => member.user);
 }
 
+async function getLeagueOfficialAwards(leagueId: string) {
+  const league = await prisma.league.findUnique({
+    where: { id: leagueId },
+    select: { officialAwardsJson: true }
+  });
+
+  return parseOfficialAwards(league?.officialAwardsJson);
+}
+
 export async function computeCurrentRankMap(leagueId: string) {
-  const users = await getLeagueUsersWithPredictions(leagueId);
-  return buildRankMap(buildLeaderboardEntries(users));
+  const [users, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return buildRankMap(buildLeaderboardEntries(users, officialAwards));
 }
 
 function getLeaderboardStateClient() {
@@ -211,6 +250,7 @@ export function attachRankMomentum(
     rank: number;
     previousRank?: number;
     afterRank?: number;
+    rankChange?: number;
     hasSnapshot: boolean;
   }
 > {
@@ -227,13 +267,27 @@ export function attachRankMomentum(
       trend = getRankMomentum(rank, previousRank);
     }
 
+    const rankChange =
+      previousRank !== undefined ? getRankChange(previousRank, afterRank ?? rank) : undefined;
+
     return {
       ...entry,
       rank,
       previousRank,
       afterRank,
+      rankChange,
       hasSnapshot: snapshot.hasSnapshot,
       trend
     };
   });
+}
+
+export async function buildLeagueLeaderboard(leagueId: string) {
+  const [users, snapshot, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    loadLeaderboardSnapshot(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return attachRankMomentum(buildLeaderboardEntries(users, officialAwards), snapshot);
 }

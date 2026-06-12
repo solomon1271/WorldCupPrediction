@@ -1,4 +1,13 @@
-import { attachRankMomentum, buildLeaderboardEntries, loadLeaderboardSnapshot } from "@/lib/leaderboard";
+import { buildLeagueLeaderboard } from "@/lib/leaderboard";
+import {
+  formatTomorrowLabel,
+  formatTimezoneShortName,
+  getAppTimezone,
+  getMatchUrgency,
+  MatchUrgency,
+  sortMatchesByUrgency
+} from "@/lib/match-urgency";
+import { isMatchLocked } from "@/lib/match-lock";
 import {
   normalizeRedCardsLine,
   normalizeThresholdLine
@@ -25,6 +34,7 @@ export type DashboardMatch = {
   homeTeam: string;
   awayTeam: string;
   locked: boolean;
+  urgency: MatchUrgency;
   finalScore?: {
     home: number;
     away: number;
@@ -41,6 +51,8 @@ export type DashboardTournamentPrediction = {
   runnerUp: string | null;
   goldenBoot: string | null;
   bestYoungPlayer: string | null;
+  goldenGlove: string | null;
+  bestPlayer: string | null;
   groupWinners: Record<string, string>;
 };
 
@@ -56,6 +68,7 @@ export type DashboardStanding = {
   afterRank?: number;
   hasSnapshot: boolean;
   trend: PlayerMomentum;
+  rankChange?: number;
 };
 
 function normalizeTournamentPrediction(
@@ -64,6 +77,8 @@ function normalizeTournamentPrediction(
     runnerUp: string | null;
     goldenBoot: string | null;
     bestYoungPlayer: string | null;
+    goldenGlove: string | null;
+    bestPlayer: string | null;
     groupWinners: string;
   } | null
 ): DashboardTournamentPrediction {
@@ -72,33 +87,14 @@ function normalizeTournamentPrediction(
     runnerUp: prediction?.runnerUp || null,
     goldenBoot: prediction?.goldenBoot || null,
     bestYoungPlayer: prediction?.bestYoungPlayer || null,
+    goldenGlove: prediction?.goldenGlove || null,
+    bestPlayer: prediction?.bestPlayer || null,
     groupWinners: prediction ? (JSON.parse(prediction.groupWinners) as Record<string, string>) : {}
   };
 }
 
-async function getLeagueUsersWithPredictions(leagueId: string) {
-  const members = await prisma.leagueMember.findMany({
-    where: { leagueId },
-    include: {
-      user: {
-        include: {
-          matchPredictions: {
-            where: { leagueId },
-            include: {
-              match: true
-            }
-          }
-        }
-      }
-    },
-    orderBy: [{ joinedAt: "asc" }]
-  });
-
-  return members.map((member) => member.user);
-}
-
 export async function getDashboardData(leagueId: string, currentUserId: string) {
-  const [matches, users, currentMember] = await Promise.all([
+  const [matches, currentMember] = await Promise.all([
     prisma.match.findMany({
       orderBy: [{ kickoff: "asc" }],
       include: {
@@ -110,7 +106,6 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
         }
       }
     }),
-    getLeagueUsersWithPredictions(leagueId),
     prisma.leagueMember.findUnique({
       where: {
         leagueId_userId: {
@@ -132,35 +127,54 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   ]);
 
   const currentUser = currentMember?.user;
-  const snapshot = await loadLeaderboardSnapshot(leagueId);
-  const leaderboard = attachRankMomentum(buildLeaderboardEntries(users), snapshot);
+  const leaderboard = await buildLeagueLeaderboard(leagueId);
   const currentUserStanding = leaderboard.find((entry) => entry.id === currentUserId);
+  const predictionTimeZone = getAppTimezone();
+  const tomorrowLabel = formatTomorrowLabel(predictionTimeZone);
+  const timezoneShortName = formatTimezoneShortName(predictionTimeZone);
+
+  const dashboardMatches = sortMatchesByUrgency(
+    matches.map((match) => {
+      const hasPrediction = match.predictions.length > 0;
+      const isFinished = match.finalHomeScore !== null && match.finalAwayScore !== null;
+      const locked = isMatchLocked(match);
+
+      return {
+        id: match.id,
+        stage: match.stage,
+        kickoff: match.kickoff.toISOString(),
+        venue: match.venue,
+        homeTeam: match.homeTeam,
+        awayTeam: match.awayTeam,
+        locked,
+        urgency: getMatchUrgency({
+          kickoff: match.kickoff,
+          isLocked: locked,
+          isFinished,
+          hasPrediction,
+          timeZone: predictionTimeZone
+        }),
+        finalScore:
+          match.finalHomeScore !== null && match.finalAwayScore !== null
+            ? {
+                home: match.finalHomeScore,
+                away: match.finalAwayScore
+              }
+            : undefined,
+        finalStats:
+          match.finalHomeScore !== null && match.finalAwayScore !== null
+            ? {
+                yellowCards: match.finalYellowCards,
+                totalCorners: match.finalTotalCorners,
+                redCards: match.finalRedCards
+              }
+            : undefined
+      };
+    })
+  );
 
   return {
-    matches: matches.map((match) => ({
-      id: match.id,
-      stage: match.stage,
-      kickoff: match.kickoff.toISOString(),
-      venue: match.venue,
-      homeTeam: match.homeTeam,
-      awayTeam: match.awayTeam,
-      locked: match.isLocked,
-      finalScore:
-        match.finalHomeScore !== null && match.finalAwayScore !== null
-          ? {
-              home: match.finalHomeScore,
-              away: match.finalAwayScore
-            }
-          : undefined,
-      finalStats:
-        match.finalHomeScore !== null && match.finalAwayScore !== null
-          ? {
-              yellowCards: match.finalYellowCards,
-              totalCorners: match.finalTotalCorners,
-              redCards: match.finalRedCards
-            }
-          : undefined
-    })) as DashboardMatch[],
+    matches: dashboardMatches as DashboardMatch[],
     myPredictions: matches
       .map((match) => match.predictions[0])
       .filter((prediction): prediction is NonNullable<typeof prediction> => Boolean(prediction))
@@ -179,6 +193,9 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     currentUserName: currentUser?.displayName || "Manager",
     trendSummary: currentUserStanding ? momentumLabel(currentUserStanding.trend) : "No change",
     totalMatches: matches.length,
-    totalPlayers: users.length
+    totalPlayers: leaderboard.length,
+    tomorrowLabel,
+    timezoneShortName,
+    predictionTimeZone
   };
 }

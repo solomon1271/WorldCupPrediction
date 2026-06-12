@@ -133,6 +133,7 @@ exports.Prisma.LeagueScalarFieldEnum = {
   name: 'name',
   inviteCode: 'inviteCode',
   subtitle: 'subtitle',
+  officialAwardsJson: 'officialAwardsJson',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -152,6 +153,7 @@ exports.Prisma.MatchScalarFieldEnum = {
   homeTeam: 'homeTeam',
   awayTeam: 'awayTeam',
   isLocked: 'isLocked',
+  predictionUnlockUntil: 'predictionUnlockUntil',
   finalHomeScore: 'finalHomeScore',
   finalAwayScore: 'finalAwayScore',
   finalYellowCards: 'finalYellowCards',
@@ -192,6 +194,8 @@ exports.Prisma.TournamentPredictionScalarFieldEnum = {
   runnerUp: 'runnerUp',
   goldenBoot: 'goldenBoot',
   bestYoungPlayer: 'bestYoungPlayer',
+  goldenGlove: 'goldenGlove',
+  bestPlayer: 'bestPlayer',
   groupWinners: 'groupWinners',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

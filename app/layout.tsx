@@ -3,8 +3,8 @@ import { NationalBackdrop } from "@/components/NationalBackdrop";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NewRez World Cup Prediction",
-  description: "Private tournament prediction app for a friend group."
+  title: "Champion's Path",
+  description: "Private World Cup prediction league."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

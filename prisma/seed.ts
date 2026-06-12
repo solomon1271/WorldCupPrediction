@@ -16,7 +16,7 @@ async function ensureDefaultLeague() {
 
   return createLeague({
     slug: "newrez",
-    name: "NewRez World Cup Prediction",
+    name: "Champion's Path",
     inviteCode,
     subtitle: "2026 World Cup Challenge"
   });

@@ -12,7 +12,9 @@ const schema = z.object({
   champion: z.string().trim().min(2),
   runnerUp: z.string().trim().min(2),
   goldenBoot: z.string().trim().min(2),
-  bestYoungPlayer: z.string().trim().min(2)
+  bestYoungPlayer: z.string().trim().min(2),
+  goldenGlove: z.string().trim().min(2),
+  bestPlayer: z.string().trim().min(2)
 });
 
 export async function POST(request: Request) {
@@ -35,7 +37,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: membership.error }, { status: 403 });
   }
 
-  const { champion, runnerUp, goldenBoot, bestYoungPlayer } = parsed.data;
+  const { champion, runnerUp, goldenBoot, bestYoungPlayer, goldenGlove, bestPlayer } = parsed.data;
 
   await prisma.tournamentPrediction.upsert({
     where: {
@@ -48,7 +50,9 @@ export async function POST(request: Request) {
       champion,
       runnerUp,
       goldenBoot,
-      bestYoungPlayer
+      bestYoungPlayer,
+      goldenGlove,
+      bestPlayer
     },
     create: {
       leagueId: membership.league.id,
@@ -57,6 +61,8 @@ export async function POST(request: Request) {
       runnerUp,
       goldenBoot,
       bestYoungPlayer,
+      goldenGlove,
+      bestPlayer,
       groupWinners: "{}"
     }
   });
