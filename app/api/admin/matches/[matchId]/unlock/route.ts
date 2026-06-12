@@ -50,7 +50,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ mat
       note:
         hours !== undefined
           ? `Predictions for match ${matchId} are open for ${hours} hour(s).`
-          : `Predictions for match ${matchId} stay open until kickoff, even if daily cron sets isLocked=true.`
+          : `Predictions for match ${matchId} stay open until kickoff via admin override.`
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Could not unlock this match.";

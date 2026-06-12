@@ -7,7 +7,7 @@ import {
   MatchUrgency,
   sortMatchesByUrgency
 } from "@/lib/match-urgency";
-import { isMatchLocked } from "@/lib/match-lock";
+import { getMatchLockLeadMinutes, isMatchLocked } from "@/lib/match-lock";
 import {
   getPredictionScoreBreakdown,
   normalizeRedCardsLine,
@@ -141,7 +141,15 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     matches.map((match) => {
       const hasPrediction = match.predictions.length > 0;
       const isFinished = match.finalHomeScore !== null && match.finalAwayScore !== null;
-      const locked = isMatchLocked(match, referenceNow);
+      const locked = isMatchLocked(
+        {
+          kickoff: match.kickoff,
+          predictionUnlockUntil: match.predictionUnlockUntil,
+          finalHomeScore: match.finalHomeScore,
+          finalAwayScore: match.finalAwayScore
+        },
+        referenceNow
+      );
 
       return {
         id: match.id,
@@ -220,6 +228,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     tomorrowLabel,
     timezoneShortName,
     predictionTimeZone,
-    referenceNow: referenceNow.toISOString()
+    referenceNow: referenceNow.toISOString(),
+    lockLeadMinutes: getMatchLockLeadMinutes()
   };
 }

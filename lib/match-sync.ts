@@ -275,13 +275,12 @@ export async function lockMatchesForDailyMaintenance(referenceDate = new Date())
   };
 }
 
-export async function runDailyMatchMaintenance(referenceDate = new Date()) {
+export async function runDailyMatchMaintenance() {
   const ranksBefore = await captureLeaderboardSnapshotForMaintenance();
   const sync = await syncMatchFixtures();
-  const lock = await lockMatchesForDailyMaintenance(referenceDate);
   const leaderboard = await finalizeLeaderboardSnapshot(ranksBefore);
 
-  return { sync, lock, leaderboard };
+  return { sync, leaderboard };
 }
 
 export async function lockMatchesNearKickoff() {

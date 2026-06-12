@@ -56,7 +56,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Match not found." }, { status: 404 });
   }
 
-  if (isMatchLocked(match)) {
+  if (
+    isMatchLocked({
+      kickoff: match.kickoff,
+      predictionUnlockUntil: match.predictionUnlockUntil,
+      finalHomeScore: match.finalHomeScore,
+      finalAwayScore: match.finalAwayScore
+    })
+  ) {
     return NextResponse.json({ error: "This match is already locked." }, { status: 400 });
   }
 

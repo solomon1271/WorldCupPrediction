@@ -16,6 +16,7 @@ type MatchesBoardProps = {
   timezoneShortName: string;
   predictionTimeZone: string;
   referenceNow: string;
+  lockLeadMinutes: number;
 };
 
 function PredictionSummary({ prediction }: { prediction?: DashboardMatchPrediction }) {
@@ -211,7 +212,8 @@ export function MatchesBoard({
   tomorrowLabel,
   timezoneShortName,
   predictionTimeZone,
-  referenceNow
+  referenceNow,
+  lockLeadMinutes
 }: MatchesBoardProps) {
   const [localPredictions, setLocalPredictions] = useState(predictions);
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
@@ -266,8 +268,8 @@ export function MatchesBoard({
               {urgentMatches.length} match{urgentMatches.length === 1 ? "" : "es"} need your pick for {tomorrowLabel}
             </h3>
             <p className="match-urgency-banner__copy">
-              These games kick off tomorrow ({timezoneShortName}). Lock in your predictions now so you do not miss points
-              when the daily lock runs.
+              These games kick off tomorrow ({timezoneShortName}). Submit your picks before they lock{" "}
+              {lockLeadMinutes} minutes before kickoff.
             </p>
           </div>
           <a className="match-urgency-banner__action" href="#predict-before-lock-list">

@@ -1,3 +1,4 @@
+import { getMatchLockLeadMinutes } from "@/lib/match-lock";
 import {
   EXACT_SCORE_POINTS,
   RED_CARDS_POINTS,
@@ -26,6 +27,8 @@ function RuleCards({ rules }: { rules: typeof matchPointRules }) {
 }
 
 export function RulesPanel() {
+  const lockLeadMinutes = getMatchLockLeadMinutes();
+
   return (
     <section id="rules" className="section">
       <div className="section__heading">
@@ -43,11 +46,11 @@ export function RulesPanel() {
           <h3>Lock timing</h3>
           <ul className="rules-list">
             <li>
-              Submit your pick before the daily lock runs at about <strong>8:00 AM Central</strong> on the day the
-              match kicks off.
+              Picks lock <strong>{lockLeadMinutes} minutes before kickoff</strong> (Central). A 9 PM game stays open
+              until {lockLeadMinutes} minutes before 9 PM — not at 8 AM.
             </li>
             <li>
-              Matches that already kicked off stay locked. You cannot change a pick after lock.
+              After kickoff or once results are entered, picks are locked and cannot be changed.
             </li>
             <li>
               Games highlighted in pink on the dashboard are kicking off <strong>tomorrow</strong> and still need a

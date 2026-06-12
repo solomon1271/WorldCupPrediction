@@ -82,10 +82,15 @@ export default async function AdminPage() {
             <p className="card__label">What still needs your help</p>
             <ol className="next-list">
               <li>
-                <strong>Daily cron:</strong> <code>vercel.json</code> schedules <code>GET /api/cron/daily-maintain</code> once per day at{" "}
-                <strong>~8:00 AM Central</strong> (<code>0 13 * * *</code> UTC, ±59 min on Hobby). It syncs fixture/results from{" "}
-                <code>MATCH_SYNC_URL</code>, then locks every match kicking off today in <code>CRON_TIMEZONE</code> (default{" "}
-                <code>America/Chicago</code>). It also locks any past matches still open. Set <code>CRON_SECRET</code> in Vercel; Vercel sends it automatically on cron invocations.
+                <strong>Results sync (manual):</strong> after you push updated <code>public/match-sync.json</code> to GitHub,
+                trigger <code>GET /api/cron/daily-maintain</code> with your Shortcut or{" "}
+                <code>curl -H &quot;Authorization: Bearer CRON_SECRET&quot; …</code>. That syncs scores and refreshes
+                leaderboard rank snapshots. There is no automatic Vercel schedule — you run it when results are ready.
+              </li>
+              <li>
+                <strong>Pick locks:</strong> automatic in the app — picks close{" "}
+                <code>MATCH_LOCK_LEAD_MINUTES</code> minutes before each kickoff (default 5). Evening games are not locked
+                at 8 AM.
               </li>
               <li>In Neon SQL Editor, clear any stale production test results if a real match is showing as finished when it should not be.</li>
               <li>
@@ -98,7 +103,7 @@ export default async function AdminPage() {
               </li>
               <li>In Vercel Deployments, verify the latest deployment is green and open the live URL from there.</li>
               <li>
-                Manual test: <code>curl -H &quot;Authorization: Bearer CRON_SECRET&quot; https://YOUR-APP.vercel.app/api/cron/daily-maintain</code>{" "}
+                Manual maintain: <code>curl -H &quot;Authorization: Bearer CRON_SECRET&quot; https://world-cup-prediction-liard.vercel.app/api/cron/daily-maintain</code>{" "}
                 or locally <code>npm run matches:maintain:daily</code>.
               </li>
               <li>When playoff winners become known, update public/match-sync.json in GitHub and push so production can pull the new matchup feed.</li>

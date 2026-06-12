@@ -56,6 +56,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         timezoneShortName={dashboard.timezoneShortName}
         predictionTimeZone={dashboard.predictionTimeZone}
         referenceNow={dashboard.referenceNow}
+        lockLeadMinutes={dashboard.lockLeadMinutes}
       />
       <TournamentPicks leagueSlug={league.slug} prediction={dashboard.tournamentPrediction} />
       <LeaderboardNote />
