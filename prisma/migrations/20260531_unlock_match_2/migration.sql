@@ -1,5 +1,5 @@
 -- Open South Korea vs Czech Republic (match id 2) for predictions until kickoff.
--- Run in Neon SQL Editor if you need to re-apply without deploying.
+-- Safe: only updates lock fields on one match; does not touch predictions or scores.
 UPDATE "Match"
 SET
   "isLocked" = false,

@@ -102,6 +102,10 @@ export default async function AdminPage() {
                 or locally <code>npm run matches:maintain:daily</code>.
               </li>
               <li>When playoff winners become known, update public/match-sync.json in GitHub and push so production can pull the new matchup feed.</li>
+              <li>
+                <strong>Unlock a locked match:</strong> run <code>scripts/unlock-match-2.prod.sql</code> in Neon, or POST{" "}
+                <code>/api/admin/matches/2/unlock</code> while signed in as admin (opens predictions until kickoff).
+              </li>
             </ol>
           </article>
         </div>

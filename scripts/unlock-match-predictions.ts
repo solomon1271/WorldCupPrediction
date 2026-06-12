@@ -1,34 +1,29 @@
 #!/usr/bin/env tsx
 
-import { prisma } from "@/lib/prisma";
+import { unlockMatchPredictions } from "@/lib/match-unlock";
 
-const MATCH_ID = 2;
-const UNLOCK_HOURS = 1;
+const MATCH_ID = Number.parseInt(process.env.MATCH_ID || "2", 10);
+const UNLOCK_HOURS = process.env.UNLOCK_HOURS?.trim();
+const untilKickoff = process.argv.includes("--until-kickoff") || !UNLOCK_HOURS;
 
 async function main() {
-  const unlockUntil = new Date(Date.now() + UNLOCK_HOURS * 60 * 60 * 1000);
+  const hours = untilKickoff ? undefined : Number.parseFloat(UNLOCK_HOURS || "1");
 
-  const match = await prisma.match.update({
-    where: { id: MATCH_ID },
-    data: {
-      predictionUnlockUntil: unlockUntil
-    },
-    select: {
-      id: true,
-      homeTeam: true,
-      awayTeam: true,
-      isLocked: true,
-      predictionUnlockUntil: true
-    }
-  });
+  if (!untilKickoff && (hours === undefined || !Number.isFinite(hours) || hours <= 0)) {
+    throw new Error("Set UNLOCK_HOURS to a positive number or pass --until-kickoff.");
+  }
+
+  const result = await unlockMatchPredictions(MATCH_ID, { hours });
 
   console.log(
     JSON.stringify(
       {
         ok: true,
-        match,
-        unlockUntil: unlockUntil.toISOString(),
-        note: `Predictions for match ${MATCH_ID} are open until ${unlockUntil.toISOString()}, even if isLocked is true.`
+        ...result,
+        note:
+          hours !== undefined
+            ? `Predictions for match ${MATCH_ID} are open until ${result.predictionUnlockUntil}.`
+            : `Predictions for match ${MATCH_ID} stay open until kickoff (${result.predictionUnlockUntil}), even if isLocked is true.`
       },
       null,
       2
@@ -42,5 +37,6 @@ main()
     process.exit(1);
   })
   .finally(async () => {
+    const { prisma } = await import("@/lib/prisma");
     await prisma.$disconnect();
   });
