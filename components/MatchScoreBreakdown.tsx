@@ -1,41 +1,14 @@
-import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
-import { getPredictionScoreBreakdown, PredictionInput } from "@/lib/match-scoring";
+import { PredictionScoreBreakdown } from "@/lib/match-scoring";
 
 type MatchScoreBreakdownProps = {
-  match: DashboardMatch;
-  prediction?: DashboardMatchPrediction;
+  breakdown: PredictionScoreBreakdown | null | undefined;
+  hasPrediction: boolean;
 };
 
-function toScorableMatch(match: DashboardMatch) {
-  return {
-    homeTeam: match.homeTeam,
-    awayTeam: match.awayTeam,
-    finalHomeScore: match.finalScore?.home ?? null,
-    finalAwayScore: match.finalScore?.away ?? null,
-    finalYellowCards: match.finalStats?.yellowCards ?? null,
-    finalTotalCorners: match.finalStats?.totalCorners ?? null,
-    finalRedCards: match.finalStats?.redCards ?? null
-  };
-}
-
-function toPredictionInput(prediction: DashboardMatchPrediction): PredictionInput {
-  return {
-    winner: prediction.winner,
-    homeScore: prediction.homeScore,
-    awayScore: prediction.awayScore,
-    totalGoalsLine: prediction.totalGoalsLine,
-    totalCornersLine: prediction.totalCornersLine,
-    yellowCardsLine: prediction.yellowCardsLine,
-    redCardsLine: prediction.redCardsLine
-  };
-}
-
-export function MatchScoreBreakdown({ match, prediction }: MatchScoreBreakdownProps) {
-  if (!prediction) {
+export function MatchScoreBreakdown({ breakdown, hasPrediction }: MatchScoreBreakdownProps) {
+  if (!hasPrediction) {
     return <p className="status-note">You did not submit a pick for this match.</p>;
   }
-
-  const breakdown = getPredictionScoreBreakdown(toPredictionInput(prediction), toScorableMatch(match));
 
   if (!breakdown) {
     return null;

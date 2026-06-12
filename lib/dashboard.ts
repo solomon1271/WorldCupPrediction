@@ -9,8 +9,10 @@ import {
 } from "@/lib/match-urgency";
 import { isMatchLocked } from "@/lib/match-lock";
 import {
+  getPredictionScoreBreakdown,
   normalizeRedCardsLine,
-  normalizeThresholdLine
+  normalizeThresholdLine,
+  type PredictionScoreBreakdown
 } from "@/lib/match-scoring";
 import { prisma } from "@/lib/prisma";
 import { momentumLabel, PlayerMomentum } from "@/lib/utils";
@@ -24,6 +26,7 @@ export type DashboardMatchPrediction = {
   totalCornersLine: string;
   yellowCardsLine: string;
   redCardsLine: string;
+  scoreBreakdown: PredictionScoreBreakdown | null;
 };
 
 export type DashboardMatch = {
@@ -178,18 +181,36 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   return {
     matches: dashboardMatches as DashboardMatch[],
     myPredictions: matches
-      .map((match) => match.predictions[0])
-      .filter((prediction): prediction is NonNullable<typeof prediction> => Boolean(prediction))
-      .map((prediction) => ({
-        matchId: prediction.matchId,
-        winner: prediction.winner,
-        homeScore: prediction.homeScore,
-        awayScore: prediction.awayScore,
-        totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
-        totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
-        yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
-        redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
-      })) as DashboardMatchPrediction[],
+      .filter((match) => match.predictions.length > 0)
+      .map((match) => {
+        const prediction = match.predictions[0];
+        const isFinished = match.finalHomeScore !== null && match.finalAwayScore !== null;
+        const normalizedPrediction = {
+          winner: prediction.winner,
+          homeScore: prediction.homeScore,
+          awayScore: prediction.awayScore,
+          totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
+          totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
+          yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
+          redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
+        };
+
+        return {
+          matchId: prediction.matchId,
+          ...normalizedPrediction,
+          scoreBreakdown: isFinished
+            ? getPredictionScoreBreakdown(normalizedPrediction, {
+                homeTeam: match.homeTeam,
+                awayTeam: match.awayTeam,
+                finalHomeScore: match.finalHomeScore,
+                finalAwayScore: match.finalAwayScore,
+                finalYellowCards: match.finalYellowCards,
+                finalTotalCorners: match.finalTotalCorners,
+                finalRedCards: match.finalRedCards
+              })
+            : null
+        };
+      }) as DashboardMatchPrediction[],
     leaderboard,
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     currentUserName: currentUser?.displayName || "Manager",

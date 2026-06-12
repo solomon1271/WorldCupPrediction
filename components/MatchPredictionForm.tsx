@@ -119,7 +119,8 @@ export function MatchPredictionForm({ leagueSlug, match, prediction, onSaved }: 
             totalGoalsLine: payload.totalGoalsLine,
             totalCornersLine: payload.totalCornersLine,
             yellowCardsLine: payload.yellowCardsLine,
-            redCardsLine: payload.redCardsLine
+            redCardsLine: payload.redCardsLine,
+            scoreBreakdown: null
           });
           router.refresh();
         });

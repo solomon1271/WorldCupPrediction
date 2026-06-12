@@ -184,7 +184,7 @@ function MatchCard({
                 Official result: {match.finalScore.home} - {match.finalScore.away}
               </p>
             ) : null}
-            <MatchScoreBreakdown match={match} prediction={prediction} />
+            <MatchScoreBreakdown breakdown={prediction?.scoreBreakdown} hasPrediction={Boolean(prediction)} />
           </>
         ) : isLocked ? (
           <>
