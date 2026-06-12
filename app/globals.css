@@ -951,6 +951,66 @@ th {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.rules-grid--compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rules-sections {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.rules-block h3 {
+  margin: 0.35rem 0 0.75rem;
+}
+
+.rules-block__heading {
+  margin-bottom: 1rem;
+}
+
+.rules-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.rules-list li + li {
+  margin-top: 0.65rem;
+}
+
+.rules-list strong {
+  color: var(--text);
+}
+
+.rules-table-shell {
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+}
+
+.rules-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.rules-table th,
+.rules-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.rules-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.rules-table td:last-child {
+  color: var(--muted);
+}
+
 .rule-card__points {
   display: inline-flex;
   margin-bottom: 0.7rem;
@@ -1342,6 +1402,7 @@ th {
   .card-grid,
   .card-grid--wide,
   .rules-grid,
+  .rules-grid--compact,
   .match-card__topline,
   .prediction-strip,
   .admin-grid,

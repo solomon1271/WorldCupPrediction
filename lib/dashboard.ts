@@ -129,15 +129,16 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   const currentUser = currentMember?.user;
   const leaderboard = await buildLeagueLeaderboard(leagueId);
   const currentUserStanding = leaderboard.find((entry) => entry.id === currentUserId);
+  const referenceNow = new Date();
   const predictionTimeZone = getAppTimezone();
-  const tomorrowLabel = formatTomorrowLabel(predictionTimeZone);
-  const timezoneShortName = formatTimezoneShortName(predictionTimeZone);
+  const tomorrowLabel = formatTomorrowLabel(predictionTimeZone, referenceNow);
+  const timezoneShortName = formatTimezoneShortName(predictionTimeZone, referenceNow);
 
   const dashboardMatches = sortMatchesByUrgency(
     matches.map((match) => {
       const hasPrediction = match.predictions.length > 0;
       const isFinished = match.finalHomeScore !== null && match.finalAwayScore !== null;
-      const locked = isMatchLocked(match);
+      const locked = isMatchLocked(match, referenceNow);
 
       return {
         id: match.id,
@@ -152,7 +153,8 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
           isLocked: locked,
           isFinished,
           hasPrediction,
-          timeZone: predictionTimeZone
+          timeZone: predictionTimeZone,
+          referenceDate: referenceNow
         }),
         finalScore:
           match.finalHomeScore !== null && match.finalAwayScore !== null
@@ -196,6 +198,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     totalPlayers: leaderboard.length,
     tomorrowLabel,
     timezoneShortName,
-    predictionTimeZone
+    predictionTimeZone,
+    referenceNow: referenceNow.toISOString()
   };
 }

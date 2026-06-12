@@ -38,7 +38,8 @@ export default async function LeagueHelpPage({ params }: LeagueHelpPageProps) {
           <h2>League rules and scoring</h2>
         </div>
         <p className="section__copy">
-          Use this page whenever you want to check how picks are scored for {league.name}.
+          Everything you need to know about submitting picks, when matches lock, and how points are calculated for{" "}
+          {league.name}.
         </p>
         <a className="section__jump" href="#top">
           Back to top

@@ -15,6 +15,7 @@ type MatchesBoardProps = {
   tomorrowLabel: string;
   timezoneShortName: string;
   predictionTimeZone: string;
+  referenceNow: string;
 };
 
 function PredictionSummary({ prediction }: { prediction?: DashboardMatchPrediction }) {
@@ -104,9 +105,18 @@ type MatchCardProps = {
   expandedMatchId: number | null;
   onToggle: (matchId: number | null) => void;
   onSaved: (savedPrediction: DashboardMatchPrediction) => void;
+  predictionTimeZone: string;
 };
 
-function MatchCard({ leagueSlug, match, prediction, expandedMatchId, onToggle, onSaved }: MatchCardProps) {
+function MatchCard({
+  leagueSlug,
+  match,
+  prediction,
+  expandedMatchId,
+  onToggle,
+  onSaved,
+  predictionTimeZone
+}: MatchCardProps) {
   const isFinished = Boolean(match.finalScore);
   const isLocked = match.locked && !isFinished;
   const isOpen = !isFinished && !isLocked;
@@ -135,7 +145,7 @@ function MatchCard({ leagueSlug, match, prediction, expandedMatchId, onToggle, o
           <strong>
             {match.homeTeam} vs {match.awayTeam}
           </strong>
-          <span>{formatKickoff(match.kickoff)}</span>
+          <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
           {match.urgency === "tomorrow-needs-pick" ? (
             <span className="match-card__summary-note">Kicks off tomorrow — submit your pick before lock</span>
           ) : null}
@@ -156,7 +166,7 @@ function MatchCard({ leagueSlug, match, prediction, expandedMatchId, onToggle, o
           <>
             <div className="match-card__topline">
               <span>{match.stage}</span>
-              <span>{formatKickoff(match.kickoff)}</span>
+              <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
             </div>
             <div className="match-card__teams">
               <div>
@@ -200,10 +210,12 @@ export function MatchesBoard({
   predictions,
   tomorrowLabel,
   timezoneShortName,
-  predictionTimeZone
+  predictionTimeZone,
+  referenceNow
 }: MatchesBoardProps) {
   const [localPredictions, setLocalPredictions] = useState(predictions);
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
+  const urgencyReferenceDate = new Date(referenceNow);
 
   const displayMatches = useMemo(
     () =>
@@ -215,11 +227,12 @@ export function MatchesBoard({
             isLocked: match.locked,
             isFinished: Boolean(match.finalScore),
             hasPrediction: localPredictions.some((item) => item.matchId === match.id),
-            timeZone: predictionTimeZone
+            timeZone: predictionTimeZone,
+            referenceDate: urgencyReferenceDate
           })
         }))
       ),
-    [localPredictions, matches, predictionTimeZone]
+    [localPredictions, matches, predictionTimeZone, urgencyReferenceDate]
   );
 
   const urgentMatches = useMemo(
@@ -277,6 +290,7 @@ export function MatchesBoard({
             expandedMatchId={expandedMatchId}
             onToggle={setExpandedMatchId}
             onSaved={handleSaved}
+            predictionTimeZone={predictionTimeZone}
           />
         ))}
       </div>

@@ -1,10 +1,13 @@
-export const formatKickoff = (kickoff: string) =>
+import { getAppTimezone } from "@/lib/match-urgency";
+
+export const formatKickoff = (kickoff: string, timeZone = getAppTimezone()) =>
   new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
     hour: "numeric",
-    minute: "2-digit"
+    minute: "2-digit",
+    timeZone
   }).format(new Date(kickoff));
 
 export type PlayerMomentum = "neutral" | "up" | "down";
