@@ -35,6 +35,8 @@ export type PredictionScoreBreakdown = {
 export const WINNER_POINTS = 5;
 export const EXACT_SCORE_POINTS = 10;
 export const RED_CARDS_POINTS = 3;
+/** Max points any goals/corners/yellows line pick can earn (line >9.5). */
+export const THRESHOLD_LINE_MAX_POINTS = 10;
 
 export const statThresholdOptions = [
   "0",
@@ -243,13 +245,12 @@ function buildWeightedThresholdBreakdownItem(
   actual: number | null | undefined
 ): PredictionScoreBreakdownItem {
   const pickLabel = normalizeThresholdLine(line);
-  const maxPoints = getThresholdWeight(pickLabel);
 
   if (actual === null || actual === undefined) {
     return {
       label,
       points: 0,
-      maxPoints,
+      maxPoints: THRESHOLD_LINE_MAX_POINTS,
       hit: false,
       pickLabel,
       resultLabel: "Not recorded"
@@ -261,7 +262,7 @@ function buildWeightedThresholdBreakdownItem(
   return {
     label,
     points,
-    maxPoints,
+    maxPoints: THRESHOLD_LINE_MAX_POINTS,
     hit: points > 0,
     pickLabel,
     resultLabel: String(actual)

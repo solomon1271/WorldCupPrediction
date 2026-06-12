@@ -110,7 +110,7 @@ export function LeaderboardPlayerDetail({
             <section className="leaderboard-detail__section">
               <h4>Match picks</h4>
               {detail.matches.length === 0 ? (
-                <p className="status-note">No match picks submitted yet.</p>
+                <p className="status-note">No finished match results to show yet.</p>
               ) : (
                 <div className="leaderboard-detail__list">
                   {detail.matches.map((match) => (
@@ -132,9 +132,7 @@ export function LeaderboardPlayerDetail({
                             : ""}
                         </p>
                       ) : null}
-                      {!match.isFinished ? (
-                        <p className="status-note">Waiting for official result.</p>
-                      ) : match.breakdown ? (
+                      {match.breakdown ? (
                         <div className="prediction-strip score-breakdown__strip">
                           {match.breakdown.items.map((item) => (
                             <div
