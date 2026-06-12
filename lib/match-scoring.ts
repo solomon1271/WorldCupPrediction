@@ -34,6 +34,7 @@ export type PredictionScoreBreakdown = {
 
 export const WINNER_POINTS = 5;
 export const EXACT_SCORE_POINTS = 10;
+export const RED_CARDS_POINTS = 3;
 
 export const statThresholdOptions = [
   "0",
@@ -70,6 +71,17 @@ export function normalizeThresholdLine(value: string | null | undefined) {
 
 export function normalizeRedCardsLine(value: string | null | undefined) {
   return value === "Yes" ? "Yes" : "No";
+}
+
+export function isRedCardsPickCorrect(
+  redCardsLine: string | null | undefined,
+  finalRedCards: number | null | undefined
+) {
+  if (finalRedCards === null || finalRedCards === undefined) {
+    return false;
+  }
+
+  return normalizeRedCardsLine(redCardsLine) === "Yes" ? finalRedCards > 0 : finalRedCards === 0;
 }
 
 export function matchesThreshold(line: string | null | undefined, actual: number) {
@@ -201,8 +213,8 @@ export function scorePrediction(prediction: PredictionInput, match: ScorableMatc
     }
   }
 
-  if (match.finalRedCards != null && prediction.redCardsLine === "Yes" && match.finalRedCards > 0) {
-    points += 1;
+  if (isRedCardsPickCorrect(prediction.redCardsLine, match.finalRedCards)) {
+    points += RED_CARDS_POINTS;
     bonus += 1;
   }
 
@@ -274,7 +286,7 @@ export function getPredictionScoreBreakdown(
     prediction.awayScore !== null &&
     prediction.homeScore === match.finalHomeScore &&
     prediction.awayScore === match.finalAwayScore;
-  const redHit = match.finalRedCards != null && prediction.redCardsLine === "Yes" && match.finalRedCards > 0;
+  const redHit = isRedCardsPickCorrect(prediction.redCardsLine, match.finalRedCards);
 
   const finalWinnerLabel =
     finalOutcome === "draw" ? "Draw" : finalOutcome === "home" ? match.homeTeam : match.awayTeam;
@@ -301,8 +313,8 @@ export function getPredictionScoreBreakdown(
     buildWeightedThresholdBreakdownItem("Yellow cards", prediction.yellowCardsLine, match.finalYellowCards),
     {
       label: "Red cards",
-      points: redHit ? 1 : 0,
-      maxPoints: 1,
+      points: redHit ? RED_CARDS_POINTS : 0,
+      maxPoints: RED_CARDS_POINTS,
       hit: redHit,
       pickLabel: normalizeRedCardsLine(prediction.redCardsLine),
       resultLabel:

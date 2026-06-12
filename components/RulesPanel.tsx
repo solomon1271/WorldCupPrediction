@@ -1,5 +1,6 @@
 import {
   EXACT_SCORE_POINTS,
+  RED_CARDS_POINTS,
   WINNER_POINTS,
   statThresholdOptions
 } from "@/lib/match-scoring";
@@ -64,8 +65,8 @@ export function RulesPanel() {
             <h3>Match scoring</h3>
             <p className="section__copy">
               Each finished match can earn up to{" "}
-              <strong>{WINNER_POINTS + EXACT_SCORE_POINTS + 10 + 10 + 10 + 1} points</strong> when all official stats
-              are recorded (winner, exact score, goals, corners, yellow cards, and a correct red-card Yes).
+              <strong>{WINNER_POINTS + EXACT_SCORE_POINTS + 10 + 10 + 10 + RED_CARDS_POINTS} points</strong> when all official stats
+              are recorded (winner, exact score, goals, corners, yellow cards, and a correct red-card pick).
             </p>
           </div>
           <RuleCards rules={matchPointRules} />
@@ -119,9 +120,8 @@ export function RulesPanel() {
           <p className="card__label">Red cards</p>
           <h3>Yes or No only</h3>
           <p className="section__copy">
-            Pick <strong>Yes</strong> if you think at least one red card will be shown. You get{" "}
-            <strong>1 point</strong> when that happens. Picking <strong>No</strong> never earns points, even when the
-            match ends with zero red cards.
+            Pick <strong>Yes</strong> for <strong>{RED_CARDS_POINTS} points</strong> when at least one red card is shown, or{" "}
+            <strong>No</strong> for <strong>{RED_CARDS_POINTS} points</strong> when the match finishes with zero red cards.
           </p>
         </article>
 

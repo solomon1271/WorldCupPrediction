@@ -1,4 +1,4 @@
-import { EXACT_SCORE_POINTS, WINNER_POINTS } from "@/lib/match-scoring";
+import { EXACT_SCORE_POINTS, RED_CARDS_POINTS, WINNER_POINTS } from "@/lib/match-scoring";
 import { TOURNAMENT_AWARD_POINTS } from "@/lib/tournament-scoring";
 
 export type PointRule = {
@@ -36,8 +36,8 @@ export const matchPointRules: PointRule[] = [
   },
   {
     label: "Red cards",
-    points: 1,
-    detail: "Pick Yes and earn 1 point only when at least one red card is shown. Picking No never scores."
+    points: RED_CARDS_POINTS,
+    detail: "Pick Yes for 3 points when at least one red card is shown, or No for 3 points when the match finishes with zero red cards."
   }
 ];
 
