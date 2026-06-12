@@ -141,7 +141,7 @@ export function buildPlayerStandingDetail(input: BuildPlayerStandingInput): Play
       };
     })
     .filter((match) => match.isFinished)
-    .sort((left, right) => new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime());
+    .sort((left, right) => new Date(right.kickoff).getTime() - new Date(left.kickoff).getTime());
 
   const tournamentPrediction = input.tournamentPrediction || {
     champion: null,

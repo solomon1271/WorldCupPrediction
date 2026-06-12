@@ -141,6 +141,9 @@ export function LeaderboardPlayerDetail({
                             >
                               <span>{item.label}</span>
                               <strong className="score-breakdown__pick">{item.pickLabel}</strong>
+                              {item.resultLabel !== "Not recorded" ? (
+                                <span className="score-breakdown__actual">Actual: {item.resultLabel}</span>
+                              ) : null}
                               <strong className="score-breakdown__points">
                                 {item.points}/{item.maxPoints}
                               </strong>
