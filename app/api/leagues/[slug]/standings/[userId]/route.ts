@@ -1,4 +1,5 @@
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 
@@ -66,5 +67,12 @@ export async function GET(_request: Request, { params }: RouteContext) {
     officialAwards: parseOfficialAwards(league?.officialAwardsJson)
   });
 
-  return NextResponse.json({ ok: true, detail });
+  return NextResponse.json(
+    { ok: true, detail },
+    {
+      headers: {
+        "Cache-Control": "no-store"
+      }
+    }
+  );
 }
