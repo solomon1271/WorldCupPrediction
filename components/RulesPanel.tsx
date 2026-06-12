@@ -85,8 +85,7 @@ export function RulesPanel() {
             </li>
             <li>
               <strong>&gt;0.5, &gt;1.5, &gt;2.5 …</strong> — the result must be <em>above</em> that number. The points
-              you earn depend on how bold your line is (for example, &gt;1.5 pays 2, &gt;8.5 pays 9, &gt;9.5 pays 10).
-              Score breakdowns show points out of <strong>10</strong> for these categories.
+              you earn equal the weight of the line (for example, &gt;1.5 pays 2, &gt;4.5 pays 5).
             </li>
             <li>
               Available lines: {statThresholdOptions.join(", ")}.
