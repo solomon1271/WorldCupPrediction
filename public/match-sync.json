@@ -35,7 +35,12 @@
       "venue": "BMO Field, Toronto",
       "homeTeam": "Canada",
       "awayTeam": "Bosnia and Herzegovina",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 4,
