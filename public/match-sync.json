@@ -49,7 +49,12 @@
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "USA",
       "awayTeam": "Paraguay",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 1,
+      "finalYellowCards":6,
+      "finalTotalCorners": 4,
+      "finalRedCards": 0
     },
     {
       "id": 5,
