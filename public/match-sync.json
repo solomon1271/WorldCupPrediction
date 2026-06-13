@@ -63,7 +63,12 @@
       "venue": "Levi's Stadium, San Francisco Bay Area",
       "homeTeam": "Qatar",
       "awayTeam": "Switzerland",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 6,
