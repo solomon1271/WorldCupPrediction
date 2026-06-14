@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { MatchPredictionForm } from "@/components/MatchPredictionForm";
 import { MatchScoreBreakdown } from "@/components/MatchScoreBreakdown";
 import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
-import { getMatchUrgency, MatchUrgency, sortMatchesByUrgency } from "@/lib/match-urgency";
+import { getMatchUrgency, MatchUrgency, sortMatchesByKickoffAsc } from "@/lib/match-urgency";
 import { formatKickoff } from "@/lib/utils";
 
 type MatchesBoardProps = {
@@ -217,33 +217,44 @@ export function MatchesBoard({
 }: MatchesBoardProps) {
   const [localPredictions, setLocalPredictions] = useState(predictions);
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<"upcoming" | "finished">("upcoming");
   const urgencyReferenceDate = new Date(referenceNow);
 
-  const displayMatches = useMemo(
+  const matchesWithUrgency = useMemo(
     () =>
-      sortMatchesByUrgency(
-        matches.map((match) => ({
-          ...match,
-          urgency: getMatchUrgency({
-            kickoff: match.kickoff,
-            isLocked: match.locked,
-            isFinished: Boolean(match.finalScore),
-            hasPrediction: localPredictions.some((item) => item.matchId === match.id),
-            timeZone: predictionTimeZone,
-            referenceDate: urgencyReferenceDate
-          })
-        }))
-      ),
+      matches.map((match) => ({
+        ...match,
+        urgency: getMatchUrgency({
+          kickoff: match.kickoff,
+          isLocked: match.locked,
+          isFinished: Boolean(match.finalScore),
+          hasPrediction: localPredictions.some((item) => item.matchId === match.id),
+          timeZone: predictionTimeZone,
+          referenceDate: urgencyReferenceDate
+        })
+      })),
     [localPredictions, matches, predictionTimeZone, urgencyReferenceDate]
   );
 
+  const upcomingMatches = useMemo(
+    () => sortMatchesByKickoffAsc(matchesWithUrgency.filter((match) => !match.finalScore)),
+    [matchesWithUrgency]
+  );
+
+  const finishedMatches = useMemo(
+    () => sortMatchesByKickoffAsc(matchesWithUrgency.filter((match) => Boolean(match.finalScore))),
+    [matchesWithUrgency]
+  );
+
+  const displayMatches = activeTab === "upcoming" ? upcomingMatches : finishedMatches;
+
   const urgentMatches = useMemo(
-    () => displayMatches.filter((match) => match.urgency === "tomorrow-needs-pick"),
-    [displayMatches]
+    () => upcomingMatches.filter((match) => match.urgency === "tomorrow-needs-pick"),
+    [upcomingMatches]
   );
   const tomorrowReadyCount = useMemo(
-    () => displayMatches.filter((match) => match.urgency === "tomorrow-ready").length,
-    [displayMatches]
+    () => upcomingMatches.filter((match) => match.urgency === "tomorrow-ready").length,
+    [upcomingMatches]
   );
 
   const handleSaved = (savedPrediction: DashboardMatchPrediction) => {
@@ -258,9 +269,33 @@ export function MatchesBoard({
     <section id="matches" className="section">
       <div className="section__heading">
         <p className="eyebrow">Fixtures + Picks</p>
+        <h2>Matches</h2>
       </div>
 
-      {urgentMatches.length > 0 ? (
+      <div className="match-tabs" role="tablist" aria-label="Match lists">
+        <button
+          className={`match-tabs__button${activeTab === "upcoming" ? " match-tabs__button--active" : ""}`}
+          type="button"
+          role="tab"
+          aria-selected={activeTab === "upcoming"}
+          onClick={() => setActiveTab("upcoming")}
+        >
+          Upcoming
+          <span className="match-tabs__count">{upcomingMatches.length}</span>
+        </button>
+        <button
+          className={`match-tabs__button${activeTab === "finished" ? " match-tabs__button--active" : ""}`}
+          type="button"
+          role="tab"
+          aria-selected={activeTab === "finished"}
+          onClick={() => setActiveTab("finished")}
+        >
+          Finished
+          <span className="match-tabs__count">{finishedMatches.length}</span>
+        </button>
+      </div>
+
+      {activeTab === "upcoming" && urgentMatches.length > 0 ? (
         <div className="match-urgency-banner" id="predict-before-lock">
           <div>
             <p className="match-urgency-banner__eyebrow">Predict before lock</p>
@@ -276,25 +311,33 @@ export function MatchesBoard({
             Review {urgentMatches.length} urgent pick{urgentMatches.length === 1 ? "" : "s"}
           </a>
         </div>
-      ) : tomorrowReadyCount > 0 ? (
+      ) : tomorrowReadyCount > 0 && activeTab === "upcoming" ? (
         <p className="section-note section-note--success">
           You are set for {tomorrowReadyCount} match{tomorrowReadyCount === 1 ? "" : "es"} kicking off {tomorrowLabel}.
         </p>
       ) : null}
 
-      <div className="match-list" id={urgentMatches.length > 0 ? "predict-before-lock-list" : undefined}>
-        {displayMatches.map((match) => (
-          <MatchCard
-            key={match.id}
-            leagueSlug={leagueSlug}
-            match={match}
-            prediction={localPredictions.find((item) => item.matchId === match.id)}
-            expandedMatchId={expandedMatchId}
-            onToggle={setExpandedMatchId}
-            onSaved={handleSaved}
-            predictionTimeZone={predictionTimeZone}
-          />
-        ))}
+      <div className="match-list" id={activeTab === "upcoming" && urgentMatches.length > 0 ? "predict-before-lock-list" : undefined}>
+        {displayMatches.length === 0 ? (
+          <p className="status-note">
+            {activeTab === "upcoming"
+              ? "No upcoming matches right now."
+              : "No finished matches yet. Results will appear here after games are played."}
+          </p>
+        ) : (
+          displayMatches.map((match) => (
+            <MatchCard
+              key={match.id}
+              leagueSlug={leagueSlug}
+              match={match}
+              prediction={localPredictions.find((item) => item.matchId === match.id)}
+              expandedMatchId={expandedMatchId}
+              onToggle={setExpandedMatchId}
+              onSaved={handleSaved}
+              predictionTimeZone={predictionTimeZone}
+            />
+          ))
+        )}
       </div>
       <a className="section__jump" href="#top">
         Back to top

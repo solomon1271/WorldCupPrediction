@@ -56,6 +56,12 @@ export function sortMatchesByUrgency<T extends { kickoff: string; urgency: Match
   });
 }
 
+export function sortMatchesByKickoffAsc<T extends { kickoff: string }>(matches: T[]) {
+  return [...matches].sort(
+    (left, right) => new Date(left.kickoff).getTime() - new Date(right.kickoff).getTime()
+  );
+}
+
 export function formatTomorrowLabel(timeZone: string, referenceDate = new Date()) {
   const { start } = getTomorrowDayBounds(timeZone, referenceDate);
 

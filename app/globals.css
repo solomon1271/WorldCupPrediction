@@ -725,6 +725,56 @@ a {
   font-weight: 700;
 }
 
+.match-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.match-tabs__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(240, 251, 255, 0.06);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.match-tabs__button:hover {
+  background: rgba(240, 251, 255, 0.12);
+}
+
+.match-tabs__button--active {
+  border-color: rgba(0, 245, 212, 0.45);
+  background: rgba(0, 245, 212, 0.12);
+  color: #cffff6;
+}
+
+.match-tabs__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.55rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(240, 251, 255, 0.1);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.match-tabs__button--active .match-tabs__count {
+  background: rgba(0, 245, 212, 0.18);
+  color: var(--accent-2);
+}
+
 .match-list {
   display: grid;
   gap: 1rem;
