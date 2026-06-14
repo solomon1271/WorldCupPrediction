@@ -148,14 +148,10 @@ function MatchCard({
           </strong>
           <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
           {match.urgency === "today-needs-pick" ? (
-            <span className="match-card__summary-note match-card__summary-note--urgent">
-              Kicks off today — submit your pick before lock
-            </span>
+            <span className="match-card__summary-note match-card__summary-note--urgent">Needs your pick</span>
           ) : null}
           {match.urgency === "today-ready" ? (
-            <span className="match-card__summary-note match-card__summary-note--ready">
-              Kicks off today — update your pick before lock if you want
-            </span>
+            <span className="match-card__summary-note match-card__summary-note--ready">Saved · tap to edit</span>
           ) : null}
           {isFinished && match.finalScore ? (
             <span className="match-card__summary-result">
@@ -306,34 +302,28 @@ export function MatchesBoard({
       {activeTab === "upcoming" && todayNeedsPick.length > 0 ? (
         <div className="match-urgency-banner" id="predict-before-lock">
           <div>
-            <p className="match-urgency-banner__eyebrow">Pick required today</p>
             <h3>
-              {todayNeedsPick.length} match{todayNeedsPick.length === 1 ? "" : "es"} still need your pick for{" "}
-              {todayLabel}
+              {todayNeedsPick.length} game{todayNeedsPick.length === 1 ? "" : "s"} need a pick today
             </h3>
-            <p className="match-urgency-banner__copy">
-              These games kick off today ({timezoneShortName}). Submit your picks before they lock{" "}
-              {lockLeadMinutes} minutes before kickoff.
-            </p>
+            <p className="match-urgency-banner__copy">Locks {lockLeadMinutes} min before kickoff</p>
           </div>
           <a className="match-urgency-banner__action" href="#predict-before-lock-list">
-            Review {todayNeedsPick.length} pick{todayNeedsPick.length === 1 ? "" : "s"}
+            View
           </a>
         </div>
       ) : null}
 
       {activeTab === "upcoming" && todayReady.length > 0 ? (
         <div className="match-reminder-banner">
-          <div>
-            <p className="match-reminder-banner__eyebrow">Pick saved for today</p>
-            <h3>
-              {todayReady.length} match{todayReady.length === 1 ? "" : "es"} on {todayLabel} — you can still update
-            </h3>
-            <p className="match-reminder-banner__copy">
-              Your picks are in. Open a highlighted match below if you want to change anything before lock (
-              {lockLeadMinutes} minutes before kickoff).
-            </p>
-          </div>
+          <span className="match-reminder-banner__mark" aria-hidden="true">
+            ✓
+          </span>
+          <p className="match-reminder-banner__text">
+            <strong>
+              {todayReady.length} saved for today
+            </strong>
+            <span>Tap a gold card to edit before lock</span>
+          </p>
         </div>
       ) : null}
 
