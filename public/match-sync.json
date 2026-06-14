@@ -137,7 +137,12 @@
       "venue": "AT&T Stadium, Dallas",
       "homeTeam": "Netherlands",
       "awayTeam": "Japan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 2,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 12,
