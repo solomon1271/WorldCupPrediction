@@ -77,7 +77,12 @@
       "venue": "MetLife Stadium, New York/New Jersey",
       "homeTeam": "Brazil",
       "awayTeam": "Morocco",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards":2,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 7,
