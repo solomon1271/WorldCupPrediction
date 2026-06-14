@@ -1,4 +1,4 @@
-import { getTomorrowDayBounds } from "@/lib/timezone";
+import { getZonedDayBounds } from "@/lib/timezone";
 
 export const DEFAULT_APP_TIMEZONE = "America/Chicago";
 
@@ -6,7 +6,7 @@ export function getAppTimezone() {
   return process.env.CRON_TIMEZONE?.trim() || DEFAULT_APP_TIMEZONE;
 }
 
-export type MatchUrgency = "tomorrow-needs-pick" | "tomorrow-ready" | null;
+export type MatchUrgency = "today-needs-pick" | "today-ready" | null;
 
 export function getMatchUrgency(input: {
   kickoff: Date | string;
@@ -22,23 +22,23 @@ export function getMatchUrgency(input: {
 
   const kickoff = typeof input.kickoff === "string" ? new Date(input.kickoff) : input.kickoff;
   const timeZone = input.timeZone || getAppTimezone();
-  const { start, end } = getTomorrowDayBounds(timeZone, input.referenceDate ?? new Date());
+  const { start, end } = getZonedDayBounds(timeZone, input.referenceDate ?? new Date());
   const kickoffMs = kickoff.getTime();
 
   if (kickoffMs < start.getTime() || kickoffMs > end.getTime()) {
     return null;
   }
 
-  return input.hasPrediction ? "tomorrow-ready" : "tomorrow-needs-pick";
+  return input.hasPrediction ? "today-ready" : "today-needs-pick";
 }
 
 export function sortMatchesByUrgency<T extends { kickoff: string; urgency: MatchUrgency }>(matches: T[]) {
   const rank = (urgency: MatchUrgency) => {
-    if (urgency === "tomorrow-needs-pick") {
+    if (urgency === "today-needs-pick") {
       return 0;
     }
 
-    if (urgency === "tomorrow-ready") {
+    if (urgency === "today-ready") {
       return 1;
     }
 
@@ -62,8 +62,8 @@ export function sortMatchesByKickoffAsc<T extends { kickoff: string }>(matches: 
   );
 }
 
-export function formatTomorrowLabel(timeZone: string, referenceDate = new Date()) {
-  const { start } = getTomorrowDayBounds(timeZone, referenceDate);
+export function formatTodayLabel(timeZone: string, referenceDate = new Date()) {
+  const { start } = getZonedDayBounds(timeZone, referenceDate);
 
   return new Intl.DateTimeFormat("en-US", {
     timeZone,
@@ -72,6 +72,9 @@ export function formatTomorrowLabel(timeZone: string, referenceDate = new Date()
     day: "numeric"
   }).format(start);
 }
+
+/** @deprecated Use formatTodayLabel instead. */
+export const formatTomorrowLabel = formatTodayLabel;
 
 export function formatTimezoneShortName(timeZone: string, referenceDate = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {

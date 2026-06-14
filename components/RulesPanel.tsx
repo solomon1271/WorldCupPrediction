@@ -53,8 +53,8 @@ export function RulesPanel() {
               After kickoff or once results are entered, picks are locked and cannot be changed.
             </li>
             <li>
-              Games highlighted in pink on the dashboard are kicking off <strong>tomorrow</strong> and still need a
-              pick.
+              Games highlighted in pink on the dashboard are kicking off <strong>today</strong> and still need a
+              pick. Gold highlights mean you already picked — open the match to update before lock.
             </li>
             <li>
               Exact score is optional. Leave both scores blank if you only want to pick the winner and stat lines.

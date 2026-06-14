@@ -52,7 +52,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         leagueSlug={league.slug}
         matches={dashboard.matches}
         predictions={dashboard.myPredictions}
-        tomorrowLabel={dashboard.tomorrowLabel}
+        todayLabel={dashboard.todayLabel}
         timezoneShortName={dashboard.timezoneShortName}
         predictionTimeZone={dashboard.predictionTimeZone}
         referenceNow={dashboard.referenceNow}

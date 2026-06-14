@@ -1,6 +1,6 @@
 import { buildLeagueLeaderboard } from "@/lib/leaderboard";
 import {
-  formatTomorrowLabel,
+  formatTodayLabel,
   formatTimezoneShortName,
   getAppTimezone,
   getMatchUrgency,
@@ -134,7 +134,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   const currentUserStanding = leaderboard.find((entry) => entry.id === currentUserId);
   const referenceNow = new Date();
   const predictionTimeZone = getAppTimezone();
-  const tomorrowLabel = formatTomorrowLabel(predictionTimeZone, referenceNow);
+  const todayLabel = formatTodayLabel(predictionTimeZone, referenceNow);
   const timezoneShortName = formatTimezoneShortName(predictionTimeZone, referenceNow);
 
   const dashboardMatches = sortMatchesByUrgency(
@@ -225,7 +225,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     trendSummary: currentUserStanding ? momentumLabel(currentUserStanding.trend) : "No change",
     totalMatches: matches.length,
     totalPlayers: leaderboard.length,
-    tomorrowLabel,
+    todayLabel,
     timezoneShortName,
     predictionTimeZone,
     referenceNow: referenceNow.toISOString(),

@@ -12,7 +12,7 @@ type MatchesBoardProps = {
   leagueSlug: string;
   matches: DashboardMatch[];
   predictions: DashboardMatchPrediction[];
-  tomorrowLabel: string;
+  todayLabel: string;
   timezoneShortName: string;
   predictionTimeZone: string;
   referenceNow: string;
@@ -68,12 +68,12 @@ function getStatusLabel(
     return "Locked";
   }
 
-  if (urgency === "tomorrow-needs-pick") {
-    return "Pick before lock";
+  if (urgency === "today-needs-pick") {
+    return "Pick today";
   }
 
-  if (urgency === "tomorrow-ready") {
-    return "Tomorrow";
+  if (urgency === "today-ready") {
+    return "Pick saved";
   }
 
   if (hasPrediction) {
@@ -84,12 +84,12 @@ function getStatusLabel(
 }
 
 function getBadgeClass(statusLabel: string, urgency: MatchUrgency) {
-  if (urgency === "tomorrow-needs-pick") {
+  if (urgency === "today-needs-pick") {
     return "match-card__badge--urgent";
   }
 
-  if (urgency === "tomorrow-ready") {
-    return "match-card__badge--tomorrow";
+  if (urgency === "today-ready") {
+    return "match-card__badge--today-ready";
   }
 
   if (statusLabel === "Pick saved") {
@@ -126,8 +126,8 @@ function MatchCard({
     "match-card",
     isFinished ? "match-card--finished" : "",
     isLocked ? "match-card--locked" : "",
-    match.urgency === "tomorrow-needs-pick" ? "match-card--urgent" : "",
-    match.urgency === "tomorrow-ready" ? "match-card--tomorrow" : "",
+    match.urgency === "today-needs-pick" ? "match-card--urgent" : "",
+    match.urgency === "today-ready" ? "match-card--today-ready" : "",
     isOpen && prediction && !match.urgency ? "match-card--saved" : ""
   ]
     .filter(Boolean)
@@ -147,8 +147,15 @@ function MatchCard({
             {match.homeTeam} vs {match.awayTeam}
           </strong>
           <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
-          {match.urgency === "tomorrow-needs-pick" ? (
-            <span className="match-card__summary-note">Kicks off tomorrow — submit your pick before lock</span>
+          {match.urgency === "today-needs-pick" ? (
+            <span className="match-card__summary-note match-card__summary-note--urgent">
+              Kicks off today — submit your pick before lock
+            </span>
+          ) : null}
+          {match.urgency === "today-ready" ? (
+            <span className="match-card__summary-note match-card__summary-note--ready">
+              Kicks off today — update your pick before lock if you want
+            </span>
           ) : null}
           {isFinished && match.finalScore ? (
             <span className="match-card__summary-result">
@@ -209,7 +216,7 @@ export function MatchesBoard({
   leagueSlug,
   matches,
   predictions,
-  tomorrowLabel,
+  todayLabel,
   timezoneShortName,
   predictionTimeZone,
   referenceNow,
@@ -248,12 +255,13 @@ export function MatchesBoard({
 
   const displayMatches = activeTab === "upcoming" ? upcomingMatches : finishedMatches;
 
-  const urgentMatches = useMemo(
-    () => upcomingMatches.filter((match) => match.urgency === "tomorrow-needs-pick"),
+  const todayNeedsPick = useMemo(
+    () => upcomingMatches.filter((match) => match.urgency === "today-needs-pick"),
     [upcomingMatches]
   );
-  const tomorrowReadyCount = useMemo(
-    () => upcomingMatches.filter((match) => match.urgency === "tomorrow-ready").length,
+
+  const todayReady = useMemo(
+    () => upcomingMatches.filter((match) => match.urgency === "today-ready"),
     [upcomingMatches]
   );
 
@@ -274,7 +282,7 @@ export function MatchesBoard({
 
       <div className="match-tabs" role="tablist" aria-label="Match lists">
         <button
-          className={`match-tabs__button${activeTab === "upcoming" ? " match-tabs__button--active" : ""}`}
+          className={`match-tabs__button match-tabs__button--upcoming${activeTab === "upcoming" ? " match-tabs__button--active" : ""}`}
           type="button"
           role="tab"
           aria-selected={activeTab === "upcoming"}
@@ -284,7 +292,7 @@ export function MatchesBoard({
           <span className="match-tabs__count">{upcomingMatches.length}</span>
         </button>
         <button
-          className={`match-tabs__button${activeTab === "finished" ? " match-tabs__button--active" : ""}`}
+          className={`match-tabs__button match-tabs__button--finished${activeTab === "finished" ? " match-tabs__button--active" : ""}`}
           type="button"
           role="tab"
           aria-selected={activeTab === "finished"}
@@ -295,29 +303,44 @@ export function MatchesBoard({
         </button>
       </div>
 
-      {activeTab === "upcoming" && urgentMatches.length > 0 ? (
+      {activeTab === "upcoming" && todayNeedsPick.length > 0 ? (
         <div className="match-urgency-banner" id="predict-before-lock">
           <div>
-            <p className="match-urgency-banner__eyebrow">Predict before lock</p>
+            <p className="match-urgency-banner__eyebrow">Pick required today</p>
             <h3>
-              {urgentMatches.length} match{urgentMatches.length === 1 ? "" : "es"} need your pick for {tomorrowLabel}
+              {todayNeedsPick.length} match{todayNeedsPick.length === 1 ? "" : "es"} still need your pick for{" "}
+              {todayLabel}
             </h3>
             <p className="match-urgency-banner__copy">
-              These games kick off tomorrow ({timezoneShortName}). Submit your picks before they lock{" "}
+              These games kick off today ({timezoneShortName}). Submit your picks before they lock{" "}
               {lockLeadMinutes} minutes before kickoff.
             </p>
           </div>
           <a className="match-urgency-banner__action" href="#predict-before-lock-list">
-            Review {urgentMatches.length} urgent pick{urgentMatches.length === 1 ? "" : "s"}
+            Review {todayNeedsPick.length} pick{todayNeedsPick.length === 1 ? "" : "s"}
           </a>
         </div>
-      ) : tomorrowReadyCount > 0 && activeTab === "upcoming" ? (
-        <p className="section-note section-note--success">
-          You are set for {tomorrowReadyCount} match{tomorrowReadyCount === 1 ? "" : "es"} kicking off {tomorrowLabel}.
-        </p>
       ) : null}
 
-      <div className="match-list" id={activeTab === "upcoming" && urgentMatches.length > 0 ? "predict-before-lock-list" : undefined}>
+      {activeTab === "upcoming" && todayReady.length > 0 ? (
+        <div className="match-reminder-banner">
+          <div>
+            <p className="match-reminder-banner__eyebrow">Pick saved for today</p>
+            <h3>
+              {todayReady.length} match{todayReady.length === 1 ? "" : "es"} on {todayLabel} — you can still update
+            </h3>
+            <p className="match-reminder-banner__copy">
+              Your picks are in. Open a highlighted match below if you want to change anything before lock (
+              {lockLeadMinutes} minutes before kickoff).
+            </p>
+          </div>
+        </div>
+      ) : null}
+
+      <div
+        className="match-list"
+        id={activeTab === "upcoming" && todayNeedsPick.length > 0 ? "predict-before-lock-list" : undefined}
+      >
         {displayMatches.length === 0 ? (
           <p className="status-note">
             {activeTab === "upcoming"
