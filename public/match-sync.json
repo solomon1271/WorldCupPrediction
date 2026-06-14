@@ -100,7 +100,12 @@
       "venue": "BC Place, Vancouver",
       "homeTeam": "Australia",
       "awayTeam": "Turkey",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 0,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 9,
