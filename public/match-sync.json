@@ -114,7 +114,12 @@
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Germany",
       "awayTeam": "Curacao",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 7,
+      "finalAwayScore": 1,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 10,
