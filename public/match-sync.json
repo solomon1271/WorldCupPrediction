@@ -91,7 +91,12 @@
       "venue": "Gillette Stadium, Boston",
       "homeTeam": "Haiti",
       "awayTeam": "Scotland",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards":4,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 8,
