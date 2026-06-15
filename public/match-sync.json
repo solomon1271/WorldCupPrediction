@@ -128,7 +128,12 @@
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Ivory Coast",
       "awayTeam": "Ecuador",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 11,
