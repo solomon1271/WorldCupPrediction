@@ -179,7 +179,12 @@
       "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "Spain",
       "awayTeam": "Cape Verde",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore":0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 12,
+      "finalRedCards": 0
     },
     {
       "id": 15,
