@@ -156,7 +156,12 @@
       "venue": "Estadio BBVA, Monterrey",
       "homeTeam": "Sweden",
       "awayTeam": "Tunisia",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 5
+      "finalAwayScore": 1,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 13,
