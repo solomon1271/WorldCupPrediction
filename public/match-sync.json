@@ -207,7 +207,12 @@
       "venue": "Hard Rock Stadium, Miami",
       "homeTeam": "Saudi Arabia",
       "awayTeam": "Uruguay",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 18,
+      "finalRedCards": 0
     },
     {
       "id": 17,
