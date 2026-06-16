@@ -198,7 +198,12 @@
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "Iran",
       "awayTeam": "New Zealand",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore":2,
+      "finalAwayScore": 2,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 16,
