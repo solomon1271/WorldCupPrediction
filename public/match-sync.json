@@ -268,7 +268,12 @@
       "venue": "Levi's Stadium, San Francisco Bay Area",
       "homeTeam": "Austria",
       "awayTeam": "Jordan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 1,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 21,
