@@ -352,7 +352,12 @@
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "Switzerland",
       "awayTeam": "Bosnia and Herzegovina",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 4,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 10,
+      "finalRedCards": 1
     },
     {
       "id": 27,
