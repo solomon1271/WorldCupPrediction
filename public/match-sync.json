@@ -319,7 +319,12 @@
       "venue": "BMO Field, Toronto",
       "homeTeam": "Ghana",
       "awayTeam": "Panama",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 4,
+      "finalRedCards": 0
     },
     {
       "id": 25,
