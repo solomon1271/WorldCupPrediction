@@ -366,7 +366,12 @@
       "venue": "BC Place, Vancouver",
       "homeTeam": "Canada",
       "awayTeam": "Qatar",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 6,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 20,
+      "finalRedCards": 2
     },
     {
       "id": 28,
