@@ -380,7 +380,12 @@
       "venue": "Estadio Akron, Guadalajara",
       "homeTeam": "Mexico",
       "awayTeam": "South Korea",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 2,
+      "finalRedCards": 0
     },
     {
       "id": 29,
