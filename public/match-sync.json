@@ -412,7 +412,12 @@
       "venue": "Lumen Field, Seattle",
       "homeTeam": "USA",
       "awayTeam": "Australia",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 2,
+      "finalAwayScore": 0,
+      "finalYellowCards": 7,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 32,
