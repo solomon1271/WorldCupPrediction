@@ -10,7 +10,13 @@ import { formatRankChangeLabel } from "@/lib/utils";
 type LeaderboardProps = {
   leagueSlug: string;
   standings: DashboardStanding[];
+  currentUserId: string;
+  isAdmin?: boolean;
 };
+
+function canViewPlayerPicks(playerId: string, currentUserId: string, isAdmin: boolean) {
+  return playerId === currentUserId || isAdmin;
+}
 
 function RankChangeCell({ entry }: { entry: DashboardStanding }) {
   const displayRank = entry.afterRank ?? entry.rank;
@@ -41,7 +47,7 @@ function RankChangeCell({ entry }: { entry: DashboardStanding }) {
   );
 }
 
-export function Leaderboard({ leagueSlug, standings }: LeaderboardProps) {
+export function Leaderboard({ leagueSlug, standings, currentUserId, isAdmin = false }: LeaderboardProps) {
   const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
 
   return (
@@ -49,7 +55,9 @@ export function Leaderboard({ leagueSlug, standings }: LeaderboardProps) {
       <section id="leaderboard" className="section">
         <div className="section__heading">
           <p className="eyebrow">Standings</p>
-          <p className="section__copy">Click any player name to view their picks and how they earned their points.</p>
+          <p className="section__copy">
+            Player picks are private. Click your name to review your own picks and how you earned your points.
+          </p>
         </div>
         <div className="table-shell">
           <table>
@@ -65,17 +73,24 @@ export function Leaderboard({ leagueSlug, standings }: LeaderboardProps) {
               </tr>
             </thead>
             <tbody>
-              {standings.map((entry, index) => (
+              {standings.map((entry, index) => {
+                const canViewPicks = canViewPlayerPicks(entry.id, currentUserId, isAdmin);
+
+                return (
                 <tr key={entry.id}>
                   <td>#{index + 1}</td>
                   <td>
-                    <button
-                      className="leaderboard-player-button"
-                      type="button"
-                      onClick={() => setSelectedPlayer({ id: entry.id, name: entry.name })}
-                    >
-                      {entry.name}
-                    </button>
+                    {canViewPicks ? (
+                      <button
+                        className="leaderboard-player-button"
+                        type="button"
+                        onClick={() => setSelectedPlayer({ id: entry.id, name: entry.name })}
+                      >
+                        {entry.name}
+                      </button>
+                    ) : (
+                      <span className="leaderboard-player-name">{entry.name}</span>
+                    )}
                   </td>
                   <td>{entry.totalPoints}</td>
                   <td>{entry.exactScores}</td>
@@ -85,7 +100,8 @@ export function Leaderboard({ leagueSlug, standings }: LeaderboardProps) {
                     <RankChangeCell entry={entry} />
                   </td>
                 </tr>
-              ))}
+              );
+              })}
             </tbody>
           </table>
         </div>

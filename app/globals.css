@@ -473,6 +473,10 @@ a {
   grid-template-columns: 1.15fr 0.85fr;
 }
 
+.card-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .card,
 .rule-card,
 .match-card,
@@ -773,6 +777,51 @@ a {
   color: rgba(255, 231, 240, 0.84);
   font-size: 0.92rem;
   line-height: 1.5;
+}
+
+.tournament-deadline-banner--locked {
+  border-color: rgba(148, 163, 184, 0.42);
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.16), rgba(100, 116, 139, 0.1));
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.12), 0 12px 28px rgba(15, 23, 42, 0.18);
+}
+
+.tournament-deadline-banner--locked .tournament-deadline-banner__mark {
+  background: rgba(148, 163, 184, 0.28);
+  color: #eef2ff;
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
+  font-size: 0.95rem;
+}
+
+.tournament-deadline-banner--locked .tournament-deadline-banner__text strong {
+  color: #e2e8f0;
+}
+
+.tournament-deadline-banner--locked .tournament-deadline-banner__text span {
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.tournament-deadline-banner--update {
+  border-color: rgba(255, 208, 76, 0.46);
+  background: linear-gradient(135deg, rgba(255, 208, 76, 0.18), rgba(255, 229, 102, 0.08));
+  box-shadow: 0 0 0 1px rgba(255, 208, 76, 0.12), 0 12px 28px rgba(255, 208, 76, 0.1);
+}
+
+.tournament-deadline-banner--update .tournament-deadline-banner__mark {
+  background: rgba(255, 208, 76, 0.92);
+  color: #2a1f06;
+  box-shadow: 0 0 0 4px rgba(255, 208, 76, 0.16);
+}
+
+.tournament-deadline-banner--update .tournament-deadline-banner__text strong {
+  color: #fff6da;
+}
+
+.tournament-deadline-banner--update .tournament-deadline-banner__text span {
+  color: rgba(255, 246, 218, 0.84);
+}
+
+.section--tournament-locked .card--feature {
+  opacity: 0.98;
 }
 
 .tournament-spelling-note {
@@ -1408,6 +1457,11 @@ th {
 
 .leaderboard-player-button:hover {
   color: #cffff6;
+}
+
+.leaderboard-player-name {
+  color: var(--text);
+  font-weight: 700;
 }
 
 .award-points-tag {

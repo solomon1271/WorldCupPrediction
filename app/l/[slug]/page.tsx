@@ -58,9 +58,19 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         referenceNow={dashboard.referenceNow}
         lockLeadMinutes={dashboard.lockLeadMinutes}
       />
-      <TournamentPicks leagueSlug={league.slug} prediction={dashboard.tournamentPrediction} />
+      <TournamentPicks
+        leagueSlug={league.slug}
+        prediction={dashboard.tournamentPrediction}
+        locked={dashboard.tournamentPicksLocked}
+        lockLabel={dashboard.tournamentPicksLockLabel}
+      />
       <LeaderboardNote />
-      <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} />
+      <Leaderboard
+        leagueSlug={league.slug}
+        standings={dashboard.leaderboard}
+        currentUserId={user.id}
+        isAdmin={isAdmin}
+      />
     </main>
   );
 }

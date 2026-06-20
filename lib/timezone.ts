@@ -72,6 +72,16 @@ export function getZonedDayBounds(timeZone: string, referenceDate = new Date()) 
   return { start, end, dateLabel };
 }
 
+export function getZonedDateStart(timeZone: string, dateLabel: string) {
+  const [year, month, day] = dateLabel.split("-").map(Number);
+
+  if (!year || !month || !day) {
+    throw new Error(`Invalid date label: ${dateLabel}`);
+  }
+
+  return zonedLocalToUtc({ year, month, day, hour: 0, minute: 0, second: 0, millisecond: 0 }, timeZone);
+}
+
 export function getTomorrowDayBounds(timeZone: string, referenceDate = new Date()) {
   const { end } = getZonedDayBounds(timeZone, referenceDate);
   const tomorrowReference = new Date(end.getTime() + 1);

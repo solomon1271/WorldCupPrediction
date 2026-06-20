@@ -8,6 +8,7 @@ import { getWorldCupTeams } from "@/lib/world-cup-teams";
 type TournamentPredictionFormProps = {
   leagueSlug: string;
   prediction: DashboardTournamentPrediction;
+  locked?: boolean;
   onSaved: (prediction: DashboardTournamentPrediction) => void;
 };
 
@@ -48,7 +49,12 @@ function toSavedPrediction(
   };
 }
 
-export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: TournamentPredictionFormProps) {
+export function TournamentPredictionForm({
+  leagueSlug,
+  prediction,
+  locked = false,
+  onSaved
+}: TournamentPredictionFormProps) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -67,6 +73,10 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
       className="prediction-form prediction-form--tournament"
       onSubmit={(event) => {
         event.preventDefault();
+
+        if (locked) {
+          return;
+        }
 
         const hasAtLeastOnePick = Object.values(form).some((value) => value.trim().length > 0);
 
@@ -107,7 +117,12 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
       <div className="score-grid score-grid--tournament">
         <label>
           <span>Champion</span>
-          <select name="champion" value={form.champion} onChange={(event) => updateField("champion", event.target.value)}>
+          <select
+            name="champion"
+            value={form.champion}
+            disabled={locked}
+            onChange={(event) => updateField("champion", event.target.value)}
+          >
             <option value="">Select a country</option>
             {worldCupTeams.map((team) => (
               <option key={team} value={team}>
@@ -118,7 +133,12 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
         </label>
         <label>
           <span>Runner-up</span>
-          <select name="runnerUp" value={form.runnerUp} onChange={(event) => updateField("runnerUp", event.target.value)}>
+          <select
+            name="runnerUp"
+            value={form.runnerUp}
+            disabled={locked}
+            onChange={(event) => updateField("runnerUp", event.target.value)}
+          >
             <option value="">Select a country</option>
             {worldCupTeams.map((team) => (
               <option key={team} value={team}>
@@ -133,6 +153,7 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
             name="goldenBoot"
             type="text"
             value={form.goldenBoot}
+            disabled={locked}
             onChange={(event) => updateField("goldenBoot", event.target.value)}
             placeholder="Player name"
           />
@@ -143,6 +164,7 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
             name="bestYoungPlayer"
             type="text"
             value={form.bestYoungPlayer}
+            disabled={locked}
             onChange={(event) => updateField("bestYoungPlayer", event.target.value)}
             placeholder="Player name"
           />
@@ -153,6 +175,7 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
             name="goldenGlove"
             type="text"
             value={form.goldenGlove}
+            disabled={locked}
             onChange={(event) => updateField("goldenGlove", event.target.value)}
             placeholder="Player name"
           />
@@ -163,6 +186,7 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
             name="bestPlayer"
             type="text"
             value={form.bestPlayer}
+            disabled={locked}
             onChange={(event) => updateField("bestPlayer", event.target.value)}
             placeholder="Player name"
           />
@@ -170,7 +194,7 @@ export function TournamentPredictionForm({ leagueSlug, prediction, onSaved }: To
       </div>
       {error ? <p className="form-error">{error}</p> : null}
       {success ? <p className="form-success">{success}</p> : null}
-      <button className="primary-button" type="submit" disabled={pending}>
+      <button className="primary-button" type="submit" disabled={pending || locked}>
         {pending ? "Saving..." : "Save tournament picks"}
       </button>
     </form>

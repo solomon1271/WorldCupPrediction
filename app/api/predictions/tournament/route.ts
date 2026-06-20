@@ -6,6 +6,7 @@ import { z } from "zod";
 import { requireLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
+import { isTournamentPicksLocked } from "@/lib/tournament-lock";
 
 const awardField = z.string().trim().max(120);
 
@@ -53,6 +54,10 @@ export async function POST(request: Request) {
 
   if ("error" in membership) {
     return NextResponse.json({ error: membership.error }, { status: 403 });
+  }
+
+  if (isTournamentPicksLocked()) {
+    return NextResponse.json({ error: "Top picks are locked for this tournament." }, { status: 400 });
   }
 
   const awards = parseAwards(parsed.data);

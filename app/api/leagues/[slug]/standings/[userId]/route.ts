@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 
 import { getSessionUser } from "@/lib/auth/session-user";
+import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireLeagueMembership } from "@/lib/leagues";
 import { buildPlayerStandingDetail, parseOfficialAwards } from "@/lib/player-standing";
 import { prisma } from "@/lib/prisma";
@@ -24,6 +25,10 @@ export async function GET(_request: Request, { params }: RouteContext) {
 
   if ("error" in membership) {
     return NextResponse.json({ error: membership.error }, { status: 403 });
+  }
+
+  if (userId !== user.id && !userHasAdminAccess(user)) {
+    return NextResponse.json({ error: "You can only view your own picks." }, { status: 403 });
   }
 
   const [playerMember, league] = await Promise.all([
