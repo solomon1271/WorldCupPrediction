@@ -468,7 +468,12 @@
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Netherlands",
       "awayTeam": "Sweden",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 5,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 36,
