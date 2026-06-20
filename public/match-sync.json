@@ -394,7 +394,12 @@
       "venue": "Gillette Stadium, Boston",
       "homeTeam": "Scotland",
       "awayTeam": "Morocco",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 1,
+      "finalYellowCards":2,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 30,
