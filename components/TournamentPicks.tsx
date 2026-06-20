@@ -31,6 +31,15 @@ export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps
       <div className="section__heading">
         <p className="eyebrow">Beyond Single Matches</p>
         <p className="section__copy">Each correct top pick earns {TOURNAMENT_AWARD_POINTS} points when official awards are announced.</p>
+        <div className="tournament-deadline-banner" role="note">
+          <span className="tournament-deadline-banner__mark" aria-hidden="true">
+            !
+          </span>
+          <p className="tournament-deadline-banner__text">
+            <strong>Submit all top picks before knockout begins.</strong>
+            <span>Picks need to be in before the Round of 32 starts — update yours below while they are still open.</span>
+          </p>
+        </div>
       </div>
       <div className="card-grid card-grid--wide">
         <article className="card card--feature">
@@ -45,6 +54,9 @@ export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps
               </div>
             ))}
           </dl>
+          <p className="tournament-spelling-note" role="note">
+            <strong>Spell player names correctly.</strong> Golden Boot, Best Young Player, Golden Glove, and Best Player picks must match the official spelling to count when awards are announced.
+          </p>
         </article>
         <article className="card">
           <span className="card__label">Editable picks</span>
