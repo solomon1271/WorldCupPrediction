@@ -450,7 +450,12 @@
       "venue": "BMO Field, Toronto",
       "homeTeam": "Germany",
       "awayTeam": "Ivory Coast",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 34,
