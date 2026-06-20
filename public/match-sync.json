@@ -436,7 +436,12 @@
       "venue": "Levi's Stadium, San Francisco Bay Area",
       "homeTeam": "Turkey",
       "awayTeam": "Paraguay",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 1,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 11,
+      "finalRedCards": 1
     },
     {
       "id": 33,
