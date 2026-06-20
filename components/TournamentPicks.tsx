@@ -49,6 +49,9 @@ export function TournamentPicks({ leagueSlug, prediction }: TournamentPicksProps
         <article className="card">
           <span className="card__label">Editable picks</span>
           <h3>Save your tournament picks</h3>
+          <p className="section__copy section__copy--compact">
+            Update one pick at a time or fill them all out. Champion and runner-up use the full World Cup country list.
+          </p>
           <TournamentPredictionForm leagueSlug={leagueSlug} prediction={localPrediction} onSaved={setLocalPrediction} />
         </article>
       </div>

@@ -7,15 +7,33 @@ import { requireLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
 
+const awardField = z.string().trim().max(120);
+
 const schema = z.object({
   leagueSlug: z.string().trim().min(1),
-  champion: z.string().trim().min(2),
-  runnerUp: z.string().trim().min(2),
-  goldenBoot: z.string().trim().min(2),
-  bestYoungPlayer: z.string().trim().min(2),
-  goldenGlove: z.string().trim().min(2),
-  bestPlayer: z.string().trim().min(2)
+  champion: awardField.optional().default(""),
+  runnerUp: awardField.optional().default(""),
+  goldenBoot: awardField.optional().default(""),
+  bestYoungPlayer: awardField.optional().default(""),
+  goldenGlove: awardField.optional().default(""),
+  bestPlayer: awardField.optional().default("")
 });
+
+function normalizeAward(value: string | undefined) {
+  const trimmed = value?.trim() ?? "";
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function parseAwards(incoming: z.infer<typeof schema>) {
+  return {
+    champion: normalizeAward(incoming.champion),
+    runnerUp: normalizeAward(incoming.runnerUp),
+    goldenBoot: normalizeAward(incoming.goldenBoot),
+    bestYoungPlayer: normalizeAward(incoming.bestYoungPlayer),
+    goldenGlove: normalizeAward(incoming.goldenGlove),
+    bestPlayer: normalizeAward(incoming.bestPlayer)
+  };
+}
 
 export async function POST(request: Request) {
   const user = await getSessionUser();
@@ -37,7 +55,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: membership.error }, { status: 403 });
   }
 
-  const { champion, runnerUp, goldenBoot, bestYoungPlayer, goldenGlove, bestPlayer } = parsed.data;
+  const awards = parseAwards(parsed.data);
+
+  if (!Object.values(awards).some(Boolean)) {
+    return NextResponse.json({ error: "Enter at least one tournament pick before saving." }, { status: 400 });
+  }
 
   await prisma.tournamentPrediction.upsert({
     where: {
@@ -46,23 +68,11 @@ export async function POST(request: Request) {
         userId: user.id
       }
     },
-    update: {
-      champion,
-      runnerUp,
-      goldenBoot,
-      bestYoungPlayer,
-      goldenGlove,
-      bestPlayer
-    },
+    update: awards,
     create: {
       leagueId: membership.league.id,
       userId: user.id,
-      champion,
-      runnerUp,
-      goldenBoot,
-      bestYoungPlayer,
-      goldenGlove,
-      bestPlayer,
+      ...awards,
       groupWinners: "{}"
     }
   });
