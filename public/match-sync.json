@@ -408,7 +408,12 @@
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Brazil",
       "awayTeam": "Haiti",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 0,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 31,
