@@ -65,12 +65,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         lockLabel={dashboard.tournamentPicksLockLabel}
       />
       <LeaderboardNote />
-      <Leaderboard
-        leagueSlug={league.slug}
-        standings={dashboard.leaderboard}
-        currentUserId={user.id}
-        isAdmin={isAdmin}
-      />
+      <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} />
     </main>
   );
 }
