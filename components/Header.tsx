@@ -7,7 +7,7 @@ type HeaderProps = {
   variant?: "home" | "help" | "admin";
 };
 
-type NavTone = "fixtures" | "tournament" | "leaderboard" | "help" | "admin" | "home" | "scoring" | "leagues" | "dashboard" | "users";
+type NavTone = "fixtures" | "groups" | "tournament" | "leaderboard" | "help" | "admin" | "home" | "scoring" | "leagues" | "dashboard" | "users";
 
 type NavItem = {
   label: string;
@@ -35,6 +35,12 @@ function NavIcon({ tone }: { tone: NavTone }) {
         <svg {...props}>
           <rect x="3.5" y="5.5" width="17" height="15" rx="2.5" />
           <path d="M8 3.5v4M16 3.5v4M3.5 10.5h17" />
+        </svg>
+      );
+    case "groups":
+      return (
+        <svg {...props}>
+          <path d="M4.5 6.5h6.5v6.5H4.5zM13 6.5h6.5v6.5H13zM4.5 15h6.5v3.5H4.5zM13 15h6.5v3.5H13z" />
         </svg>
       );
     case "tournament":
@@ -126,6 +132,7 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
           ]
         : [
             { label: "Fixtures", href: "#matches", tone: "fixtures" },
+            { label: "Groups", href: "#group-standings", tone: "groups" },
             { label: "Top Picks", href: "#tournament-picks", tone: "tournament" },
             { label: "Leaderboard", href: "#leaderboard", tone: "leaderboard" },
             ...(isAdmin ? [adminNavItem] : []),

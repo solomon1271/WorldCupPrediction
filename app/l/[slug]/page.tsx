@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
+import { GroupStandings } from "@/components/GroupStandings";
 import { Header } from "@/components/Header";
 import { Leaderboard } from "@/components/Leaderboard";
 import { LeaderboardNote } from "@/components/LeaderboardNote";
@@ -69,6 +70,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         locked={dashboard.tournamentPicksLocked}
         lockLabel={dashboard.tournamentPicksLockLabel}
       />
+      <GroupStandings tables={dashboard.groupStandings} />
       <LeaderboardNote />
       <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} />
     </main>
