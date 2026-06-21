@@ -464,7 +464,12 @@
       "venue": "Arrowhead Stadium, Kansas City",
       "homeTeam": "Ecuador",
       "awayTeam": "Curacao",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 6,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 35,
