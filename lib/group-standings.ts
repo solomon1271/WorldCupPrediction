@@ -1,6 +1,6 @@
+import { getCanonicalGroupRosters } from "@/lib/world-cup-groups";
 import { prisma } from "@/lib/prisma";
 
-const GROUP_STAGE_PATTERN = /^Group ([A-L])$/i;
 const GROUP_KEYS = "ABCDEFGHIJKL".split("");
 
 export type GroupStandingRow = {
@@ -31,11 +31,6 @@ type GroupMatch = {
 };
 
 type TeamStats = Omit<GroupStandingRow, "rank">;
-
-function parseGroupKey(stage: string) {
-  const match = stage.match(GROUP_STAGE_PATTERN);
-  return match ? match[1].toUpperCase() : null;
-}
 
 function isFinishedMatch(
   match: GroupMatch
@@ -162,55 +157,22 @@ function sortGroupRows(teams: string[], matches: GroupMatch[]) {
   }));
 }
 
-function buildTeamRosters(matches: GroupMatch[]) {
-  const rosters = new Map<string, Set<string>>();
+function buildTeamRosters() {
+  return getCanonicalGroupRosters();
+}
 
-  for (const group of GROUP_KEYS) {
-    rosters.set(group, new Set());
-  }
-
-  for (const match of matches) {
-    const group = parseGroupKey(match.stage);
-
-    if (!group) {
-      continue;
-    }
-
-    const roster = rosters.get(group);
-
-    if (!roster) {
-      continue;
-    }
-
-    roster.add(match.homeTeam);
-    roster.add(match.awayTeam);
-  }
-
-  return rosters;
+function getGroupMatchesForRoster(matches: GroupMatch[], roster: Set<string>) {
+  return matches.filter((match) => roster.has(match.homeTeam) && roster.has(match.awayTeam));
 }
 
 export function buildGroupStandingsFromMatches(matches: GroupMatch[]): GroupStandingTable[] {
-  const groupMatches = new Map<string, GroupMatch[]>();
-
-  for (const group of GROUP_KEYS) {
-    groupMatches.set(group, []);
-  }
-
-  for (const match of matches) {
-    const group = parseGroupKey(match.stage);
-
-    if (!group) {
-      continue;
-    }
-
-    groupMatches.get(group)?.push(match);
-  }
-
-  const rosters = buildTeamRosters(matches);
+  const rosters = buildTeamRosters();
 
   return GROUP_KEYS.map((group) => {
-    const teams = [...(rosters.get(group) ?? [])].sort((left, right) => left.localeCompare(right));
-    const rows = sortGroupRows(teams, groupMatches.get(group) ?? []);
+    const roster = rosters.get(group) ?? new Set<string>();
+    const teams = [...roster].sort((left, right) => left.localeCompare(right));
+    const groupMatches = getGroupMatchesForRoster(matches, roster);
+    const rows = sortGroupRows(teams, groupMatches);
 
     return {
       group,
