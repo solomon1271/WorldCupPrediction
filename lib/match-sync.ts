@@ -84,6 +84,28 @@ function collectResultChanges(
   return changes;
 }
 
+function hasFullFinalScore(match: { finalHomeScore: number | null; finalAwayScore: number | null }) {
+  return match.finalHomeScore !== null && match.finalAwayScore !== null;
+}
+
+function applyFinalResultTimestamp(
+  existing: { finalHomeScore: number | null; finalAwayScore: number | null },
+  changes: Record<string, unknown>
+) {
+  if (hasFullFinalScore(existing)) {
+    return;
+  }
+
+  const nextHomeScore =
+    typeof changes.finalHomeScore === "number" ? changes.finalHomeScore : existing.finalHomeScore;
+  const nextAwayScore =
+    typeof changes.finalAwayScore === "number" ? changes.finalAwayScore : existing.finalAwayScore;
+
+  if (nextHomeScore !== null && nextAwayScore !== null) {
+    changes.finalResultAt = new Date();
+  }
+}
+
 function parseFixturePayload(payload: unknown): MatchSyncFixture[] {
   const fixtures = Array.isArray(payload) ? payload : Array.isArray((payload as { matches?: unknown })?.matches) ? (payload as { matches: unknown[] }).matches : null;
 
@@ -177,18 +199,24 @@ export async function syncMatchFixtures() {
         },
         fixture
       );
+      const createData: Record<string, unknown> = {
+        id: fixture.id,
+        stage: payload.stage,
+        kickoff: payload.kickoff,
+        venue: payload.venue,
+        homeTeam: payload.homeTeam,
+        awayTeam: payload.awayTeam,
+        isLocked: false,
+        ...resultFields
+      };
+
+      applyFinalResultTimestamp(
+        { finalHomeScore: null, finalAwayScore: null },
+        createData
+      );
 
       await prisma.match.create({
-        data: {
-          id: fixture.id,
-          stage: payload.stage,
-          kickoff: payload.kickoff,
-          venue: payload.venue,
-          homeTeam: payload.homeTeam,
-          awayTeam: payload.awayTeam,
-          isLocked: false,
-          ...resultFields
-        }
+        data: createData as Parameters<typeof prisma.match.create>[0]["data"]
       });
       created += 1;
       if (Object.keys(resultFields).length > 0) {
@@ -209,6 +237,8 @@ export async function syncMatchFixtures() {
     for (const [field, value] of Object.entries(resultChanges)) {
       changes[field] = value;
     }
+
+    applyFinalResultTimestamp(existing, changes);
 
     if (Object.keys(changes).length === 0) {
       unchanged += 1;

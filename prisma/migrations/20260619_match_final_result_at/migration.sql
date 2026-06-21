@@ -1,0 +1,1 @@
+ALTER TABLE "Match" ADD COLUMN "finalResultAt" TIMESTAMP(3);

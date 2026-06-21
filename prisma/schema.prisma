@@ -64,6 +64,7 @@ model Match {
   finalYellowCards     Int?
   finalTotalCorners    Int?
   finalRedCards        Int?
+  finalResultAt        DateTime?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
   predictions              MatchPrediction[]

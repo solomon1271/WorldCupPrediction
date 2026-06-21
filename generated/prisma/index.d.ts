@@ -2559,6 +2559,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2577,6 +2578,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3754,6 +3756,7 @@ export namespace Prisma {
      * The data used to create many Leagues.
      */
     data: LeagueCreateManyInput | LeagueCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3772,6 +3775,7 @@ export namespace Prisma {
      * The data used to create many Leagues.
      */
     data: LeagueCreateManyInput | LeagueCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4912,6 +4916,7 @@ export namespace Prisma {
      * The data used to create many LeagueMembers.
      */
     data: LeagueMemberCreateManyInput | LeagueMemberCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4930,6 +4935,7 @@ export namespace Prisma {
      * The data used to create many LeagueMembers.
      */
     data: LeagueMemberCreateManyInput | LeagueMemberCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5139,6 +5145,7 @@ export namespace Prisma {
     finalYellowCards: number | null
     finalTotalCorners: number | null
     finalRedCards: number | null
+    finalResultAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5157,6 +5164,7 @@ export namespace Prisma {
     finalYellowCards: number | null
     finalTotalCorners: number | null
     finalRedCards: number | null
+    finalResultAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5175,6 +5183,7 @@ export namespace Prisma {
     finalYellowCards: number
     finalTotalCorners: number
     finalRedCards: number
+    finalResultAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5213,6 +5222,7 @@ export namespace Prisma {
     finalYellowCards?: true
     finalTotalCorners?: true
     finalRedCards?: true
+    finalResultAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5231,6 +5241,7 @@ export namespace Prisma {
     finalYellowCards?: true
     finalTotalCorners?: true
     finalRedCards?: true
+    finalResultAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5249,6 +5260,7 @@ export namespace Prisma {
     finalYellowCards?: true
     finalTotalCorners?: true
     finalRedCards?: true
+    finalResultAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5354,6 +5366,7 @@ export namespace Prisma {
     finalYellowCards: number | null
     finalTotalCorners: number | null
     finalRedCards: number | null
+    finalResultAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: MatchCountAggregateOutputType | null
@@ -5391,6 +5404,7 @@ export namespace Prisma {
     finalYellowCards?: boolean
     finalTotalCorners?: boolean
     finalRedCards?: boolean
+    finalResultAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     predictions?: boolean | Match$predictionsArgs<ExtArgs>
@@ -5412,6 +5426,7 @@ export namespace Prisma {
     finalYellowCards?: boolean
     finalTotalCorners?: boolean
     finalRedCards?: boolean
+    finalResultAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["match"]>
@@ -5430,6 +5445,7 @@ export namespace Prisma {
     finalYellowCards?: boolean
     finalTotalCorners?: boolean
     finalRedCards?: boolean
+    finalResultAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["match"]>
@@ -5448,11 +5464,12 @@ export namespace Prisma {
     finalYellowCards?: boolean
     finalTotalCorners?: boolean
     finalRedCards?: boolean
+    finalResultAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stage" | "kickoff" | "venue" | "homeTeam" | "awayTeam" | "isLocked" | "predictionUnlockUntil" | "finalHomeScore" | "finalAwayScore" | "finalYellowCards" | "finalTotalCorners" | "finalRedCards" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
+  export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stage" | "kickoff" | "venue" | "homeTeam" | "awayTeam" | "isLocked" | "predictionUnlockUntil" | "finalHomeScore" | "finalAwayScore" | "finalYellowCards" | "finalTotalCorners" | "finalRedCards" | "finalResultAt" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
   export type MatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     predictions?: boolean | Match$predictionsArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | Match$matchWinnerRevealSeenArgs<ExtArgs>
@@ -5481,6 +5498,7 @@ export namespace Prisma {
       finalYellowCards: number | null
       finalTotalCorners: number | null
       finalRedCards: number | null
+      finalResultAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["match"]>
@@ -5921,6 +5939,7 @@ export namespace Prisma {
     readonly finalYellowCards: FieldRef<"Match", 'Int'>
     readonly finalTotalCorners: FieldRef<"Match", 'Int'>
     readonly finalRedCards: FieldRef<"Match", 'Int'>
+    readonly finalResultAt: FieldRef<"Match", 'DateTime'>
     readonly createdAt: FieldRef<"Match", 'DateTime'>
     readonly updatedAt: FieldRef<"Match", 'DateTime'>
   }
@@ -6152,6 +6171,7 @@ export namespace Prisma {
      * The data used to create many Matches.
      */
     data: MatchCreateManyInput | MatchCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -6170,6 +6190,7 @@ export namespace Prisma {
      * The data used to create many Matches.
      */
     data: MatchCreateManyInput | MatchCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -7410,6 +7431,7 @@ export namespace Prisma {
      * The data used to create many MatchPredictions.
      */
     data: MatchPredictionCreateManyInput | MatchPredictionCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -7428,6 +7450,7 @@ export namespace Prisma {
      * The data used to create many MatchPredictions.
      */
     data: MatchPredictionCreateManyInput | MatchPredictionCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8453,6 +8476,7 @@ export namespace Prisma {
      * The data used to create many LeaderboardStates.
      */
     data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -8471,6 +8495,7 @@ export namespace Prisma {
      * The data used to create many LeaderboardStates.
      */
     data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -9608,6 +9633,7 @@ export namespace Prisma {
      * The data used to create many TournamentPredictions.
      */
     data: TournamentPredictionCreateManyInput | TournamentPredictionCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -9626,6 +9652,7 @@ export namespace Prisma {
      * The data used to create many TournamentPredictions.
      */
     data: TournamentPredictionCreateManyInput | TournamentPredictionCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10714,6 +10741,7 @@ export namespace Prisma {
      * The data used to create many MatchWinnerRevealSeens.
      */
     data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -10732,6 +10760,7 @@ export namespace Prisma {
      * The data used to create many MatchWinnerRevealSeens.
      */
     data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10902,6 +10931,9 @@ export namespace Prisma {
    */
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -10959,6 +10991,7 @@ export namespace Prisma {
     finalYellowCards: 'finalYellowCards',
     finalTotalCorners: 'finalTotalCorners',
     finalRedCards: 'finalRedCards',
+    finalResultAt: 'finalResultAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11032,6 +11065,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
@@ -11053,6 +11094,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -11067,6 +11115,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -11074,9 +11129,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -11310,6 +11379,7 @@ export namespace Prisma {
     finalYellowCards?: IntNullableFilter<"Match"> | number | null
     finalTotalCorners?: IntNullableFilter<"Match"> | number | null
     finalRedCards?: IntNullableFilter<"Match"> | number | null
+    finalResultAt?: DateTimeNullableFilter<"Match"> | Date | string | null
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
     predictions?: MatchPredictionListRelationFilter
@@ -11330,6 +11400,7 @@ export namespace Prisma {
     finalYellowCards?: SortOrderInput | SortOrder
     finalTotalCorners?: SortOrderInput | SortOrder
     finalRedCards?: SortOrderInput | SortOrder
+    finalResultAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     predictions?: MatchPredictionOrderByRelationAggregateInput
@@ -11353,6 +11424,7 @@ export namespace Prisma {
     finalYellowCards?: IntNullableFilter<"Match"> | number | null
     finalTotalCorners?: IntNullableFilter<"Match"> | number | null
     finalRedCards?: IntNullableFilter<"Match"> | number | null
+    finalResultAt?: DateTimeNullableFilter<"Match"> | Date | string | null
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
     predictions?: MatchPredictionListRelationFilter
@@ -11373,6 +11445,7 @@ export namespace Prisma {
     finalYellowCards?: SortOrderInput | SortOrder
     finalTotalCorners?: SortOrderInput | SortOrder
     finalRedCards?: SortOrderInput | SortOrder
+    finalResultAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MatchCountOrderByAggregateInput
@@ -11399,6 +11472,7 @@ export namespace Prisma {
     finalYellowCards?: IntNullableWithAggregatesFilter<"Match"> | number | null
     finalTotalCorners?: IntNullableWithAggregatesFilter<"Match"> | number | null
     finalRedCards?: IntNullableWithAggregatesFilter<"Match"> | number | null
+    finalResultAt?: DateTimeNullableWithAggregatesFilter<"Match"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Match"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Match"> | Date | string
   }
@@ -11959,6 +12033,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionCreateNestedManyWithoutMatchInput
@@ -11979,6 +12054,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionUncheckedCreateNestedManyWithoutMatchInput
@@ -11999,6 +12075,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUpdateManyWithoutMatchNestedInput
@@ -12019,6 +12096,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput
@@ -12039,6 +12117,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12057,6 +12136,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12075,6 +12155,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12394,8 +12475,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12403,6 +12484,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -12413,8 +12495,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12494,8 +12576,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12503,6 +12585,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -12519,8 +12602,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12607,8 +12690,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12618,8 +12701,8 @@ export namespace Prisma {
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12629,8 +12712,8 @@ export namespace Prisma {
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12657,6 +12740,7 @@ export namespace Prisma {
     finalYellowCards?: SortOrder
     finalTotalCorners?: SortOrder
     finalRedCards?: SortOrder
+    finalResultAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12684,6 +12768,7 @@ export namespace Prisma {
     finalYellowCards?: SortOrder
     finalTotalCorners?: SortOrder
     finalRedCards?: SortOrder
+    finalResultAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12702,6 +12787,7 @@ export namespace Prisma {
     finalYellowCards?: SortOrder
     finalTotalCorners?: SortOrder
     finalRedCards?: SortOrder
+    finalResultAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12717,8 +12803,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12733,8 +12819,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12747,8 +12833,8 @@ export namespace Prisma {
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12855,8 +12941,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12864,6 +12950,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
@@ -12919,8 +13006,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12928,6 +13015,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -13616,8 +13704,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13635,8 +13723,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13646,8 +13734,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13663,8 +13751,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13682,8 +13770,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13696,8 +13784,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13707,8 +13795,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13718,8 +13806,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13734,8 +13822,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -13745,8 +13833,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13759,8 +13847,8 @@ export namespace Prisma {
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13775,8 +13863,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -13786,8 +13874,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13800,8 +13888,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13834,6 +13922,7 @@ export namespace Prisma {
 
   export type LeagueMemberCreateManyUserInputEnvelope = {
     data: LeagueMemberCreateManyUserInput | LeagueMemberCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type MatchPredictionCreateWithoutUserInput = {
@@ -13873,6 +13962,7 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyUserInputEnvelope = {
     data: MatchPredictionCreateManyUserInput | MatchPredictionCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type TournamentPredictionCreateWithoutUserInput = {
@@ -13910,6 +14000,7 @@ export namespace Prisma {
 
   export type TournamentPredictionCreateManyUserInputEnvelope = {
     data: TournamentPredictionCreateManyUserInput | TournamentPredictionCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type MatchWinnerRevealSeenCreateWithoutUserInput = {
@@ -13933,6 +14024,7 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyUserInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyUserInput | MatchWinnerRevealSeenCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type LeagueMemberUpsertWithWhereUniqueWithoutUserInput = {
@@ -14076,6 +14168,7 @@ export namespace Prisma {
 
   export type LeagueMemberCreateManyLeagueInputEnvelope = {
     data: LeagueMemberCreateManyLeagueInput | LeagueMemberCreateManyLeagueInput[]
+    skipDuplicates?: boolean
   }
 
   export type MatchPredictionCreateWithoutLeagueInput = {
@@ -14115,6 +14208,7 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyLeagueInputEnvelope = {
     data: MatchPredictionCreateManyLeagueInput | MatchPredictionCreateManyLeagueInput[]
+    skipDuplicates?: boolean
   }
 
   export type TournamentPredictionCreateWithoutLeagueInput = {
@@ -14152,6 +14246,7 @@ export namespace Prisma {
 
   export type TournamentPredictionCreateManyLeagueInputEnvelope = {
     data: TournamentPredictionCreateManyLeagueInput | TournamentPredictionCreateManyLeagueInput[]
+    skipDuplicates?: boolean
   }
 
   export type LeaderboardStateCreateWithoutLeagueInput = {
@@ -14192,6 +14287,7 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyLeagueInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyLeagueInput | MatchWinnerRevealSeenCreateManyLeagueInput[]
+    skipDuplicates?: boolean
   }
 
   export type LeagueMemberUpsertWithWhereUniqueWithoutLeagueInput = {
@@ -14462,6 +14558,7 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyMatchInputEnvelope = {
     data: MatchPredictionCreateManyMatchInput | MatchPredictionCreateManyMatchInput[]
+    skipDuplicates?: boolean
   }
 
   export type MatchWinnerRevealSeenCreateWithoutMatchInput = {
@@ -14485,6 +14582,7 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyMatchInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyMatchInput | MatchWinnerRevealSeenCreateManyMatchInput[]
+    skipDuplicates?: boolean
   }
 
   export type MatchPredictionUpsertWithWhereUniqueWithoutMatchInput = {
@@ -14568,6 +14666,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutMatchInput
@@ -14587,6 +14686,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutMatchInput
@@ -14694,6 +14794,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutMatchNestedInput
@@ -14713,6 +14814,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchNestedInput
@@ -15055,6 +15157,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionCreateNestedManyWithoutMatchInput
@@ -15074,6 +15177,7 @@ export namespace Prisma {
     finalYellowCards?: number | null
     finalTotalCorners?: number | null
     finalRedCards?: number | null
+    finalResultAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionUncheckedCreateNestedManyWithoutMatchInput
@@ -15187,6 +15291,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUpdateManyWithoutMatchNestedInput
@@ -15206,6 +15311,7 @@ export namespace Prisma {
     finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
     finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalResultAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput

@@ -134,9 +134,10 @@ export async function getPendingMatchWinnerRevealAnnouncements(
   const finishedMatches = await prisma.match.findMany({
     where: {
       finalHomeScore: { not: null },
-      finalAwayScore: { not: null }
+      finalAwayScore: { not: null },
+      finalResultAt: { not: null }
     },
-    orderBy: { kickoff: "asc" }
+    orderBy: { finalResultAt: "asc" }
   });
 
   if (finishedMatches.length === 0) {
