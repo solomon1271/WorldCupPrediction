@@ -520,7 +520,12 @@
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "Belgium",
       "awayTeam": "Iran",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 6,
+      "finalRedCards": 1
     },
     {
       "id": 39,
