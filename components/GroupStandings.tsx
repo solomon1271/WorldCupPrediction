@@ -30,6 +30,21 @@ function getDefaultGroup(tables: GroupStandingTable[]) {
   return mostActive.group;
 }
 
+function getRowClassName(rank: number) {
+  switch (rank) {
+    case 1:
+      return "group-standings-table__row--first";
+    case 2:
+      return "group-standings-table__row--second";
+    case 3:
+      return "group-standings-table__row--third";
+    case 4:
+      return "group-standings-table__row--fourth";
+    default:
+      return undefined;
+  }
+}
+
 export function GroupStandings({ tables }: GroupStandingsProps) {
   const [activeGroup, setActiveGroup] = useState(() => getDefaultGroup(tables));
 
@@ -94,16 +109,7 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
             </thead>
             <tbody>
               {activeTable.rows.map((row) => (
-                <tr
-                  key={row.team}
-                  className={
-                    row.rank <= 2
-                      ? "group-standings-table__row--qualified"
-                      : row.rank === 3
-                        ? "group-standings-table__row--third"
-                        : undefined
-                  }
-                >
+                <tr key={row.team} className={getRowClassName(row.rank)}>
                   <td>{row.rank}</td>
                   <th scope="row">{row.team}</th>
                   <td>{row.played}</td>
@@ -123,8 +129,10 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
         </div>
 
         <div className="group-standings-legend" aria-hidden="true">
-          <span className="group-standings-legend__item group-standings-legend__item--qualified">Top 2 advance</span>
-          <span className="group-standings-legend__item group-standings-legend__item--third">3rd — best third-place race</span>
+          <span className="group-standings-legend__item group-standings-legend__item--first">1st — through as group winner</span>
+          <span className="group-standings-legend__item group-standings-legend__item--second">2nd — through in second</span>
+          <span className="group-standings-legend__item group-standings-legend__item--third">3rd — best third-place hope</span>
+          <span className="group-standings-legend__item group-standings-legend__item--fourth">4th — likely out</span>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 {
-"matches": [
+  "matches": [
     {
       "id": 1,
       "stage": "Group A",
@@ -52,7 +52,7 @@
       "isLocked": false,
       "finalHomeScore": 4,
       "finalAwayScore": 1,
-      "finalYellowCards":6,
+      "finalYellowCards": 6,
       "finalTotalCorners": 4,
       "finalRedCards": 0
     },
@@ -80,7 +80,7 @@
       "isLocked": false,
       "finalHomeScore": 1,
       "finalAwayScore": 1,
-      "finalYellowCards":2,
+      "finalYellowCards": 2,
       "finalTotalCorners": 8,
       "finalRedCards": 0
     },
@@ -185,7 +185,7 @@
       "homeTeam": "Spain",
       "awayTeam": "Cape Verde",
       "isLocked": false,
-       "finalHomeScore":0,
+      "finalHomeScore": 0,
       "finalAwayScore": 0,
       "finalYellowCards": 2,
       "finalTotalCorners": 12,
@@ -199,7 +199,7 @@
       "homeTeam": "Iran",
       "awayTeam": "New Zealand",
       "isLocked": false,
-      "finalHomeScore":2,
+      "finalHomeScore": 2,
       "finalAwayScore": 2,
       "finalYellowCards": 1,
       "finalTotalCorners": 5,
@@ -397,7 +397,7 @@
       "isLocked": false,
       "finalHomeScore": 0,
       "finalAwayScore": 1,
-      "finalYellowCards":2,
+      "finalYellowCards": 2,
       "finalTotalCorners": 7,
       "finalRedCards": 0
     },
@@ -423,7 +423,7 @@
       "homeTeam": "USA",
       "awayTeam": "Australia",
       "isLocked": false,
-       "finalHomeScore": 2,
+      "finalHomeScore": 2,
       "finalAwayScore": 0,
       "finalYellowCards": 7,
       "finalTotalCorners": 11,
@@ -681,7 +681,7 @@
     },
     {
       "id": 57,
-      "stage": "Group B",
+      "stage": "Group C",
       "kickoff": "2026-06-24T22:00:00.000Z",
       "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "Morocco",

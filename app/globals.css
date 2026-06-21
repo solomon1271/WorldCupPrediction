@@ -1103,12 +1103,48 @@ a {
   font-weight: 700;
 }
 
-.group-standings-table__row--qualified {
-  background: rgba(0, 245, 212, 0.06);
+.group-standings-table tbody tr {
+  border-left: 4px solid transparent;
+}
+
+.group-standings-table__row--first {
+  background: linear-gradient(90deg, rgba(0, 245, 212, 0.16), rgba(0, 245, 212, 0.04));
+  border-left-color: rgba(0, 245, 212, 0.9);
+}
+
+.group-standings-table__row--first th[scope="row"],
+.group-standings-table__row--first td:last-child strong {
+  color: #cffff6;
+}
+
+.group-standings-table__row--second {
+  background: linear-gradient(90deg, rgba(120, 220, 255, 0.14), rgba(120, 220, 255, 0.03));
+  border-left-color: rgba(120, 220, 255, 0.85);
+}
+
+.group-standings-table__row--second th[scope="row"],
+.group-standings-table__row--second td:last-child strong {
+  color: #dff7ff;
 }
 
 .group-standings-table__row--third {
-  background: rgba(255, 214, 96, 0.07);
+  background: linear-gradient(90deg, rgba(255, 184, 77, 0.16), rgba(255, 184, 77, 0.04));
+  border-left-color: rgba(255, 184, 77, 0.9);
+}
+
+.group-standings-table__row--third th[scope="row"],
+.group-standings-table__row--third td:last-child strong {
+  color: #ffe2a8;
+}
+
+.group-standings-table__row--fourth {
+  background: linear-gradient(90deg, rgba(255, 61, 108, 0.16), rgba(255, 61, 108, 0.04));
+  border-left-color: rgba(255, 61, 108, 0.88);
+}
+
+.group-standings-table__row--fourth th[scope="row"],
+.group-standings-table__row--fourth td:last-child strong {
+  color: #ffc4d4;
 }
 
 .group-standings-legend {
@@ -1133,12 +1169,20 @@ a {
   border-radius: 999px;
 }
 
-.group-standings-legend__item--qualified::before {
-  background: rgba(0, 245, 212, 0.75);
+.group-standings-legend__item--first::before {
+  background: rgba(0, 245, 212, 0.9);
+}
+
+.group-standings-legend__item--second::before {
+  background: rgba(120, 220, 255, 0.9);
 }
 
 .group-standings-legend__item--third::before {
-  background: rgba(255, 214, 96, 0.85);
+  background: rgba(255, 184, 77, 0.95);
+}
+
+.group-standings-legend__item--fourth::before {
+  background: rgba(255, 61, 108, 0.92);
 }
 
 .match-tabs {

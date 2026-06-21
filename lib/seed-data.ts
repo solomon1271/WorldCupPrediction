@@ -57,7 +57,7 @@ export const seedMatches = [
   { id: 54, stage: "Group B", kickoff: et("2026-06-24", "15:00"), venue: "Lumen Field, Seattle", homeTeam: "Bosnia and Herzegovina", awayTeam: "Qatar", isLocked: false },
   { id: 55, stage: "Group F", kickoff: et("2026-06-25", "19:00"), venue: "Arrowhead Stadium, Kansas City", homeTeam: "Tunisia", awayTeam: "Netherlands", isLocked: false },
   { id: 56, stage: "Group E", kickoff: et("2026-06-25", "16:00"), venue: "Lincoln Financial Field, Philadelphia", homeTeam: "Curacao", awayTeam: "Ivory Coast", isLocked: false },
-  { id: 57, stage: "Group B", kickoff: et("2026-06-24", "18:00"), venue: "Mercedes-Benz Stadium, Atlanta", homeTeam: "Morocco", awayTeam: "Haiti", isLocked: false },
+  { id: 57, stage: "Group C", kickoff: et("2026-06-24", "18:00"), venue: "Mercedes-Benz Stadium, Atlanta", homeTeam: "Morocco", awayTeam: "Haiti", isLocked: false },
   { id: 58, stage: "Group D", kickoff: et("2026-06-25", "22:00"), venue: "SoFi Stadium, Los Angeles", homeTeam: "Turkey", awayTeam: "USA", isLocked: false },
   { id: 59, stage: "Group D", kickoff: et("2026-06-25", "22:00"), venue: "Levi's Stadium, San Francisco Bay Area", homeTeam: "Paraguay", awayTeam: "Australia", isLocked: false },
   { id: 60, stage: "Group G", kickoff: et("2026-06-26", "23:00"), venue: "BC Place, Vancouver", homeTeam: "New Zealand", awayTeam: "Belgium", isLocked: false },
