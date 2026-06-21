@@ -492,7 +492,12 @@
       "venue": "Estadio BBVA, Monterrey",
       "homeTeam": "Tunisia",
       "awayTeam": "Japan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 4,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 37,
