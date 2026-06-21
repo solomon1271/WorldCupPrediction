@@ -9,31 +9,33 @@ datasource db {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  email                 String                 @unique
+  id                    String                  @id @default(cuid())
+  email                 String                  @unique
   displayName           String
   passwordHash          String
-  isAdmin               Boolean                @default(false)
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
+  isAdmin               Boolean                 @default(false)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
   leagueMembers         LeagueMember[]
   matchPredictions      MatchPrediction[]
   tournamentPredictions TournamentPrediction[]
+  matchWinnerRevealSeen MatchWinnerRevealSeen[]
 }
 
 model League {
-  id                    String                 @id @default(cuid())
-  slug                  String                 @unique
+  id                    String                  @id @default(cuid())
+  slug                  String                  @unique
   name                  String
-  inviteCode            String                 @unique
-  subtitle              String                 @default("2026 World Cup Challenge")
-  officialAwardsJson    String                 @default("{}")
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
+  inviteCode            String                  @unique
+  subtitle              String                  @default("2026 World Cup Challenge")
+  officialAwardsJson    String                  @default("{}")
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
   members               LeagueMember[]
   matchPredictions      MatchPrediction[]
   tournamentPredictions TournamentPrediction[]
   leaderboardState      LeaderboardState?
+  matchWinnerRevealSeen MatchWinnerRevealSeen[]
 }
 
 model LeagueMember {
@@ -49,22 +51,23 @@ model LeagueMember {
 }
 
 model Match {
-  id                    Int               @id
+  id                    Int                     @id
   stage                 String
   kickoff               DateTime
   venue                 String
   homeTeam              String
   awayTeam              String
-  isLocked              Boolean           @default(false)
+  isLocked              Boolean                 @default(false)
   predictionUnlockUntil DateTime?
   finalHomeScore        Int?
   finalAwayScore        Int?
   finalYellowCards      Int?
   finalTotalCorners     Int?
   finalRedCards         Int?
-  createdAt             DateTime          @default(now())
-  updatedAt             DateTime          @updatedAt
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
   predictions           MatchPrediction[]
+  matchWinnerRevealSeen MatchWinnerRevealSeen[]
 }
 
 model MatchPrediction {
@@ -113,4 +116,18 @@ model TournamentPrediction {
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([leagueId, userId])
+}
+
+model MatchWinnerRevealSeen {
+  id       String   @id @default(cuid())
+  leagueId String
+  userId   String
+  matchId  Int
+  seenAt   DateTime @default(now())
+  league   League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match    Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId, matchId])
+  @@index([userId])
 }

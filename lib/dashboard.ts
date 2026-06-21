@@ -18,6 +18,10 @@ import {
   normalizeThresholdLine,
   type PredictionScoreBreakdown
 } from "@/lib/match-scoring";
+import {
+  getPendingMatchWinnerRevealAnnouncements,
+  type MatchWinnerRevealAnnouncement
+} from "@/lib/match-winner-announcement";
 import { prisma } from "@/lib/prisma";
 import { momentumLabel, PlayerMomentum } from "@/lib/utils";
 
@@ -100,8 +104,10 @@ function normalizeTournamentPrediction(
   };
 }
 
+export type { MatchWinnerRevealAnnouncement };
+
 export async function getDashboardData(leagueId: string, currentUserId: string) {
-  const [matches, currentMember] = await Promise.all([
+  const [matches, currentMember, matchWinnerRevealAnnouncements] = await Promise.all([
     prisma.match.findMany({
       orderBy: [{ kickoff: "asc" }],
       include: {
@@ -130,7 +136,8 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
           }
         }
       }
-    })
+    }),
+    getPendingMatchWinnerRevealAnnouncements(leagueId, currentUserId)
   ]);
 
   const currentUser = currentMember?.user;
@@ -237,6 +244,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     timezoneShortName,
     predictionTimeZone,
     referenceNow: referenceNow.toISOString(),
-    lockLeadMinutes: getMatchLockLeadMinutes()
+    lockLeadMinutes: getMatchLockLeadMinutes(),
+    matchWinnerRevealAnnouncements
   };
 }

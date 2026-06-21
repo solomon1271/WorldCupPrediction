@@ -201,6 +201,14 @@ exports.Prisma.TournamentPredictionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MatchWinnerRevealSeenScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  matchId: 'matchId',
+  seenAt: 'seenAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -219,7 +227,8 @@ exports.Prisma.ModelName = {
   Match: 'Match',
   MatchPrediction: 'MatchPrediction',
   LeaderboardState: 'LeaderboardState',
-  TournamentPrediction: 'TournamentPrediction'
+  TournamentPrediction: 'TournamentPrediction',
+  MatchWinnerRevealSeen: 'MatchWinnerRevealSeen'
 };
 
 /**

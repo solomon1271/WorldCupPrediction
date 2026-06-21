@@ -62,7 +62,9 @@ function isPrismaClientReady(client: PrismaClient) {
     "leaderboardState" in client &&
     Boolean(client.leaderboardState) &&
     "league" in client &&
-    Boolean(client.league)
+    Boolean(client.league) &&
+    "matchWinnerRevealSeen" in client &&
+    Boolean(client.matchWinnerRevealSeen)
   );
 }
 

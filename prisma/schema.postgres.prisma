@@ -16,9 +16,10 @@ model User {
   isAdmin               Boolean                @default(false)
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
-  leagueMembers         LeagueMember[]
-  matchPredictions      MatchPrediction[]
-  tournamentPredictions TournamentPrediction[]
+  leagueMembers              LeagueMember[]
+  matchPredictions           MatchPrediction[]
+  tournamentPredictions      TournamentPrediction[]
+  matchWinnerRevealSeen      MatchWinnerRevealSeen[]
 }
 
 model League {
@@ -32,8 +33,9 @@ model League {
   updatedAt             DateTime               @updatedAt
   members               LeagueMember[]
   matchPredictions      MatchPrediction[]
-  tournamentPredictions TournamentPrediction[]
-  leaderboardState      LeaderboardState?
+  tournamentPredictions      TournamentPrediction[]
+  leaderboardState           LeaderboardState?
+  matchWinnerRevealSeen      MatchWinnerRevealSeen[]
 }
 
 model LeagueMember {
@@ -64,7 +66,8 @@ model Match {
   finalRedCards        Int?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
-  predictions          MatchPrediction[]
+  predictions              MatchPrediction[]
+  matchWinnerRevealSeen    MatchWinnerRevealSeen[]
 }
 
 model MatchPrediction {
@@ -113,4 +116,18 @@ model TournamentPrediction {
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([leagueId, userId])
+}
+
+model MatchWinnerRevealSeen {
+  id        String   @id @default(cuid())
+  leagueId  String
+  userId    String
+  matchId   Int
+  seenAt    DateTime @default(now())
+  league    League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match     Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId, matchId])
+  @@index([userId])
 }

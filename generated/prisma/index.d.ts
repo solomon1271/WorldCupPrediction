@@ -48,6 +48,11 @@ export type LeaderboardState = $Result.DefaultSelection<Prisma.$LeaderboardState
  * 
  */
 export type TournamentPrediction = $Result.DefaultSelection<Prisma.$TournamentPredictionPayload>
+/**
+ * Model MatchWinnerRevealSeen
+ * 
+ */
+export type MatchWinnerRevealSeen = $Result.DefaultSelection<Prisma.$MatchWinnerRevealSeenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -236,6 +241,16 @@ export class PrismaClient<
     * ```
     */
   get tournamentPrediction(): Prisma.TournamentPredictionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.matchWinnerRevealSeen`: Exposes CRUD operations for the **MatchWinnerRevealSeen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MatchWinnerRevealSeens
+    * const matchWinnerRevealSeens = await prisma.matchWinnerRevealSeen.findMany()
+    * ```
+    */
+  get matchWinnerRevealSeen(): Prisma.MatchWinnerRevealSeenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -682,7 +697,8 @@ export namespace Prisma {
     Match: 'Match',
     MatchPrediction: 'MatchPrediction',
     LeaderboardState: 'LeaderboardState',
-    TournamentPrediction: 'TournamentPrediction'
+    TournamentPrediction: 'TournamentPrediction',
+    MatchWinnerRevealSeen: 'MatchWinnerRevealSeen'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -701,7 +717,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction"
+      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1223,6 +1239,80 @@ export namespace Prisma {
           }
         }
       }
+      MatchWinnerRevealSeen: {
+        payload: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>
+        fields: Prisma.MatchWinnerRevealSeenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MatchWinnerRevealSeenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MatchWinnerRevealSeenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          findFirst: {
+            args: Prisma.MatchWinnerRevealSeenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MatchWinnerRevealSeenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          findMany: {
+            args: Prisma.MatchWinnerRevealSeenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>[]
+          }
+          create: {
+            args: Prisma.MatchWinnerRevealSeenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          createMany: {
+            args: Prisma.MatchWinnerRevealSeenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MatchWinnerRevealSeenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>[]
+          }
+          delete: {
+            args: Prisma.MatchWinnerRevealSeenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          update: {
+            args: Prisma.MatchWinnerRevealSeenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          deleteMany: {
+            args: Prisma.MatchWinnerRevealSeenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MatchWinnerRevealSeenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MatchWinnerRevealSeenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>[]
+          }
+          upsert: {
+            args: Prisma.MatchWinnerRevealSeenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MatchWinnerRevealSeenPayload>
+          }
+          aggregate: {
+            args: Prisma.MatchWinnerRevealSeenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMatchWinnerRevealSeen>
+          }
+          groupBy: {
+            args: Prisma.MatchWinnerRevealSeenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MatchWinnerRevealSeenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MatchWinnerRevealSeenCountArgs<ExtArgs>
+            result: $Utils.Optional<MatchWinnerRevealSeenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1326,6 +1416,7 @@ export namespace Prisma {
     matchPrediction?: MatchPredictionOmit
     leaderboardState?: LeaderboardStateOmit
     tournamentPrediction?: TournamentPredictionOmit
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenOmit
   }
 
   /* Types for Logging */
@@ -1409,12 +1500,14 @@ export namespace Prisma {
     leagueMembers: number
     matchPredictions: number
     tournamentPredictions: number
+    matchWinnerRevealSeen: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leagueMembers?: boolean | UserCountOutputTypeCountLeagueMembersArgs
     matchPredictions?: boolean | UserCountOutputTypeCountMatchPredictionsArgs
     tournamentPredictions?: boolean | UserCountOutputTypeCountTournamentPredictionsArgs
+    matchWinnerRevealSeen?: boolean | UserCountOutputTypeCountMatchWinnerRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1449,6 +1542,13 @@ export namespace Prisma {
     where?: TournamentPredictionWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMatchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MatchWinnerRevealSeenWhereInput
+  }
+
 
   /**
    * Count Type LeagueCountOutputType
@@ -1458,12 +1558,14 @@ export namespace Prisma {
     members: number
     matchPredictions: number
     tournamentPredictions: number
+    matchWinnerRevealSeen: number
   }
 
   export type LeagueCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | LeagueCountOutputTypeCountMembersArgs
     matchPredictions?: boolean | LeagueCountOutputTypeCountMatchPredictionsArgs
     tournamentPredictions?: boolean | LeagueCountOutputTypeCountTournamentPredictionsArgs
+    matchWinnerRevealSeen?: boolean | LeagueCountOutputTypeCountMatchWinnerRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1498,6 +1600,13 @@ export namespace Prisma {
     where?: TournamentPredictionWhereInput
   }
 
+  /**
+   * LeagueCountOutputType without action
+   */
+  export type LeagueCountOutputTypeCountMatchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MatchWinnerRevealSeenWhereInput
+  }
+
 
   /**
    * Count Type MatchCountOutputType
@@ -1505,10 +1614,12 @@ export namespace Prisma {
 
   export type MatchCountOutputType = {
     predictions: number
+    matchWinnerRevealSeen: number
   }
 
   export type MatchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     predictions?: boolean | MatchCountOutputTypeCountPredictionsArgs
+    matchWinnerRevealSeen?: boolean | MatchCountOutputTypeCountMatchWinnerRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1527,6 +1638,13 @@ export namespace Prisma {
    */
   export type MatchCountOutputTypeCountPredictionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MatchPredictionWhereInput
+  }
+
+  /**
+   * MatchCountOutputType without action
+   */
+  export type MatchCountOutputTypeCountMatchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MatchWinnerRevealSeenWhereInput
   }
 
 
@@ -1717,6 +1835,7 @@ export namespace Prisma {
     leagueMembers?: boolean | User$leagueMembersArgs<ExtArgs>
     matchPredictions?: boolean | User$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1755,6 +1874,7 @@ export namespace Prisma {
     leagueMembers?: boolean | User$leagueMembersArgs<ExtArgs>
     matchPredictions?: boolean | User$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1766,6 +1886,7 @@ export namespace Prisma {
       leagueMembers: Prisma.$LeagueMemberPayload<ExtArgs>[]
       matchPredictions: Prisma.$MatchPredictionPayload<ExtArgs>[]
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
+      matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2172,6 +2293,7 @@ export namespace Prisma {
     leagueMembers<T extends User$leagueMembersArgs<ExtArgs> = {}>(args?: Subset<T, User$leagueMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeagueMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     matchPredictions<T extends User$matchPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, User$matchPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentPredictions<T extends User$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, User$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    matchWinnerRevealSeen<T extends User$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2666,6 +2788,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.matchWinnerRevealSeen
+   */
+  export type User$matchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    where?: MatchWinnerRevealSeenWhereInput
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2876,6 +3022,7 @@ export namespace Prisma {
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["league"]>
 
@@ -2918,6 +3065,7 @@ export namespace Prisma {
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeagueIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2930,6 +3078,7 @@ export namespace Prisma {
       matchPredictions: Prisma.$MatchPredictionPayload<ExtArgs>[]
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       leaderboardState: Prisma.$LeaderboardStatePayload<ExtArgs> | null
+      matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3338,6 +3487,7 @@ export namespace Prisma {
     matchPredictions<T extends League$matchPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$matchPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentPredictions<T extends League$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaderboardState<T extends League$leaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$leaderboardStateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    matchWinnerRevealSeen<T extends League$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3849,6 +3999,30 @@ export namespace Prisma {
      */
     include?: LeaderboardStateInclude<ExtArgs> | null
     where?: LeaderboardStateWhereInput
+  }
+
+  /**
+   * League.matchWinnerRevealSeen
+   */
+  export type League$matchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    where?: MatchWinnerRevealSeenWhereInput
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
   }
 
   /**
@@ -5220,6 +5394,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     predictions?: boolean | Match$predictionsArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | Match$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["match"]>
 
@@ -5280,6 +5455,7 @@ export namespace Prisma {
   export type MatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stage" | "kickoff" | "venue" | "homeTeam" | "awayTeam" | "isLocked" | "predictionUnlockUntil" | "finalHomeScore" | "finalAwayScore" | "finalYellowCards" | "finalTotalCorners" | "finalRedCards" | "createdAt" | "updatedAt", ExtArgs["result"]["match"]>
   export type MatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     predictions?: boolean | Match$predictionsArgs<ExtArgs>
+    matchWinnerRevealSeen?: boolean | Match$matchWinnerRevealSeenArgs<ExtArgs>
     _count?: boolean | MatchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5289,6 +5465,7 @@ export namespace Prisma {
     name: "Match"
     objects: {
       predictions: Prisma.$MatchPredictionPayload<ExtArgs>[]
+      matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5701,6 +5878,7 @@ export namespace Prisma {
   export interface Prisma__MatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     predictions<T extends Match$predictionsArgs<ExtArgs> = {}>(args?: Subset<T, Match$predictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    matchWinnerRevealSeen<T extends Match$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, Match$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6152,6 +6330,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MatchPredictionScalarFieldEnum | MatchPredictionScalarFieldEnum[]
+  }
+
+  /**
+   * Match.matchWinnerRevealSeen
+   */
+  export type Match$matchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    where?: MatchWinnerRevealSeenWhereInput
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
   }
 
   /**
@@ -9590,6 +9792,1112 @@ export namespace Prisma {
 
 
   /**
+   * Model MatchWinnerRevealSeen
+   */
+
+  export type AggregateMatchWinnerRevealSeen = {
+    _count: MatchWinnerRevealSeenCountAggregateOutputType | null
+    _avg: MatchWinnerRevealSeenAvgAggregateOutputType | null
+    _sum: MatchWinnerRevealSeenSumAggregateOutputType | null
+    _min: MatchWinnerRevealSeenMinAggregateOutputType | null
+    _max: MatchWinnerRevealSeenMaxAggregateOutputType | null
+  }
+
+  export type MatchWinnerRevealSeenAvgAggregateOutputType = {
+    matchId: number | null
+  }
+
+  export type MatchWinnerRevealSeenSumAggregateOutputType = {
+    matchId: number | null
+  }
+
+  export type MatchWinnerRevealSeenMinAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    matchId: number | null
+    seenAt: Date | null
+  }
+
+  export type MatchWinnerRevealSeenMaxAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    matchId: number | null
+    seenAt: Date | null
+  }
+
+  export type MatchWinnerRevealSeenCountAggregateOutputType = {
+    id: number
+    leagueId: number
+    userId: number
+    matchId: number
+    seenAt: number
+    _all: number
+  }
+
+
+  export type MatchWinnerRevealSeenAvgAggregateInputType = {
+    matchId?: true
+  }
+
+  export type MatchWinnerRevealSeenSumAggregateInputType = {
+    matchId?: true
+  }
+
+  export type MatchWinnerRevealSeenMinAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    matchId?: true
+    seenAt?: true
+  }
+
+  export type MatchWinnerRevealSeenMaxAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    matchId?: true
+    seenAt?: true
+  }
+
+  export type MatchWinnerRevealSeenCountAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    matchId?: true
+    seenAt?: true
+    _all?: true
+  }
+
+  export type MatchWinnerRevealSeenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MatchWinnerRevealSeen to aggregate.
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MatchWinnerRevealSeens to fetch.
+     */
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MatchWinnerRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MatchWinnerRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MatchWinnerRevealSeens
+    **/
+    _count?: true | MatchWinnerRevealSeenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MatchWinnerRevealSeenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MatchWinnerRevealSeenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MatchWinnerRevealSeenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MatchWinnerRevealSeenMaxAggregateInputType
+  }
+
+  export type GetMatchWinnerRevealSeenAggregateType<T extends MatchWinnerRevealSeenAggregateArgs> = {
+        [P in keyof T & keyof AggregateMatchWinnerRevealSeen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMatchWinnerRevealSeen[P]>
+      : GetScalarType<T[P], AggregateMatchWinnerRevealSeen[P]>
+  }
+
+
+
+
+  export type MatchWinnerRevealSeenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MatchWinnerRevealSeenWhereInput
+    orderBy?: MatchWinnerRevealSeenOrderByWithAggregationInput | MatchWinnerRevealSeenOrderByWithAggregationInput[]
+    by: MatchWinnerRevealSeenScalarFieldEnum[] | MatchWinnerRevealSeenScalarFieldEnum
+    having?: MatchWinnerRevealSeenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MatchWinnerRevealSeenCountAggregateInputType | true
+    _avg?: MatchWinnerRevealSeenAvgAggregateInputType
+    _sum?: MatchWinnerRevealSeenSumAggregateInputType
+    _min?: MatchWinnerRevealSeenMinAggregateInputType
+    _max?: MatchWinnerRevealSeenMaxAggregateInputType
+  }
+
+  export type MatchWinnerRevealSeenGroupByOutputType = {
+    id: string
+    leagueId: string
+    userId: string
+    matchId: number
+    seenAt: Date
+    _count: MatchWinnerRevealSeenCountAggregateOutputType | null
+    _avg: MatchWinnerRevealSeenAvgAggregateOutputType | null
+    _sum: MatchWinnerRevealSeenSumAggregateOutputType | null
+    _min: MatchWinnerRevealSeenMinAggregateOutputType | null
+    _max: MatchWinnerRevealSeenMaxAggregateOutputType | null
+  }
+
+  type GetMatchWinnerRevealSeenGroupByPayload<T extends MatchWinnerRevealSeenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MatchWinnerRevealSeenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MatchWinnerRevealSeenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MatchWinnerRevealSeenGroupByOutputType[P]>
+            : GetScalarType<T[P], MatchWinnerRevealSeenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MatchWinnerRevealSeenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    matchId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["matchWinnerRevealSeen"]>
+
+  export type MatchWinnerRevealSeenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    matchId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["matchWinnerRevealSeen"]>
+
+  export type MatchWinnerRevealSeenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    matchId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["matchWinnerRevealSeen"]>
+
+  export type MatchWinnerRevealSeenSelectScalar = {
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    matchId?: boolean
+    seenAt?: boolean
+  }
+
+  export type MatchWinnerRevealSeenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "matchId" | "seenAt", ExtArgs["result"]["matchWinnerRevealSeen"]>
+  export type MatchWinnerRevealSeenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }
+  export type MatchWinnerRevealSeenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }
+  export type MatchWinnerRevealSeenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    match?: boolean | MatchDefaultArgs<ExtArgs>
+  }
+
+  export type $MatchWinnerRevealSeenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MatchWinnerRevealSeen"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+      match: Prisma.$MatchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      leagueId: string
+      userId: string
+      matchId: number
+      seenAt: Date
+    }, ExtArgs["result"]["matchWinnerRevealSeen"]>
+    composites: {}
+  }
+
+  type MatchWinnerRevealSeenGetPayload<S extends boolean | null | undefined | MatchWinnerRevealSeenDefaultArgs> = $Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload, S>
+
+  type MatchWinnerRevealSeenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MatchWinnerRevealSeenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MatchWinnerRevealSeenCountAggregateInputType | true
+    }
+
+  export interface MatchWinnerRevealSeenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MatchWinnerRevealSeen'], meta: { name: 'MatchWinnerRevealSeen' } }
+    /**
+     * Find zero or one MatchWinnerRevealSeen that matches the filter.
+     * @param {MatchWinnerRevealSeenFindUniqueArgs} args - Arguments to find a MatchWinnerRevealSeen
+     * @example
+     * // Get one MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MatchWinnerRevealSeenFindUniqueArgs>(args: SelectSubset<T, MatchWinnerRevealSeenFindUniqueArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MatchWinnerRevealSeen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MatchWinnerRevealSeenFindUniqueOrThrowArgs} args - Arguments to find a MatchWinnerRevealSeen
+     * @example
+     * // Get one MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MatchWinnerRevealSeenFindUniqueOrThrowArgs>(args: SelectSubset<T, MatchWinnerRevealSeenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MatchWinnerRevealSeen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenFindFirstArgs} args - Arguments to find a MatchWinnerRevealSeen
+     * @example
+     * // Get one MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MatchWinnerRevealSeenFindFirstArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenFindFirstArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MatchWinnerRevealSeen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenFindFirstOrThrowArgs} args - Arguments to find a MatchWinnerRevealSeen
+     * @example
+     * // Get one MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MatchWinnerRevealSeenFindFirstOrThrowArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenFindFirstOrThrowArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MatchWinnerRevealSeens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MatchWinnerRevealSeens
+     * const matchWinnerRevealSeens = await prisma.matchWinnerRevealSeen.findMany()
+     * 
+     * // Get first 10 MatchWinnerRevealSeens
+     * const matchWinnerRevealSeens = await prisma.matchWinnerRevealSeen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const matchWinnerRevealSeenWithIdOnly = await prisma.matchWinnerRevealSeen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MatchWinnerRevealSeenFindManyArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MatchWinnerRevealSeen.
+     * @param {MatchWinnerRevealSeenCreateArgs} args - Arguments to create a MatchWinnerRevealSeen.
+     * @example
+     * // Create one MatchWinnerRevealSeen
+     * const MatchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.create({
+     *   data: {
+     *     // ... data to create a MatchWinnerRevealSeen
+     *   }
+     * })
+     * 
+     */
+    create<T extends MatchWinnerRevealSeenCreateArgs>(args: SelectSubset<T, MatchWinnerRevealSeenCreateArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MatchWinnerRevealSeens.
+     * @param {MatchWinnerRevealSeenCreateManyArgs} args - Arguments to create many MatchWinnerRevealSeens.
+     * @example
+     * // Create many MatchWinnerRevealSeens
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MatchWinnerRevealSeenCreateManyArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MatchWinnerRevealSeens and returns the data saved in the database.
+     * @param {MatchWinnerRevealSeenCreateManyAndReturnArgs} args - Arguments to create many MatchWinnerRevealSeens.
+     * @example
+     * // Create many MatchWinnerRevealSeens
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MatchWinnerRevealSeens and only return the `id`
+     * const matchWinnerRevealSeenWithIdOnly = await prisma.matchWinnerRevealSeen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MatchWinnerRevealSeenCreateManyAndReturnArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MatchWinnerRevealSeen.
+     * @param {MatchWinnerRevealSeenDeleteArgs} args - Arguments to delete one MatchWinnerRevealSeen.
+     * @example
+     * // Delete one MatchWinnerRevealSeen
+     * const MatchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.delete({
+     *   where: {
+     *     // ... filter to delete one MatchWinnerRevealSeen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MatchWinnerRevealSeenDeleteArgs>(args: SelectSubset<T, MatchWinnerRevealSeenDeleteArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MatchWinnerRevealSeen.
+     * @param {MatchWinnerRevealSeenUpdateArgs} args - Arguments to update one MatchWinnerRevealSeen.
+     * @example
+     * // Update one MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MatchWinnerRevealSeenUpdateArgs>(args: SelectSubset<T, MatchWinnerRevealSeenUpdateArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MatchWinnerRevealSeens.
+     * @param {MatchWinnerRevealSeenDeleteManyArgs} args - Arguments to filter MatchWinnerRevealSeens to delete.
+     * @example
+     * // Delete a few MatchWinnerRevealSeens
+     * const { count } = await prisma.matchWinnerRevealSeen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MatchWinnerRevealSeenDeleteManyArgs>(args?: SelectSubset<T, MatchWinnerRevealSeenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MatchWinnerRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MatchWinnerRevealSeens
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MatchWinnerRevealSeenUpdateManyArgs>(args: SelectSubset<T, MatchWinnerRevealSeenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MatchWinnerRevealSeens and returns the data updated in the database.
+     * @param {MatchWinnerRevealSeenUpdateManyAndReturnArgs} args - Arguments to update many MatchWinnerRevealSeens.
+     * @example
+     * // Update many MatchWinnerRevealSeens
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MatchWinnerRevealSeens and only return the `id`
+     * const matchWinnerRevealSeenWithIdOnly = await prisma.matchWinnerRevealSeen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MatchWinnerRevealSeenUpdateManyAndReturnArgs>(args: SelectSubset<T, MatchWinnerRevealSeenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MatchWinnerRevealSeen.
+     * @param {MatchWinnerRevealSeenUpsertArgs} args - Arguments to update or create a MatchWinnerRevealSeen.
+     * @example
+     * // Update or create a MatchWinnerRevealSeen
+     * const matchWinnerRevealSeen = await prisma.matchWinnerRevealSeen.upsert({
+     *   create: {
+     *     // ... data to create a MatchWinnerRevealSeen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MatchWinnerRevealSeen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MatchWinnerRevealSeenUpsertArgs>(args: SelectSubset<T, MatchWinnerRevealSeenUpsertArgs<ExtArgs>>): Prisma__MatchWinnerRevealSeenClient<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MatchWinnerRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenCountArgs} args - Arguments to filter MatchWinnerRevealSeens to count.
+     * @example
+     * // Count the number of MatchWinnerRevealSeens
+     * const count = await prisma.matchWinnerRevealSeen.count({
+     *   where: {
+     *     // ... the filter for the MatchWinnerRevealSeens we want to count
+     *   }
+     * })
+    **/
+    count<T extends MatchWinnerRevealSeenCountArgs>(
+      args?: Subset<T, MatchWinnerRevealSeenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MatchWinnerRevealSeenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MatchWinnerRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MatchWinnerRevealSeenAggregateArgs>(args: Subset<T, MatchWinnerRevealSeenAggregateArgs>): Prisma.PrismaPromise<GetMatchWinnerRevealSeenAggregateType<T>>
+
+    /**
+     * Group by MatchWinnerRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MatchWinnerRevealSeenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MatchWinnerRevealSeenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MatchWinnerRevealSeenGroupByArgs['orderBy'] }
+        : { orderBy?: MatchWinnerRevealSeenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MatchWinnerRevealSeenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMatchWinnerRevealSeenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MatchWinnerRevealSeen model
+   */
+  readonly fields: MatchWinnerRevealSeenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MatchWinnerRevealSeen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MatchWinnerRevealSeenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    match<T extends MatchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MatchDefaultArgs<ExtArgs>>): Prisma__MatchClient<$Result.GetResult<Prisma.$MatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MatchWinnerRevealSeen model
+   */
+  interface MatchWinnerRevealSeenFieldRefs {
+    readonly id: FieldRef<"MatchWinnerRevealSeen", 'String'>
+    readonly leagueId: FieldRef<"MatchWinnerRevealSeen", 'String'>
+    readonly userId: FieldRef<"MatchWinnerRevealSeen", 'String'>
+    readonly matchId: FieldRef<"MatchWinnerRevealSeen", 'Int'>
+    readonly seenAt: FieldRef<"MatchWinnerRevealSeen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MatchWinnerRevealSeen findUnique
+   */
+  export type MatchWinnerRevealSeenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which MatchWinnerRevealSeen to fetch.
+     */
+    where: MatchWinnerRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * MatchWinnerRevealSeen findUniqueOrThrow
+   */
+  export type MatchWinnerRevealSeenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which MatchWinnerRevealSeen to fetch.
+     */
+    where: MatchWinnerRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * MatchWinnerRevealSeen findFirst
+   */
+  export type MatchWinnerRevealSeenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which MatchWinnerRevealSeen to fetch.
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MatchWinnerRevealSeens to fetch.
+     */
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MatchWinnerRevealSeens.
+     */
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MatchWinnerRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MatchWinnerRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MatchWinnerRevealSeens.
+     */
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * MatchWinnerRevealSeen findFirstOrThrow
+   */
+  export type MatchWinnerRevealSeenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which MatchWinnerRevealSeen to fetch.
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MatchWinnerRevealSeens to fetch.
+     */
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MatchWinnerRevealSeens.
+     */
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MatchWinnerRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MatchWinnerRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MatchWinnerRevealSeens.
+     */
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * MatchWinnerRevealSeen findMany
+   */
+  export type MatchWinnerRevealSeenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which MatchWinnerRevealSeens to fetch.
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MatchWinnerRevealSeens to fetch.
+     */
+    orderBy?: MatchWinnerRevealSeenOrderByWithRelationInput | MatchWinnerRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MatchWinnerRevealSeens.
+     */
+    cursor?: MatchWinnerRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MatchWinnerRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MatchWinnerRevealSeens.
+     */
+    skip?: number
+    distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * MatchWinnerRevealSeen create
+   */
+  export type MatchWinnerRevealSeenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MatchWinnerRevealSeen.
+     */
+    data: XOR<MatchWinnerRevealSeenCreateInput, MatchWinnerRevealSeenUncheckedCreateInput>
+  }
+
+  /**
+   * MatchWinnerRevealSeen createMany
+   */
+  export type MatchWinnerRevealSeenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MatchWinnerRevealSeens.
+     */
+    data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
+  }
+
+  /**
+   * MatchWinnerRevealSeen createManyAndReturn
+   */
+  export type MatchWinnerRevealSeenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to create many MatchWinnerRevealSeens.
+     */
+    data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MatchWinnerRevealSeen update
+   */
+  export type MatchWinnerRevealSeenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MatchWinnerRevealSeen.
+     */
+    data: XOR<MatchWinnerRevealSeenUpdateInput, MatchWinnerRevealSeenUncheckedUpdateInput>
+    /**
+     * Choose, which MatchWinnerRevealSeen to update.
+     */
+    where: MatchWinnerRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * MatchWinnerRevealSeen updateMany
+   */
+  export type MatchWinnerRevealSeenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MatchWinnerRevealSeens.
+     */
+    data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which MatchWinnerRevealSeens to update
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * Limit how many MatchWinnerRevealSeens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MatchWinnerRevealSeen updateManyAndReturn
+   */
+  export type MatchWinnerRevealSeenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to update MatchWinnerRevealSeens.
+     */
+    data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which MatchWinnerRevealSeens to update
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * Limit how many MatchWinnerRevealSeens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MatchWinnerRevealSeen upsert
+   */
+  export type MatchWinnerRevealSeenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MatchWinnerRevealSeen to update in case it exists.
+     */
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    /**
+     * In case the MatchWinnerRevealSeen found by the `where` argument doesn't exist, create a new MatchWinnerRevealSeen with this data.
+     */
+    create: XOR<MatchWinnerRevealSeenCreateInput, MatchWinnerRevealSeenUncheckedCreateInput>
+    /**
+     * In case the MatchWinnerRevealSeen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MatchWinnerRevealSeenUpdateInput, MatchWinnerRevealSeenUncheckedUpdateInput>
+  }
+
+  /**
+   * MatchWinnerRevealSeen delete
+   */
+  export type MatchWinnerRevealSeenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter which MatchWinnerRevealSeen to delete.
+     */
+    where: MatchWinnerRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * MatchWinnerRevealSeen deleteMany
+   */
+  export type MatchWinnerRevealSeenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MatchWinnerRevealSeens to delete
+     */
+    where?: MatchWinnerRevealSeenWhereInput
+    /**
+     * Limit how many MatchWinnerRevealSeens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MatchWinnerRevealSeen without action
+   */
+  export type MatchWinnerRevealSeenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MatchWinnerRevealSeen
+     */
+    select?: MatchWinnerRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MatchWinnerRevealSeen
+     */
+    omit?: MatchWinnerRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MatchWinnerRevealSeenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9705,6 +11013,17 @@ export namespace Prisma {
   export type TournamentPredictionScalarFieldEnum = (typeof TournamentPredictionScalarFieldEnum)[keyof typeof TournamentPredictionScalarFieldEnum]
 
 
+  export const MatchWinnerRevealSeenScalarFieldEnum: {
+    id: 'id',
+    leagueId: 'leagueId',
+    userId: 'userId',
+    matchId: 'matchId',
+    seenAt: 'seenAt'
+  };
+
+  export type MatchWinnerRevealSeenScalarFieldEnum = (typeof MatchWinnerRevealSeenScalarFieldEnum)[keyof typeof MatchWinnerRevealSeenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9778,6 +11097,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberListRelationFilter
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9791,6 +11111,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberOrderByRelationAggregateInput
     matchPredictions?: MatchPredictionOrderByRelationAggregateInput
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9807,6 +11128,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberListRelationFilter
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -9851,6 +11173,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }
 
   export type LeagueOrderByWithRelationInput = {
@@ -9866,6 +11189,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionOrderByRelationAggregateInput
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     leaderboardState?: LeaderboardStateOrderByWithRelationInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
   }
 
   export type LeagueWhereUniqueInput = Prisma.AtLeast<{
@@ -9884,6 +11208,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }, "id" | "slug" | "inviteCode">
 
   export type LeagueOrderByWithAggregationInput = {
@@ -9988,6 +11313,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
     predictions?: MatchPredictionListRelationFilter
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }
 
   export type MatchOrderByWithRelationInput = {
@@ -10007,6 +11333,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     predictions?: MatchPredictionOrderByRelationAggregateInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
   }
 
   export type MatchWhereUniqueInput = Prisma.AtLeast<{
@@ -10029,6 +11356,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Match"> | Date | string
     updatedAt?: DateTimeFilter<"Match"> | Date | string
     predictions?: MatchPredictionListRelationFilter
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
   }, "id">
 
   export type MatchOrderByWithAggregationInput = {
@@ -10323,6 +11651,70 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"TournamentPrediction"> | Date | string
   }
 
+  export type MatchWinnerRevealSeenWhereInput = {
+    AND?: MatchWinnerRevealSeenWhereInput | MatchWinnerRevealSeenWhereInput[]
+    OR?: MatchWinnerRevealSeenWhereInput[]
+    NOT?: MatchWinnerRevealSeenWhereInput | MatchWinnerRevealSeenWhereInput[]
+    id?: StringFilter<"MatchWinnerRevealSeen"> | string
+    leagueId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    userId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    matchId?: IntFilter<"MatchWinnerRevealSeen"> | number
+    seenAt?: DateTimeFilter<"MatchWinnerRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
+  }
+
+  export type MatchWinnerRevealSeenOrderByWithRelationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    matchId?: SortOrder
+    seenAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    match?: MatchOrderByWithRelationInput
+  }
+
+  export type MatchWinnerRevealSeenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    leagueId_userId_matchId?: MatchWinnerRevealSeenLeagueIdUserIdMatchIdCompoundUniqueInput
+    AND?: MatchWinnerRevealSeenWhereInput | MatchWinnerRevealSeenWhereInput[]
+    OR?: MatchWinnerRevealSeenWhereInput[]
+    NOT?: MatchWinnerRevealSeenWhereInput | MatchWinnerRevealSeenWhereInput[]
+    leagueId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    userId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    matchId?: IntFilter<"MatchWinnerRevealSeen"> | number
+    seenAt?: DateTimeFilter<"MatchWinnerRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    match?: XOR<MatchScalarRelationFilter, MatchWhereInput>
+  }, "id" | "leagueId_userId_matchId">
+
+  export type MatchWinnerRevealSeenOrderByWithAggregationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    matchId?: SortOrder
+    seenAt?: SortOrder
+    _count?: MatchWinnerRevealSeenCountOrderByAggregateInput
+    _avg?: MatchWinnerRevealSeenAvgOrderByAggregateInput
+    _max?: MatchWinnerRevealSeenMaxOrderByAggregateInput
+    _min?: MatchWinnerRevealSeenMinOrderByAggregateInput
+    _sum?: MatchWinnerRevealSeenSumOrderByAggregateInput
+  }
+
+  export type MatchWinnerRevealSeenScalarWhereWithAggregatesInput = {
+    AND?: MatchWinnerRevealSeenScalarWhereWithAggregatesInput | MatchWinnerRevealSeenScalarWhereWithAggregatesInput[]
+    OR?: MatchWinnerRevealSeenScalarWhereWithAggregatesInput[]
+    NOT?: MatchWinnerRevealSeenScalarWhereWithAggregatesInput | MatchWinnerRevealSeenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MatchWinnerRevealSeen"> | string
+    leagueId?: StringWithAggregatesFilter<"MatchWinnerRevealSeen"> | string
+    userId?: StringWithAggregatesFilter<"MatchWinnerRevealSeen"> | string
+    matchId?: IntWithAggregatesFilter<"MatchWinnerRevealSeen"> | number
+    seenAt?: DateTimeWithAggregatesFilter<"MatchWinnerRevealSeen"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -10334,6 +11726,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -10347,6 +11740,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -10360,6 +11754,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -10373,6 +11768,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -10418,6 +11814,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateInput = {
@@ -10433,6 +11830,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUpdateInput = {
@@ -10448,6 +11846,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateInput = {
@@ -10463,6 +11862,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateManyInput = {
@@ -10562,6 +11962,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionCreateNestedManyWithoutMatchInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutMatchInput
   }
 
   export type MatchUncheckedCreateInput = {
@@ -10581,6 +11982,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     predictions?: MatchPredictionUncheckedCreateNestedManyWithoutMatchInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutMatchInput
   }
 
   export type MatchUpdateInput = {
@@ -10600,6 +12002,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUpdateManyWithoutMatchNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutMatchNestedInput
   }
 
   export type MatchUncheckedUpdateInput = {
@@ -10619,6 +12022,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     predictions?: MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchNestedInput
   }
 
   export type MatchCreateManyInput = {
@@ -10935,6 +12339,59 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MatchWinnerRevealSeenCreateInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutMatchWinnerRevealSeenInput
+    user: UserCreateNestedOneWithoutMatchWinnerRevealSeenInput
+    match: MatchCreateNestedOneWithoutMatchWinnerRevealSeenInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    matchId: number
+    seenAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+    match?: MatchUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateManyInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    matchId: number
+    seenAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -10983,6 +12440,12 @@ export namespace Prisma {
     none?: TournamentPredictionWhereInput
   }
 
+  export type MatchWinnerRevealSeenListRelationFilter = {
+    every?: MatchWinnerRevealSeenWhereInput
+    some?: MatchWinnerRevealSeenWhereInput
+    none?: MatchWinnerRevealSeenWhereInput
+  }
+
   export type LeagueMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -10992,6 +12455,10 @@ export namespace Prisma {
   }
 
   export type TournamentPredictionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MatchWinnerRevealSeenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11467,6 +12934,44 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type MatchWinnerRevealSeenLeagueIdUserIdMatchIdCompoundUniqueInput = {
+    leagueId: string
+    userId: string
+    matchId: number
+  }
+
+  export type MatchWinnerRevealSeenCountOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    matchId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type MatchWinnerRevealSeenAvgOrderByAggregateInput = {
+    matchId?: SortOrder
+  }
+
+  export type MatchWinnerRevealSeenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    matchId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type MatchWinnerRevealSeenMinOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    matchId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type MatchWinnerRevealSeenSumOrderByAggregateInput = {
+    matchId?: SortOrder
+  }
+
   export type LeagueMemberCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -11488,6 +12993,13 @@ export namespace Prisma {
     connect?: TournamentPredictionWhereUniqueInput | TournamentPredictionWhereUniqueInput[]
   }
 
+  export type MatchWinnerRevealSeenCreateNestedManyWithoutUserInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput> | MatchWinnerRevealSeenCreateWithoutUserInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutUserInput | MatchWinnerRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyUserInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -11507,6 +13019,13 @@ export namespace Prisma {
     connectOrCreate?: TournamentPredictionCreateOrConnectWithoutUserInput | TournamentPredictionCreateOrConnectWithoutUserInput[]
     createMany?: TournamentPredictionCreateManyUserInputEnvelope
     connect?: TournamentPredictionWhereUniqueInput | TournamentPredictionWhereUniqueInput[]
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput> | MatchWinnerRevealSeenCreateWithoutUserInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutUserInput | MatchWinnerRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyUserInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11563,6 +13082,20 @@ export namespace Prisma {
     deleteMany?: TournamentPredictionScalarWhereInput | TournamentPredictionScalarWhereInput[]
   }
 
+  export type MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput> | MatchWinnerRevealSeenCreateWithoutUserInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutUserInput | MatchWinnerRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutUserInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyUserInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutUserInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutUserInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -11605,6 +13138,20 @@ export namespace Prisma {
     deleteMany?: TournamentPredictionScalarWhereInput | TournamentPredictionScalarWhereInput[]
   }
 
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput> | MatchWinnerRevealSeenCreateWithoutUserInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutUserInput | MatchWinnerRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutUserInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyUserInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutUserInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutUserInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -11632,6 +13179,13 @@ export namespace Prisma {
     connect?: LeaderboardStateWhereUniqueInput
   }
 
+  export type MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyLeagueInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -11657,6 +13211,13 @@ export namespace Prisma {
     create?: XOR<LeaderboardStateCreateWithoutLeagueInput, LeaderboardStateUncheckedCreateWithoutLeagueInput>
     connectOrCreate?: LeaderboardStateCreateOrConnectWithoutLeagueInput
     connect?: LeaderboardStateWhereUniqueInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyLeagueInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
   }
 
   export type LeagueMemberUpdateManyWithoutLeagueNestedInput = {
@@ -11711,6 +13272,20 @@ export namespace Prisma {
     update?: XOR<XOR<LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, LeaderboardStateUpdateWithoutLeagueInput>, LeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
+  export type MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyLeagueInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -11763,6 +13338,20 @@ export namespace Prisma {
     update?: XOR<XOR<LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, LeaderboardStateUpdateWithoutLeagueInput>, LeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyLeagueInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueCreateNestedOneWithoutMembersInput = {
     create?: XOR<LeagueCreateWithoutMembersInput, LeagueUncheckedCreateWithoutMembersInput>
     connectOrCreate?: LeagueCreateOrConnectWithoutMembersInput
@@ -11798,11 +13387,25 @@ export namespace Prisma {
     connect?: MatchPredictionWhereUniqueInput | MatchPredictionWhereUniqueInput[]
   }
 
+  export type MatchWinnerRevealSeenCreateNestedManyWithoutMatchInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput> | MatchWinnerRevealSeenCreateWithoutMatchInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput | MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyMatchInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+  }
+
   export type MatchPredictionUncheckedCreateNestedManyWithoutMatchInput = {
     create?: XOR<MatchPredictionCreateWithoutMatchInput, MatchPredictionUncheckedCreateWithoutMatchInput> | MatchPredictionCreateWithoutMatchInput[] | MatchPredictionUncheckedCreateWithoutMatchInput[]
     connectOrCreate?: MatchPredictionCreateOrConnectWithoutMatchInput | MatchPredictionCreateOrConnectWithoutMatchInput[]
     createMany?: MatchPredictionCreateManyMatchInputEnvelope
     connect?: MatchPredictionWhereUniqueInput | MatchPredictionWhereUniqueInput[]
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutMatchInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput> | MatchWinnerRevealSeenCreateWithoutMatchInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput | MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyMatchInputEnvelope
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -11839,6 +13442,20 @@ export namespace Prisma {
     deleteMany?: MatchPredictionScalarWhereInput | MatchPredictionScalarWhereInput[]
   }
 
+  export type MatchWinnerRevealSeenUpdateManyWithoutMatchNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput> | MatchWinnerRevealSeenCreateWithoutMatchInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput | MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutMatchInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutMatchInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyMatchInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutMatchInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutMatchInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutMatchInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutMatchInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
   export type MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput = {
     create?: XOR<MatchPredictionCreateWithoutMatchInput, MatchPredictionUncheckedCreateWithoutMatchInput> | MatchPredictionCreateWithoutMatchInput[] | MatchPredictionUncheckedCreateWithoutMatchInput[]
     connectOrCreate?: MatchPredictionCreateOrConnectWithoutMatchInput | MatchPredictionCreateOrConnectWithoutMatchInput[]
@@ -11851,6 +13468,20 @@ export namespace Prisma {
     update?: MatchPredictionUpdateWithWhereUniqueWithoutMatchInput | MatchPredictionUpdateWithWhereUniqueWithoutMatchInput[]
     updateMany?: MatchPredictionUpdateManyWithWhereWithoutMatchInput | MatchPredictionUpdateManyWithWhereWithoutMatchInput[]
     deleteMany?: MatchPredictionScalarWhereInput | MatchPredictionScalarWhereInput[]
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchNestedInput = {
+    create?: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput> | MatchWinnerRevealSeenCreateWithoutMatchInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput[]
+    connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput | MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput[]
+    upsert?: MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutMatchInput | MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutMatchInput[]
+    createMany?: MatchWinnerRevealSeenCreateManyMatchInputEnvelope
+    set?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    disconnect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    delete?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+    update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutMatchInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutMatchInput[]
+    updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutMatchInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutMatchInput[]
+    deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
   }
 
   export type LeagueCreateNestedOneWithoutMatchPredictionsInput = {
@@ -11939,6 +13570,48 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutTournamentPredictionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTournamentPredictionsInput, UserUpdateWithoutTournamentPredictionsInput>, UserUncheckedUpdateWithoutTournamentPredictionsInput>
+  }
+
+  export type LeagueCreateNestedOneWithoutMatchWinnerRevealSeenInput = {
+    create?: XOR<LeagueCreateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutMatchWinnerRevealSeenInput = {
+    create?: XOR<UserCreateWithoutMatchWinnerRevealSeenInput, UserUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MatchCreateNestedOneWithoutMatchWinnerRevealSeenInput = {
+    create?: XOR<MatchCreateWithoutMatchWinnerRevealSeenInput, MatchUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: MatchCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    connect?: MatchWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput = {
+    create?: XOR<LeagueCreateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    upsert?: LeagueUpsertWithoutMatchWinnerRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput, LeagueUpdateWithoutMatchWinnerRevealSeenInput>, LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput = {
+    create?: XOR<UserCreateWithoutMatchWinnerRevealSeenInput, UserUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    upsert?: UserUpsertWithoutMatchWinnerRevealSeenInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput, UserUpdateWithoutMatchWinnerRevealSeenInput>, UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type MatchUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput = {
+    create?: XOR<MatchCreateWithoutMatchWinnerRevealSeenInput, MatchUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    connectOrCreate?: MatchCreateOrConnectWithoutMatchWinnerRevealSeenInput
+    upsert?: MatchUpsertWithoutMatchWinnerRevealSeenInput
+    connect?: MatchWhereUniqueInput
+    update?: XOR<XOR<MatchUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput, MatchUpdateWithoutMatchWinnerRevealSeenInput>, MatchUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12239,6 +13912,29 @@ export namespace Prisma {
     data: TournamentPredictionCreateManyUserInput | TournamentPredictionCreateManyUserInput[]
   }
 
+  export type MatchWinnerRevealSeenCreateWithoutUserInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutMatchWinnerRevealSeenInput
+    match: MatchCreateNestedOneWithoutMatchWinnerRevealSeenInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateWithoutUserInput = {
+    id?: string
+    leagueId: string
+    matchId: number
+    seenAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateOrConnectWithoutUserInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    create: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type MatchWinnerRevealSeenCreateManyUserInputEnvelope = {
+    data: MatchWinnerRevealSeenCreateManyUserInput | MatchWinnerRevealSeenCreateManyUserInput[]
+  }
+
   export type LeagueMemberUpsertWithWhereUniqueWithoutUserInput = {
     where: LeagueMemberWhereUniqueInput
     update: XOR<LeagueMemberUpdateWithoutUserInput, LeagueMemberUncheckedUpdateWithoutUserInput>
@@ -12332,6 +14028,33 @@ export namespace Prisma {
     groupWinners?: StringFilter<"TournamentPrediction"> | string
     createdAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
     updatedAt?: DateTimeFilter<"TournamentPrediction"> | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutUserInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    update: XOR<MatchWinnerRevealSeenUpdateWithoutUserInput, MatchWinnerRevealSeenUncheckedUpdateWithoutUserInput>
+    create: XOR<MatchWinnerRevealSeenCreateWithoutUserInput, MatchWinnerRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutUserInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    data: XOR<MatchWinnerRevealSeenUpdateWithoutUserInput, MatchWinnerRevealSeenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateManyWithWhereWithoutUserInput = {
+    where: MatchWinnerRevealSeenScalarWhereInput
+    data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MatchWinnerRevealSeenScalarWhereInput = {
+    AND?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+    OR?: MatchWinnerRevealSeenScalarWhereInput[]
+    NOT?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+    id?: StringFilter<"MatchWinnerRevealSeen"> | string
+    leagueId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    userId?: StringFilter<"MatchWinnerRevealSeen"> | string
+    matchId?: IntFilter<"MatchWinnerRevealSeen"> | number
+    seenAt?: DateTimeFilter<"MatchWinnerRevealSeen"> | Date | string
   }
 
   export type LeagueMemberCreateWithoutLeagueInput = {
@@ -12448,6 +14171,29 @@ export namespace Prisma {
     create: XOR<LeaderboardStateCreateWithoutLeagueInput, LeaderboardStateUncheckedCreateWithoutLeagueInput>
   }
 
+  export type MatchWinnerRevealSeenCreateWithoutLeagueInput = {
+    id?: string
+    seenAt?: Date | string
+    user: UserCreateNestedOneWithoutMatchWinnerRevealSeenInput
+    match: MatchCreateNestedOneWithoutMatchWinnerRevealSeenInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput = {
+    id?: string
+    userId: string
+    matchId: number
+    seenAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    create: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type MatchWinnerRevealSeenCreateManyLeagueInputEnvelope = {
+    data: MatchWinnerRevealSeenCreateManyLeagueInput | MatchWinnerRevealSeenCreateManyLeagueInput[]
+  }
+
   export type LeagueMemberUpsertWithWhereUniqueWithoutLeagueInput = {
     where: LeagueMemberWhereUniqueInput
     update: XOR<LeagueMemberUpdateWithoutLeagueInput, LeagueMemberUncheckedUpdateWithoutLeagueInput>
@@ -12519,6 +14265,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    update: XOR<MatchWinnerRevealSeenUpdateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedUpdateWithoutLeagueInput>
+    create: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    data: XOR<MatchWinnerRevealSeenUpdateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput = {
+    where: MatchWinnerRevealSeenScalarWhereInput
+    data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueInput>
+  }
+
   export type LeagueCreateWithoutMembersInput = {
     id?: string
     slug: string
@@ -12531,6 +14293,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMembersInput = {
@@ -12545,6 +14308,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMembersInput = {
@@ -12562,6 +14326,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLeagueMembersInput = {
@@ -12574,6 +14339,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLeagueMembersInput = {
@@ -12604,6 +14370,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMembersInput = {
@@ -12618,6 +14385,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutLeagueMembersInput = {
@@ -12641,6 +14409,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLeagueMembersInput = {
@@ -12653,6 +14422,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchPredictionCreateWithoutMatchInput = {
@@ -12694,6 +14464,29 @@ export namespace Prisma {
     data: MatchPredictionCreateManyMatchInput | MatchPredictionCreateManyMatchInput[]
   }
 
+  export type MatchWinnerRevealSeenCreateWithoutMatchInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutMatchWinnerRevealSeenInput
+    user: UserCreateNestedOneWithoutMatchWinnerRevealSeenInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateOrConnectWithoutMatchInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    create: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput>
+  }
+
+  export type MatchWinnerRevealSeenCreateManyMatchInputEnvelope = {
+    data: MatchWinnerRevealSeenCreateManyMatchInput | MatchWinnerRevealSeenCreateManyMatchInput[]
+  }
+
   export type MatchPredictionUpsertWithWhereUniqueWithoutMatchInput = {
     where: MatchPredictionWhereUniqueInput
     update: XOR<MatchPredictionUpdateWithoutMatchInput, MatchPredictionUncheckedUpdateWithoutMatchInput>
@@ -12710,6 +14503,22 @@ export namespace Prisma {
     data: XOR<MatchPredictionUpdateManyMutationInput, MatchPredictionUncheckedUpdateManyWithoutMatchInput>
   }
 
+  export type MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutMatchInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    update: XOR<MatchWinnerRevealSeenUpdateWithoutMatchInput, MatchWinnerRevealSeenUncheckedUpdateWithoutMatchInput>
+    create: XOR<MatchWinnerRevealSeenCreateWithoutMatchInput, MatchWinnerRevealSeenUncheckedCreateWithoutMatchInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutMatchInput = {
+    where: MatchWinnerRevealSeenWhereUniqueInput
+    data: XOR<MatchWinnerRevealSeenUpdateWithoutMatchInput, MatchWinnerRevealSeenUncheckedUpdateWithoutMatchInput>
+  }
+
+  export type MatchWinnerRevealSeenUpdateManyWithWhereWithoutMatchInput = {
+    where: MatchWinnerRevealSeenScalarWhereInput
+    data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchInput>
+  }
+
   export type LeagueCreateWithoutMatchPredictionsInput = {
     id?: string
     slug: string
@@ -12722,6 +14531,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchPredictionsInput = {
@@ -12736,6 +14546,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchPredictionsInput = {
@@ -12759,6 +14570,7 @@ export namespace Prisma {
     finalRedCards?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutMatchInput
   }
 
   export type MatchUncheckedCreateWithoutPredictionsInput = {
@@ -12777,6 +14589,7 @@ export namespace Prisma {
     finalRedCards?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutMatchInput
   }
 
   export type MatchCreateOrConnectWithoutPredictionsInput = {
@@ -12794,6 +14607,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchPredictionsInput = {
@@ -12806,6 +14620,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchPredictionsInput = {
@@ -12836,6 +14651,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -12850,6 +14666,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type MatchUpsertWithoutPredictionsInput = {
@@ -12879,6 +14696,7 @@ export namespace Prisma {
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutMatchNestedInput
   }
 
   export type MatchUncheckedUpdateWithoutPredictionsInput = {
@@ -12897,6 +14715,7 @@ export namespace Prisma {
     finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchNestedInput
   }
 
   export type UserUpsertWithoutMatchPredictionsInput = {
@@ -12920,6 +14739,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -12932,6 +14752,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutLeaderboardStateInput = {
@@ -12946,6 +14767,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutLeaderboardStateInput = {
@@ -12960,6 +14782,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutLeaderboardStateInput = {
@@ -12990,6 +14813,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutLeaderboardStateInput = {
@@ -13004,6 +14828,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutTournamentPredictionsInput = {
@@ -13018,6 +14843,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -13032,6 +14858,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -13049,6 +14876,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -13061,6 +14889,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -13091,6 +14920,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -13105,6 +14935,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutTournamentPredictionsInput = {
@@ -13128,6 +14959,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -13140,6 +14972,243 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LeagueCreateWithoutMatchWinnerRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type UserCreateWithoutMatchWinnerRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMatchWinnerRevealSeenInput, UserUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type MatchCreateWithoutMatchWinnerRevealSeenInput = {
+    id: number
+    stage: string
+    kickoff: Date | string
+    venue: string
+    homeTeam: string
+    awayTeam: string
+    isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
+    finalHomeScore?: number | null
+    finalAwayScore?: number | null
+    finalYellowCards?: number | null
+    finalTotalCorners?: number | null
+    finalRedCards?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    predictions?: MatchPredictionCreateNestedManyWithoutMatchInput
+  }
+
+  export type MatchUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
+    id: number
+    stage: string
+    kickoff: Date | string
+    venue: string
+    homeTeam: string
+    awayTeam: string
+    isLocked?: boolean
+    predictionUnlockUntil?: Date | string | null
+    finalHomeScore?: number | null
+    finalAwayScore?: number | null
+    finalYellowCards?: number | null
+    finalTotalCorners?: number | null
+    finalRedCards?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    predictions?: MatchPredictionUncheckedCreateNestedManyWithoutMatchInput
+  }
+
+  export type MatchCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
+    where: MatchWhereUniqueInput
+    create: XOR<MatchCreateWithoutMatchWinnerRevealSeenInput, MatchUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type LeagueUpsertWithoutMatchWinnerRevealSeenInput = {
+    update: XOR<LeagueUpdateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+    create: XOR<LeagueCreateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutMatchWinnerRevealSeenInput, LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type LeagueUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+  }
+
+  export type UserUpsertWithoutMatchWinnerRevealSeenInput = {
+    update: XOR<UserUpdateWithoutMatchWinnerRevealSeenInput, UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+    create: XOR<UserCreateWithoutMatchWinnerRevealSeenInput, UserUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMatchWinnerRevealSeenInput, UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type UserUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MatchUpsertWithoutMatchWinnerRevealSeenInput = {
+    update: XOR<MatchUpdateWithoutMatchWinnerRevealSeenInput, MatchUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+    create: XOR<MatchCreateWithoutMatchWinnerRevealSeenInput, MatchUncheckedCreateWithoutMatchWinnerRevealSeenInput>
+    where?: MatchWhereInput
+  }
+
+  export type MatchUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput = {
+    where?: MatchWhereInput
+    data: XOR<MatchUpdateWithoutMatchWinnerRevealSeenInput, MatchUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
+  }
+
+  export type MatchUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    stage?: StringFieldUpdateOperationsInput | string
+    kickoff?: DateTimeFieldUpdateOperationsInput | Date | string
+    venue?: StringFieldUpdateOperationsInput | string
+    homeTeam?: StringFieldUpdateOperationsInput | string
+    awayTeam?: StringFieldUpdateOperationsInput | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
+    finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    predictions?: MatchPredictionUpdateManyWithoutMatchNestedInput
+  }
+
+  export type MatchUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    stage?: StringFieldUpdateOperationsInput | string
+    kickoff?: DateTimeFieldUpdateOperationsInput | Date | string
+    venue?: StringFieldUpdateOperationsInput | string
+    homeTeam?: StringFieldUpdateOperationsInput | string
+    awayTeam?: StringFieldUpdateOperationsInput | string
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    predictionUnlockUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    finalHomeScore?: NullableIntFieldUpdateOperationsInput | number | null
+    finalAwayScore?: NullableIntFieldUpdateOperationsInput | number | null
+    finalYellowCards?: NullableIntFieldUpdateOperationsInput | number | null
+    finalTotalCorners?: NullableIntFieldUpdateOperationsInput | number | null
+    finalRedCards?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    predictions?: MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput
   }
 
   export type LeagueMemberCreateManyUserInput = {
@@ -13175,6 +15244,13 @@ export namespace Prisma {
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateManyUserInput = {
+    id?: string
+    leagueId: string
+    matchId: number
+    seenAt?: Date | string
   }
 
   export type LeagueMemberUpdateWithoutUserInput = {
@@ -13282,6 +15358,27 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MatchWinnerRevealSeenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+    match?: MatchUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeagueMemberCreateManyLeagueInput = {
     id?: string
     userId: string
@@ -13315,6 +15412,13 @@ export namespace Prisma {
     groupWinners?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateManyLeagueInput = {
+    id?: string
+    userId: string
+    matchId: number
+    seenAt?: Date | string
   }
 
   export type LeagueMemberUpdateWithoutLeagueInput = {
@@ -13422,6 +15526,27 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MatchWinnerRevealSeenUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+    match?: MatchUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MatchPredictionCreateManyMatchInput = {
     id?: string
     leagueId: string
@@ -13435,6 +15560,13 @@ export namespace Prisma {
     redCardsLine?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type MatchWinnerRevealSeenCreateManyMatchInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
   }
 
   export type MatchPredictionUpdateWithoutMatchInput = {
@@ -13480,6 +15612,27 @@ export namespace Prisma {
     redCardsLine?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUpdateWithoutMatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutMatchWinnerRevealSeenNestedInput
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateWithoutMatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutMatchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
