@@ -580,7 +580,12 @@
       "venue": "AT&T Stadium, Dallas",
       "homeTeam": "Argentina",
       "awayTeam": "Austria",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 0,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 4,
+      "finalRedCards": 0
     },
     {
       "id": 44,
