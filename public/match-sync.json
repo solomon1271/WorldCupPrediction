@@ -534,7 +534,12 @@
       "venue": "BC Place, Vancouver",
       "homeTeam": "New Zealand",
       "awayTeam": "Egypt",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 3,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 40,
