@@ -543,7 +543,12 @@
       "venue": "Hard Rock Stadium, Miami",
       "homeTeam": "Uruguay",
       "awayTeam": "Cape Verde",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 2,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 15,
+      "finalRedCards": 0
     },
     {
       "id": 41,
