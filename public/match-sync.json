@@ -618,7 +618,12 @@
       "venue": "Gillette Stadium, Boston",
       "homeTeam": "England",
       "awayTeam": "Ghana",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 46,
