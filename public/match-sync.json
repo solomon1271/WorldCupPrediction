@@ -604,7 +604,12 @@
       "venue": "Levi's Stadium, San Francisco Bay Area",
       "homeTeam": "Jordan",
       "awayTeam": "Algeria",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 2,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 45,
