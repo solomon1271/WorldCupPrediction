@@ -636,7 +636,12 @@
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Portugal",
       "awayTeam": "Uzbekistan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 5,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 48,
