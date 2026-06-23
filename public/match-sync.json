@@ -576,7 +576,13 @@
       "venue": "MetLife Stadium, New York/New Jersey",
       "homeTeam": "Norway",
       "awayTeam": "Senegal",
-      "isLocked": false
+      "isLocked": false,
+      "isLocked": false,
+      "finalHomeScore": 3
+      "finalAwayScore": 2,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 43,
