@@ -710,7 +710,12 @@
       "venue": "BC Place, Vancouver",
       "homeTeam": "Switzerland",
       "awayTeam": "Canada",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 54,
@@ -719,7 +724,12 @@
       "venue": "Lumen Field, Seattle",
       "homeTeam": "Bosnia and Herzegovina",
       "awayTeam": "Qatar",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 1,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 55,
