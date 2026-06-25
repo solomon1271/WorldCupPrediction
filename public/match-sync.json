@@ -683,7 +683,12 @@
       "venue": "Hard Rock Stadium, Miami",
       "homeTeam": "Scotland",
       "awayTeam": "Brazil",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 3,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 51,
@@ -756,7 +761,12 @@
       "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "Morocco",
       "awayTeam": "Haiti",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 4,
+      "finalAwayScore": 2,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 58,
