@@ -674,7 +674,12 @@
       "venue": "MetLife Stadium, New York/New Jersey",
       "homeTeam": "Ecuador",
       "awayTeam": "Germany",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 50,
@@ -762,7 +767,12 @@
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Curacao",
       "awayTeam": "Ivory Coast",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 0,
+      "finalAwayScore": 2,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 57,
