@@ -800,7 +800,12 @@
       "venue": "SoFi Stadium, Los Angeles",
       "homeTeam": "Turkey",
       "awayTeam": "USA",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 3,
+      "finalAwayScore": 2,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 59,
@@ -809,7 +814,12 @@
       "venue": "Levi's Stadium, San Francisco Bay Area",
       "homeTeam": "Paraguay",
       "awayTeam": "Australia",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 4,
+      "finalRedCards": 0
     },
     {
       "id": 60,
