@@ -926,7 +926,12 @@
       "venue": "AT&T Stadium, Dallas",
       "homeTeam": "Japan",
       "awayTeam": "Sweden",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 73,
