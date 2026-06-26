@@ -846,7 +846,12 @@
       "venue": "Gillette Stadium, Boston",
       "homeTeam": "Norway",
       "awayTeam": "France",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 4,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 63,
@@ -882,7 +887,12 @@
       "venue": "BMO Field, Toronto",
       "homeTeam": "Senegal",
       "awayTeam": "Iraq",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 5,
+      "finalAwayScore": 0,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 15,
+      "finalRedCards": 1
     },
     {
       "id": 67,
