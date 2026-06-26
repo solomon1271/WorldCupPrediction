@@ -758,7 +758,12 @@
       "venue": "Arrowhead Stadium, Kansas City",
       "homeTeam": "Tunisia",
       "awayTeam": "Netherlands",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 3,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 56,
