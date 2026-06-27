@@ -869,7 +869,12 @@
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Cape Verde",
       "awayTeam": "Saudi Arabia",
-      "isLocked": false
+      "isLocked": false, 
+      "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 65,
@@ -878,7 +883,12 @@
       "venue": "Estadio Akron, Guadalajara",
       "homeTeam": "Uruguay",
       "awayTeam": "Spain",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 1,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 66,
