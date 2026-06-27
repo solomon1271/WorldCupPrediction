@@ -74,7 +74,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
       />
       <GroupStandings tables={dashboard.groupStandings} />
       <LeaderboardNote />
-      <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} />
+      <Leaderboard leagueSlug={league.slug} standings={dashboard.leaderboard} currentUserId={user.id} />
     </main>
   );
 }
