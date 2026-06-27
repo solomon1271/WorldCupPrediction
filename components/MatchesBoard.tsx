@@ -300,7 +300,13 @@ export function MatchesBoard({
   };
 
   return (
-    <section id="matches" className="section">
+    <section id="matches" className="section section--matches">
+      <img
+        alt=""
+        aria-hidden="true"
+        className="section__trophy-watermark"
+        src="/hero/world-cup-trophy.jpg"
+      />
       <SectionStoryHeader
         tone="fixtures"
         eyebrow="Group stage to final"

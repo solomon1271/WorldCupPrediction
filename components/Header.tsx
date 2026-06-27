@@ -141,26 +141,41 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
 
   return (
     <header className="hero" id="top">
+      <div className="hero__backdrop" aria-hidden="true" />
+      <div className="hero__scrim" aria-hidden="true" />
+      <img
+        alt=""
+        aria-hidden="true"
+        className="hero__trophy"
+        src="/hero/world-cup-trophy.jpg"
+      />
+
       <div className="hero__bar">
         <div className="hero__brand">
-          <h1>{league?.name || "World Cup Prediction"}</h1>
+          <div className="hero__title-row">
+            <h1>{league?.name || "World Cup Prediction"}</h1>
+            <span className="hero__edition">WC 26</span>
+          </div>
           <p className="hero__subtitle">{league?.subtitle || "2026 World Cup Challenge"}</p>
         </div>
         <div className="hero__account">
           <span className="hero__account-name">{firstName}</span>
-          <a className="ghost-button ghost-button--link" href="/logout">
+          <a className="ghost-button ghost-button--link hero__signout" href="/logout">
             Sign out
           </a>
         </div>
       </div>
-      <nav className="nav" aria-label="Main">
-        {navItems.map((item) => (
-          <a className={`nav-link nav-link--${item.tone}`} href={item.href} key={item.label}>
-            <NavIcon tone={item.tone} />
-            <span>{item.label}</span>
-          </a>
-        ))}
-      </nav>
+
+      <div className="hero__nav-shell">
+        <nav className="nav" aria-label="Main">
+          {navItems.map((item) => (
+            <a className={`nav-link nav-link--${item.tone}`} href={item.href} key={item.label}>
+              <NavIcon tone={item.tone} />
+              <span>{item.label}</span>
+            </a>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

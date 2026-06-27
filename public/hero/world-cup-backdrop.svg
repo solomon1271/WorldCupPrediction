@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="beam-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="beam-b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7cf4e2" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#7cf4e2" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="pitch-glow" cx="50%" cy="100%" r="70%">
+      <stop offset="0%" stop-color="#3ecf8e" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#3ecf8e" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1440" height="420" fill="url(#pitch-glow)" />
+
+  <path
+    d="M-40 118 C220 42 520 18 720 18 C920 18 1220 42 1480 118"
+    stroke="#fff"
+    stroke-opacity="0.14"
+    stroke-width="2"
+  />
+  <path
+    d="M80 132 C300 72 540 54 720 54 C900 54 1140 72 1360 132"
+    stroke="#fff"
+    stroke-opacity="0.08"
+    stroke-width="1.5"
+  />
+
+  <g opacity="0.55">
+    <path d="M180 118 L150 300" stroke="url(#beam-a)" stroke-width="42" />
+    <path d="M420 98 L390 300" stroke="url(#beam-b)" stroke-width="34" />
+    <path d="M720 88 L720 300" stroke="url(#beam-a)" stroke-width="38" />
+    <path d="M1020 98 L1050 300" stroke="url(#beam-b)" stroke-width="34" />
+    <path d="M1260 118 L1290 300" stroke="url(#beam-a)" stroke-width="42" />
+  </g>
+
+  <ellipse cx="720" cy="318" rx="210" ry="58" stroke="#fff" stroke-opacity="0.1" stroke-width="1.5" />
+  <path d="M510 318 H930" stroke="#fff" stroke-opacity="0.08" stroke-width="1.2" />
+  <circle cx="720" cy="318" r="44" stroke="#fff" stroke-opacity="0.1" stroke-width="1.2" />
+  <circle cx="720" cy="318" r="5" fill="#fff" fill-opacity="0.12" />
+
+  <g transform="translate(1080 72)" opacity="0.2">
+    <path
+      d="M60 8h48v18c0 22-18 40-40 40h-8c-22 0-40-18-40-40V8h48Z"
+      stroke="#ffcf70"
+      stroke-width="2.2"
+      fill="none"
+    />
+    <path d="M36 66h48M60 58v24M48 82h24" stroke="#ffcf70" stroke-width="2.2" stroke-linecap="round" />
+    <path d="M28 82h64" stroke="#ffcf70" stroke-width="2.6" stroke-linecap="round" />
+  </g>
+
+  <g opacity="0.12">
+    <circle cx="132" cy="86" r="3" fill="#fff" />
+    <circle cx="1310" cy="92" r="3" fill="#fff" />
+    <circle cx="360" cy="64" r="2.5" fill="#7cf4e2" />
+    <circle cx="1088" cy="68" r="2.5" fill="#7cf4e2" />
+  </g>
+</svg>
