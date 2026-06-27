@@ -18,6 +18,7 @@
     "db:generate:prod": "prisma generate --schema prisma/schema.postgres.prisma",
     "db:migrate:prod": "prisma migrate dev --schema prisma/schema.postgres.prisma",
     "db:deploy:prod": "prisma migrate deploy --schema prisma/schema.postgres.prisma",
+    "db:resolve-failed-group-stage-migration:prod": "prisma migrate resolve --rolled-back 20260627_group_stage_reveal_seen --schema prisma/schema.postgres.prisma",
     "db:status:prod": "prisma migrate status --schema prisma/schema.postgres.prisma",
     "db:seed:prod": "npm run db:generate:prod && tsx prisma/seed.ts",
     "db:inspect:prod": "npm run db:generate:prod && tsx scripts/db-inspect-matches.ts",
@@ -35,7 +36,7 @@
     "flags:download": "tsx scripts/download-team-flags.ts",
     "players:download": "tsx scripts/download-team-player-images.ts",
     "db:backfill-leagues": "tsx scripts/backfill-local-leagues.ts",
-    "vercel-build": "npm run db:generate:prod && PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=1 npm run db:deploy:prod && npm run build"
+    "vercel-build": "npm run db:generate:prod && (npm run db:resolve-failed-group-stage-migration:prod || true) && PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=1 npm run db:deploy:prod && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
