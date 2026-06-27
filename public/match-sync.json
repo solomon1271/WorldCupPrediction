@@ -978,8 +978,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-28T19:00:00.000Z",
       "venue": "SoFi Stadium, Los Angeles",
-      "homeTeam": "Runner up Group A",
-      "awayTeam": "Runner up Group B",
+      "homeTeam": "South Africa",
+      "awayTeam": "Canada",
       "isLocked": false
     },
     {
@@ -987,8 +987,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-29T20:30:00.000Z",
       "venue": "Gillette Stadium, Boston",
-      "homeTeam": "Winner Group E",
-      "awayTeam": "3rd Group A/B/C/D/F",
+      "homeTeam": "Germany",
+      "awayTeam": "Paraguay",
       "isLocked": false
     },
     {
@@ -996,8 +996,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-30T01:00:00.000Z",
       "venue": "Estadio BBVA, Monterrey",
-      "homeTeam": "Winner Group F",
-      "awayTeam": "Runner up Group C",
+      "homeTeam": "Netherlands",
+      "awayTeam": "Morocco",
       "isLocked": false
     },
     {
@@ -1005,8 +1005,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-29T17:00:00.000Z",
       "venue": "NRG Stadium, Houston",
-      "homeTeam": "Winner Group C",
-      "awayTeam": "Runner up Group F",
+      "homeTeam": "Brazil",
+      "awayTeam": "Japan",
       "isLocked": false
     },
     {
@@ -1014,8 +1014,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-30T21:00:00.000Z",
       "venue": "MetLife Stadium, New York/New Jersey",
-      "homeTeam": "Winner Group I",
-      "awayTeam": "3rd Group C/D/F/G/H",
+      "homeTeam": "France",
+      "awayTeam": "Sweden",
       "isLocked": false
     },
     {
@@ -1023,8 +1023,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-06-30T17:00:00.000Z",
       "venue": "AT&T Stadium, Dallas",
-      "homeTeam": "Runner up Group E",
-      "awayTeam": "Runner up Group I",
+      "homeTeam": "Ivory Coast",
+      "awayTeam": "Norway",
       "isLocked": false
     },
     {
@@ -1032,7 +1032,7 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-01T01:00:00.000Z",
       "venue": "Estadio Azteca, Mexico City",
-      "homeTeam": "Winner Group A",
+      "homeTeam": "Mexico",
       "awayTeam": "3rd Group C/E/F/H/I",
       "isLocked": false
     },
@@ -1050,8 +1050,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-02T00:00:00.000Z",
       "venue": "Levi's Stadium, San Francisco Bay Area",
-      "homeTeam": "Winner Group D",
-      "awayTeam": "3rd Group B/E/F/I/J",
+      "homeTeam": "USA",
+      "awayTeam": "Bosnia and Herzegovina",
       "isLocked": false
     },
     {
@@ -1059,7 +1059,7 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-01T20:00:00.000Z",
       "venue": "Lumen Field, Seattle",
-      "homeTeam": "Winner Group G",
+      "homeTeam": "Belgium",
       "awayTeam": "3rd Group A/E/H/I/J",
       "isLocked": false
     },
@@ -1077,7 +1077,7 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-02T19:00:00.000Z",
       "venue": "SoFi Stadium, Los Angeles",
-      "homeTeam": "Winner Group H",
+      "homeTeam": "Spain",
       "awayTeam": "Runner up Group J",
       "isLocked": false
     },
@@ -1086,7 +1086,7 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-03T03:00:00.000Z",
       "venue": "BC Place, Vancouver",
-      "homeTeam": "Winner Group B",
+      "homeTeam": "Switzerland",
       "awayTeam": "3rd Group E/F/G/I/J",
       "isLocked": false
     },
@@ -1095,8 +1095,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-03T22:00:00.000Z",
       "venue": "Hard Rock Stadium, Miami",
-      "homeTeam": "Winner Group J",
-      "awayTeam": "Runner up Group H",
+      "homeTeam": "Argentina",
+      "awayTeam": "Cape Verde",
       "isLocked": false
     },
     {
@@ -1113,8 +1113,8 @@
       "stage": "Round of 32",
       "kickoff": "2026-07-03T18:00:00.000Z",
       "venue": "AT&T Stadium, Dallas",
-      "homeTeam": "Runner up Group D",
-      "awayTeam": "Runner up Group G",
+      "homeTeam": "Australia",
+      "awayTeam": "Egypt",
       "isLocked": false
     },
     {

@@ -9,6 +9,7 @@ type MatchWinnerRevealModalProps = {
   leagueSlug: string;
   announcements: MatchWinnerRevealAnnouncement[];
   predictionTimeZone: string;
+  onFinished?: () => void;
 };
 
 function formatWinnerLabel(winners: MatchWinnerRevealAnnouncement["winners"]) {
@@ -22,7 +23,8 @@ function formatWinnerLabel(winners: MatchWinnerRevealAnnouncement["winners"]) {
 export function MatchWinnerRevealModal({
   leagueSlug,
   announcements,
-  predictionTimeZone
+  predictionTimeZone,
+  onFinished
 }: MatchWinnerRevealModalProps) {
   const [queue, setQueue] = useState(announcements);
   const [pending, startTransition] = useTransition();
@@ -85,7 +87,15 @@ export function MatchWinnerRevealModal({
                 body: JSON.stringify({ matchId: current.matchId })
               });
 
-              setQueue((previous) => previous.slice(1));
+              setQueue((previous) => {
+                const next = previous.slice(1);
+
+                if (next.length === 0) {
+                  onFinished?.();
+                }
+
+                return next;
+              });
             });
           }}
         >

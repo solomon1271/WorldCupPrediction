@@ -53,6 +53,11 @@ export type TournamentPrediction = $Result.DefaultSelection<Prisma.$TournamentPr
  * 
  */
 export type MatchWinnerRevealSeen = $Result.DefaultSelection<Prisma.$MatchWinnerRevealSeenPayload>
+/**
+ * Model GroupStageRevealSeen
+ * 
+ */
+export type GroupStageRevealSeen = $Result.DefaultSelection<Prisma.$GroupStageRevealSeenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -251,6 +256,16 @@ export class PrismaClient<
     * ```
     */
   get matchWinnerRevealSeen(): Prisma.MatchWinnerRevealSeenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.groupStageRevealSeen`: Exposes CRUD operations for the **GroupStageRevealSeen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GroupStageRevealSeens
+    * const groupStageRevealSeens = await prisma.groupStageRevealSeen.findMany()
+    * ```
+    */
+  get groupStageRevealSeen(): Prisma.GroupStageRevealSeenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -698,7 +713,8 @@ export namespace Prisma {
     MatchPrediction: 'MatchPrediction',
     LeaderboardState: 'LeaderboardState',
     TournamentPrediction: 'TournamentPrediction',
-    MatchWinnerRevealSeen: 'MatchWinnerRevealSeen'
+    MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
+    GroupStageRevealSeen: 'GroupStageRevealSeen'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -717,7 +733,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen"
+      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1313,6 +1329,80 @@ export namespace Prisma {
           }
         }
       }
+      GroupStageRevealSeen: {
+        payload: Prisma.$GroupStageRevealSeenPayload<ExtArgs>
+        fields: Prisma.GroupStageRevealSeenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GroupStageRevealSeenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GroupStageRevealSeenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          findFirst: {
+            args: Prisma.GroupStageRevealSeenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GroupStageRevealSeenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          findMany: {
+            args: Prisma.GroupStageRevealSeenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>[]
+          }
+          create: {
+            args: Prisma.GroupStageRevealSeenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          createMany: {
+            args: Prisma.GroupStageRevealSeenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GroupStageRevealSeenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>[]
+          }
+          delete: {
+            args: Prisma.GroupStageRevealSeenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          update: {
+            args: Prisma.GroupStageRevealSeenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          deleteMany: {
+            args: Prisma.GroupStageRevealSeenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GroupStageRevealSeenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GroupStageRevealSeenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>[]
+          }
+          upsert: {
+            args: Prisma.GroupStageRevealSeenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupStageRevealSeenPayload>
+          }
+          aggregate: {
+            args: Prisma.GroupStageRevealSeenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGroupStageRevealSeen>
+          }
+          groupBy: {
+            args: Prisma.GroupStageRevealSeenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GroupStageRevealSeenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GroupStageRevealSeenCountArgs<ExtArgs>
+            result: $Utils.Optional<GroupStageRevealSeenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1417,6 +1507,7 @@ export namespace Prisma {
     leaderboardState?: LeaderboardStateOmit
     tournamentPrediction?: TournamentPredictionOmit
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOmit
+    groupStageRevealSeen?: GroupStageRevealSeenOmit
   }
 
   /* Types for Logging */
@@ -1501,6 +1592,7 @@ export namespace Prisma {
     matchPredictions: number
     tournamentPredictions: number
     matchWinnerRevealSeen: number
+    groupStageRevealSeen: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1508,6 +1600,7 @@ export namespace Prisma {
     matchPredictions?: boolean | UserCountOutputTypeCountMatchPredictionsArgs
     tournamentPredictions?: boolean | UserCountOutputTypeCountTournamentPredictionsArgs
     matchWinnerRevealSeen?: boolean | UserCountOutputTypeCountMatchWinnerRevealSeenArgs
+    groupStageRevealSeen?: boolean | UserCountOutputTypeCountGroupStageRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1549,6 +1642,13 @@ export namespace Prisma {
     where?: MatchWinnerRevealSeenWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountGroupStageRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupStageRevealSeenWhereInput
+  }
+
 
   /**
    * Count Type LeagueCountOutputType
@@ -1559,6 +1659,7 @@ export namespace Prisma {
     matchPredictions: number
     tournamentPredictions: number
     matchWinnerRevealSeen: number
+    groupStageRevealSeen: number
   }
 
   export type LeagueCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1566,6 +1667,7 @@ export namespace Prisma {
     matchPredictions?: boolean | LeagueCountOutputTypeCountMatchPredictionsArgs
     tournamentPredictions?: boolean | LeagueCountOutputTypeCountTournamentPredictionsArgs
     matchWinnerRevealSeen?: boolean | LeagueCountOutputTypeCountMatchWinnerRevealSeenArgs
+    groupStageRevealSeen?: boolean | LeagueCountOutputTypeCountGroupStageRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1605,6 +1707,13 @@ export namespace Prisma {
    */
   export type LeagueCountOutputTypeCountMatchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MatchWinnerRevealSeenWhereInput
+  }
+
+  /**
+   * LeagueCountOutputType without action
+   */
+  export type LeagueCountOutputTypeCountGroupStageRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupStageRevealSeenWhereInput
   }
 
 
@@ -1836,6 +1945,7 @@ export namespace Prisma {
     matchPredictions?: boolean | User$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
+    groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1875,6 +1985,7 @@ export namespace Prisma {
     matchPredictions?: boolean | User$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
+    groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1887,6 +1998,7 @@ export namespace Prisma {
       matchPredictions: Prisma.$MatchPredictionPayload<ExtArgs>[]
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
+      groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2294,6 +2406,7 @@ export namespace Prisma {
     matchPredictions<T extends User$matchPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, User$matchPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentPredictions<T extends User$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, User$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     matchWinnerRevealSeen<T extends User$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    groupStageRevealSeen<T extends User$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2559,7 +2672,6 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -2578,7 +2690,6 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -2814,6 +2925,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.groupStageRevealSeen
+   */
+  export type User$groupStageRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    where?: GroupStageRevealSeenWhereInput
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3025,6 +3160,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
+    groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["league"]>
 
@@ -3068,6 +3204,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
+    groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeagueIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3081,6 +3218,7 @@ export namespace Prisma {
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       leaderboardState: Prisma.$LeaderboardStatePayload<ExtArgs> | null
       matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
+      groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3490,6 +3628,7 @@ export namespace Prisma {
     tournamentPredictions<T extends League$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaderboardState<T extends League$leaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$leaderboardStateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     matchWinnerRevealSeen<T extends League$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    groupStageRevealSeen<T extends League$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3756,7 +3895,6 @@ export namespace Prisma {
      * The data used to create many Leagues.
      */
     data: LeagueCreateManyInput | LeagueCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -3775,7 +3913,6 @@ export namespace Prisma {
      * The data used to create many Leagues.
      */
     data: LeagueCreateManyInput | LeagueCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -4027,6 +4164,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MatchWinnerRevealSeenScalarFieldEnum | MatchWinnerRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * League.groupStageRevealSeen
+   */
+  export type League$groupStageRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    where?: GroupStageRevealSeenWhereInput
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
   }
 
   /**
@@ -4916,7 +5077,6 @@ export namespace Prisma {
      * The data used to create many LeagueMembers.
      */
     data: LeagueMemberCreateManyInput | LeagueMemberCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -4935,7 +5095,6 @@ export namespace Prisma {
      * The data used to create many LeagueMembers.
      */
     data: LeagueMemberCreateManyInput | LeagueMemberCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6171,7 +6330,6 @@ export namespace Prisma {
      * The data used to create many Matches.
      */
     data: MatchCreateManyInput | MatchCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -6190,7 +6348,6 @@ export namespace Prisma {
      * The data used to create many Matches.
      */
     data: MatchCreateManyInput | MatchCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -7431,7 +7588,6 @@ export namespace Prisma {
      * The data used to create many MatchPredictions.
      */
     data: MatchPredictionCreateManyInput | MatchPredictionCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -7450,7 +7606,6 @@ export namespace Prisma {
      * The data used to create many MatchPredictions.
      */
     data: MatchPredictionCreateManyInput | MatchPredictionCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8476,7 +8631,6 @@ export namespace Prisma {
      * The data used to create many LeaderboardStates.
      */
     data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -8495,7 +8649,6 @@ export namespace Prisma {
      * The data used to create many LeaderboardStates.
      */
     data: LeaderboardStateCreateManyInput | LeaderboardStateCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -9633,7 +9786,6 @@ export namespace Prisma {
      * The data used to create many TournamentPredictions.
      */
     data: TournamentPredictionCreateManyInput | TournamentPredictionCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -9652,7 +9804,6 @@ export namespace Prisma {
      * The data used to create many TournamentPredictions.
      */
     data: TournamentPredictionCreateManyInput | TournamentPredictionCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10741,7 +10892,6 @@ export namespace Prisma {
      * The data used to create many MatchWinnerRevealSeens.
      */
     data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -10760,7 +10910,6 @@ export namespace Prisma {
      * The data used to create many MatchWinnerRevealSeens.
      */
     data: MatchWinnerRevealSeenCreateManyInput | MatchWinnerRevealSeenCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10927,13 +11076,1061 @@ export namespace Prisma {
 
 
   /**
+   * Model GroupStageRevealSeen
+   */
+
+  export type AggregateGroupStageRevealSeen = {
+    _count: GroupStageRevealSeenCountAggregateOutputType | null
+    _min: GroupStageRevealSeenMinAggregateOutputType | null
+    _max: GroupStageRevealSeenMaxAggregateOutputType | null
+  }
+
+  export type GroupStageRevealSeenMinAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type GroupStageRevealSeenMaxAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type GroupStageRevealSeenCountAggregateOutputType = {
+    id: number
+    leagueId: number
+    userId: number
+    seenAt: number
+    _all: number
+  }
+
+
+  export type GroupStageRevealSeenMinAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type GroupStageRevealSeenMaxAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type GroupStageRevealSeenCountAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+    _all?: true
+  }
+
+  export type GroupStageRevealSeenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GroupStageRevealSeen to aggregate.
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GroupStageRevealSeens to fetch.
+     */
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GroupStageRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GroupStageRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GroupStageRevealSeens
+    **/
+    _count?: true | GroupStageRevealSeenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GroupStageRevealSeenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GroupStageRevealSeenMaxAggregateInputType
+  }
+
+  export type GetGroupStageRevealSeenAggregateType<T extends GroupStageRevealSeenAggregateArgs> = {
+        [P in keyof T & keyof AggregateGroupStageRevealSeen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGroupStageRevealSeen[P]>
+      : GetScalarType<T[P], AggregateGroupStageRevealSeen[P]>
+  }
+
+
+
+
+  export type GroupStageRevealSeenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupStageRevealSeenWhereInput
+    orderBy?: GroupStageRevealSeenOrderByWithAggregationInput | GroupStageRevealSeenOrderByWithAggregationInput[]
+    by: GroupStageRevealSeenScalarFieldEnum[] | GroupStageRevealSeenScalarFieldEnum
+    having?: GroupStageRevealSeenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GroupStageRevealSeenCountAggregateInputType | true
+    _min?: GroupStageRevealSeenMinAggregateInputType
+    _max?: GroupStageRevealSeenMaxAggregateInputType
+  }
+
+  export type GroupStageRevealSeenGroupByOutputType = {
+    id: string
+    leagueId: string
+    userId: string
+    seenAt: Date
+    _count: GroupStageRevealSeenCountAggregateOutputType | null
+    _min: GroupStageRevealSeenMinAggregateOutputType | null
+    _max: GroupStageRevealSeenMaxAggregateOutputType | null
+  }
+
+  type GetGroupStageRevealSeenGroupByPayload<T extends GroupStageRevealSeenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GroupStageRevealSeenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GroupStageRevealSeenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GroupStageRevealSeenGroupByOutputType[P]>
+            : GetScalarType<T[P], GroupStageRevealSeenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GroupStageRevealSeenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["groupStageRevealSeen"]>
+
+  export type GroupStageRevealSeenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["groupStageRevealSeen"]>
+
+  export type GroupStageRevealSeenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["groupStageRevealSeen"]>
+
+  export type GroupStageRevealSeenSelectScalar = {
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+  }
+
+  export type GroupStageRevealSeenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "seenAt", ExtArgs["result"]["groupStageRevealSeen"]>
+  export type GroupStageRevealSeenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GroupStageRevealSeenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GroupStageRevealSeenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $GroupStageRevealSeenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GroupStageRevealSeen"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      leagueId: string
+      userId: string
+      seenAt: Date
+    }, ExtArgs["result"]["groupStageRevealSeen"]>
+    composites: {}
+  }
+
+  type GroupStageRevealSeenGetPayload<S extends boolean | null | undefined | GroupStageRevealSeenDefaultArgs> = $Result.GetResult<Prisma.$GroupStageRevealSeenPayload, S>
+
+  type GroupStageRevealSeenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GroupStageRevealSeenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GroupStageRevealSeenCountAggregateInputType | true
+    }
+
+  export interface GroupStageRevealSeenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GroupStageRevealSeen'], meta: { name: 'GroupStageRevealSeen' } }
+    /**
+     * Find zero or one GroupStageRevealSeen that matches the filter.
+     * @param {GroupStageRevealSeenFindUniqueArgs} args - Arguments to find a GroupStageRevealSeen
+     * @example
+     * // Get one GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GroupStageRevealSeenFindUniqueArgs>(args: SelectSubset<T, GroupStageRevealSeenFindUniqueArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GroupStageRevealSeen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GroupStageRevealSeenFindUniqueOrThrowArgs} args - Arguments to find a GroupStageRevealSeen
+     * @example
+     * // Get one GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GroupStageRevealSeenFindUniqueOrThrowArgs>(args: SelectSubset<T, GroupStageRevealSeenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GroupStageRevealSeen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenFindFirstArgs} args - Arguments to find a GroupStageRevealSeen
+     * @example
+     * // Get one GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GroupStageRevealSeenFindFirstArgs>(args?: SelectSubset<T, GroupStageRevealSeenFindFirstArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GroupStageRevealSeen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenFindFirstOrThrowArgs} args - Arguments to find a GroupStageRevealSeen
+     * @example
+     * // Get one GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GroupStageRevealSeenFindFirstOrThrowArgs>(args?: SelectSubset<T, GroupStageRevealSeenFindFirstOrThrowArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GroupStageRevealSeens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GroupStageRevealSeens
+     * const groupStageRevealSeens = await prisma.groupStageRevealSeen.findMany()
+     * 
+     * // Get first 10 GroupStageRevealSeens
+     * const groupStageRevealSeens = await prisma.groupStageRevealSeen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const groupStageRevealSeenWithIdOnly = await prisma.groupStageRevealSeen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GroupStageRevealSeenFindManyArgs>(args?: SelectSubset<T, GroupStageRevealSeenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GroupStageRevealSeen.
+     * @param {GroupStageRevealSeenCreateArgs} args - Arguments to create a GroupStageRevealSeen.
+     * @example
+     * // Create one GroupStageRevealSeen
+     * const GroupStageRevealSeen = await prisma.groupStageRevealSeen.create({
+     *   data: {
+     *     // ... data to create a GroupStageRevealSeen
+     *   }
+     * })
+     * 
+     */
+    create<T extends GroupStageRevealSeenCreateArgs>(args: SelectSubset<T, GroupStageRevealSeenCreateArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GroupStageRevealSeens.
+     * @param {GroupStageRevealSeenCreateManyArgs} args - Arguments to create many GroupStageRevealSeens.
+     * @example
+     * // Create many GroupStageRevealSeens
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GroupStageRevealSeenCreateManyArgs>(args?: SelectSubset<T, GroupStageRevealSeenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GroupStageRevealSeens and returns the data saved in the database.
+     * @param {GroupStageRevealSeenCreateManyAndReturnArgs} args - Arguments to create many GroupStageRevealSeens.
+     * @example
+     * // Create many GroupStageRevealSeens
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GroupStageRevealSeens and only return the `id`
+     * const groupStageRevealSeenWithIdOnly = await prisma.groupStageRevealSeen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GroupStageRevealSeenCreateManyAndReturnArgs>(args?: SelectSubset<T, GroupStageRevealSeenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GroupStageRevealSeen.
+     * @param {GroupStageRevealSeenDeleteArgs} args - Arguments to delete one GroupStageRevealSeen.
+     * @example
+     * // Delete one GroupStageRevealSeen
+     * const GroupStageRevealSeen = await prisma.groupStageRevealSeen.delete({
+     *   where: {
+     *     // ... filter to delete one GroupStageRevealSeen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GroupStageRevealSeenDeleteArgs>(args: SelectSubset<T, GroupStageRevealSeenDeleteArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GroupStageRevealSeen.
+     * @param {GroupStageRevealSeenUpdateArgs} args - Arguments to update one GroupStageRevealSeen.
+     * @example
+     * // Update one GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GroupStageRevealSeenUpdateArgs>(args: SelectSubset<T, GroupStageRevealSeenUpdateArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GroupStageRevealSeens.
+     * @param {GroupStageRevealSeenDeleteManyArgs} args - Arguments to filter GroupStageRevealSeens to delete.
+     * @example
+     * // Delete a few GroupStageRevealSeens
+     * const { count } = await prisma.groupStageRevealSeen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GroupStageRevealSeenDeleteManyArgs>(args?: SelectSubset<T, GroupStageRevealSeenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GroupStageRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GroupStageRevealSeens
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GroupStageRevealSeenUpdateManyArgs>(args: SelectSubset<T, GroupStageRevealSeenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GroupStageRevealSeens and returns the data updated in the database.
+     * @param {GroupStageRevealSeenUpdateManyAndReturnArgs} args - Arguments to update many GroupStageRevealSeens.
+     * @example
+     * // Update many GroupStageRevealSeens
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GroupStageRevealSeens and only return the `id`
+     * const groupStageRevealSeenWithIdOnly = await prisma.groupStageRevealSeen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GroupStageRevealSeenUpdateManyAndReturnArgs>(args: SelectSubset<T, GroupStageRevealSeenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GroupStageRevealSeen.
+     * @param {GroupStageRevealSeenUpsertArgs} args - Arguments to update or create a GroupStageRevealSeen.
+     * @example
+     * // Update or create a GroupStageRevealSeen
+     * const groupStageRevealSeen = await prisma.groupStageRevealSeen.upsert({
+     *   create: {
+     *     // ... data to create a GroupStageRevealSeen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GroupStageRevealSeen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GroupStageRevealSeenUpsertArgs>(args: SelectSubset<T, GroupStageRevealSeenUpsertArgs<ExtArgs>>): Prisma__GroupStageRevealSeenClient<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GroupStageRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenCountArgs} args - Arguments to filter GroupStageRevealSeens to count.
+     * @example
+     * // Count the number of GroupStageRevealSeens
+     * const count = await prisma.groupStageRevealSeen.count({
+     *   where: {
+     *     // ... the filter for the GroupStageRevealSeens we want to count
+     *   }
+     * })
+    **/
+    count<T extends GroupStageRevealSeenCountArgs>(
+      args?: Subset<T, GroupStageRevealSeenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GroupStageRevealSeenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GroupStageRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GroupStageRevealSeenAggregateArgs>(args: Subset<T, GroupStageRevealSeenAggregateArgs>): Prisma.PrismaPromise<GetGroupStageRevealSeenAggregateType<T>>
+
+    /**
+     * Group by GroupStageRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupStageRevealSeenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GroupStageRevealSeenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GroupStageRevealSeenGroupByArgs['orderBy'] }
+        : { orderBy?: GroupStageRevealSeenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GroupStageRevealSeenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGroupStageRevealSeenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GroupStageRevealSeen model
+   */
+  readonly fields: GroupStageRevealSeenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GroupStageRevealSeen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GroupStageRevealSeenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GroupStageRevealSeen model
+   */
+  interface GroupStageRevealSeenFieldRefs {
+    readonly id: FieldRef<"GroupStageRevealSeen", 'String'>
+    readonly leagueId: FieldRef<"GroupStageRevealSeen", 'String'>
+    readonly userId: FieldRef<"GroupStageRevealSeen", 'String'>
+    readonly seenAt: FieldRef<"GroupStageRevealSeen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GroupStageRevealSeen findUnique
+   */
+  export type GroupStageRevealSeenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which GroupStageRevealSeen to fetch.
+     */
+    where: GroupStageRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * GroupStageRevealSeen findUniqueOrThrow
+   */
+  export type GroupStageRevealSeenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which GroupStageRevealSeen to fetch.
+     */
+    where: GroupStageRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * GroupStageRevealSeen findFirst
+   */
+  export type GroupStageRevealSeenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which GroupStageRevealSeen to fetch.
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GroupStageRevealSeens to fetch.
+     */
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GroupStageRevealSeens.
+     */
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GroupStageRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GroupStageRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GroupStageRevealSeens.
+     */
+    distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * GroupStageRevealSeen findFirstOrThrow
+   */
+  export type GroupStageRevealSeenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which GroupStageRevealSeen to fetch.
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GroupStageRevealSeens to fetch.
+     */
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GroupStageRevealSeens.
+     */
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GroupStageRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GroupStageRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GroupStageRevealSeens.
+     */
+    distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * GroupStageRevealSeen findMany
+   */
+  export type GroupStageRevealSeenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which GroupStageRevealSeens to fetch.
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GroupStageRevealSeens to fetch.
+     */
+    orderBy?: GroupStageRevealSeenOrderByWithRelationInput | GroupStageRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GroupStageRevealSeens.
+     */
+    cursor?: GroupStageRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GroupStageRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GroupStageRevealSeens.
+     */
+    skip?: number
+    distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * GroupStageRevealSeen create
+   */
+  export type GroupStageRevealSeenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GroupStageRevealSeen.
+     */
+    data: XOR<GroupStageRevealSeenCreateInput, GroupStageRevealSeenUncheckedCreateInput>
+  }
+
+  /**
+   * GroupStageRevealSeen createMany
+   */
+  export type GroupStageRevealSeenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GroupStageRevealSeens.
+     */
+    data: GroupStageRevealSeenCreateManyInput | GroupStageRevealSeenCreateManyInput[]
+  }
+
+  /**
+   * GroupStageRevealSeen createManyAndReturn
+   */
+  export type GroupStageRevealSeenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to create many GroupStageRevealSeens.
+     */
+    data: GroupStageRevealSeenCreateManyInput | GroupStageRevealSeenCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GroupStageRevealSeen update
+   */
+  export type GroupStageRevealSeenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GroupStageRevealSeen.
+     */
+    data: XOR<GroupStageRevealSeenUpdateInput, GroupStageRevealSeenUncheckedUpdateInput>
+    /**
+     * Choose, which GroupStageRevealSeen to update.
+     */
+    where: GroupStageRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * GroupStageRevealSeen updateMany
+   */
+  export type GroupStageRevealSeenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GroupStageRevealSeens.
+     */
+    data: XOR<GroupStageRevealSeenUpdateManyMutationInput, GroupStageRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which GroupStageRevealSeens to update
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * Limit how many GroupStageRevealSeens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GroupStageRevealSeen updateManyAndReturn
+   */
+  export type GroupStageRevealSeenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to update GroupStageRevealSeens.
+     */
+    data: XOR<GroupStageRevealSeenUpdateManyMutationInput, GroupStageRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which GroupStageRevealSeens to update
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * Limit how many GroupStageRevealSeens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GroupStageRevealSeen upsert
+   */
+  export type GroupStageRevealSeenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GroupStageRevealSeen to update in case it exists.
+     */
+    where: GroupStageRevealSeenWhereUniqueInput
+    /**
+     * In case the GroupStageRevealSeen found by the `where` argument doesn't exist, create a new GroupStageRevealSeen with this data.
+     */
+    create: XOR<GroupStageRevealSeenCreateInput, GroupStageRevealSeenUncheckedCreateInput>
+    /**
+     * In case the GroupStageRevealSeen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GroupStageRevealSeenUpdateInput, GroupStageRevealSeenUncheckedUpdateInput>
+  }
+
+  /**
+   * GroupStageRevealSeen delete
+   */
+  export type GroupStageRevealSeenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter which GroupStageRevealSeen to delete.
+     */
+    where: GroupStageRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * GroupStageRevealSeen deleteMany
+   */
+  export type GroupStageRevealSeenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GroupStageRevealSeens to delete
+     */
+    where?: GroupStageRevealSeenWhereInput
+    /**
+     * Limit how many GroupStageRevealSeens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GroupStageRevealSeen without action
+   */
+  export type GroupStageRevealSeenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupStageRevealSeen
+     */
+    select?: GroupStageRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GroupStageRevealSeen
+     */
+    omit?: GroupStageRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupStageRevealSeenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted',
-    ReadCommitted: 'ReadCommitted',
-    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -11057,20 +12254,22 @@ export namespace Prisma {
   export type MatchWinnerRevealSeenScalarFieldEnum = (typeof MatchWinnerRevealSeenScalarFieldEnum)[keyof typeof MatchWinnerRevealSeenScalarFieldEnum]
 
 
+  export const GroupStageRevealSeenScalarFieldEnum: {
+    id: 'id',
+    leagueId: 'leagueId',
+    userId: 'userId',
+    seenAt: 'seenAt'
+  };
+
+  export type GroupStageRevealSeenScalarFieldEnum = (typeof GroupStageRevealSeenScalarFieldEnum)[keyof typeof GroupStageRevealSeenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   export const NullsOrder: {
@@ -11094,13 +12293,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String[]'
-   */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -11115,13 +12307,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -11129,23 +12314,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -11167,6 +12338,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
+    groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11181,6 +12353,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionOrderByRelationAggregateInput
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
+    groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11198,6 +12371,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
+    groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11243,6 +12417,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
+    groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }
 
   export type LeagueOrderByWithRelationInput = {
@@ -11259,6 +12434,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     leaderboardState?: LeaderboardStateOrderByWithRelationInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
+    groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
   }
 
   export type LeagueWhereUniqueInput = Prisma.AtLeast<{
@@ -11278,6 +12454,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
+    groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }, "id" | "slug" | "inviteCode">
 
   export type LeagueOrderByWithAggregationInput = {
@@ -11789,6 +12966,60 @@ export namespace Prisma {
     seenAt?: DateTimeWithAggregatesFilter<"MatchWinnerRevealSeen"> | Date | string
   }
 
+  export type GroupStageRevealSeenWhereInput = {
+    AND?: GroupStageRevealSeenWhereInput | GroupStageRevealSeenWhereInput[]
+    OR?: GroupStageRevealSeenWhereInput[]
+    NOT?: GroupStageRevealSeenWhereInput | GroupStageRevealSeenWhereInput[]
+    id?: StringFilter<"GroupStageRevealSeen"> | string
+    leagueId?: StringFilter<"GroupStageRevealSeen"> | string
+    userId?: StringFilter<"GroupStageRevealSeen"> | string
+    seenAt?: DateTimeFilter<"GroupStageRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type GroupStageRevealSeenOrderByWithRelationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type GroupStageRevealSeenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    leagueId_userId?: GroupStageRevealSeenLeagueIdUserIdCompoundUniqueInput
+    AND?: GroupStageRevealSeenWhereInput | GroupStageRevealSeenWhereInput[]
+    OR?: GroupStageRevealSeenWhereInput[]
+    NOT?: GroupStageRevealSeenWhereInput | GroupStageRevealSeenWhereInput[]
+    leagueId?: StringFilter<"GroupStageRevealSeen"> | string
+    userId?: StringFilter<"GroupStageRevealSeen"> | string
+    seenAt?: DateTimeFilter<"GroupStageRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "leagueId_userId">
+
+  export type GroupStageRevealSeenOrderByWithAggregationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    _count?: GroupStageRevealSeenCountOrderByAggregateInput
+    _max?: GroupStageRevealSeenMaxOrderByAggregateInput
+    _min?: GroupStageRevealSeenMinOrderByAggregateInput
+  }
+
+  export type GroupStageRevealSeenScalarWhereWithAggregatesInput = {
+    AND?: GroupStageRevealSeenScalarWhereWithAggregatesInput | GroupStageRevealSeenScalarWhereWithAggregatesInput[]
+    OR?: GroupStageRevealSeenScalarWhereWithAggregatesInput[]
+    NOT?: GroupStageRevealSeenScalarWhereWithAggregatesInput | GroupStageRevealSeenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GroupStageRevealSeen"> | string
+    leagueId?: StringWithAggregatesFilter<"GroupStageRevealSeen"> | string
+    userId?: StringWithAggregatesFilter<"GroupStageRevealSeen"> | string
+    seenAt?: DateTimeWithAggregatesFilter<"GroupStageRevealSeen"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -11801,6 +13032,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11815,6 +13047,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11829,6 +13062,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11843,6 +13077,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11889,6 +13124,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateInput = {
@@ -11905,6 +13141,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUpdateInput = {
@@ -11921,6 +13158,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateInput = {
@@ -11937,6 +13175,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateManyInput = {
@@ -12473,10 +13712,57 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GroupStageRevealSeenCreateInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutGroupStageRevealSeenInput
+    user: UserCreateNestedOneWithoutGroupStageRevealSeenInput
+  }
+
+  export type GroupStageRevealSeenUncheckedCreateInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupStageRevealSeenCreateManyInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12484,7 +13770,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -12495,8 +13780,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12528,6 +13813,12 @@ export namespace Prisma {
     none?: MatchWinnerRevealSeenWhereInput
   }
 
+  export type GroupStageRevealSeenListRelationFilter = {
+    every?: GroupStageRevealSeenWhereInput
+    some?: GroupStageRevealSeenWhereInput
+    none?: GroupStageRevealSeenWhereInput
+  }
+
   export type LeagueMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -12541,6 +13832,10 @@ export namespace Prisma {
   }
 
   export type MatchWinnerRevealSeenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GroupStageRevealSeenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12576,8 +13871,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12585,7 +13880,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -12602,8 +13896,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12690,8 +13984,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12701,8 +13995,8 @@ export namespace Prisma {
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12712,8 +14006,8 @@ export namespace Prisma {
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12803,8 +14097,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12819,8 +14113,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -12833,8 +14127,8 @@ export namespace Prisma {
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -12941,8 +14235,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -12950,7 +14244,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
@@ -13006,8 +14299,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13015,7 +14308,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -13060,6 +14352,32 @@ export namespace Prisma {
     matchId?: SortOrder
   }
 
+  export type GroupStageRevealSeenLeagueIdUserIdCompoundUniqueInput = {
+    leagueId: string
+    userId: string
+  }
+
+  export type GroupStageRevealSeenCountOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type GroupStageRevealSeenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type GroupStageRevealSeenMinOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
   export type LeagueMemberCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -13088,6 +14406,13 @@ export namespace Prisma {
     connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
   }
 
+  export type GroupStageRevealSeenCreateNestedManyWithoutUserInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput> | GroupStageRevealSeenCreateWithoutUserInput[] | GroupStageRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutUserInput | GroupStageRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: GroupStageRevealSeenCreateManyUserInputEnvelope
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -13114,6 +14439,13 @@ export namespace Prisma {
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutUserInput | MatchWinnerRevealSeenCreateOrConnectWithoutUserInput[]
     createMany?: MatchWinnerRevealSeenCreateManyUserInputEnvelope
     connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+  }
+
+  export type GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput> | GroupStageRevealSeenCreateWithoutUserInput[] | GroupStageRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutUserInput | GroupStageRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: GroupStageRevealSeenCreateManyUserInputEnvelope
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -13184,6 +14516,20 @@ export namespace Prisma {
     deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
   }
 
+  export type GroupStageRevealSeenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput> | GroupStageRevealSeenCreateWithoutUserInput[] | GroupStageRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutUserInput | GroupStageRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: GroupStageRevealSeenUpsertWithWhereUniqueWithoutUserInput | GroupStageRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GroupStageRevealSeenCreateManyUserInputEnvelope
+    set?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    disconnect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    delete?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutUserInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutUserInput | GroupStageRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -13240,6 +14586,20 @@ export namespace Prisma {
     deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
   }
 
+  export type GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput> | GroupStageRevealSeenCreateWithoutUserInput[] | GroupStageRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutUserInput | GroupStageRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: GroupStageRevealSeenUpsertWithWhereUniqueWithoutUserInput | GroupStageRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GroupStageRevealSeenCreateManyUserInputEnvelope
+    set?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    disconnect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    delete?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutUserInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutUserInput | GroupStageRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -13274,6 +14634,13 @@ export namespace Prisma {
     connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
   }
 
+  export type GroupStageRevealSeenCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput> | GroupStageRevealSeenCreateWithoutLeagueInput[] | GroupStageRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -13306,6 +14673,13 @@ export namespace Prisma {
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
     createMany?: MatchWinnerRevealSeenCreateManyLeagueInputEnvelope
     connect?: MatchWinnerRevealSeenWhereUniqueInput | MatchWinnerRevealSeenWhereUniqueInput[]
+  }
+
+  export type GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput> | GroupStageRevealSeenCreateWithoutLeagueInput[] | GroupStageRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
   }
 
   export type LeagueMemberUpdateManyWithoutLeagueNestedInput = {
@@ -13374,6 +14748,20 @@ export namespace Prisma {
     deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
   }
 
+  export type GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput> | GroupStageRevealSeenCreateWithoutLeagueInput[] | GroupStageRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: GroupStageRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
+    set?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    disconnect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    delete?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput | GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -13438,6 +14826,20 @@ export namespace Prisma {
     update?: MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | MatchWinnerRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
     updateMany?: MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput | MatchWinnerRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
     deleteMany?: MatchWinnerRevealSeenScalarWhereInput | MatchWinnerRevealSeenScalarWhereInput[]
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput> | GroupStageRevealSeenCreateWithoutLeagueInput[] | GroupStageRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: GroupStageRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
+    set?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    disconnect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    delete?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+    update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput | GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
   }
 
   export type LeagueCreateNestedOneWithoutMembersInput = {
@@ -13702,10 +15104,38 @@ export namespace Prisma {
     update?: XOR<XOR<MatchUpdateToOneWithWhereWithoutMatchWinnerRevealSeenInput, MatchUpdateWithoutMatchWinnerRevealSeenInput>, MatchUncheckedUpdateWithoutMatchWinnerRevealSeenInput>
   }
 
+  export type LeagueCreateNestedOneWithoutGroupStageRevealSeenInput = {
+    create?: XOR<LeagueCreateWithoutGroupStageRevealSeenInput, LeagueUncheckedCreateWithoutGroupStageRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutGroupStageRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutGroupStageRevealSeenInput = {
+    create?: XOR<UserCreateWithoutGroupStageRevealSeenInput, UserUncheckedCreateWithoutGroupStageRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGroupStageRevealSeenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput = {
+    create?: XOR<LeagueCreateWithoutGroupStageRevealSeenInput, LeagueUncheckedCreateWithoutGroupStageRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutGroupStageRevealSeenInput
+    upsert?: LeagueUpsertWithoutGroupStageRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutGroupStageRevealSeenInput, LeagueUpdateWithoutGroupStageRevealSeenInput>, LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput = {
+    create?: XOR<UserCreateWithoutGroupStageRevealSeenInput, UserUncheckedCreateWithoutGroupStageRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGroupStageRevealSeenInput
+    upsert?: UserUpsertWithoutGroupStageRevealSeenInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGroupStageRevealSeenInput, UserUpdateWithoutGroupStageRevealSeenInput>, UserUncheckedUpdateWithoutGroupStageRevealSeenInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13723,8 +15153,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13734,8 +15164,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13751,8 +15181,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13770,8 +15200,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13784,8 +15214,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13795,8 +15225,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13806,8 +15236,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13822,8 +15252,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -13833,8 +15263,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -13847,8 +15277,8 @@ export namespace Prisma {
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -13863,8 +15293,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -13874,8 +15304,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13888,8 +15318,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -13922,7 +15352,6 @@ export namespace Prisma {
 
   export type LeagueMemberCreateManyUserInputEnvelope = {
     data: LeagueMemberCreateManyUserInput | LeagueMemberCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type MatchPredictionCreateWithoutUserInput = {
@@ -13962,7 +15391,6 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyUserInputEnvelope = {
     data: MatchPredictionCreateManyUserInput | MatchPredictionCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type TournamentPredictionCreateWithoutUserInput = {
@@ -14000,7 +15428,6 @@ export namespace Prisma {
 
   export type TournamentPredictionCreateManyUserInputEnvelope = {
     data: TournamentPredictionCreateManyUserInput | TournamentPredictionCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type MatchWinnerRevealSeenCreateWithoutUserInput = {
@@ -14024,7 +15451,27 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyUserInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyUserInput | MatchWinnerRevealSeenCreateManyUserInput[]
-    skipDuplicates?: boolean
+  }
+
+  export type GroupStageRevealSeenCreateWithoutUserInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutGroupStageRevealSeenInput
+  }
+
+  export type GroupStageRevealSeenUncheckedCreateWithoutUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenCreateOrConnectWithoutUserInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    create: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type GroupStageRevealSeenCreateManyUserInputEnvelope = {
+    data: GroupStageRevealSeenCreateManyUserInput | GroupStageRevealSeenCreateManyUserInput[]
   }
 
   export type LeagueMemberUpsertWithWhereUniqueWithoutUserInput = {
@@ -14149,6 +15596,32 @@ export namespace Prisma {
     seenAt?: DateTimeFilter<"MatchWinnerRevealSeen"> | Date | string
   }
 
+  export type GroupStageRevealSeenUpsertWithWhereUniqueWithoutUserInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    update: XOR<GroupStageRevealSeenUpdateWithoutUserInput, GroupStageRevealSeenUncheckedUpdateWithoutUserInput>
+    create: XOR<GroupStageRevealSeenCreateWithoutUserInput, GroupStageRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type GroupStageRevealSeenUpdateWithWhereUniqueWithoutUserInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    data: XOR<GroupStageRevealSeenUpdateWithoutUserInput, GroupStageRevealSeenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type GroupStageRevealSeenUpdateManyWithWhereWithoutUserInput = {
+    where: GroupStageRevealSeenScalarWhereInput
+    data: XOR<GroupStageRevealSeenUpdateManyMutationInput, GroupStageRevealSeenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type GroupStageRevealSeenScalarWhereInput = {
+    AND?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+    OR?: GroupStageRevealSeenScalarWhereInput[]
+    NOT?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+    id?: StringFilter<"GroupStageRevealSeen"> | string
+    leagueId?: StringFilter<"GroupStageRevealSeen"> | string
+    userId?: StringFilter<"GroupStageRevealSeen"> | string
+    seenAt?: DateTimeFilter<"GroupStageRevealSeen"> | Date | string
+  }
+
   export type LeagueMemberCreateWithoutLeagueInput = {
     id?: string
     joinedAt?: Date | string
@@ -14168,7 +15641,6 @@ export namespace Prisma {
 
   export type LeagueMemberCreateManyLeagueInputEnvelope = {
     data: LeagueMemberCreateManyLeagueInput | LeagueMemberCreateManyLeagueInput[]
-    skipDuplicates?: boolean
   }
 
   export type MatchPredictionCreateWithoutLeagueInput = {
@@ -14208,7 +15680,6 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyLeagueInputEnvelope = {
     data: MatchPredictionCreateManyLeagueInput | MatchPredictionCreateManyLeagueInput[]
-    skipDuplicates?: boolean
   }
 
   export type TournamentPredictionCreateWithoutLeagueInput = {
@@ -14246,7 +15717,6 @@ export namespace Prisma {
 
   export type TournamentPredictionCreateManyLeagueInputEnvelope = {
     data: TournamentPredictionCreateManyLeagueInput | TournamentPredictionCreateManyLeagueInput[]
-    skipDuplicates?: boolean
   }
 
   export type LeaderboardStateCreateWithoutLeagueInput = {
@@ -14287,7 +15757,27 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyLeagueInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyLeagueInput | MatchWinnerRevealSeenCreateManyLeagueInput[]
-    skipDuplicates?: boolean
+  }
+
+  export type GroupStageRevealSeenCreateWithoutLeagueInput = {
+    id?: string
+    seenAt?: Date | string
+    user: UserCreateNestedOneWithoutGroupStageRevealSeenInput
+  }
+
+  export type GroupStageRevealSeenUncheckedCreateWithoutLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenCreateOrConnectWithoutLeagueInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    create: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type GroupStageRevealSeenCreateManyLeagueInputEnvelope = {
+    data: GroupStageRevealSeenCreateManyLeagueInput | GroupStageRevealSeenCreateManyLeagueInput[]
   }
 
   export type LeagueMemberUpsertWithWhereUniqueWithoutLeagueInput = {
@@ -14377,6 +15867,22 @@ export namespace Prisma {
     data: XOR<MatchWinnerRevealSeenUpdateManyMutationInput, MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueInput>
   }
 
+  export type GroupStageRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    update: XOR<GroupStageRevealSeenUpdateWithoutLeagueInput, GroupStageRevealSeenUncheckedUpdateWithoutLeagueInput>
+    create: XOR<GroupStageRevealSeenCreateWithoutLeagueInput, GroupStageRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput = {
+    where: GroupStageRevealSeenWhereUniqueInput
+    data: XOR<GroupStageRevealSeenUpdateWithoutLeagueInput, GroupStageRevealSeenUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput = {
+    where: GroupStageRevealSeenScalarWhereInput
+    data: XOR<GroupStageRevealSeenUpdateManyMutationInput, GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueInput>
+  }
+
   export type LeagueCreateWithoutMembersInput = {
     id?: string
     slug: string
@@ -14390,6 +15896,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMembersInput = {
@@ -14405,6 +15912,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMembersInput = {
@@ -14423,6 +15931,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLeagueMembersInput = {
@@ -14436,6 +15945,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLeagueMembersInput = {
@@ -14467,6 +15977,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMembersInput = {
@@ -14482,6 +15993,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutLeagueMembersInput = {
@@ -14506,6 +16018,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLeagueMembersInput = {
@@ -14519,6 +16032,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchPredictionCreateWithoutMatchInput = {
@@ -14558,7 +16072,6 @@ export namespace Prisma {
 
   export type MatchPredictionCreateManyMatchInputEnvelope = {
     data: MatchPredictionCreateManyMatchInput | MatchPredictionCreateManyMatchInput[]
-    skipDuplicates?: boolean
   }
 
   export type MatchWinnerRevealSeenCreateWithoutMatchInput = {
@@ -14582,7 +16095,6 @@ export namespace Prisma {
 
   export type MatchWinnerRevealSeenCreateManyMatchInputEnvelope = {
     data: MatchWinnerRevealSeenCreateManyMatchInput | MatchWinnerRevealSeenCreateManyMatchInput[]
-    skipDuplicates?: boolean
   }
 
   export type MatchPredictionUpsertWithWhereUniqueWithoutMatchInput = {
@@ -14630,6 +16142,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchPredictionsInput = {
@@ -14645,6 +16158,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchPredictionsInput = {
@@ -14708,6 +16222,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchPredictionsInput = {
@@ -14721,6 +16236,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchPredictionsInput = {
@@ -14752,6 +16268,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -14767,6 +16284,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type MatchUpsertWithoutPredictionsInput = {
@@ -14842,6 +16360,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -14855,6 +16374,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutLeaderboardStateInput = {
@@ -14870,6 +16390,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutLeaderboardStateInput = {
@@ -14885,6 +16406,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutLeaderboardStateInput = {
@@ -14916,6 +16438,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutLeaderboardStateInput = {
@@ -14931,6 +16454,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutTournamentPredictionsInput = {
@@ -14946,6 +16470,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -14961,6 +16486,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -14979,6 +16505,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -14992,6 +16519,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -15023,6 +16551,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -15038,6 +16567,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutTournamentPredictionsInput = {
@@ -15062,6 +16592,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -15075,6 +16606,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutMatchWinnerRevealSeenInput = {
@@ -15090,6 +16622,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -15105,6 +16638,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -15123,6 +16657,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -15136,6 +16671,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -15212,6 +16748,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -15227,6 +16764,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -15251,6 +16789,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -15264,6 +16803,7 @@ export namespace Prisma {
     leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -15317,6 +16857,158 @@ export namespace Prisma {
     predictions?: MatchPredictionUncheckedUpdateManyWithoutMatchNestedInput
   }
 
+  export type LeagueCreateWithoutGroupStageRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutGroupStageRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutGroupStageRevealSeenInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutGroupStageRevealSeenInput, LeagueUncheckedCreateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type UserCreateWithoutGroupStageRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGroupStageRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGroupStageRevealSeenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGroupStageRevealSeenInput, UserUncheckedCreateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type LeagueUpsertWithoutGroupStageRevealSeenInput = {
+    update: XOR<LeagueUpdateWithoutGroupStageRevealSeenInput, LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput>
+    create: XOR<LeagueCreateWithoutGroupStageRevealSeenInput, LeagueUncheckedCreateWithoutGroupStageRevealSeenInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutGroupStageRevealSeenInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutGroupStageRevealSeenInput, LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type LeagueUpdateWithoutGroupStageRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type UserUpsertWithoutGroupStageRevealSeenInput = {
+    update: XOR<UserUpdateWithoutGroupStageRevealSeenInput, UserUncheckedUpdateWithoutGroupStageRevealSeenInput>
+    create: XOR<UserCreateWithoutGroupStageRevealSeenInput, UserUncheckedCreateWithoutGroupStageRevealSeenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutGroupStageRevealSeenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutGroupStageRevealSeenInput, UserUncheckedUpdateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type UserUpdateWithoutGroupStageRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGroupStageRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type LeagueMemberCreateManyUserInput = {
     id?: string
     leagueId: string
@@ -15356,6 +17048,12 @@ export namespace Prisma {
     id?: string
     leagueId: string
     matchId: number
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenCreateManyUserInput = {
+    id?: string
+    leagueId: string
     seenAt?: Date | string
   }
 
@@ -15485,6 +17183,24 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GroupStageRevealSeenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeagueMemberCreateManyLeagueInput = {
     id?: string
     userId: string
@@ -15524,6 +17240,12 @@ export namespace Prisma {
     id?: string
     userId: string
     matchId: number
+    seenAt?: Date | string
+  }
+
+  export type GroupStageRevealSeenCreateManyLeagueInput = {
+    id?: string
+    userId: string
     seenAt?: Date | string
   }
 
@@ -15650,6 +17372,24 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     matchId?: IntFieldUpdateOperationsInput | number
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupStageRevealSeenUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutGroupStageRevealSeenNestedInput
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

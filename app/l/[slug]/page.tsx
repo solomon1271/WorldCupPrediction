@@ -7,7 +7,7 @@ import { GroupStandings } from "@/components/GroupStandings";
 import { Header } from "@/components/Header";
 import { Leaderboard } from "@/components/Leaderboard";
 import { LeaderboardNote } from "@/components/LeaderboardNote";
-import { MatchWinnerRevealModal } from "@/components/MatchWinnerRevealModal";
+import { LeagueCelebrations } from "@/components/LeagueCelebrations";
 import { MatchesBoard } from "@/components/MatchesBoard";
 import { TournamentPicks } from "@/components/TournamentPicks";
 import { userHasAdminAccess } from "@/lib/auth/admin-email";
@@ -49,9 +49,10 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
 
   return (
     <main className="page-shell">
-      <MatchWinnerRevealModal
+      <LeagueCelebrations
         leagueSlug={league.slug}
-        announcements={dashboard.matchWinnerRevealAnnouncements}
+        matchAnnouncements={dashboard.matchWinnerRevealAnnouncements}
+        groupStageCelebration={dashboard.groupStageCelebration}
         predictionTimeZone={dashboard.predictionTimeZone}
       />
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />

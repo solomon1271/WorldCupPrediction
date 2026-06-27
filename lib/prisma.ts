@@ -64,7 +64,9 @@ function isPrismaClientReady(client: PrismaClient) {
     "league" in client &&
     Boolean(client.league) &&
     "matchWinnerRevealSeen" in client &&
-    Boolean(client.matchWinnerRevealSeen)
+    Boolean(client.matchWinnerRevealSeen) &&
+    "groupStageRevealSeen" in client &&
+    Boolean(client.groupStageRevealSeen)
   );
 }
 

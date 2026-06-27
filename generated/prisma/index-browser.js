@@ -114,9 +114,6 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
-  ReadUncommitted: 'ReadUncommitted',
-  ReadCommitted: 'ReadCommitted',
-  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -213,14 +210,16 @@ exports.Prisma.MatchWinnerRevealSeenScalarFieldEnum = {
   seenAt: 'seenAt'
 };
 
+exports.Prisma.GroupStageRevealSeenScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  seenAt: 'seenAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -237,7 +236,8 @@ exports.Prisma.ModelName = {
   MatchPrediction: 'MatchPrediction',
   LeaderboardState: 'LeaderboardState',
   TournamentPrediction: 'TournamentPrediction',
-  MatchWinnerRevealSeen: 'MatchWinnerRevealSeen'
+  MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
+  GroupStageRevealSeen: 'GroupStageRevealSeen'
 };
 
 /**
