@@ -1,4 +1,5 @@
-const PLACEHOLDER_TEAM_PATTERN = /winner|runner up|loser|3rd group|match \d+/i;
+import { isKnockoutStage } from "@/lib/match-presentation";
+import { isPlaceholderTeam } from "@/lib/placeholder-team";
 
 export type TeamShowcase = {
   team: string;
@@ -59,7 +60,7 @@ const TEAM_SHOWCASE: Record<string, TeamShowcase> = {
 };
 
 export function isShowcaseTeam(team: string) {
-  return team.trim().length > 0 && !PLACEHOLDER_TEAM_PATTERN.test(team);
+  return team.trim().length > 0 && !isPlaceholderTeam(team);
 }
 
 export function getTeamShowcase(team: string): TeamShowcase | null {
@@ -85,4 +86,22 @@ export function getPlayerImageUrl(countryCode: string) {
 
 export function canShowMatchShowcase(homeTeam: string, awayTeam: string) {
   return Boolean(getTeamShowcase(homeTeam) && getTeamShowcase(awayTeam));
+}
+
+export type MatchShowcaseMode = "full" | "tbd" | false;
+
+export function getMatchShowcaseMode(stage: string, homeTeam: string, awayTeam: string): MatchShowcaseMode {
+  if (canShowMatchShowcase(homeTeam, awayTeam)) {
+    return "full";
+  }
+
+  if (!isKnockoutStage(stage)) {
+    return false;
+  }
+
+  if (isPlaceholderTeam(homeTeam) || isPlaceholderTeam(awayTeam) || isShowcaseTeam(homeTeam) || isShowcaseTeam(awayTeam)) {
+    return "tbd";
+  }
+
+  return false;
 }

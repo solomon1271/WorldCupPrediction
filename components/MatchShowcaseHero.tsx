@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { MatchShowcaseTicket } from "@/components/MatchShowcaseTicket";
+import { parsePlaceholderTeam, type PlaceholderTeamMeta } from "@/lib/placeholder-team";
 import { getFlagImageUrl, getPlayerImageUrl, getTeamShowcase } from "@/lib/team-showcase";
 
 type MatchShowcaseHeroProps = {
@@ -67,6 +68,65 @@ function ShowcaseSide({
   );
 }
 
+function TbdShowcaseSide({
+  meta,
+  side
+}: {
+  meta: PlaceholderTeamMeta;
+  side: "home" | "away";
+}) {
+  return (
+    <div
+      className={`match-showcase__side match-showcase__side--tbd match-showcase__side--${side}`}
+      style={
+        {
+          "--team-accent": meta.accent
+        } as React.CSSProperties & Record<string, string>
+      }
+    >
+      <div className="match-showcase__tbd-backdrop" aria-hidden="true">
+        <div className="match-showcase__tbd-bracket" />
+        <div className="match-showcase__tbd-glow" />
+      </div>
+
+      {meta.groups.length > 0 ? (
+        <div className="match-showcase__tbd-chips" aria-hidden="true">
+          {meta.groups.map((group) => (
+            <span key={group} className="match-showcase__tbd-chip">
+              {group}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <span className="match-showcase__tbd-mark" aria-hidden="true">
+          ?
+        </span>
+      )}
+
+      <div className="match-showcase__side-copy">
+        <span className="match-showcase__team">{meta.headline}</span>
+        <strong className="match-showcase__player-name">{meta.sublabel}</strong>
+      </div>
+    </div>
+  );
+}
+
+function MatchShowcaseSide({
+  team,
+  side
+}: {
+  team: string;
+  side: "home" | "away";
+}) {
+  const placeholder = parsePlaceholderTeam(team);
+
+  if (placeholder) {
+    return <TbdShowcaseSide meta={placeholder} side={side} />;
+  }
+
+  return <ShowcaseSide team={team} side={side} />;
+}
+
 export function MatchShowcaseHero({
   homeTeam,
   awayTeam,
@@ -81,11 +141,15 @@ export function MatchShowcaseHero({
   urgencyNote,
   isOpen
 }: MatchShowcaseHeroProps) {
+  const hasTbdSide = Boolean(parsePlaceholderTeam(homeTeam) || parsePlaceholderTeam(awayTeam));
+
   return (
-    <div className={`match-showcase${isOpen ? " match-showcase--open" : ""}`}>
+    <div
+      className={`match-showcase${isOpen ? " match-showcase--open" : ""}${hasTbdSide ? " match-showcase--tbd" : ""}`}
+    >
       <div className="match-showcase__arena" aria-hidden="true" />
-      <ShowcaseSide team={homeTeam} side="home" />
-      <ShowcaseSide team={awayTeam} side="away" />
+      <MatchShowcaseSide team={homeTeam} side="home" />
+      <MatchShowcaseSide team={awayTeam} side="away" />
 
       <div className="match-showcase__center">
         <MatchShowcaseTicket

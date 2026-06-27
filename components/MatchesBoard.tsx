@@ -8,7 +8,7 @@ import { MatchShowcaseHero } from "@/components/MatchShowcaseHero";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
 import { getMatchUrgency, MatchUrgency, sortMatchesByKickoffAsc } from "@/lib/match-urgency";
-import { canShowMatchShowcase } from "@/lib/team-showcase";
+import { getMatchShowcaseMode } from "@/lib/team-showcase";
 import { formatKickoff } from "@/lib/utils";
 
 type MatchesBoardProps = {
@@ -125,7 +125,8 @@ function MatchCard({
   const isLocked = match.locked && !isFinished;
   const isOpen = !isFinished && !isLocked;
   const statusLabel = getStatusLabel(isFinished, isLocked, Boolean(prediction), match.urgency);
-  const hasShowcase = canShowMatchShowcase(match.homeTeam, match.awayTeam);
+  const showcaseMode = getMatchShowcaseMode(match.stage, match.homeTeam, match.awayTeam);
+  const hasShowcase = showcaseMode !== false;
   const urgencyNote =
     match.urgency === "today-needs-pick"
       ? "Needs your pick"
@@ -134,7 +135,7 @@ function MatchCard({
         : null;
   const cardClassName = [
     "match-card",
-    hasShowcase ? "match-card--showcase" : "",
+    hasShowcase ? (showcaseMode === "tbd" ? "match-card--tbd-showcase" : "match-card--showcase") : "",
     isFinished ? "match-card--finished" : "",
     isLocked ? "match-card--locked" : "",
     match.urgency === "today-needs-pick" ? "match-card--urgent" : "",

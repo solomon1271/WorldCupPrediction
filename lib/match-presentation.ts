@@ -5,6 +5,10 @@ export type MatchStageMeta =
   | { kind: "knockout"; label: string; shortLabel: string }
   | { kind: "other"; label: string };
 
+export function isKnockoutStage(stage: string) {
+  return !/^Group\s+[A-L]$/i.test(stage.trim());
+}
+
 export function parseMatchStage(stage: string): MatchStageMeta {
   const groupMatch = stage.match(/^Group\s+([A-L])$/i);
 
@@ -14,6 +18,10 @@ export function parseMatchStage(stage: string): MatchStageMeta {
       groupLetter: groupMatch[1].toUpperCase(),
       label: stage
     };
+  }
+
+  if (/round of 32/i.test(stage)) {
+    return { kind: "knockout", label: stage, shortLabel: "Round of 32" };
   }
 
   if (/round of 16/i.test(stage)) {
