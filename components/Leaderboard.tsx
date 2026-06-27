@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { LeaderboardPlayerDetail } from "@/components/LeaderboardPlayerDetail";
 import { MomentumBadge } from "@/components/MomentumBadge";
 import { DashboardStanding } from "@/lib/dashboard";
@@ -47,10 +48,12 @@ export function Leaderboard({ leagueSlug, standings }: LeaderboardProps) {
   return (
     <>
       <section id="leaderboard" className="section">
-        <div className="section__heading">
-          <p className="eyebrow">Standings</p>
-          <p className="section__copy">Click any player name to view their picks and how they earned their points.</p>
-        </div>
+        <SectionStoryHeader
+          tone="leaderboard"
+          eyebrow="Chase the crown"
+          title="League leaderboard"
+          copy="Click any player name to view their picks and how they earned their points."
+        />
         <div className="table-shell">
           <table>
             <thead>

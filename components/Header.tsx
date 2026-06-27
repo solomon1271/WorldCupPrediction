@@ -141,18 +141,16 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
 
   return (
     <header className="hero" id="top">
-      <div className="hero__topbar">
-        <div className="hero__badge">{league?.name || "World Cup Prediction"}</div>
+      <div className="hero__bar">
+        <div className="hero__brand">
+          <h1>{league?.name || "World Cup Prediction"}</h1>
+          <p className="hero__subtitle">{league?.subtitle || "2026 World Cup Challenge"}</p>
+        </div>
         <div className="hero__account">
           <span className="hero__account-name">{firstName}</span>
           <a className="ghost-button ghost-button--link" href="/logout">
             Sign out
           </a>
-        </div>
-      </div>
-      <div className="hero__content">
-        <div>
-          <p className="eyebrow">{league?.subtitle || "2026 World Cup Challenge"}</p>
         </div>
       </div>
       <nav className="nav" aria-label="Main">

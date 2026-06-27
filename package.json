@@ -32,6 +32,8 @@
     "matches:maintain": "tsx scripts/run-match-maintenance.ts",
     "matches:maintain:daily": "tsx scripts/daily-maintain.ts",
     "league:create": "tsx scripts/create-league.ts",
+    "flags:download": "tsx scripts/download-team-flags.ts",
+    "players:download": "tsx scripts/download-team-player-images.ts",
     "db:backfill-leagues": "tsx scripts/backfill-local-leagues.ts",
     "vercel-build": "npm run db:generate:prod && PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=1 npm run db:deploy:prod && npm run build"
   },
@@ -49,6 +51,7 @@
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "prisma": "^6.17.1",
+    "sharp": "^0.34.3",
     "tsx": "^4.21.0",
     "typescript": "5.8.3"
   }

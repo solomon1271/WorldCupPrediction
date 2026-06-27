@@ -4,8 +4,11 @@ import { useMemo, useState } from "react";
 
 import { MatchPredictionForm } from "@/components/MatchPredictionForm";
 import { MatchScoreBreakdown } from "@/components/MatchScoreBreakdown";
+import { MatchShowcaseHero } from "@/components/MatchShowcaseHero";
+import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
 import { getMatchUrgency, MatchUrgency, sortMatchesByKickoffAsc } from "@/lib/match-urgency";
+import { canShowMatchShowcase } from "@/lib/team-showcase";
 import { formatKickoff } from "@/lib/utils";
 
 type MatchesBoardProps = {
@@ -122,8 +125,16 @@ function MatchCard({
   const isLocked = match.locked && !isFinished;
   const isOpen = !isFinished && !isLocked;
   const statusLabel = getStatusLabel(isFinished, isLocked, Boolean(prediction), match.urgency);
+  const hasShowcase = canShowMatchShowcase(match.homeTeam, match.awayTeam);
+  const urgencyNote =
+    match.urgency === "today-needs-pick"
+      ? "Needs your pick"
+      : match.urgency === "today-ready"
+        ? "Saved · tap to edit"
+        : null;
   const cardClassName = [
     "match-card",
+    hasShowcase ? "match-card--showcase" : "",
     isFinished ? "match-card--finished" : "",
     isLocked ? "match-card--locked" : "",
     match.urgency === "today-needs-pick" ? "match-card--urgent" : "",
@@ -141,28 +152,47 @@ function MatchCard({
         onToggle(event.currentTarget.open ? match.id : null);
       }}
     >
-      <summary className="match-card__summary">
-        <div className="match-card__summary-main">
-          <strong>
-            {match.homeTeam} vs {match.awayTeam}
-          </strong>
-          <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
-          {match.urgency === "today-needs-pick" ? (
-            <span className="match-card__summary-note match-card__summary-note--urgent">Needs your pick</span>
-          ) : null}
-          {match.urgency === "today-ready" ? (
-            <span className="match-card__summary-note match-card__summary-note--ready">Saved · tap to edit</span>
-          ) : null}
-          {isFinished && match.finalScore ? (
-            <span className="match-card__summary-result">
-              Final: {match.finalScore.home} - {match.finalScore.away}
-            </span>
-          ) : null}
-        </div>
-        <div className="match-card__summary-side">
-          <span>{match.stage}</span>
-          <span className={`match-card__badge ${getBadgeClass(statusLabel, match.urgency)}`}>{statusLabel}</span>
-        </div>
+      <summary className={`match-card__summary${hasShowcase ? " match-card__summary--showcase" : ""}`}>
+        {hasShowcase ? (
+          <MatchShowcaseHero
+            homeTeam={match.homeTeam}
+            awayTeam={match.awayTeam}
+            kickoff={match.kickoff}
+            stage={match.stage}
+            venue={match.venue}
+            predictionTimeZone={predictionTimeZone}
+            statusLabel={statusLabel}
+            badgeClass={getBadgeClass(statusLabel, match.urgency)}
+            isFinished={isFinished}
+            finalScore={match.finalScore}
+            urgencyNote={urgencyNote}
+            isOpen={expandedMatchId === match.id}
+          />
+        ) : (
+          <>
+            <div className="match-card__summary-main">
+              <strong>
+                {match.homeTeam} vs {match.awayTeam}
+              </strong>
+              <span>{formatKickoff(match.kickoff, predictionTimeZone)}</span>
+              {match.urgency === "today-needs-pick" ? (
+                <span className="match-card__summary-note match-card__summary-note--urgent">Needs your pick</span>
+              ) : null}
+              {match.urgency === "today-ready" ? (
+                <span className="match-card__summary-note match-card__summary-note--ready">Saved · tap to edit</span>
+              ) : null}
+              {isFinished && match.finalScore ? (
+                <span className="match-card__summary-result">
+                  Final: {match.finalScore.home} - {match.finalScore.away}
+                </span>
+              ) : null}
+            </div>
+            <div className="match-card__summary-side">
+              <span>{match.stage}</span>
+              <span className={`match-card__badge ${getBadgeClass(statusLabel, match.urgency)}`}>{statusLabel}</span>
+            </div>
+          </>
+        )}
       </summary>
 
       <div className="match-card__body">
@@ -271,10 +301,12 @@ export function MatchesBoard({
 
   return (
     <section id="matches" className="section">
-      <div className="section__heading">
-        <p className="eyebrow">Fixtures + Picks</p>
-        <h2>Matches</h2>
-      </div>
+      <SectionStoryHeader
+        tone="fixtures"
+        eyebrow="Group stage to final"
+        title="Every match, every pick"
+        copy={`Tap a fixture to open your prediction card. Locks ${lockLeadMinutes} minutes before kickoff.`}
+      />
 
       <div className="match-tabs" role="tablist" aria-label="Match lists">
         <button

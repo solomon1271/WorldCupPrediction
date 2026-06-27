@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { DashboardTournamentPrediction } from "@/lib/dashboard";
 import { TournamentPredictionForm } from "@/components/TournamentPredictionForm";
 import { TOURNAMENT_AWARD_POINTS } from "@/lib/tournament-scoring";
@@ -36,8 +37,7 @@ export function TournamentPicks({ leagueSlug, prediction, locked, lockLabel }: T
 
   return (
     <section id="tournament-picks" className={`section${locked ? " section--tournament-locked" : ""}`}>
-      <div className="section__heading">
-        <p className="eyebrow">Beyond Single Matches</p>
+      <SectionStoryHeader tone="tournament" eyebrow="Awards & destiny" title="Your tournament story">
         {locked ? (
           <div className="tournament-deadline-banner tournament-deadline-banner--locked" role="note">
             <span className="tournament-deadline-banner__mark" aria-hidden="true">
@@ -84,7 +84,7 @@ export function TournamentPicks({ leagueSlug, prediction, locked, lockLabel }: T
             )}
           </>
         )}
-      </div>
+      </SectionStoryHeader>
       <div className={`card-grid card-grid--wide${locked ? " card-grid--single" : ""}`}>
         <article className="card card--feature">
           <span className="card__label">Top picks</span>

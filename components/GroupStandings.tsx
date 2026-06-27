@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 
+import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { GroupStandingTable } from "@/lib/group-standings";
 
 type GroupStandingsProps = {
@@ -59,14 +60,12 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
 
   return (
     <section id="group-standings" className="section">
-      <div className="section__heading">
-        <p className="eyebrow">Tournament tables</p>
-        <h2>Group standings</h2>
-        <p className="section__copy">
-          Live tables built from official results in this app. Top two advance; third place may qualify as a best
-          third-place team.
-        </p>
-      </div>
+      <SectionStoryHeader
+        tone="groups"
+        eyebrow="Road to the knockouts"
+        title="Group standings"
+        copy="Live tables built from official results in this app. Top two advance; third place may qualify as a best third-place team."
+      />
 
       <div className="group-tabs" role="tablist" aria-label="World Cup groups">
         {tables.map((table) => (
