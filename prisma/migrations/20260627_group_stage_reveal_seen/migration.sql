@@ -2,7 +2,7 @@ CREATE TABLE "GroupStageRevealSeen" (
     "id" TEXT NOT NULL,
     "leagueId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "seenAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "seenAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "GroupStageRevealSeen_pkey" PRIMARY KEY ("id")
 );
