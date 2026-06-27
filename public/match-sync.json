@@ -828,7 +828,12 @@
       "venue": "BC Place, Vancouver",
       "homeTeam": "New Zealand",
       "awayTeam": "Belgium",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 5,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 61,
@@ -860,7 +865,12 @@
       "venue": "Lumen Field, Seattle",
       "homeTeam": "Egypt",
       "awayTeam": "Iran",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 7,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 64,
