@@ -63,6 +63,53 @@ function zonedLocalToUtc(
   return new Date(utcGuess);
 }
 
+function weekdayFromYmd(year: number, month: number, day: number) {
+  const monthAdjustments = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4];
+  let adjustedYear = year;
+
+  if (month < 3) {
+    adjustedYear -= 1;
+  }
+
+  return (
+    (adjustedYear +
+      Math.floor(adjustedYear / 4) -
+      Math.floor(adjustedYear / 100) +
+      Math.floor(adjustedYear / 400) +
+      monthAdjustments[month - 1] +
+      day) %
+    7
+  );
+}
+
+const WEEKDAY_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
+const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
+
+function formatHour12(hour: number, minute: number) {
+  const normalizedHour = hour % 24;
+  const period = normalizedHour >= 12 ? "PM" : "AM";
+  const hour12 = normalizedHour % 12 || 12;
+
+  return `${hour12}:${String(minute).padStart(2, "0")} ${period}`;
+}
+
+export function formatKickoffPartsInTimeZone(kickoff: string | Date, timeZone: string) {
+  const date = typeof kickoff === "string" ? new Date(kickoff) : kickoff;
+  const { year, month, day, hour, minute } = getZonedParts(date, timeZone);
+  const weekday = WEEKDAY_SHORT[weekdayFromYmd(year, month, day)];
+
+  return {
+    dateLine: `${weekday}, ${MONTH_SHORT[month - 1]} ${day}`,
+    timeLine: formatHour12(hour, minute)
+  };
+}
+
+export function formatKickoffInTimeZone(kickoff: string | Date, timeZone: string) {
+  const { dateLine, timeLine } = formatKickoffPartsInTimeZone(kickoff, timeZone);
+
+  return `${dateLine}, ${timeLine}`;
+}
+
 export function getZonedDayBounds(timeZone: string, referenceDate = new Date()) {
   const { year, month, day } = getZonedParts(referenceDate, timeZone);
   const dateLabel = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;

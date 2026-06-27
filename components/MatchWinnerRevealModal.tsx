@@ -8,6 +8,7 @@ import { formatKickoff } from "@/lib/utils";
 type MatchWinnerRevealModalProps = {
   leagueSlug: string;
   announcements: MatchWinnerRevealAnnouncement[];
+  predictionTimeZone: string;
 };
 
 function formatWinnerLabel(winners: MatchWinnerRevealAnnouncement["winners"]) {
@@ -18,7 +19,11 @@ function formatWinnerLabel(winners: MatchWinnerRevealAnnouncement["winners"]) {
   return winners.map((winner) => winner.displayName).join(" & ");
 }
 
-export function MatchWinnerRevealModal({ leagueSlug, announcements }: MatchWinnerRevealModalProps) {
+export function MatchWinnerRevealModal({
+  leagueSlug,
+  announcements,
+  predictionTimeZone
+}: MatchWinnerRevealModalProps) {
   const [queue, setQueue] = useState(announcements);
   const [pending, startTransition] = useTransition();
 
@@ -45,7 +50,7 @@ export function MatchWinnerRevealModal({ leagueSlug, announcements }: MatchWinne
           {current.homeTeam} {current.finalScore.home} - {current.finalScore.away} {current.awayTeam}
         </p>
         <p className="match-winner-reveal__meta">
-          {current.stage} · {formatKickoff(current.kickoff)}
+          {current.stage} · {formatKickoff(current.kickoff, predictionTimeZone)}
         </p>
 
         <div className="match-winner-reveal__hero">

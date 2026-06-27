@@ -52,6 +52,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
       <MatchWinnerRevealModal
         leagueSlug={league.slug}
         announcements={dashboard.matchWinnerRevealAnnouncements}
+        predictionTimeZone={dashboard.predictionTimeZone}
       />
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />
       <MatchesBoard

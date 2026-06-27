@@ -3,7 +3,11 @@ import { getZonedDayBounds } from "@/lib/timezone";
 export const DEFAULT_APP_TIMEZONE = "America/Chicago";
 
 export function getAppTimezone() {
-  return process.env.CRON_TIMEZONE?.trim() || DEFAULT_APP_TIMEZONE;
+  return (
+    process.env.NEXT_PUBLIC_CRON_TIMEZONE?.trim() ||
+    process.env.CRON_TIMEZONE?.trim() ||
+    DEFAULT_APP_TIMEZONE
+  );
 }
 
 export type MatchUrgency = "today-needs-pick" | "today-ready" | null;

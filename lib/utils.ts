@@ -1,14 +1,8 @@
+import { formatKickoffInTimeZone } from "@/lib/timezone";
 import { getAppTimezone } from "@/lib/match-urgency";
 
-export const formatKickoff = (kickoff: string, timeZone = getAppTimezone()) =>
-  new Intl.DateTimeFormat("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZone
-  }).format(new Date(kickoff));
+export const formatKickoff = (kickoff: string, timeZone?: string) =>
+  formatKickoffInTimeZone(kickoff, timeZone?.trim() || getAppTimezone());
 
 export type PlayerMomentum = "neutral" | "up" | "down";
 

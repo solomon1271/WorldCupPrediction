@@ -1,4 +1,4 @@
-import { getAppTimezone } from "@/lib/match-urgency";
+import { formatKickoffPartsInTimeZone } from "@/lib/timezone";
 
 export type MatchStageMeta =
   | { kind: "group"; groupLetter: string; label: string }
@@ -39,22 +39,8 @@ export function parseMatchStage(stage: string): MatchStageMeta {
   return { kind: "other", label: stage };
 }
 
-export function formatKickoffParts(kickoff: string, timeZone = getAppTimezone()) {
-  const date = new Date(kickoff);
-
-  return {
-    dateLine: new Intl.DateTimeFormat("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      timeZone
-    }).format(date),
-    timeLine: new Intl.DateTimeFormat("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone
-    }).format(date)
-  };
+export function formatKickoffParts(kickoff: string, timeZone: string) {
+  return formatKickoffPartsInTimeZone(kickoff, timeZone);
 }
 
 export function formatVenueShort(venue: string) {

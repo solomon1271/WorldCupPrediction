@@ -253,21 +253,23 @@ export function MatchesBoard({
   const [activeTab, setActiveTab] = useState<"upcoming" | "finished">("upcoming");
   const urgencyReferenceDate = new Date(referenceNow);
 
-  const matchesWithUrgency = useMemo(
-    () =>
-      matches.map((match) => ({
-        ...match,
-        urgency: getMatchUrgency({
-          kickoff: match.kickoff,
-          isLocked: match.locked,
-          isFinished: Boolean(match.finalScore),
-          hasPrediction: localPredictions.some((item) => item.matchId === match.id),
-          timeZone: predictionTimeZone,
-          referenceDate: urgencyReferenceDate
-        })
-      })),
-    [localPredictions, matches, predictionTimeZone, urgencyReferenceDate]
-  );
+  const matchesWithUrgency = useMemo(() => {
+    if (localPredictions === predictions) {
+      return matches;
+    }
+
+    return matches.map((match) => ({
+      ...match,
+      urgency: getMatchUrgency({
+        kickoff: match.kickoff,
+        isLocked: match.locked,
+        isFinished: Boolean(match.finalScore),
+        hasPrediction: localPredictions.some((item) => item.matchId === match.id),
+        timeZone: predictionTimeZone,
+        referenceDate: urgencyReferenceDate
+      })
+    }));
+  }, [localPredictions, matches, predictions, predictionTimeZone, urgencyReferenceDate]);
 
   const upcomingMatches = useMemo(
     () => sortMatchesByKickoffAsc(matchesWithUrgency.filter((match) => !match.finalScore)),
@@ -301,6 +303,7 @@ export function MatchesBoard({
 
   return (
     <section id="matches" className="section section--matches">
+      <div className="section__trophy-glow" aria-hidden="true" />
       <img
         alt=""
         aria-hidden="true"

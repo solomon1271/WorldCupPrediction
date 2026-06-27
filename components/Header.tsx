@@ -143,6 +143,7 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
     <header className="hero" id="top">
       <div className="hero__backdrop" aria-hidden="true" />
       <div className="hero__scrim" aria-hidden="true" />
+      <div className="hero__trophy-glow" aria-hidden="true" />
       <img
         alt=""
         aria-hidden="true"
