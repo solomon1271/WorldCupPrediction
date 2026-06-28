@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useId, useState } from "react";
+
 import { LeagueBranding } from "@/lib/league-types";
 
 type HeaderProps = {
@@ -113,6 +117,8 @@ function NavIcon({ tone }: { tone: NavTone }) {
 }
 
 export function Header({ currentUserName, isAdmin = false, league, variant = "home" }: HeaderProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navId = useId();
   const firstName = currentUserName.trim().split(/\s+/)[0] || "Player";
   const leagueHome = league ? `/l/${league.slug}` : "/leagues";
   const leagueHelp = league ? `/l/${league.slug}/help` : "/help";
@@ -139,8 +145,26 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
             { label: "Help", href: leagueHelp, tone: "help" }
           ];
 
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="hero" id="top">
+    <header className={`hero${menuOpen ? " hero--menu-open" : ""}`} id="top">
       <div className="hero__backdrop" aria-hidden="true" />
       <div className="hero__scrim" aria-hidden="true" />
 
@@ -152,18 +176,39 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
           </div>
           <p className="hero__subtitle">{league?.subtitle || "2026 World Cup Challenge"}</p>
         </div>
-        <div className="hero__account">
-          <span className="hero__account-name">{firstName}</span>
-          <a className="ghost-button ghost-button--link hero__signout" href="/logout">
-            Sign out
-          </a>
+        <div className="hero__bar-actions">
+          <button
+            type="button"
+            className={`hero__menu-toggle${menuOpen ? " hero__menu-toggle--open" : ""}`}
+            aria-expanded={menuOpen}
+            aria-controls={navId}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="hero__menu-toggle-bars" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="hero__menu-toggle-label">{menuOpen ? "Close" : "Menu"}</span>
+          </button>
+          <div className="hero__account">
+            <span className="hero__account-name">{firstName}</span>
+            <a className="ghost-button ghost-button--link hero__signout" href="/logout">
+              Sign out
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="hero__nav-shell">
-        <nav className="nav" aria-label="Main">
+      <div className={`hero__nav-shell${menuOpen ? " hero__nav-shell--open" : ""}`}>
+        <nav className="nav" id={navId} aria-label="Main">
           {navItems.map((item) => (
-            <a className={`nav-link nav-link--${item.tone}`} href={item.href} key={item.label}>
+            <a
+              className={`nav-link nav-link--${item.tone}`}
+              href={item.href}
+              key={item.label}
+              onClick={() => setMenuOpen(false)}
+            >
               <NavIcon tone={item.tone} />
               <span>{item.label}</span>
             </a>
