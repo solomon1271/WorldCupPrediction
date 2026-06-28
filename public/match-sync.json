@@ -1010,7 +1010,12 @@
       "venue": "Los Angeles Stadium, Los Angeles",
       "homeTeam": "South Africa",
       "awayTeam": "Canada",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 1,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 74,
