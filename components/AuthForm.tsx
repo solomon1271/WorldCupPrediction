@@ -17,7 +17,8 @@ export function AuthForm({ mode, league }: AuthFormProps) {
   const redirectPath = league ? `/l/${league.slug}` : "/";
 
   return (
-    <section className="auth-shell">
+    <section className={mode === "login" ? "auth-shell auth-shell--login" : "auth-shell"}>
+      {mode === "login" ? <div className="auth-shell__logo" aria-hidden="true" /> : null}
       <div className="auth-card">
         <p className="eyebrow">{mode === "login" ? "Welcome back" : "Private league access"}</p>
         <h1>{mode === "login" ? leagueName : `Create your account for ${leagueName}`}</h1>
