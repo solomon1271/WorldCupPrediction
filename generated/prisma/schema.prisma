@@ -24,20 +24,21 @@ model User {
 }
 
 model League {
-  id                    String                  @id @default(cuid())
-  slug                  String                  @unique
-  name                  String
-  inviteCode            String                  @unique
-  subtitle              String                  @default("2026 World Cup Challenge")
-  officialAwardsJson    String                  @default("{}")
-  createdAt             DateTime                @default(now())
-  updatedAt             DateTime                @updatedAt
-  members               LeagueMember[]
-  matchPredictions      MatchPrediction[]
-  tournamentPredictions TournamentPrediction[]
-  leaderboardState      LeaderboardState?
-  matchWinnerRevealSeen MatchWinnerRevealSeen[]
-  groupStageRevealSeen  GroupStageRevealSeen[]
+  id                       String                    @id @default(cuid())
+  slug                     String                    @unique
+  name                     String
+  inviteCode               String                    @unique
+  subtitle                 String                    @default("2026 World Cup Challenge")
+  officialAwardsJson       String                    @default("{}")
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+  members                  LeagueMember[]
+  matchPredictions         MatchPrediction[]
+  tournamentPredictions    TournamentPrediction[]
+  leaderboardState         LeaderboardState?
+  knockoutLeaderboardState KnockoutLeaderboardState?
+  matchWinnerRevealSeen    MatchWinnerRevealSeen[]
+  groupStageRevealSeen     GroupStageRevealSeen[]
 }
 
 model LeagueMember {
@@ -95,6 +96,14 @@ model MatchPrediction {
 }
 
 model LeaderboardState {
+  leagueId          String   @id
+  ranksJson         String   @default("{}")
+  previousRanksJson String   @default("{}")
+  updatedAt         DateTime @updatedAt
+  league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+}
+
+model KnockoutLeaderboardState {
   leagueId          String   @id
   ranksJson         String   @default("{}")
   previousRanksJson String   @default("{}")

@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
-import { GroupStandingTable } from "@/lib/group-standings";
+import { getGroupQualificationLabel, getGroupStandingsRowClassName } from "@/lib/group-standings-presentation";
+import type { GroupStandingTable } from "@/lib/group-standings-types";
 
 type GroupStandingsProps = {
   tables: GroupStandingTable[];
@@ -31,21 +32,6 @@ function getDefaultGroup(tables: GroupStandingTable[]) {
   return mostActive.group;
 }
 
-function getRowClassName(rank: number) {
-  switch (rank) {
-    case 1:
-      return "group-standings-table__row--first";
-    case 2:
-      return "group-standings-table__row--second";
-    case 3:
-      return "group-standings-table__row--third";
-    case 4:
-      return "group-standings-table__row--fourth";
-    default:
-      return undefined;
-  }
-}
-
 export function GroupStandings({ tables }: GroupStandingsProps) {
   const [activeGroup, setActiveGroup] = useState(() => getDefaultGroup(tables));
 
@@ -64,7 +50,7 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
         tone="groups"
         eyebrow="Road to the knockouts"
         title="Group standings"
-        copy="Live tables built from official results in this app. Top two advance; third place may qualify as a best third-place team."
+        copy="Top two advance automatically. The best eight third-place teams join them — everyone else goes home."
       />
 
       <div className="group-tabs" role="tablist" aria-label="World Cup groups">
@@ -108,9 +94,18 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
             </thead>
             <tbody>
               {activeTable.rows.map((row) => (
-                <tr key={row.team} className={getRowClassName(row.rank)}>
+                <tr key={row.team} className={getGroupStandingsRowClassName(row.qualificationStatus)}>
                   <td>{row.rank}</td>
-                  <th scope="row">{row.team}</th>
+                  <th scope="row">
+                    <span className="group-standings-team">
+                      <span>{row.team}</span>
+                      <span
+                        className={`group-standings-tag group-standings-tag--${row.qualificationStatus}`}
+                      >
+                        {getGroupQualificationLabel(row.qualificationStatus)}
+                      </span>
+                    </span>
+                  </th>
                   <td>{row.played}</td>
                   <td>{row.won}</td>
                   <td>{row.drawn}</td>
@@ -128,10 +123,18 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
         </div>
 
         <div className="group-standings-legend" aria-hidden="true">
-          <span className="group-standings-legend__item group-standings-legend__item--first">1st — through as group winner</span>
-          <span className="group-standings-legend__item group-standings-legend__item--second">2nd — through in second</span>
-          <span className="group-standings-legend__item group-standings-legend__item--third">3rd — best third-place hope</span>
-          <span className="group-standings-legend__item group-standings-legend__item--fourth">4th — likely out</span>
+          <span className="group-standings-legend__item group-standings-legend__item--through">
+            1st &amp; 2nd — through automatically
+          </span>
+          <span className="group-standings-legend__item group-standings-legend__item--lucky-third">
+            Best 3rd — lucky qualifier
+          </span>
+          <span className="group-standings-legend__item group-standings-legend__item--third-hope">
+            3rd hunt — still chasing a best-third spot
+          </span>
+          <span className="group-standings-legend__item group-standings-legend__item--eliminated">
+            Out — eliminated
+          </span>
         </div>
       </div>
 

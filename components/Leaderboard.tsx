@@ -3,10 +3,9 @@
 import { useMemo, useState } from "react";
 
 import { LeaderboardPlayerDetail } from "@/components/LeaderboardPlayerDetail";
-import { LeaderboardPodium } from "@/components/LeaderboardPodium";
 import { MomentumBadge } from "@/components/MomentumBadge";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
-import { DashboardStanding } from "@/lib/dashboard";
+import type { DashboardStanding } from "@/lib/dashboard";
 import {
   buildChaseMessage,
   getLeaderboardRankZone,
@@ -15,11 +14,15 @@ import {
   getPlayerInitials,
   getVisibleLeaderboardZones,
 } from "@/lib/leaderboard-presentation";
+import type { PlayerStandingScope } from "@/lib/player-standing";
 import { formatRankChangeLabel } from "@/lib/utils";
+
+type LeaderboardTab = "knockout" | "group-stage";
 
 type LeaderboardProps = {
   leagueSlug: string;
-  standings: DashboardStanding[];
+  knockoutStandings: DashboardStanding[];
+  groupStageStandings: DashboardStanding[];
   currentUserId: string;
 };
 
@@ -77,17 +80,45 @@ function LeaderboardZoneLegend({ totalPlayers }: { totalPlayers: number }) {
   );
 }
 
-export function Leaderboard({ leagueSlug, standings, currentUserId }: LeaderboardProps) {
+const tabCopy: Record<
+  LeaderboardTab,
+  { eyebrow: string; title: string; copy: string; chip: string }
+> = {
+  knockout: {
+    eyebrow: "Knockout reset",
+    title: "Knockout leaderboard",
+    copy: "Everyone starts at zero from match 73. Only Round of 32 picks and beyond count here.",
+    chip: "From match 73"
+  },
+  "group-stage": {
+    eyebrow: "Historical",
+    title: "Group stage leaderboard",
+    copy: "Final group-stage standings frozen in history. Top picks and matches 1–72 are included here.",
+    chip: "Matches 1–72"
+  }
+};
+
+export function Leaderboard({
+  leagueSlug,
+  knockoutStandings,
+  groupStageStandings,
+  currentUserId
+}: LeaderboardProps) {
+  const [activeTab, setActiveTab] = useState<LeaderboardTab>("knockout");
   const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
 
+  const standings = activeTab === "knockout" ? knockoutStandings : groupStageStandings;
+  const standingScope: PlayerStandingScope = activeTab;
+  const copy = tabCopy[activeTab];
+
   const leader = standings[0];
-  const maxPoints = leader?.totalPoints ?? 1;
+  const maxPoints = Math.max(leader?.totalPoints ?? 0, 1);
   const currentUserStanding = useMemo(
     () => standings.find((entry) => entry.id === currentUserId),
     [currentUserId, standings]
   );
   const chaseMessage = currentUserStanding
-    ? buildChaseMessage(currentUserStanding, leader, standings.length)
+    ? buildChaseMessage(currentUserStanding, leader, standings.length, activeTab)
     : null;
   const currentUserZone = currentUserStanding
     ? getLeaderboardRankZone(currentUserStanding.rank, standings.length)
@@ -102,19 +133,17 @@ export function Leaderboard({ leagueSlug, standings, currentUserId }: Leaderboar
       <section id="leaderboard" className="section section--leaderboard">
         <SectionStoryHeader
           tone="leaderboard"
-          eyebrow="Step into the spotlight"
-          title="League leaderboard"
-          copy="Tap any manager to peek at their picks, bonus hits, and the points behind every climb."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          copy={copy.copy}
         >
           <div className="leaderboard-ribbon">
             <span className="leaderboard-ribbon__chip">
-              <strong>{standings.length}</strong> managers racing
+              <strong>{standings.length}</strong> managers
             </span>
-            {leader ? (
-              <span className="leaderboard-ribbon__chip leaderboard-ribbon__chip--leader">
-                Crown pace <strong>{leader.totalPoints}</strong> pts
-              </span>
-            ) : null}
+            <span className="leaderboard-ribbon__chip leaderboard-ribbon__chip--leader">
+              {copy.chip}
+            </span>
             {currentUserStanding ? (
               <span
                 className={`leaderboard-ribbon__chip leaderboard-ribbon__chip--you${currentUserZone ? ` leaderboard-ribbon__chip--${currentUserZone}` : ""}`}
@@ -125,11 +154,28 @@ export function Leaderboard({ leagueSlug, standings, currentUserId }: Leaderboar
           </div>
         </SectionStoryHeader>
 
-        <LeaderboardPodium
-          standings={standings}
-          currentUserId={currentUserId}
-          onSelectPlayer={openPlayer}
-        />
+        <div className="leaderboard-tabs" role="tablist" aria-label="Leaderboard views">
+          <button
+            className={`leaderboard-tabs__button leaderboard-tabs__button--knockout${activeTab === "knockout" ? " leaderboard-tabs__button--active" : ""}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "knockout"}
+            onClick={() => setActiveTab("knockout")}
+          >
+            Knockout
+            <span className="leaderboard-tabs__count">{knockoutStandings.length}</span>
+          </button>
+          <button
+            className={`leaderboard-tabs__button leaderboard-tabs__button--history${activeTab === "group-stage" ? " leaderboard-tabs__button--active" : ""}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "group-stage"}
+            onClick={() => setActiveTab("group-stage")}
+          >
+            Group stage
+            <span className="leaderboard-tabs__count">{groupStageStandings.length}</span>
+          </button>
+        </div>
 
         {chaseMessage ? (
           <div
@@ -243,6 +289,7 @@ export function Leaderboard({ leagueSlug, standings, currentUserId }: Leaderboar
         leagueSlug={leagueSlug}
         playerId={selectedPlayer?.id ?? null}
         playerName={selectedPlayer?.name ?? null}
+        scope={standingScope}
         onClose={() => setSelectedPlayer(null)}
       />
     </>

@@ -1,4 +1,4 @@
-import { buildLeagueLeaderboard } from "@/lib/leaderboard";
+import { buildGroupStageLeaderboard, buildKnockoutLeaderboard } from "@/lib/leaderboard";
 import {
   formatTodayLabel,
   formatTimezoneShortName,
@@ -149,8 +149,11 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   ]);
 
   const currentUser = currentMember?.user;
-  const leaderboard = await buildLeagueLeaderboard(leagueId);
-  const currentUserStanding = leaderboard.find((entry) => entry.id === currentUserId);
+  const [knockoutLeaderboard, groupStageLeaderboard] = await Promise.all([
+    buildKnockoutLeaderboard(leagueId),
+    buildGroupStageLeaderboard(leagueId)
+  ]);
+  const currentUserStanding = knockoutLeaderboard.find((entry) => entry.id === currentUserId);
   const referenceNow = new Date();
   const predictionTimeZone = getAppTimezone();
   const todayLabel = formatTodayLabel(predictionTimeZone, referenceNow);
@@ -240,14 +243,16 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
             : null
         };
       }) as DashboardMatchPrediction[],
-    leaderboard,
+    knockoutLeaderboard,
+    groupStageLeaderboard,
+    leaderboard: knockoutLeaderboard,
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     tournamentPicksLocked,
     tournamentPicksLockLabel,
     currentUserName: currentUser?.displayName || "Manager",
     trendSummary: currentUserStanding ? momentumLabel(currentUserStanding.trend) : "No change",
     totalMatches: matches.length,
-    totalPlayers: leaderboard.length,
+    totalPlayers: knockoutLeaderboard.length,
     todayLabel,
     timezoneShortName,
     predictionTimeZone,

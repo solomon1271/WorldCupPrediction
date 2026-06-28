@@ -12,7 +12,7 @@ type RouteContext = {
   params: Promise<{ slug: string; userId: string }>;
 };
 
-export async function GET(_request: Request, { params }: RouteContext) {
+export async function GET(request: Request, { params }: RouteContext) {
   const user = await getSessionUser();
 
   if (!user) {
@@ -59,13 +59,19 @@ export async function GET(_request: Request, { params }: RouteContext) {
     return NextResponse.json({ error: "Player not found in this league." }, { status: 404 });
   }
 
-  const detail = buildPlayerStandingDetail({
-    playerId: playerMember.user.id,
-    playerName: playerMember.user.displayName,
-    matchPredictions: playerMember.user.matchPredictions,
-    tournamentPrediction: playerMember.user.tournamentPredictions[0] || null,
-    officialAwards: parseOfficialAwards(league?.officialAwardsJson)
-  });
+  const scopeParam = new URL(request.url).searchParams.get("scope");
+  const scope = scopeParam === "group-stage" ? "group-stage" : "knockout";
+
+  const detail = buildPlayerStandingDetail(
+    {
+      playerId: playerMember.user.id,
+      playerName: playerMember.user.displayName,
+      matchPredictions: playerMember.user.matchPredictions,
+      tournamentPrediction: playerMember.user.tournamentPredictions[0] || null,
+      officialAwards: parseOfficialAwards(league?.officialAwardsJson)
+    },
+    { scope }
+  );
 
   return NextResponse.json(
     { ok: true, detail },

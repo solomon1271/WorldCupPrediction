@@ -36,6 +36,7 @@ model League {
   matchPredictions      MatchPrediction[]
   tournamentPredictions      TournamentPrediction[]
   leaderboardState           LeaderboardState?
+  knockoutLeaderboardState   KnockoutLeaderboardState?
   matchWinnerRevealSeen      MatchWinnerRevealSeen[]
   groupStageRevealSeen       GroupStageRevealSeen[]
 }
@@ -95,6 +96,14 @@ model MatchPrediction {
 }
 
 model LeaderboardState {
+  leagueId          String   @id
+  ranksJson         String   @default("{}")
+  previousRanksJson String   @default("{}")
+  updatedAt         DateTime @updatedAt
+  league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+}
+
+model KnockoutLeaderboardState {
   leagueId          String   @id
   ranksJson         String   @default("{}")
   previousRanksJson String   @default("{}")

@@ -44,6 +44,11 @@ export type MatchPrediction = $Result.DefaultSelection<Prisma.$MatchPredictionPa
  */
 export type LeaderboardState = $Result.DefaultSelection<Prisma.$LeaderboardStatePayload>
 /**
+ * Model KnockoutLeaderboardState
+ * 
+ */
+export type KnockoutLeaderboardState = $Result.DefaultSelection<Prisma.$KnockoutLeaderboardStatePayload>
+/**
  * Model TournamentPrediction
  * 
  */
@@ -236,6 +241,16 @@ export class PrismaClient<
     * ```
     */
   get leaderboardState(): Prisma.LeaderboardStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.knockoutLeaderboardState`: Exposes CRUD operations for the **KnockoutLeaderboardState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more KnockoutLeaderboardStates
+    * const knockoutLeaderboardStates = await prisma.knockoutLeaderboardState.findMany()
+    * ```
+    */
+  get knockoutLeaderboardState(): Prisma.KnockoutLeaderboardStateDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.tournamentPrediction`: Exposes CRUD operations for the **TournamentPrediction** model.
@@ -712,6 +727,7 @@ export namespace Prisma {
     Match: 'Match',
     MatchPrediction: 'MatchPrediction',
     LeaderboardState: 'LeaderboardState',
+    KnockoutLeaderboardState: 'KnockoutLeaderboardState',
     TournamentPrediction: 'TournamentPrediction',
     MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
     GroupStageRevealSeen: 'GroupStageRevealSeen'
@@ -733,7 +749,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen"
+      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "knockoutLeaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1181,6 +1197,80 @@ export namespace Prisma {
           }
         }
       }
+      KnockoutLeaderboardState: {
+        payload: Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>
+        fields: Prisma.KnockoutLeaderboardStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KnockoutLeaderboardStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KnockoutLeaderboardStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          findFirst: {
+            args: Prisma.KnockoutLeaderboardStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KnockoutLeaderboardStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          findMany: {
+            args: Prisma.KnockoutLeaderboardStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>[]
+          }
+          create: {
+            args: Prisma.KnockoutLeaderboardStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          createMany: {
+            args: Prisma.KnockoutLeaderboardStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.KnockoutLeaderboardStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>[]
+          }
+          delete: {
+            args: Prisma.KnockoutLeaderboardStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          update: {
+            args: Prisma.KnockoutLeaderboardStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.KnockoutLeaderboardStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KnockoutLeaderboardStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.KnockoutLeaderboardStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.KnockoutLeaderboardStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutLeaderboardStatePayload>
+          }
+          aggregate: {
+            args: Prisma.KnockoutLeaderboardStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKnockoutLeaderboardState>
+          }
+          groupBy: {
+            args: Prisma.KnockoutLeaderboardStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KnockoutLeaderboardStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KnockoutLeaderboardStateCountArgs<ExtArgs>
+            result: $Utils.Optional<KnockoutLeaderboardStateCountAggregateOutputType> | number
+          }
+        }
+      }
       TournamentPrediction: {
         payload: Prisma.$TournamentPredictionPayload<ExtArgs>
         fields: Prisma.TournamentPredictionFieldRefs
@@ -1505,6 +1595,7 @@ export namespace Prisma {
     match?: MatchOmit
     matchPrediction?: MatchPredictionOmit
     leaderboardState?: LeaderboardStateOmit
+    knockoutLeaderboardState?: KnockoutLeaderboardStateOmit
     tournamentPrediction?: TournamentPredictionOmit
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOmit
     groupStageRevealSeen?: GroupStageRevealSeenOmit
@@ -3159,6 +3250,7 @@ export namespace Prisma {
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
+    knockoutLeaderboardState?: boolean | League$knockoutLeaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
@@ -3203,6 +3295,7 @@ export namespace Prisma {
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
+    knockoutLeaderboardState?: boolean | League$knockoutLeaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
@@ -3217,6 +3310,7 @@ export namespace Prisma {
       matchPredictions: Prisma.$MatchPredictionPayload<ExtArgs>[]
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       leaderboardState: Prisma.$LeaderboardStatePayload<ExtArgs> | null
+      knockoutLeaderboardState: Prisma.$KnockoutLeaderboardStatePayload<ExtArgs> | null
       matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
       groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
     }
@@ -3627,6 +3721,7 @@ export namespace Prisma {
     matchPredictions<T extends League$matchPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$matchPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentPredictions<T extends League$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaderboardState<T extends League$leaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$leaderboardStateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    knockoutLeaderboardState<T extends League$knockoutLeaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$knockoutLeaderboardStateArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     matchWinnerRevealSeen<T extends League$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     groupStageRevealSeen<T extends League$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -4140,6 +4235,25 @@ export namespace Prisma {
      */
     include?: LeaderboardStateInclude<ExtArgs> | null
     where?: LeaderboardStateWhereInput
+  }
+
+  /**
+   * League.knockoutLeaderboardState
+   */
+  export type League$knockoutLeaderboardStateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    where?: KnockoutLeaderboardStateWhereInput
   }
 
   /**
@@ -8815,6 +8929,1049 @@ export namespace Prisma {
 
 
   /**
+   * Model KnockoutLeaderboardState
+   */
+
+  export type AggregateKnockoutLeaderboardState = {
+    _count: KnockoutLeaderboardStateCountAggregateOutputType | null
+    _min: KnockoutLeaderboardStateMinAggregateOutputType | null
+    _max: KnockoutLeaderboardStateMaxAggregateOutputType | null
+  }
+
+  export type KnockoutLeaderboardStateMinAggregateOutputType = {
+    leagueId: string | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type KnockoutLeaderboardStateMaxAggregateOutputType = {
+    leagueId: string | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type KnockoutLeaderboardStateCountAggregateOutputType = {
+    leagueId: number
+    ranksJson: number
+    previousRanksJson: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type KnockoutLeaderboardStateMinAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type KnockoutLeaderboardStateMaxAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type KnockoutLeaderboardStateCountAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type KnockoutLeaderboardStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnockoutLeaderboardState to aggregate.
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutLeaderboardStates to fetch.
+     */
+    orderBy?: KnockoutLeaderboardStateOrderByWithRelationInput | KnockoutLeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KnockoutLeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutLeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutLeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned KnockoutLeaderboardStates
+    **/
+    _count?: true | KnockoutLeaderboardStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KnockoutLeaderboardStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KnockoutLeaderboardStateMaxAggregateInputType
+  }
+
+  export type GetKnockoutLeaderboardStateAggregateType<T extends KnockoutLeaderboardStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateKnockoutLeaderboardState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKnockoutLeaderboardState[P]>
+      : GetScalarType<T[P], AggregateKnockoutLeaderboardState[P]>
+  }
+
+
+
+
+  export type KnockoutLeaderboardStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnockoutLeaderboardStateWhereInput
+    orderBy?: KnockoutLeaderboardStateOrderByWithAggregationInput | KnockoutLeaderboardStateOrderByWithAggregationInput[]
+    by: KnockoutLeaderboardStateScalarFieldEnum[] | KnockoutLeaderboardStateScalarFieldEnum
+    having?: KnockoutLeaderboardStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KnockoutLeaderboardStateCountAggregateInputType | true
+    _min?: KnockoutLeaderboardStateMinAggregateInputType
+    _max?: KnockoutLeaderboardStateMaxAggregateInputType
+  }
+
+  export type KnockoutLeaderboardStateGroupByOutputType = {
+    leagueId: string
+    ranksJson: string
+    previousRanksJson: string
+    updatedAt: Date
+    _count: KnockoutLeaderboardStateCountAggregateOutputType | null
+    _min: KnockoutLeaderboardStateMinAggregateOutputType | null
+    _max: KnockoutLeaderboardStateMaxAggregateOutputType | null
+  }
+
+  type GetKnockoutLeaderboardStateGroupByPayload<T extends KnockoutLeaderboardStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KnockoutLeaderboardStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KnockoutLeaderboardStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KnockoutLeaderboardStateGroupByOutputType[P]>
+            : GetScalarType<T[P], KnockoutLeaderboardStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KnockoutLeaderboardStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutLeaderboardState"]>
+
+  export type KnockoutLeaderboardStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutLeaderboardState"]>
+
+  export type KnockoutLeaderboardStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutLeaderboardState"]>
+
+  export type KnockoutLeaderboardStateSelectScalar = {
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }
+
+  export type KnockoutLeaderboardStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"leagueId" | "ranksJson" | "previousRanksJson" | "updatedAt", ExtArgs["result"]["knockoutLeaderboardState"]>
+  export type KnockoutLeaderboardStateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+  export type KnockoutLeaderboardStateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+  export type KnockoutLeaderboardStateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+
+  export type $KnockoutLeaderboardStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "KnockoutLeaderboardState"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      leagueId: string
+      ranksJson: string
+      previousRanksJson: string
+      updatedAt: Date
+    }, ExtArgs["result"]["knockoutLeaderboardState"]>
+    composites: {}
+  }
+
+  type KnockoutLeaderboardStateGetPayload<S extends boolean | null | undefined | KnockoutLeaderboardStateDefaultArgs> = $Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload, S>
+
+  type KnockoutLeaderboardStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<KnockoutLeaderboardStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: KnockoutLeaderboardStateCountAggregateInputType | true
+    }
+
+  export interface KnockoutLeaderboardStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['KnockoutLeaderboardState'], meta: { name: 'KnockoutLeaderboardState' } }
+    /**
+     * Find zero or one KnockoutLeaderboardState that matches the filter.
+     * @param {KnockoutLeaderboardStateFindUniqueArgs} args - Arguments to find a KnockoutLeaderboardState
+     * @example
+     * // Get one KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KnockoutLeaderboardStateFindUniqueArgs>(args: SelectSubset<T, KnockoutLeaderboardStateFindUniqueArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one KnockoutLeaderboardState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {KnockoutLeaderboardStateFindUniqueOrThrowArgs} args - Arguments to find a KnockoutLeaderboardState
+     * @example
+     * // Get one KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KnockoutLeaderboardStateFindUniqueOrThrowArgs>(args: SelectSubset<T, KnockoutLeaderboardStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnockoutLeaderboardState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateFindFirstArgs} args - Arguments to find a KnockoutLeaderboardState
+     * @example
+     * // Get one KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KnockoutLeaderboardStateFindFirstArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateFindFirstArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnockoutLeaderboardState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateFindFirstOrThrowArgs} args - Arguments to find a KnockoutLeaderboardState
+     * @example
+     * // Get one KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KnockoutLeaderboardStateFindFirstOrThrowArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more KnockoutLeaderboardStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all KnockoutLeaderboardStates
+     * const knockoutLeaderboardStates = await prisma.knockoutLeaderboardState.findMany()
+     * 
+     * // Get first 10 KnockoutLeaderboardStates
+     * const knockoutLeaderboardStates = await prisma.knockoutLeaderboardState.findMany({ take: 10 })
+     * 
+     * // Only select the `leagueId`
+     * const knockoutLeaderboardStateWithLeagueIdOnly = await prisma.knockoutLeaderboardState.findMany({ select: { leagueId: true } })
+     * 
+     */
+    findMany<T extends KnockoutLeaderboardStateFindManyArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a KnockoutLeaderboardState.
+     * @param {KnockoutLeaderboardStateCreateArgs} args - Arguments to create a KnockoutLeaderboardState.
+     * @example
+     * // Create one KnockoutLeaderboardState
+     * const KnockoutLeaderboardState = await prisma.knockoutLeaderboardState.create({
+     *   data: {
+     *     // ... data to create a KnockoutLeaderboardState
+     *   }
+     * })
+     * 
+     */
+    create<T extends KnockoutLeaderboardStateCreateArgs>(args: SelectSubset<T, KnockoutLeaderboardStateCreateArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many KnockoutLeaderboardStates.
+     * @param {KnockoutLeaderboardStateCreateManyArgs} args - Arguments to create many KnockoutLeaderboardStates.
+     * @example
+     * // Create many KnockoutLeaderboardStates
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KnockoutLeaderboardStateCreateManyArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many KnockoutLeaderboardStates and returns the data saved in the database.
+     * @param {KnockoutLeaderboardStateCreateManyAndReturnArgs} args - Arguments to create many KnockoutLeaderboardStates.
+     * @example
+     * // Create many KnockoutLeaderboardStates
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many KnockoutLeaderboardStates and only return the `leagueId`
+     * const knockoutLeaderboardStateWithLeagueIdOnly = await prisma.knockoutLeaderboardState.createManyAndReturn({
+     *   select: { leagueId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends KnockoutLeaderboardStateCreateManyAndReturnArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a KnockoutLeaderboardState.
+     * @param {KnockoutLeaderboardStateDeleteArgs} args - Arguments to delete one KnockoutLeaderboardState.
+     * @example
+     * // Delete one KnockoutLeaderboardState
+     * const KnockoutLeaderboardState = await prisma.knockoutLeaderboardState.delete({
+     *   where: {
+     *     // ... filter to delete one KnockoutLeaderboardState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KnockoutLeaderboardStateDeleteArgs>(args: SelectSubset<T, KnockoutLeaderboardStateDeleteArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one KnockoutLeaderboardState.
+     * @param {KnockoutLeaderboardStateUpdateArgs} args - Arguments to update one KnockoutLeaderboardState.
+     * @example
+     * // Update one KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KnockoutLeaderboardStateUpdateArgs>(args: SelectSubset<T, KnockoutLeaderboardStateUpdateArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more KnockoutLeaderboardStates.
+     * @param {KnockoutLeaderboardStateDeleteManyArgs} args - Arguments to filter KnockoutLeaderboardStates to delete.
+     * @example
+     * // Delete a few KnockoutLeaderboardStates
+     * const { count } = await prisma.knockoutLeaderboardState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KnockoutLeaderboardStateDeleteManyArgs>(args?: SelectSubset<T, KnockoutLeaderboardStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnockoutLeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many KnockoutLeaderboardStates
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KnockoutLeaderboardStateUpdateManyArgs>(args: SelectSubset<T, KnockoutLeaderboardStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnockoutLeaderboardStates and returns the data updated in the database.
+     * @param {KnockoutLeaderboardStateUpdateManyAndReturnArgs} args - Arguments to update many KnockoutLeaderboardStates.
+     * @example
+     * // Update many KnockoutLeaderboardStates
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more KnockoutLeaderboardStates and only return the `leagueId`
+     * const knockoutLeaderboardStateWithLeagueIdOnly = await prisma.knockoutLeaderboardState.updateManyAndReturn({
+     *   select: { leagueId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends KnockoutLeaderboardStateUpdateManyAndReturnArgs>(args: SelectSubset<T, KnockoutLeaderboardStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one KnockoutLeaderboardState.
+     * @param {KnockoutLeaderboardStateUpsertArgs} args - Arguments to update or create a KnockoutLeaderboardState.
+     * @example
+     * // Update or create a KnockoutLeaderboardState
+     * const knockoutLeaderboardState = await prisma.knockoutLeaderboardState.upsert({
+     *   create: {
+     *     // ... data to create a KnockoutLeaderboardState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the KnockoutLeaderboardState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KnockoutLeaderboardStateUpsertArgs>(args: SelectSubset<T, KnockoutLeaderboardStateUpsertArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of KnockoutLeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateCountArgs} args - Arguments to filter KnockoutLeaderboardStates to count.
+     * @example
+     * // Count the number of KnockoutLeaderboardStates
+     * const count = await prisma.knockoutLeaderboardState.count({
+     *   where: {
+     *     // ... the filter for the KnockoutLeaderboardStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends KnockoutLeaderboardStateCountArgs>(
+      args?: Subset<T, KnockoutLeaderboardStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KnockoutLeaderboardStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a KnockoutLeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KnockoutLeaderboardStateAggregateArgs>(args: Subset<T, KnockoutLeaderboardStateAggregateArgs>): Prisma.PrismaPromise<GetKnockoutLeaderboardStateAggregateType<T>>
+
+    /**
+     * Group by KnockoutLeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutLeaderboardStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KnockoutLeaderboardStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KnockoutLeaderboardStateGroupByArgs['orderBy'] }
+        : { orderBy?: KnockoutLeaderboardStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KnockoutLeaderboardStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKnockoutLeaderboardStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the KnockoutLeaderboardState model
+   */
+  readonly fields: KnockoutLeaderboardStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for KnockoutLeaderboardState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KnockoutLeaderboardStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the KnockoutLeaderboardState model
+   */
+  interface KnockoutLeaderboardStateFieldRefs {
+    readonly leagueId: FieldRef<"KnockoutLeaderboardState", 'String'>
+    readonly ranksJson: FieldRef<"KnockoutLeaderboardState", 'String'>
+    readonly previousRanksJson: FieldRef<"KnockoutLeaderboardState", 'String'>
+    readonly updatedAt: FieldRef<"KnockoutLeaderboardState", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * KnockoutLeaderboardState findUnique
+   */
+  export type KnockoutLeaderboardStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutLeaderboardState to fetch.
+     */
+    where: KnockoutLeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * KnockoutLeaderboardState findUniqueOrThrow
+   */
+  export type KnockoutLeaderboardStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutLeaderboardState to fetch.
+     */
+    where: KnockoutLeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * KnockoutLeaderboardState findFirst
+   */
+  export type KnockoutLeaderboardStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutLeaderboardState to fetch.
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutLeaderboardStates to fetch.
+     */
+    orderBy?: KnockoutLeaderboardStateOrderByWithRelationInput | KnockoutLeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnockoutLeaderboardStates.
+     */
+    cursor?: KnockoutLeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutLeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutLeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnockoutLeaderboardStates.
+     */
+    distinct?: KnockoutLeaderboardStateScalarFieldEnum | KnockoutLeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutLeaderboardState findFirstOrThrow
+   */
+  export type KnockoutLeaderboardStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutLeaderboardState to fetch.
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutLeaderboardStates to fetch.
+     */
+    orderBy?: KnockoutLeaderboardStateOrderByWithRelationInput | KnockoutLeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnockoutLeaderboardStates.
+     */
+    cursor?: KnockoutLeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutLeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutLeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnockoutLeaderboardStates.
+     */
+    distinct?: KnockoutLeaderboardStateScalarFieldEnum | KnockoutLeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutLeaderboardState findMany
+   */
+  export type KnockoutLeaderboardStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutLeaderboardStates to fetch.
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutLeaderboardStates to fetch.
+     */
+    orderBy?: KnockoutLeaderboardStateOrderByWithRelationInput | KnockoutLeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing KnockoutLeaderboardStates.
+     */
+    cursor?: KnockoutLeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutLeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutLeaderboardStates.
+     */
+    skip?: number
+    distinct?: KnockoutLeaderboardStateScalarFieldEnum | KnockoutLeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutLeaderboardState create
+   */
+  export type KnockoutLeaderboardStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a KnockoutLeaderboardState.
+     */
+    data: XOR<KnockoutLeaderboardStateCreateInput, KnockoutLeaderboardStateUncheckedCreateInput>
+  }
+
+  /**
+   * KnockoutLeaderboardState createMany
+   */
+  export type KnockoutLeaderboardStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many KnockoutLeaderboardStates.
+     */
+    data: KnockoutLeaderboardStateCreateManyInput | KnockoutLeaderboardStateCreateManyInput[]
+  }
+
+  /**
+   * KnockoutLeaderboardState createManyAndReturn
+   */
+  export type KnockoutLeaderboardStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many KnockoutLeaderboardStates.
+     */
+    data: KnockoutLeaderboardStateCreateManyInput | KnockoutLeaderboardStateCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnockoutLeaderboardState update
+   */
+  export type KnockoutLeaderboardStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a KnockoutLeaderboardState.
+     */
+    data: XOR<KnockoutLeaderboardStateUpdateInput, KnockoutLeaderboardStateUncheckedUpdateInput>
+    /**
+     * Choose, which KnockoutLeaderboardState to update.
+     */
+    where: KnockoutLeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * KnockoutLeaderboardState updateMany
+   */
+  export type KnockoutLeaderboardStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update KnockoutLeaderboardStates.
+     */
+    data: XOR<KnockoutLeaderboardStateUpdateManyMutationInput, KnockoutLeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which KnockoutLeaderboardStates to update
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * Limit how many KnockoutLeaderboardStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnockoutLeaderboardState updateManyAndReturn
+   */
+  export type KnockoutLeaderboardStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to update KnockoutLeaderboardStates.
+     */
+    data: XOR<KnockoutLeaderboardStateUpdateManyMutationInput, KnockoutLeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which KnockoutLeaderboardStates to update
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * Limit how many KnockoutLeaderboardStates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnockoutLeaderboardState upsert
+   */
+  export type KnockoutLeaderboardStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the KnockoutLeaderboardState to update in case it exists.
+     */
+    where: KnockoutLeaderboardStateWhereUniqueInput
+    /**
+     * In case the KnockoutLeaderboardState found by the `where` argument doesn't exist, create a new KnockoutLeaderboardState with this data.
+     */
+    create: XOR<KnockoutLeaderboardStateCreateInput, KnockoutLeaderboardStateUncheckedCreateInput>
+    /**
+     * In case the KnockoutLeaderboardState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KnockoutLeaderboardStateUpdateInput, KnockoutLeaderboardStateUncheckedUpdateInput>
+  }
+
+  /**
+   * KnockoutLeaderboardState delete
+   */
+  export type KnockoutLeaderboardStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter which KnockoutLeaderboardState to delete.
+     */
+    where: KnockoutLeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * KnockoutLeaderboardState deleteMany
+   */
+  export type KnockoutLeaderboardStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnockoutLeaderboardStates to delete
+     */
+    where?: KnockoutLeaderboardStateWhereInput
+    /**
+     * Limit how many KnockoutLeaderboardStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnockoutLeaderboardState without action
+   */
+  export type KnockoutLeaderboardStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutLeaderboardState
+     */
+    select?: KnockoutLeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutLeaderboardState
+     */
+    omit?: KnockoutLeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutLeaderboardStateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model TournamentPrediction
    */
 
@@ -12225,6 +13382,16 @@ export namespace Prisma {
   export type LeaderboardStateScalarFieldEnum = (typeof LeaderboardStateScalarFieldEnum)[keyof typeof LeaderboardStateScalarFieldEnum]
 
 
+  export const KnockoutLeaderboardStateScalarFieldEnum: {
+    leagueId: 'leagueId',
+    ranksJson: 'ranksJson',
+    previousRanksJson: 'previousRanksJson',
+    updatedAt: 'updatedAt'
+  };
+
+  export type KnockoutLeaderboardStateScalarFieldEnum = (typeof KnockoutLeaderboardStateScalarFieldEnum)[keyof typeof KnockoutLeaderboardStateScalarFieldEnum]
+
+
   export const TournamentPredictionScalarFieldEnum: {
     id: 'id',
     leagueId: 'leagueId',
@@ -12416,6 +13583,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
+    knockoutLeaderboardState?: XOR<KnockoutLeaderboardStateNullableScalarRelationFilter, KnockoutLeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }
@@ -12433,6 +13601,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionOrderByRelationAggregateInput
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     leaderboardState?: LeaderboardStateOrderByWithRelationInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateOrderByWithRelationInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
     groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
   }
@@ -12453,6 +13622,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionListRelationFilter
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
+    knockoutLeaderboardState?: XOR<KnockoutLeaderboardStateNullableScalarRelationFilter, KnockoutLeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
   }, "id" | "slug" | "inviteCode">
@@ -12808,6 +13978,56 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"LeaderboardState"> | Date | string
   }
 
+  export type KnockoutLeaderboardStateWhereInput = {
+    AND?: KnockoutLeaderboardStateWhereInput | KnockoutLeaderboardStateWhereInput[]
+    OR?: KnockoutLeaderboardStateWhereInput[]
+    NOT?: KnockoutLeaderboardStateWhereInput | KnockoutLeaderboardStateWhereInput[]
+    leagueId?: StringFilter<"KnockoutLeaderboardState"> | string
+    ranksJson?: StringFilter<"KnockoutLeaderboardState"> | string
+    previousRanksJson?: StringFilter<"KnockoutLeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"KnockoutLeaderboardState"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+  }
+
+  export type KnockoutLeaderboardStateOrderByWithRelationInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+  }
+
+  export type KnockoutLeaderboardStateWhereUniqueInput = Prisma.AtLeast<{
+    leagueId?: string
+    AND?: KnockoutLeaderboardStateWhereInput | KnockoutLeaderboardStateWhereInput[]
+    OR?: KnockoutLeaderboardStateWhereInput[]
+    NOT?: KnockoutLeaderboardStateWhereInput | KnockoutLeaderboardStateWhereInput[]
+    ranksJson?: StringFilter<"KnockoutLeaderboardState"> | string
+    previousRanksJson?: StringFilter<"KnockoutLeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"KnockoutLeaderboardState"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+  }, "leagueId">
+
+  export type KnockoutLeaderboardStateOrderByWithAggregationInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+    _count?: KnockoutLeaderboardStateCountOrderByAggregateInput
+    _max?: KnockoutLeaderboardStateMaxOrderByAggregateInput
+    _min?: KnockoutLeaderboardStateMinOrderByAggregateInput
+  }
+
+  export type KnockoutLeaderboardStateScalarWhereWithAggregatesInput = {
+    AND?: KnockoutLeaderboardStateScalarWhereWithAggregatesInput | KnockoutLeaderboardStateScalarWhereWithAggregatesInput[]
+    OR?: KnockoutLeaderboardStateScalarWhereWithAggregatesInput[]
+    NOT?: KnockoutLeaderboardStateScalarWhereWithAggregatesInput | KnockoutLeaderboardStateScalarWhereWithAggregatesInput[]
+    leagueId?: StringWithAggregatesFilter<"KnockoutLeaderboardState"> | string
+    ranksJson?: StringWithAggregatesFilter<"KnockoutLeaderboardState"> | string
+    previousRanksJson?: StringWithAggregatesFilter<"KnockoutLeaderboardState"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"KnockoutLeaderboardState"> | Date | string
+  }
+
   export type TournamentPredictionWhereInput = {
     AND?: TournamentPredictionWhereInput | TournamentPredictionWhereInput[]
     OR?: TournamentPredictionWhereInput[]
@@ -13123,6 +14343,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
@@ -13140,6 +14361,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
@@ -13157,6 +14379,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
@@ -13174,6 +14397,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
@@ -13556,6 +14780,54 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type KnockoutLeaderboardStateCreateInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+    league: LeagueCreateNestedOneWithoutKnockoutLeaderboardStateInput
+  }
+
+  export type KnockoutLeaderboardStateUncheckedCreateInput = {
+    leagueId: string
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type KnockoutLeaderboardStateUpdateInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutKnockoutLeaderboardStateNestedInput
+  }
+
+  export type KnockoutLeaderboardStateUncheckedUpdateInput = {
+    leagueId?: StringFieldUpdateOperationsInput | string
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutLeaderboardStateCreateManyInput = {
+    leagueId: string
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type KnockoutLeaderboardStateUpdateManyMutationInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutLeaderboardStateUncheckedUpdateManyInput = {
+    leagueId?: StringFieldUpdateOperationsInput | string
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TournamentPredictionCreateInput = {
     id?: string
     champion?: string | null
@@ -13913,6 +15185,11 @@ export namespace Prisma {
     isNot?: LeaderboardStateWhereInput | null
   }
 
+  export type KnockoutLeaderboardStateNullableScalarRelationFilter = {
+    is?: KnockoutLeaderboardStateWhereInput | null
+    isNot?: KnockoutLeaderboardStateWhereInput | null
+  }
+
   export type LeagueCountOrderByAggregateInput = {
     id?: SortOrder
     slug?: SortOrder
@@ -14227,6 +15504,27 @@ export namespace Prisma {
   }
 
   export type LeaderboardStateMinOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnockoutLeaderboardStateCountOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnockoutLeaderboardStateMaxOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnockoutLeaderboardStateMinOrderByAggregateInput = {
     leagueId?: SortOrder
     ranksJson?: SortOrder
     previousRanksJson?: SortOrder
@@ -14627,6 +15925,12 @@ export namespace Prisma {
     connect?: LeaderboardStateWhereUniqueInput
   }
 
+  export type KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput = {
+    create?: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: KnockoutLeaderboardStateCreateOrConnectWithoutLeagueInput
+    connect?: KnockoutLeaderboardStateWhereUniqueInput
+  }
+
   export type MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput = {
     create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
@@ -14666,6 +15970,12 @@ export namespace Prisma {
     create?: XOR<LeaderboardStateCreateWithoutLeagueInput, LeaderboardStateUncheckedCreateWithoutLeagueInput>
     connectOrCreate?: LeaderboardStateCreateOrConnectWithoutLeagueInput
     connect?: LeaderboardStateWhereUniqueInput
+  }
+
+  export type KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput = {
+    create?: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: KnockoutLeaderboardStateCreateOrConnectWithoutLeagueInput
+    connect?: KnockoutLeaderboardStateWhereUniqueInput
   }
 
   export type MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
@@ -14732,6 +16042,16 @@ export namespace Prisma {
     delete?: LeaderboardStateWhereInput | boolean
     connect?: LeaderboardStateWhereUniqueInput
     update?: XOR<XOR<LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, LeaderboardStateUpdateWithoutLeagueInput>, LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput = {
+    create?: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: KnockoutLeaderboardStateCreateOrConnectWithoutLeagueInput
+    upsert?: KnockoutLeaderboardStateUpsertWithoutLeagueInput
+    disconnect?: KnockoutLeaderboardStateWhereInput | boolean
+    delete?: KnockoutLeaderboardStateWhereInput | boolean
+    connect?: KnockoutLeaderboardStateWhereUniqueInput
+    update?: XOR<XOR<KnockoutLeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, KnockoutLeaderboardStateUpdateWithoutLeagueInput>, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
   export type MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput = {
@@ -14812,6 +16132,16 @@ export namespace Prisma {
     delete?: LeaderboardStateWhereInput | boolean
     connect?: LeaderboardStateWhereUniqueInput
     update?: XOR<XOR<LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, LeaderboardStateUpdateWithoutLeagueInput>, LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput = {
+    create?: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: KnockoutLeaderboardStateCreateOrConnectWithoutLeagueInput
+    upsert?: KnockoutLeaderboardStateUpsertWithoutLeagueInput
+    disconnect?: KnockoutLeaderboardStateWhereInput | boolean
+    delete?: KnockoutLeaderboardStateWhereInput | boolean
+    connect?: KnockoutLeaderboardStateWhereUniqueInput
+    update?: XOR<XOR<KnockoutLeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, KnockoutLeaderboardStateUpdateWithoutLeagueInput>, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
   export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
@@ -15028,6 +16358,20 @@ export namespace Prisma {
     upsert?: LeagueUpsertWithoutLeaderboardStateInput
     connect?: LeagueWhereUniqueInput
     update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutLeaderboardStateInput, LeagueUpdateWithoutLeaderboardStateInput>, LeagueUncheckedUpdateWithoutLeaderboardStateInput>
+  }
+
+  export type LeagueCreateNestedOneWithoutKnockoutLeaderboardStateInput = {
+    create?: XOR<LeagueCreateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutKnockoutLeaderboardStateInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutKnockoutLeaderboardStateNestedInput = {
+    create?: XOR<LeagueCreateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutKnockoutLeaderboardStateInput
+    upsert?: LeagueUpsertWithoutKnockoutLeaderboardStateInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutKnockoutLeaderboardStateInput, LeagueUpdateWithoutKnockoutLeaderboardStateInput>, LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput>
   }
 
   export type LeagueCreateNestedOneWithoutTournamentPredictionsInput = {
@@ -15736,6 +17080,23 @@ export namespace Prisma {
     create: XOR<LeaderboardStateCreateWithoutLeagueInput, LeaderboardStateUncheckedCreateWithoutLeagueInput>
   }
 
+  export type KnockoutLeaderboardStateCreateWithoutLeagueInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type KnockoutLeaderboardStateCreateOrConnectWithoutLeagueInput = {
+    where: KnockoutLeaderboardStateWhereUniqueInput
+    create: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+  }
+
   export type MatchWinnerRevealSeenCreateWithoutLeagueInput = {
     id?: string
     seenAt?: Date | string
@@ -15851,6 +17212,29 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type KnockoutLeaderboardStateUpsertWithoutLeagueInput = {
+    update: XOR<KnockoutLeaderboardStateUpdateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
+    create: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
+    where?: KnockoutLeaderboardStateWhereInput
+  }
+
+  export type KnockoutLeaderboardStateUpdateToOneWithWhereWithoutLeagueInput = {
+    where?: KnockoutLeaderboardStateWhereInput
+    data: XOR<KnockoutLeaderboardStateUpdateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type KnockoutLeaderboardStateUpdateWithoutLeagueInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
     where: MatchWinnerRevealSeenWhereUniqueInput
     update: XOR<MatchWinnerRevealSeenUpdateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedUpdateWithoutLeagueInput>
@@ -15895,6 +17279,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
@@ -15911,6 +17296,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
@@ -15976,6 +17362,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
@@ -15992,6 +17379,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
@@ -16141,6 +17529,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
@@ -16157,6 +17546,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
@@ -16267,6 +17657,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
@@ -16283,6 +17674,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
@@ -16389,6 +17781,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
@@ -16405,6 +17798,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
@@ -16437,6 +17831,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
@@ -16453,6 +17848,91 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueCreateWithoutKnockoutLeaderboardStateInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutKnockoutLeaderboardStateInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput>
+  }
+
+  export type LeagueUpsertWithoutKnockoutLeaderboardStateInput = {
+    update: XOR<LeagueUpdateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput>
+    create: XOR<LeagueCreateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutKnockoutLeaderboardStateInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutKnockoutLeaderboardStateInput, LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput>
+  }
+
+  export type LeagueUpdateWithoutKnockoutLeaderboardStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
@@ -16469,6 +17949,7 @@ export namespace Prisma {
     members?: LeagueMemberCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
@@ -16485,6 +17966,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
@@ -16550,6 +18032,7 @@ export namespace Prisma {
     members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
@@ -16566,6 +18049,7 @@ export namespace Prisma {
     members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
@@ -16622,6 +18106,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
@@ -16638,6 +18123,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
@@ -16748,6 +18234,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
@@ -16764,6 +18251,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
@@ -16870,6 +18358,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
@@ -16886,6 +18375,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
@@ -16951,6 +18441,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
@@ -16967,6 +18458,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 

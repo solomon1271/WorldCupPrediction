@@ -5,6 +5,7 @@ import {
   scorePrediction,
   type PredictionInput
 } from "@/lib/match-scoring";
+import { isGroupStageMatchId, isKnockoutMatchId } from "@/lib/knockout-stage";
 import {
   parseOfficialAwards,
   scoreTournamentPrediction,
@@ -32,6 +33,8 @@ export type PlayerMatchStanding = {
   } | null;
 };
 
+export type PlayerStandingScope = "knockout" | "group-stage";
+
 export type PlayerStandingDetail = {
   playerId: string;
   playerName: string;
@@ -41,6 +44,7 @@ export type PlayerStandingDetail = {
   exactScores: number;
   outcomes: number;
   bonusHits: number;
+  scope: PlayerStandingScope;
   matches: PlayerMatchStanding[];
   tournament: {
     champion: string | null;
@@ -102,13 +106,23 @@ function toPredictionInput(prediction: BuildPlayerStandingInput["matchPrediction
   };
 }
 
-export function buildPlayerStandingDetail(input: BuildPlayerStandingInput): PlayerStandingDetail {
+export function buildPlayerStandingDetail(
+  input: BuildPlayerStandingInput,
+  options?: { scope?: PlayerStandingScope }
+): PlayerStandingDetail {
+  const scope = options?.scope ?? "knockout";
+  const matchPredictions = input.matchPredictions.filter((prediction) =>
+    scope === "knockout"
+      ? isKnockoutMatchId(prediction.matchId)
+      : isGroupStageMatchId(prediction.matchId)
+  );
+
   let matchPoints = 0;
   let exactScores = 0;
   let outcomes = 0;
   let bonusHits = 0;
 
-  const matches = input.matchPredictions
+  const matches = matchPredictions
     .map((prediction) => {
       const score = scorePrediction(toPredictionInput(prediction), prediction.match);
       const breakdown = getPredictionScoreBreakdown(toPredictionInput(prediction), prediction.match);
@@ -151,7 +165,10 @@ export function buildPlayerStandingDetail(input: BuildPlayerStandingInput): Play
     goldenGlove: null,
     bestPlayer: null
   };
-  const tournamentScore = scoreTournamentPrediction(tournamentPrediction, input.officialAwards);
+  const tournamentScore =
+    scope === "group-stage"
+      ? scoreTournamentPrediction(tournamentPrediction, input.officialAwards)
+      : { points: 0, hits: 0, items: [] as ReturnType<typeof scoreTournamentPrediction>["items"] };
 
   return {
     playerId: input.playerId,
@@ -162,6 +179,7 @@ export function buildPlayerStandingDetail(input: BuildPlayerStandingInput): Play
     exactScores,
     outcomes,
     bonusHits: bonusHits + tournamentScore.hits,
+    scope,
     matches,
     tournament: {
       ...tournamentPrediction,

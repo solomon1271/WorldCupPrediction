@@ -187,6 +187,13 @@ exports.Prisma.LeaderboardStateScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.KnockoutLeaderboardStateScalarFieldEnum = {
+  leagueId: 'leagueId',
+  ranksJson: 'ranksJson',
+  previousRanksJson: 'previousRanksJson',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TournamentPredictionScalarFieldEnum = {
   id: 'id',
   leagueId: 'leagueId',
@@ -235,6 +242,7 @@ exports.Prisma.ModelName = {
   Match: 'Match',
   MatchPrediction: 'MatchPrediction',
   LeaderboardState: 'LeaderboardState',
+  KnockoutLeaderboardState: 'KnockoutLeaderboardState',
   TournamentPrediction: 'TournamentPrediction',
   MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
   GroupStageRevealSeen: 'GroupStageRevealSeen'

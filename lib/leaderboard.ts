@@ -1,5 +1,6 @@
 import { Prisma } from "../generated/prisma";
 
+import { isKnockoutMatchId } from "@/lib/knockout-stage";
 import { scorePrediction } from "@/lib/match-scoring";
 import { prisma } from "@/lib/prisma";
 import {
@@ -22,6 +23,8 @@ export type LeaderboardEntry = LeaderboardTotals & {
   name: string;
 };
 
+export type LeaderboardScope = "knockout" | "group-stage";
+
 type UserWithPredictions = Prisma.UserGetPayload<{
   include: {
     matchPredictions: {
@@ -33,6 +36,17 @@ type UserWithPredictions = Prisma.UserGetPayload<{
   };
 }>;
 
+function predictionsForScope(
+  predictions: UserWithPredictions["matchPredictions"],
+  scope: LeaderboardScope
+) {
+  if (scope === "knockout") {
+    return predictions.filter((prediction) => isKnockoutMatchId(prediction.matchId));
+  }
+
+  return predictions.filter((prediction) => !isKnockoutMatchId(prediction.matchId));
+}
+
 export function sortLeaderboardEntries<T extends LeaderboardTotals>(entries: T[]) {
   return [...entries].sort(
     (a, b) =>
@@ -42,13 +56,14 @@ export function sortLeaderboardEntries<T extends LeaderboardTotals>(entries: T[]
 
 export function buildLeaderboardEntries(
   users: UserWithPredictions[],
-  officialAwards: TournamentAwards = {}
+  officialAwards: TournamentAwards = {},
+  scope: LeaderboardScope = "knockout"
 ): LeaderboardEntry[] {
-  const includeTournamentPoints = hasConfiguredOfficialAwards(officialAwards);
+  const includeTournamentPoints = scope === "group-stage" && hasConfiguredOfficialAwards(officialAwards);
 
   return sortLeaderboardEntries(
     users.map((user) => {
-      const totals = user.matchPredictions.reduce(
+      const totals = predictionsForScope(user.matchPredictions, scope).reduce(
         (acc, prediction) => {
           const score = scorePrediction(prediction, prediction.match);
           acc.totalPoints += score.points;
@@ -138,13 +153,13 @@ async function getLeagueOfficialAwards(leagueId: string) {
   return parseOfficialAwards(league?.officialAwardsJson);
 }
 
-export async function computeCurrentRankMap(leagueId: string) {
+export async function computeKnockoutRankMap(leagueId: string) {
   const [users, officialAwards] = await Promise.all([
     getLeagueUsersWithPredictions(leagueId),
     getLeagueOfficialAwards(leagueId)
   ]);
 
-  return buildRankMap(buildLeaderboardEntries(users, officialAwards));
+  return buildRankMap(buildLeaderboardEntries(users, officialAwards, "knockout"));
 }
 
 function getLeaderboardStateClient() {
@@ -155,13 +170,15 @@ function getLeaderboardStateClient() {
   return prisma.leaderboardState;
 }
 
-export type LeaderboardSnapshot = {
-  hasSnapshot: boolean;
-  previousRanks: Record<string, number>;
-  afterRanks: Record<string, number>;
-};
+function getKnockoutLeaderboardStateClient() {
+  if (!("knockoutLeaderboardState" in prisma) || !prisma.knockoutLeaderboardState) {
+    return null;
+  }
 
-export async function loadLeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
+  return prisma.knockoutLeaderboardState;
+}
+
+export async function loadGroupStageLeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
   const leaderboardState = getLeaderboardStateClient();
 
   if (!leaderboardState) {
@@ -191,18 +208,54 @@ export async function loadLeaderboardSnapshot(leagueId: string): Promise<Leaderb
   };
 }
 
-export async function recordLeaderboardSnapshot(
+export type LeaderboardSnapshot = {
+  hasSnapshot: boolean;
+  previousRanks: Record<string, number>;
+  afterRanks: Record<string, number>;
+};
+
+export async function loadKnockoutLeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
+  const knockoutLeaderboardState = getKnockoutLeaderboardStateClient();
+
+  if (!knockoutLeaderboardState) {
+    return {
+      hasSnapshot: false,
+      previousRanks: {},
+      afterRanks: {}
+    };
+  }
+
+  const state = await knockoutLeaderboardState.findUnique({
+    where: { leagueId }
+  });
+
+  if (!state) {
+    return {
+      hasSnapshot: false,
+      previousRanks: {},
+      afterRanks: {}
+    };
+  }
+
+  return {
+    hasSnapshot: true,
+    previousRanks: parseRankMap(state.previousRanksJson),
+    afterRanks: parseRankMap(state.ranksJson)
+  };
+}
+
+export async function recordKnockoutLeaderboardSnapshot(
   leagueId: string,
   ranksBefore: Record<string, number>,
   ranksAfter: Record<string, number>
 ) {
-  const leaderboardState = getLeaderboardStateClient();
+  const knockoutLeaderboardState = getKnockoutLeaderboardStateClient();
 
-  if (!leaderboardState) {
+  if (!knockoutLeaderboardState) {
     return;
   }
 
-  await leaderboardState.upsert({
+  await knockoutLeaderboardState.upsert({
     where: { leagueId },
     create: {
       leagueId,
@@ -216,25 +269,28 @@ export async function recordLeaderboardSnapshot(
   });
 }
 
-export async function captureLeaderboardSnapshotForMaintenance() {
+export async function captureKnockoutLeaderboardSnapshotForMaintenance() {
   const leagues = await prisma.league.findMany({
     select: { id: true }
   });
   const ranksBeforeByLeague: Record<string, Record<string, number>> = {};
 
   for (const league of leagues) {
-    ranksBeforeByLeague[league.id] = await computeCurrentRankMap(league.id);
+    ranksBeforeByLeague[league.id] = await computeKnockoutRankMap(league.id);
   }
 
   return ranksBeforeByLeague;
 }
 
-export async function finalizeLeaderboardSnapshot(ranksBeforeByLeague: Record<string, Record<string, number>>) {
-  const leaderboard: Record<string, { ranksBefore: Record<string, number>; ranksAfter: Record<string, number> }> = {};
+export async function finalizeKnockoutLeaderboardSnapshot(
+  ranksBeforeByLeague: Record<string, Record<string, number>>
+) {
+  const leaderboard: Record<string, { ranksBefore: Record<string, number>; ranksAfter: Record<string, number> }> =
+    {};
 
   for (const [leagueId, ranksBefore] of Object.entries(ranksBeforeByLeague)) {
-    const ranksAfter = await computeCurrentRankMap(leagueId);
-    await recordLeaderboardSnapshot(leagueId, ranksBefore, ranksAfter);
+    const ranksAfter = await computeKnockoutRankMap(leagueId);
+    await recordKnockoutLeaderboardSnapshot(leagueId, ranksBefore, ranksAfter);
     leaderboard[leagueId] = { ranksBefore, ranksAfter };
   }
 
@@ -282,12 +338,25 @@ export function attachRankMomentum(
   });
 }
 
-export async function buildLeagueLeaderboard(leagueId: string) {
+export async function buildKnockoutLeaderboard(leagueId: string) {
   const [users, snapshot, officialAwards] = await Promise.all([
     getLeagueUsersWithPredictions(leagueId),
-    loadLeaderboardSnapshot(leagueId),
+    loadKnockoutLeaderboardSnapshot(leagueId),
     getLeagueOfficialAwards(leagueId)
   ]);
 
-  return attachRankMomentum(buildLeaderboardEntries(users, officialAwards), snapshot);
+  return attachRankMomentum(buildLeaderboardEntries(users, officialAwards, "knockout"), snapshot);
 }
+
+export async function buildGroupStageLeaderboard(leagueId: string) {
+  const [users, snapshot, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    loadGroupStageLeaderboardSnapshot(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return attachRankMomentum(buildLeaderboardEntries(users, officialAwards, "group-stage"), snapshot);
+}
+
+/** @deprecated Use buildKnockoutLeaderboard */
+export const buildLeagueLeaderboard = buildKnockoutLeaderboard;

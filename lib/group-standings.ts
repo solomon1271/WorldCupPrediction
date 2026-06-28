@@ -1,26 +1,14 @@
 import { getCanonicalGroupRosters } from "@/lib/world-cup-groups";
+import type {
+  GroupQualificationStatus,
+  GroupStandingRow,
+  GroupStandingTable
+} from "@/lib/group-standings-types";
 import { prisma } from "@/lib/prisma";
 
+export type { GroupQualificationStatus, GroupStandingRow, GroupStandingTable } from "@/lib/group-standings-types";
+
 const GROUP_KEYS = "ABCDEFGHIJKL".split("");
-
-export type GroupStandingRow = {
-  rank: number;
-  team: string;
-  played: number;
-  won: number;
-  drawn: number;
-  lost: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDifference: number;
-  points: number;
-};
-
-export type GroupStandingTable = {
-  group: string;
-  label: string;
-  rows: GroupStandingRow[];
-};
 
 type GroupMatch = {
   stage: string;
@@ -30,7 +18,7 @@ type GroupMatch = {
   finalAwayScore: number | null;
 };
 
-type TeamStats = Omit<GroupStandingRow, "rank">;
+type TeamStats = Omit<GroupStandingRow, "rank" | "qualificationStatus">;
 
 function isFinishedMatch(
   match: GroupMatch
@@ -73,7 +61,12 @@ function applyResult(stats: TeamStats, goalsFor: number, goalsAgainst: number) {
   stats.points += 1;
 }
 
-function comparePrimaryStats(left: TeamStats, right: TeamStats) {
+const THIRD_PLACE_QUALIFIERS = 8;
+
+function compareStandingStats(
+  left: Pick<GroupStandingRow, "points" | "goalDifference" | "goalsFor" | "team">,
+  right: Pick<GroupStandingRow, "points" | "goalDifference" | "goalsFor" | "team">
+) {
   if (left.points !== right.points) {
     return right.points - left.points;
   }
@@ -86,7 +79,11 @@ function comparePrimaryStats(left: TeamStats, right: TeamStats) {
     return right.goalsFor - left.goalsFor;
   }
 
-  return 0;
+  return left.team.localeCompare(right.team);
+}
+
+function comparePrimaryStats(left: TeamStats, right: TeamStats) {
+  return compareStandingStats(left, right);
 }
 
 function computeStatsForTeams(teams: string[], matches: Array<GroupMatch & { finalHomeScore: number; finalAwayScore: number }>) {
@@ -161,18 +158,86 @@ function buildTeamRosters() {
   return getCanonicalGroupRosters();
 }
 
-function getGroupMatchesForRoster(matches: GroupMatch[], roster: Set<string>) {
-  return matches.filter((match) => roster.has(match.homeTeam) && roster.has(match.awayTeam));
+function isGroupTableComplete(table: GroupStandingTable, matches: GroupMatch[]) {
+  const roster = new Set(table.rows.map((row) => row.team));
+  const groupMatches = getGroupMatchesForRoster(matches, roster);
+
+  return groupMatches.length > 0 && groupMatches.every(isFinishedMatch);
+}
+
+function isAllGroupsComplete(matches: GroupMatch[]) {
+  const rosters = buildTeamRosters();
+
+  return GROUP_KEYS.every((group) => {
+    const roster = rosters.get(group) ?? new Set<string>();
+    const groupMatches = getGroupMatchesForRoster(matches, roster);
+
+    return groupMatches.length > 0 && groupMatches.every(isFinishedMatch);
+  });
+}
+
+function getLuckyThirdPlaceTeams(tables: GroupStandingTable[]) {
+  const thirdPlaceRows = tables
+    .map((table) => table.rows.find((row) => row.rank === 3))
+    .filter((row): row is GroupStandingRow => Boolean(row));
+
+  return new Set(
+    [...thirdPlaceRows]
+      .sort((left, right) => compareStandingStats(left, right))
+      .slice(0, THIRD_PLACE_QUALIFIERS)
+      .map((row) => row.team)
+  );
+}
+
+function getQualificationStatus(
+  row: Omit<GroupStandingRow, "qualificationStatus">,
+  groupComplete: boolean,
+  allGroupsComplete: boolean,
+  luckyThirdTeams: Set<string>
+): GroupQualificationStatus {
+  if (row.rank <= 2) {
+    return groupComplete ? "through" : "through-live";
+  }
+
+  if (row.rank === 3) {
+    if (allGroupsComplete) {
+      return luckyThirdTeams.has(row.team) ? "lucky-third" : "eliminated";
+    }
+
+    return "third-hope";
+  }
+
+  return "eliminated";
+}
+
+function attachQualificationStatus(tables: GroupStandingTable[], matches: GroupMatch[]) {
+  const allGroupsComplete = isAllGroupsComplete(matches);
+  const luckyThirdTeams = allGroupsComplete ? getLuckyThirdPlaceTeams(tables) : new Set<string>();
+
+  return tables.map((table) => {
+    const groupComplete = isGroupTableComplete(table, matches);
+
+    return {
+      ...table,
+      rows: table.rows.map((row) => ({
+        ...row,
+        qualificationStatus: getQualificationStatus(row, groupComplete, allGroupsComplete, luckyThirdTeams)
+      }))
+    };
+  });
 }
 
 export function buildGroupStandingsFromMatches(matches: GroupMatch[]): GroupStandingTable[] {
   const rosters = buildTeamRosters();
 
-  return GROUP_KEYS.map((group) => {
+  const tables = GROUP_KEYS.map((group) => {
     const roster = rosters.get(group) ?? new Set<string>();
     const teams = [...roster].sort((left, right) => left.localeCompare(right));
     const groupMatches = getGroupMatchesForRoster(matches, roster);
-    const rows = sortGroupRows(teams, groupMatches);
+    const rows = sortGroupRows(teams, groupMatches).map((row) => ({
+      ...row,
+      qualificationStatus: "third-hope" as GroupQualificationStatus
+    }));
 
     return {
       group,
@@ -180,6 +245,12 @@ export function buildGroupStandingsFromMatches(matches: GroupMatch[]): GroupStan
       rows
     };
   }).filter((table) => table.rows.length > 0);
+
+  return attachQualificationStatus(tables, matches);
+}
+
+function getGroupMatchesForRoster(matches: GroupMatch[], roster: Set<string>) {
+  return matches.filter((match) => roster.has(match.homeTeam) && roster.has(match.awayTeam));
 }
 
 export async function getGroupStandings(): Promise<GroupStandingTable[]> {

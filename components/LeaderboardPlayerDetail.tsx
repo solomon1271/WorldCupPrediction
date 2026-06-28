@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-import { PlayerStandingDetail } from "@/lib/player-standing";
+import type { PlayerStandingDetail, PlayerStandingScope } from "@/lib/player-standing";
 import { formatKickoff } from "@/lib/utils";
 
 type LeaderboardPlayerDetailProps = {
   leagueSlug: string;
   playerId: string | null;
   playerName: string | null;
+  scope: PlayerStandingScope;
   onClose: () => void;
 };
 
@@ -16,6 +17,7 @@ export function LeaderboardPlayerDetail({
   leagueSlug,
   playerId,
   playerName,
+  scope,
   onClose
 }: LeaderboardPlayerDetailProps) {
   const [detail, setDetail] = useState<PlayerStandingDetail | null>(null);
@@ -36,10 +38,13 @@ export function LeaderboardPlayerDetail({
       setError(null);
 
       try {
-        const response = await fetch(`/api/leagues/${leagueSlug}/standings/${playerId}`, {
-          credentials: "same-origin",
-          signal: controller.signal
-        });
+        const response = await fetch(
+          `/api/leagues/${leagueSlug}/standings/${playerId}?scope=${scope}`,
+          {
+            credentials: "same-origin",
+            signal: controller.signal
+          }
+        );
         const result = (await response.json()) as { error?: string; detail?: PlayerStandingDetail };
 
         if (!response.ok) {
@@ -62,11 +67,13 @@ export function LeaderboardPlayerDetail({
     void loadDetail();
 
     return () => controller.abort();
-  }, [leagueSlug, playerId]);
+  }, [leagueSlug, playerId, scope]);
 
   if (!playerId) {
     return null;
   }
+
+  const showTournament = detail?.scope === "group-stage";
 
   return (
     <div className="leaderboard-detail-backdrop" onClick={onClose}>
@@ -101,14 +108,16 @@ export function LeaderboardPlayerDetail({
                 <span>From matches</span>
                 <strong>{detail.matchPoints}</strong>
               </div>
-              <div>
-                <span>From top picks</span>
-                <strong>{detail.tournamentPoints}</strong>
-              </div>
+              {showTournament ? (
+                <div>
+                  <span>From top picks</span>
+                  <strong>{detail.tournamentPoints}</strong>
+                </div>
+              ) : null}
             </div>
 
             <section className="leaderboard-detail__section">
-              <h4>Match picks</h4>
+              <h4>{detail.scope === "knockout" ? "Knockout picks" : "Group stage picks"}</h4>
               {detail.matches.length === 0 ? (
                 <p className="status-note">No finished match results to show yet.</p>
               ) : (
@@ -164,23 +173,25 @@ export function LeaderboardPlayerDetail({
               )}
             </section>
 
-            <section className="leaderboard-detail__section">
-              <h4>Top picks</h4>
-              <div className="prediction-strip score-breakdown__strip">
-                {detail.tournament.breakdown.map((item) => (
-                  <div
-                    className={`score-breakdown__cell${item.hit ? " score-breakdown__cell--hit" : ""}`}
-                    key={item.label}
-                  >
-                    <span>{item.label}</span>
-                    <strong className="score-breakdown__pick">{item.pickLabel}</strong>
-                    <strong className="score-breakdown__points">
-                      {item.points}/{item.maxPoints}
-                    </strong>
-                  </div>
-                ))}
-              </div>
-            </section>
+            {showTournament ? (
+              <section className="leaderboard-detail__section">
+                <h4>Top picks</h4>
+                <div className="prediction-strip score-breakdown__strip">
+                  {detail.tournament.breakdown.map((item) => (
+                    <div
+                      className={`score-breakdown__cell${item.hit ? " score-breakdown__cell--hit" : ""}`}
+                      key={item.label}
+                    >
+                      <span>{item.label}</span>
+                      <strong className="score-breakdown__pick">{item.pickLabel}</strong>
+                      <strong className="score-breakdown__points">
+                        {item.points}/{item.maxPoints}
+                      </strong>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </div>
         ) : null}
       </div>

@@ -1,4 +1,4 @@
-import { DashboardStanding } from "@/lib/dashboard";
+import type { DashboardStanding } from "@/lib/dashboard";
 
 export type LeaderboardRankZone =
   | "crown"
@@ -100,10 +100,28 @@ export function getLeaderboardZoneLabel(zone: LeaderboardRankZone) {
 export function buildChaseMessage(
   entry: DashboardStanding,
   leader: DashboardStanding | undefined,
-  totalPlayers: number
+  totalPlayers: number,
+  view: "knockout" | "group-stage" = "knockout"
 ) {
+  if (view === "group-stage") {
+    if (!leader) {
+      return "Group-stage standings are frozen here for the record.";
+    }
+
+    if (entry.rank === 1) {
+      return `Group-stage champion with ${leader.totalPoints} pts. Knockout is a fresh race for everyone.`;
+    }
+
+    const gapToLeader = leader.totalPoints - entry.totalPoints;
+    return `${gapToLeader} pts behind group-stage leader ${leader.name}. Knockout scoring starts from zero.`;
+  }
+
   if (!leader) {
-    return "The race is on — every pick counts toward the crown.";
+    return "The knockout race is on — every Round of 32 pick counts toward a new crown.";
+  }
+
+  if (leader.totalPoints === 0) {
+    return "Everyone starts at zero. The first knockout results will shake up this table.";
   }
 
   if (entry.rank === 1) {

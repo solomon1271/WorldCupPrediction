@@ -1,9 +1,9 @@
 export function LeaderboardNote() {
   return (
     <p className="section-note section-note--leaderboard">
-      Leaderboard points update only for matches with official finished results. Future fixtures do not affect standings yet.
-      Green triangle up or red triangle down appear when a player&apos;s rank changed after the last daily update.
-      Run maintenance after results are added to refresh rank movement.
+      The knockout leaderboard starts at zero from match 73. Use the Group stage tab to view frozen
+      historical standings from matches 1–72 and top picks. Rank arrows reflect the last daily update for
+      each view.
     </p>
   );
 }
