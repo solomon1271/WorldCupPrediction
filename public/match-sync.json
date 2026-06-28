@@ -954,7 +954,12 @@
       "venue": "AT&T Stadium, Dallas",
       "homeTeam": "Jordan",
       "awayTeam": "Argentina",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 3,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 70,
@@ -977,7 +982,12 @@
       "venue": "Arrowhead Stadium, Kansas City",
       "homeTeam": "Algeria",
       "awayTeam": "Austria",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 3,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 3,
+      "finalRedCards": 0
     },
     {
       "id": 72,
