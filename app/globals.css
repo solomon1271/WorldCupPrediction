@@ -3564,6 +3564,49 @@ th {
   overflow: hidden;
 }
 
+.auth-card--login {
+  padding: 0;
+  background: #020206;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.auth-card--login::before {
+  display: none;
+}
+
+.auth-card__logo {
+  width: 100%;
+  height: clamp(168px, 34vw, 220px);
+  background: url("/auth/fifa-2026-login-card.png") center center / contain no-repeat;
+  pointer-events: none;
+}
+
+.auth-card--login .auth-card__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 2, 6, 0.08) 0%,
+    rgba(6, 8, 22, 0.88) 14%,
+    rgba(8, 12, 30, 0.96) 100%
+  );
+}
+
+.auth-card--login h1,
+.auth-card--login .eyebrow {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
+}
+
+.auth-card--login .auth-form input {
+  background: rgba(14, 18, 42, 0.94);
+  border-color: rgba(120, 220, 255, 0.28);
+}
+
+.auth-card--login .auth-secondary {
+  background: rgba(14, 18, 42, 0.88);
+}
+
 .auth-card::before {
   content: "";
   position: absolute;

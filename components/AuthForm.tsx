@@ -18,7 +18,9 @@ export function AuthForm({ mode, league }: AuthFormProps) {
 
   return (
     <section className="auth-shell">
-      <div className="auth-card">
+      <div className={mode === "login" ? "auth-card auth-card--login" : "auth-card"}>
+        {mode === "login" ? <div className="auth-card__logo" aria-hidden="true" /> : null}
+        <div className="auth-card__content">
         <p className="eyebrow">{mode === "login" ? "Welcome back" : "Private league access"}</p>
         <h1>{mode === "login" ? leagueName : `Create your account for ${leagueName}`}</h1>
         <p className="auth-copy">
@@ -118,6 +120,7 @@ export function AuthForm({ mode, league }: AuthFormProps) {
           >
             {mode === "login" ? "Create one" : "Sign in"}
           </Link>
+        </div>
         </div>
       </div>
     </section>
