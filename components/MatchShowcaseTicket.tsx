@@ -18,49 +18,16 @@ type MatchShowcaseTicketProps = {
   isOpen: boolean;
 };
 
-function TicketStatusIcon({ statusLabel }: { statusLabel: string }) {
-  const props = {
-    className: "match-ticket__status-icon",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    "aria-hidden": true
-  };
+function getTicketActionLabel(isFinished: boolean, statusLabel: string): "Locked" | "Pick" | null {
+  if (isFinished) {
+    return null;
+  }
 
   if (statusLabel === "Locked") {
-    return (
-      <svg {...props}>
-        <rect x="5" y="11" width="14" height="10" rx="2" />
-        <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-      </svg>
-    );
+    return "Locked";
   }
 
-  if (statusLabel === "Finished") {
-    return (
-      <svg {...props}>
-        <path d="M20 6 9 17l-5-5" />
-      </svg>
-    );
-  }
-
-  if (statusLabel === "Pick saved" || statusLabel === "Pick today") {
-    return (
-      <svg {...props}>
-        <path d="M12 3.5 14.8 9l6.2.9-4.5 4.4 1.1 6.2L12 17.8 6.4 20.5l1.1-6.2L3 9.9 9.2 9 12 3.5Z" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg {...props}>
-      <circle cx="12" cy="12" r="8" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  );
+  return "Pick";
 }
 
 export function MatchShowcaseTicket({
@@ -79,6 +46,7 @@ export function MatchShowcaseTicket({
   const kickoffParts = formatKickoffParts(kickoff, predictionTimeZone);
   const ticketTone = getMatchTicketTone(statusLabel, badgeClass);
   const scoreLabel = isFinished && finalScore ? `${finalScore.home} - ${finalScore.away}` : "VS";
+  const ticketActionLabel = getTicketActionLabel(isFinished, statusLabel);
 
   return (
     <div className={`match-ticket match-ticket--${ticketTone}`}>
@@ -126,10 +94,11 @@ export function MatchShowcaseTicket({
 
       {venue ? <p className="match-ticket__venue">{formatVenueShort(venue)}</p> : null}
 
-      <span className={`match-ticket__status match-card__badge ${badgeClass}`}>
-        <TicketStatusIcon statusLabel={statusLabel} />
-        {statusLabel}
-      </span>
+      {ticketActionLabel ? (
+        <span className={`match-ticket__status match-card__badge ${badgeClass}`} aria-label={statusLabel}>
+          {ticketActionLabel}
+        </span>
+      ) : null}
 
       {urgencyNote ? <span className="match-ticket__note">{urgencyNote}</span> : null}
       <span className="match-ticket__hint">{isOpen ? "Tap to collapse" : "Tap to make your pick"}</span>
