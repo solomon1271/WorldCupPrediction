@@ -1,7 +1,5 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { getGroupQualificationLabel, getGroupStandingsRowClassName } from "@/lib/group-standings-presentation";
 import type { GroupStandingTable } from "@/lib/group-standings-types";
@@ -18,64 +16,29 @@ function formatGoalDifference(value: number) {
   return String(value);
 }
 
-function getDefaultGroup(tables: GroupStandingTable[]) {
-  if (tables.length === 0) {
-    return "A";
-  }
-
-  const mostActive = [...tables].sort((left, right) => {
-    const leftPlayed = left.rows.reduce((total, row) => total + row.played, 0);
-    const rightPlayed = right.rows.reduce((total, row) => total + row.played, 0);
-    return rightPlayed - leftPlayed;
-  })[0];
-
-  return mostActive.group;
+function getMatchesPlayed(table: GroupStandingTable) {
+  return table.rows.reduce((total, row) => total + row.played, 0) / 2;
 }
 
-export function GroupStandings({ tables }: GroupStandingsProps) {
-  const [activeGroup, setActiveGroup] = useState(() => getDefaultGroup(tables));
-
-  const activeTable = useMemo(
-    () => tables.find((table) => table.group === activeGroup) ?? tables[0],
-    [activeGroup, tables]
-  );
-
-  if (tables.length === 0 || !activeTable) {
-    return null;
-  }
+function GroupStandingCard({ table }: { table: GroupStandingTable }) {
+  const matchesPlayed = getMatchesPlayed(table);
+  const leaderPreview = table.rows
+    .slice(0, 2)
+    .map((row) => row.team)
+    .join(" · ");
 
   return (
-    <section id="group-standings" className="section">
-      <SectionStoryHeader
-        tone="groups"
-        eyebrow="Road to the knockouts"
-        title="Group standings"
-        copy="Top two advance automatically. The best eight third-place teams join them — everyone else goes home."
-      />
-
-      <div className="group-tabs" role="tablist" aria-label="World Cup groups">
-        {tables.map((table) => (
-          <button
-            key={table.group}
-            className={`group-tabs__button${activeGroup === table.group ? " group-tabs__button--active" : ""}`}
-            type="button"
-            role="tab"
-            aria-selected={activeGroup === table.group}
-            onClick={() => setActiveGroup(table.group)}
-          >
-            {table.group}
-          </button>
-        ))}
-      </div>
-
-      <div className="group-standings-panel" role="tabpanel" aria-label={activeTable.label}>
-        <div className="group-standings-panel__header">
-          <h3>{activeTable.label}</h3>
-          <span>
-            {activeTable.rows.reduce((total, row) => total + row.played, 0) / 2} of 6 matches played
-          </span>
+    <details className="group-standings-card">
+      <summary className="group-standings-card__summary">
+        <div className="group-standings-card__summary-main">
+          <strong>{table.label}</strong>
+          <span>{matchesPlayed} of 6 matches played</span>
+          {leaderPreview ? <span className="group-standings-card__preview">{leaderPreview}</span> : null}
         </div>
+        <span className="group-standings-card__chevron" aria-hidden="true" />
+      </summary>
 
+      <div className="group-standings-card__body">
         <div className="table-shell group-standings-table-shell">
           <table className="group-standings-table">
             <thead>
@@ -93,7 +56,7 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
               </tr>
             </thead>
             <tbody>
-              {activeTable.rows.map((row) => (
+              {table.rows.map((row) => (
                 <tr key={row.team} className={getGroupStandingsRowClassName(row.qualificationStatus)}>
                   <td>{row.rank}</td>
                   <th scope="row">
@@ -121,21 +84,44 @@ export function GroupStandings({ tables }: GroupStandingsProps) {
             </tbody>
           </table>
         </div>
+      </div>
+    </details>
+  );
+}
 
-        <div className="group-standings-legend" aria-hidden="true">
-          <span className="group-standings-legend__item group-standings-legend__item--through">
-            1st &amp; 2nd — through automatically
-          </span>
-          <span className="group-standings-legend__item group-standings-legend__item--lucky-third">
-            Best 3rd — lucky qualifier
-          </span>
-          <span className="group-standings-legend__item group-standings-legend__item--third-hope">
-            3rd hunt — still chasing a best-third spot
-          </span>
-          <span className="group-standings-legend__item group-standings-legend__item--eliminated">
-            Out — eliminated
-          </span>
-        </div>
+export function GroupStandings({ tables }: GroupStandingsProps) {
+  if (tables.length === 0) {
+    return null;
+  }
+
+  return (
+    <section id="group-standings" className="section">
+      <SectionStoryHeader
+        tone="groups"
+        eyebrow="Road to the knockouts"
+        title="Group standings"
+        copy="Top two advance automatically. The best eight third-place teams join them — everyone else goes home."
+      />
+
+      <div className="group-standings-grid">
+        {tables.map((table) => (
+          <GroupStandingCard key={table.group} table={table} />
+        ))}
+      </div>
+
+      <div className="group-standings-legend" aria-hidden="true">
+        <span className="group-standings-legend__item group-standings-legend__item--through">
+          1st &amp; 2nd — through automatically
+        </span>
+        <span className="group-standings-legend__item group-standings-legend__item--lucky-third">
+          Best 3rd — lucky qualifier
+        </span>
+        <span className="group-standings-legend__item group-standings-legend__item--third-hope">
+          3rd hunt — still chasing a best-third spot
+        </span>
+        <span className="group-standings-legend__item group-standings-legend__item--eliminated">
+          Out — eliminated
+        </span>
       </div>
 
       <a className="section__jump" href="#top">
