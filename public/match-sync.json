@@ -842,7 +842,12 @@
       "venue": "MetLife Stadium, New York/New Jersey",
       "homeTeam": "Panama",
       "awayTeam": "England",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 2,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 62,
@@ -921,7 +926,12 @@
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Croatia",
       "awayTeam": "Ghana",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 68,
