@@ -940,7 +940,12 @@
       "venue": "Hard Rock Stadium, Miami",
       "homeTeam": "Colombia",
       "awayTeam": "Portugal",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 0
+      "finalYellowCards": 1,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 69,
@@ -958,7 +963,12 @@
       "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "DR Congo",
       "awayTeam": "Uzbekistan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 1,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 71,
