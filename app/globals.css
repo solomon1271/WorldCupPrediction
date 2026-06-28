@@ -3553,53 +3553,6 @@ th {
   padding: 1.5rem;
 }
 
-.auth-shell--login {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 120% 90% at 50% 18%, rgba(255, 61, 108, 0.2), transparent 52%),
-    radial-gradient(ellipse 90% 70% at 88% 78%, rgba(0, 245, 212, 0.16), transparent 48%),
-    linear-gradient(168deg, #02040f 0%, #0b1842 46%, #031018 100%);
-}
-
-.auth-shell__logo {
-  position: absolute;
-  inset: -6%;
-  background:
-    url("/auth/fifa-world-cup-2026-logo.svg") center center / min(112vmin, 980px) auto no-repeat;
-  opacity: 0.2;
-  filter: saturate(1.08) brightness(1.12);
-  pointer-events: none;
-}
-
-.auth-shell--login::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 44%, rgba(4, 8, 22, 0.08) 0%, rgba(4, 8, 22, 0.62) 58%, rgba(2, 4, 12, 0.92) 100%),
-    linear-gradient(180deg, rgba(2, 4, 12, 0.42) 0%, rgba(2, 4, 12, 0.12) 42%, rgba(2, 4, 12, 0.88) 100%);
-  pointer-events: none;
-}
-
-.auth-shell--login .auth-card {
-  position: relative;
-  z-index: 1;
-  background: rgba(8, 12, 32, 0.9);
-  backdrop-filter: blur(18px);
-  border-color: rgba(120, 220, 255, 0.34);
-  box-shadow:
-    0 28px 60px rgba(0, 0, 0, 0.72),
-    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
-    0 0 80px rgba(0, 245, 212, 0.08);
-}
-
-.auth-shell--login .auth-card h1,
-.auth-shell--login .eyebrow {
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
-}
-
 .auth-card {
   width: min(540px, 100%);
   padding: 2rem;
@@ -3719,18 +3672,6 @@ th {
   background: rgba(240, 251, 255, 0.06);
   color: var(--ink);
   font-weight: 700;
-}
-
-@media (max-width: 640px) {
-  .auth-shell__logo {
-    inset: -10%;
-    background-size: min(132vmin, 760px) auto;
-    opacity: 0.17;
-  }
-
-  .auth-shell--login .auth-card {
-    padding: 1.5rem;
-  }
 }
 
 .prediction-form {
