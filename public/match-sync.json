@@ -1024,7 +1024,12 @@
       "venue": "Houston Stadium, Houston",
       "homeTeam": "Brazil",
       "awayTeam": "Japan",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 75,
