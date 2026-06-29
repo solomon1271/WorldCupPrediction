@@ -38,11 +38,11 @@ export default async function LeaguesPage() {
   return (
     <main className="page-shell">
       <section className="section">
-        <div className="section__heading">
+        <div className="section__heading section__heading--wide">
           <p className="eyebrow">Your leagues</p>
           <h2>Choose a league</h2>
         </div>
-        <div className="card-grid">
+        <div className="card-grid card-grid--leagues">
           {leagues.map((league) => (
             <Link className="card card--feature" href={`/l/${league.slug}`} key={league.id}>
               <p className="card__label">{league.subtitle}</p>

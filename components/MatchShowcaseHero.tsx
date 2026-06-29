@@ -1,10 +1,6 @@
-"use client";
-
-import { useState } from "react";
-
 import { MatchShowcaseTicket } from "@/components/MatchShowcaseTicket";
 import { parsePlaceholderTeam, type PlaceholderTeamMeta } from "@/lib/placeholder-team";
-import { getFlagImageUrl, getPlayerImageUrl, getTeamShowcase } from "@/lib/team-showcase";
+import { getFlagImageUrl, getTeamShowcase } from "@/lib/team-showcase";
 
 type MatchShowcaseHeroProps = {
   homeTeam: string;
@@ -29,15 +25,12 @@ function ShowcaseSide({
   side: "home" | "away";
 }) {
   const showcase = getTeamShowcase(team);
-  const [useFlagFallback, setUseFlagFallback] = useState(false);
 
   if (!showcase) {
     return null;
   }
 
   const flagUrl = getFlagImageUrl(showcase.countryCode);
-  const playerUrl = getPlayerImageUrl(showcase.countryCode);
-  const imageSrc = useFlagFallback ? flagUrl : playerUrl;
 
   return (
     <div
@@ -48,21 +41,11 @@ function ShowcaseSide({
         } as React.CSSProperties & Record<string, string>
       }
     >
-      <img
-        alt=""
-        aria-hidden="true"
-        className="match-showcase__flag"
-        src={flagUrl}
-      />
-      <img
-        alt={`${showcase.player} of ${showcase.team}`}
-        className={`match-showcase__player${useFlagFallback ? " match-showcase__player--flag" : ""}`}
-        src={imageSrc}
-        onError={() => setUseFlagFallback(true)}
-      />
-      <div className="match-showcase__side-copy">
-        <span className="match-showcase__team">{showcase.team}</span>
-        <strong className="match-showcase__player-name">{showcase.player}</strong>
+      <div className="match-showcase__flag-wrap">
+        <img alt="" aria-hidden="true" className="match-showcase__flag" src={flagUrl} />
+        <div className="match-showcase__side-copy">
+          <span className="match-showcase__team">{showcase.team}</span>
+        </div>
       </div>
     </div>
   );
@@ -105,7 +88,7 @@ function TbdShowcaseSide({
 
       <div className="match-showcase__side-copy">
         <span className="match-showcase__team">{meta.headline}</span>
-        <strong className="match-showcase__player-name">{meta.sublabel}</strong>
+        <strong className="match-showcase__tbd-label">{meta.sublabel}</strong>
       </div>
     </div>
   );
