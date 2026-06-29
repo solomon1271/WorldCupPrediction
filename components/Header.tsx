@@ -166,6 +166,17 @@ export function Header({ currentUserName, isAdmin = false, league, variant = "ho
   return (
     <header className={`hero${menuOpen ? " hero--menu-open" : ""}`} id="top">
       <div className="hero__backdrop" aria-hidden="true" />
+      <div className="hero__host-flags" aria-hidden="true">
+        <div className="hero__host-flag hero__host-flag--usa">
+          <img src="/flags/us.png" alt="" />
+        </div>
+        <div className="hero__host-flag hero__host-flag--mexico">
+          <img src="/flags/mx.png" alt="" />
+        </div>
+        <div className="hero__host-flag hero__host-flag--canada">
+          <img src="/flags/ca.png" alt="" />
+        </div>
+      </div>
       <div className="hero__scrim" aria-hidden="true" />
 
       <div className="hero__bar">
