@@ -1038,7 +1038,12 @@
       "venue": "Boston Stadium, Boston",
       "homeTeam": "Germany",
       "awayTeam": "Paraguay",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 22,
+      "finalRedCards": 0
     },
     {
       "id": 76,
