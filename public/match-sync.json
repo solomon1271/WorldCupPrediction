@@ -1066,7 +1066,12 @@
       "venue": "Toronto Stadium, Toronto",
       "homeTeam": "Ivory Coast",
       "awayTeam": "Norway",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 2,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 17,
+      "finalRedCards": 0
     },
     {
       "id": 78,
