@@ -1052,7 +1052,12 @@
       "venue": "Seattle Stadium, Seattle",
       "homeTeam": "Netherlands",
       "awayTeam": "Morocco",
-      "isLocked": false
+      "isLocked": false,
+       "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 13,
+      "finalRedCards": 0
     },
     {
       "id": 77,
