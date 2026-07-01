@@ -1080,7 +1080,12 @@
       "venue": "Philadelphia Stadium, Philadelphia",
       "homeTeam": "France",
       "awayTeam": "Sweden",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 0,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 79,
