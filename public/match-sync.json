@@ -1094,7 +1094,12 @@
       "venue": "Monterrey Stadium, Monterrey",
       "homeTeam": "Mexico",
       "awayTeam": "Ecuador",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 0,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 11,
+      "finalRedCards": 1
     },
     {
       "id": 80,
