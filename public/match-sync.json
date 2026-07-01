@@ -1108,7 +1108,12 @@
       "venue": "Atlanta Stadium, Atlanta",
       "homeTeam": "England",
       "awayTeam": "DR Congo",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 81,
