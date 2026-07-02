@@ -1150,7 +1150,12 @@
       "venue": "Kansas City Stadium, Kansas City",
       "homeTeam": "Spain",
       "awayTeam": "Austria",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 0,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 9,
+      "finalRedCards": 0
     },
     {
       "id": 84,
