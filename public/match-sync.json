@@ -1122,7 +1122,12 @@
       "venue": "San Francisco Bay Area Stadium, Santa Clara",
       "homeTeam": "Belgium",
       "awayTeam": "Senegal",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 2,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 82,
