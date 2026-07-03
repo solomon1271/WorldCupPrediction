@@ -12,6 +12,9 @@ type TournamentPicksProps = {
   prediction: DashboardTournamentPrediction;
   locked: boolean;
   lockLabel: string;
+  unlockUntilLabel?: string | null;
+  temporarilyUnlocked?: boolean;
+  leaguePaused?: boolean;
 };
 
 const topPickFields: Array<{
@@ -30,7 +33,15 @@ function countSavedPicks(prediction: DashboardTournamentPrediction) {
   return topPickFields.filter(({ key }) => Boolean(prediction[key]?.trim())).length;
 }
 
-export function TournamentPicks({ leagueSlug, prediction, locked, lockLabel }: TournamentPicksProps) {
+export function TournamentPicks({
+  leagueSlug,
+  prediction,
+  locked,
+  lockLabel,
+  unlockUntilLabel,
+  temporarilyUnlocked = false,
+  leaguePaused = false
+}: TournamentPicksProps) {
   const [localPrediction, setLocalPrediction] = useState(prediction);
   const savedPickCount = countSavedPicks(localPrediction);
   const hasSavedPicks = savedPickCount > 0;
@@ -39,6 +50,17 @@ export function TournamentPicks({ leagueSlug, prediction, locked, lockLabel }: T
     <section id="tournament-picks" className={`section${locked ? " section--tournament-locked" : ""}`}>
       <SectionStoryHeader tone="tournament" eyebrow="Awards & destiny" title="Your tournament story">
         {locked ? (
+          leaguePaused ? (
+            <div className="tournament-deadline-banner tournament-deadline-banner--locked" role="note">
+              <span className="tournament-deadline-banner__mark" aria-hidden="true">
+                ⏸
+              </span>
+              <p className="tournament-deadline-banner__text">
+                <strong>Top picks are paused.</strong>
+                <span>This league is temporarily paused. Your saved top picks below are visible but cannot be changed.</span>
+              </p>
+            </div>
+          ) : (
           <div className="tournament-deadline-banner tournament-deadline-banner--locked" role="note">
             <span className="tournament-deadline-banner__mark" aria-hidden="true">
               🔒
@@ -51,6 +73,25 @@ export function TournamentPicks({ leagueSlug, prediction, locked, lockLabel }: T
               </span>
             </p>
           </div>
+          )
+        ) : temporarilyUnlocked && unlockUntilLabel ? (
+          <>
+            <div className="tournament-deadline-banner tournament-deadline-banner--reopened" role="note">
+              <span className="tournament-deadline-banner__mark" aria-hidden="true">
+                ↻
+              </span>
+              <p className="tournament-deadline-banner__text">
+                <strong>Top picks are temporarily open.</strong>
+                <span>
+                  You can update your saved picks until {unlockUntilLabel}. After that, this section locks again and
+                  your picks become final.
+                </span>
+              </p>
+            </div>
+            <p className="section__copy">
+              Each correct top pick earns {TOURNAMENT_AWARD_POINTS} points when official awards are announced.
+            </p>
+          </>
         ) : (
           <>
             <p className="section__copy">

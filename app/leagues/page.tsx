@@ -8,10 +8,15 @@ import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireUser } from "@/lib/auth/user";
 import { getUserLeagues } from "@/lib/leagues";
 
-export default async function LeaguesPage() {
+type LeaguesPageProps = {
+  searchParams: Promise<{ unavailable?: string }>;
+};
+
+export default async function LeaguesPage({ searchParams }: LeaguesPageProps) {
   const user = await requireUser();
   const leagues = await getUserLeagues(user.id);
   const isAdmin = userHasAdminAccess(user);
+  const { unavailable } = await searchParams;
 
   if (leagues.length === 0 && isAdmin) {
     redirect("/admin");
@@ -25,6 +30,11 @@ export default async function LeaguesPage() {
             <p className="eyebrow">Your leagues</p>
             <h2>Join a league to get started</h2>
           </div>
+          {unavailable ? (
+            <p className="league-status-banner league-status-banner--inline" role="note">
+              That league is temporarily unavailable.
+            </p>
+          ) : null}
           <p className="section__copy">
             Ask your league organizer for the signup link and invite code. If you need a new account, use your
             group&apos;s signup page — not the general login page.
@@ -42,6 +52,11 @@ export default async function LeaguesPage() {
           <p className="eyebrow">Your leagues</p>
           <h2>Choose a league</h2>
         </div>
+        {unavailable ? (
+          <p className="league-status-banner league-status-banner--inline" role="note">
+            That league is temporarily unavailable.
+          </p>
+        ) : null}
         <div className="card-grid card-grid--leagues">
           {leagues.map((league) => (
             <Link className="card card--feature" href={`/l/${league.slug}`} key={league.id}>

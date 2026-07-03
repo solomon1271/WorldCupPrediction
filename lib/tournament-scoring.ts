@@ -1,4 +1,5 @@
 export const TOURNAMENT_AWARD_POINTS = 100;
+export const TOURNAMENT_TOP_PICK_COUNT = 6;
 
 export type TournamentAwards = {
   champion?: string | null;
@@ -29,6 +30,17 @@ export type TournamentScoreBreakdownItem = {
 
 function normalizeAward(value: string | null | undefined) {
   return value?.trim().toLowerCase() || "";
+}
+
+export function countSavedTournamentTopPicks(prediction: TournamentPredictionInput) {
+  return [
+    prediction.champion,
+    prediction.runnerUp,
+    prediction.goldenBoot,
+    prediction.bestYoungPlayer,
+    prediction.goldenGlove,
+    prediction.bestPlayer
+  ].filter((value) => Boolean(value?.trim())).length;
 }
 
 function awardsMatch(pick: string | null | undefined, official: string | null | undefined) {

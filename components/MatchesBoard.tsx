@@ -20,6 +20,7 @@ type MatchesBoardProps = {
   predictionTimeZone: string;
   referenceNow: string;
   lockLeadMinutes: number;
+  leaguePaused?: boolean;
 };
 
 function PredictionSummary({ prediction }: { prediction?: DashboardMatchPrediction }) {
@@ -110,6 +111,7 @@ type MatchCardProps = {
   onToggle: (matchId: number | null) => void;
   onSaved: (savedPrediction: DashboardMatchPrediction) => void;
   predictionTimeZone: string;
+  leaguePaused?: boolean;
 };
 
 function MatchCard({
@@ -119,10 +121,11 @@ function MatchCard({
   expandedMatchId,
   onToggle,
   onSaved,
-  predictionTimeZone
+  predictionTimeZone,
+  leaguePaused = false
 }: MatchCardProps) {
   const isFinished = Boolean(match.finalScore);
-  const isLocked = match.locked && !isFinished;
+  const isLocked = (match.locked || leaguePaused) && !isFinished;
   const isOpen = !isFinished && !isLocked;
   const statusLabel = getStatusLabel(isFinished, isLocked, Boolean(prediction), match.urgency);
   const showcaseMode = getMatchShowcaseMode(match.stage, match.homeTeam, match.awayTeam);
@@ -224,7 +227,9 @@ function MatchCard({
         ) : isLocked ? (
           <>
             <PredictionSummary prediction={prediction} />
-            <p className="status-note status-note--locked">Predictions are locked for this match.</p>
+            <p className="status-note status-note--locked">
+              {leaguePaused ? "This league is temporarily paused." : "Predictions are locked for this match."}
+            </p>
           </>
         ) : (
           <MatchPredictionForm
@@ -247,7 +252,8 @@ export function MatchesBoard({
   timezoneShortName,
   predictionTimeZone,
   referenceNow,
-  lockLeadMinutes
+  lockLeadMinutes,
+  leaguePaused = false
 }: MatchesBoardProps) {
   const [localPredictions, setLocalPredictions] = useState(predictions);
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
@@ -383,6 +389,7 @@ export function MatchesBoard({
               onToggle={setExpandedMatchId}
               onSaved={handleSaved}
               predictionTimeZone={predictionTimeZone}
+              leaguePaused={leaguePaused}
             />
           ))
         )}

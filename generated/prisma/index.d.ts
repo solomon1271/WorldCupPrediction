@@ -3074,6 +3074,8 @@ export namespace Prisma {
     name: string | null
     inviteCode: string | null
     subtitle: string | null
+    isPaused: boolean | null
+    isHidden: boolean | null
     officialAwardsJson: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3085,6 +3087,8 @@ export namespace Prisma {
     name: string | null
     inviteCode: string | null
     subtitle: string | null
+    isPaused: boolean | null
+    isHidden: boolean | null
     officialAwardsJson: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3096,6 +3100,8 @@ export namespace Prisma {
     name: number
     inviteCode: number
     subtitle: number
+    isPaused: number
+    isHidden: number
     officialAwardsJson: number
     createdAt: number
     updatedAt: number
@@ -3109,6 +3115,8 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    isPaused?: true
+    isHidden?: true
     officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
@@ -3120,6 +3128,8 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    isPaused?: true
+    isHidden?: true
     officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
@@ -3131,6 +3141,8 @@ export namespace Prisma {
     name?: true
     inviteCode?: true
     subtitle?: true
+    isPaused?: true
+    isHidden?: true
     officialAwardsJson?: true
     createdAt?: true
     updatedAt?: true
@@ -3215,6 +3227,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle: string
+    isPaused: boolean
+    isHidden: boolean
     officialAwardsJson: string
     createdAt: Date
     updatedAt: Date
@@ -3243,6 +3257,8 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3262,6 +3278,8 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3273,6 +3291,8 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3284,12 +3304,14 @@ export namespace Prisma {
     name?: boolean
     inviteCode?: boolean
     subtitle?: boolean
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LeagueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "inviteCode" | "subtitle" | "officialAwardsJson" | "createdAt" | "updatedAt", ExtArgs["result"]["league"]>
+  export type LeagueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "inviteCode" | "subtitle" | "isPaused" | "isHidden" | "officialAwardsJson" | "createdAt" | "updatedAt", ExtArgs["result"]["league"]>
   export type LeagueInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     members?: boolean | League$membersArgs<ExtArgs>
     matchPredictions?: boolean | League$matchPredictionsArgs<ExtArgs>
@@ -3320,6 +3342,8 @@ export namespace Prisma {
       name: string
       inviteCode: string
       subtitle: string
+      isPaused: boolean
+      isHidden: boolean
       officialAwardsJson: string
       createdAt: Date
       updatedAt: Date
@@ -3758,6 +3782,8 @@ export namespace Prisma {
     readonly name: FieldRef<"League", 'String'>
     readonly inviteCode: FieldRef<"League", 'String'>
     readonly subtitle: FieldRef<"League", 'String'>
+    readonly isPaused: FieldRef<"League", 'Boolean'>
+    readonly isHidden: FieldRef<"League", 'Boolean'>
     readonly officialAwardsJson: FieldRef<"League", 'String'>
     readonly createdAt: FieldRef<"League", 'DateTime'>
     readonly updatedAt: FieldRef<"League", 'DateTime'>
@@ -13313,6 +13339,8 @@ export namespace Prisma {
     name: 'name',
     inviteCode: 'inviteCode',
     subtitle: 'subtitle',
+    isPaused: 'isPaused',
+    isHidden: 'isHidden',
     officialAwardsJson: 'officialAwardsJson',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -13576,6 +13604,8 @@ export namespace Prisma {
     name?: StringFilter<"League"> | string
     inviteCode?: StringFilter<"League"> | string
     subtitle?: StringFilter<"League"> | string
+    isPaused?: BoolFilter<"League"> | boolean
+    isHidden?: BoolFilter<"League"> | boolean
     officialAwardsJson?: StringFilter<"League"> | string
     createdAt?: DateTimeFilter<"League"> | Date | string
     updatedAt?: DateTimeFilter<"League"> | Date | string
@@ -13594,6 +13624,8 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    isPaused?: SortOrder
+    isHidden?: SortOrder
     officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13615,6 +13647,8 @@ export namespace Prisma {
     NOT?: LeagueWhereInput | LeagueWhereInput[]
     name?: StringFilter<"League"> | string
     subtitle?: StringFilter<"League"> | string
+    isPaused?: BoolFilter<"League"> | boolean
+    isHidden?: BoolFilter<"League"> | boolean
     officialAwardsJson?: StringFilter<"League"> | string
     createdAt?: DateTimeFilter<"League"> | Date | string
     updatedAt?: DateTimeFilter<"League"> | Date | string
@@ -13633,6 +13667,8 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    isPaused?: SortOrder
+    isHidden?: SortOrder
     officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13650,6 +13686,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"League"> | string
     inviteCode?: StringWithAggregatesFilter<"League"> | string
     subtitle?: StringWithAggregatesFilter<"League"> | string
+    isPaused?: BoolWithAggregatesFilter<"League"> | boolean
+    isHidden?: BoolWithAggregatesFilter<"League"> | boolean
     officialAwardsJson?: StringWithAggregatesFilter<"League"> | string
     createdAt?: DateTimeWithAggregatesFilter<"League"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"League"> | Date | string
@@ -14336,6 +14374,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14354,6 +14394,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14372,6 +14414,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14390,6 +14434,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14408,6 +14454,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14419,6 +14467,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14430,6 +14480,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15196,6 +15248,8 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    isPaused?: SortOrder
+    isHidden?: SortOrder
     officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15207,6 +15261,8 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    isPaused?: SortOrder
+    isHidden?: SortOrder
     officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15218,6 +15274,8 @@ export namespace Prisma {
     name?: SortOrder
     inviteCode?: SortOrder
     subtitle?: SortOrder
+    isPaused?: SortOrder
+    isHidden?: SortOrder
     officialAwardsJson?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -17273,6 +17331,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17290,6 +17350,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17356,6 +17418,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17373,6 +17437,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17523,6 +17589,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17540,6 +17608,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17651,6 +17721,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17668,6 +17740,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17775,6 +17849,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17792,6 +17868,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17825,6 +17903,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17842,6 +17922,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17859,6 +17941,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17876,6 +17960,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17909,6 +17995,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17926,6 +18014,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17943,6 +18033,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17960,6 +18052,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18026,6 +18120,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18043,6 +18139,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18099,6 +18197,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18116,6 +18216,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18227,6 +18329,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18244,6 +18348,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18351,6 +18457,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18368,6 +18476,8 @@ export namespace Prisma {
     name: string
     inviteCode: string
     subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
     officialAwardsJson?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18434,6 +18544,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18451,6 +18563,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     inviteCode?: StringFieldUpdateOperationsInput | string
     subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
     officialAwardsJson?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

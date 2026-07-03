@@ -12,8 +12,18 @@ function toLeagueSummary(league: League): LeagueSummary {
     slug: league.slug,
     name: league.name,
     subtitle: league.subtitle,
-    inviteCode: league.inviteCode
+    inviteCode: league.inviteCode,
+    isPaused: league.isPaused,
+    isHidden: league.isHidden
   };
+}
+
+function isLeaguePubliclyVisible(league: League | LeagueSummary) {
+  return !league.isHidden;
+}
+
+function isLeagueJoinable(league: League | LeagueSummary) {
+  return !league.isHidden && !league.isPaused;
 }
 
 export async function getLeagueBySlug(slug: string) {
@@ -21,7 +31,11 @@ export async function getLeagueBySlug(slug: string) {
     where: { slug: normalizeLeagueSlug(slug) }
   });
 
-  return league ? toLeagueSummary(league) : null;
+  if (!league || !isLeaguePubliclyVisible(league)) {
+    return null;
+  }
+
+  return toLeagueSummary(league);
 }
 
 export async function getLeagueByInviteCode(inviteCode: string) {
@@ -32,7 +46,11 @@ export async function getLeagueByInviteCode(inviteCode: string) {
     }
   });
 
-  return league ? toLeagueSummary(league) : null;
+  if (!league || !isLeagueJoinable(league)) {
+    return null;
+  }
+
+  return toLeagueSummary(league);
 }
 
 export async function getUserLeagues(userId: string) {
@@ -42,7 +60,10 @@ export async function getUserLeagues(userId: string) {
     orderBy: [{ joinedAt: "asc" }]
   });
 
-  return memberships.map((membership) => toLeagueSummary(membership.league));
+  return memberships
+    .map((membership) => membership.league)
+    .filter(isLeaguePubliclyVisible)
+    .map(toLeagueSummary);
 }
 
 export async function userBelongsToLeague(userId: string, leagueId: string) {
@@ -59,7 +80,9 @@ export async function userBelongsToLeague(userId: string, leagueId: string) {
 }
 
 export async function requireLeagueMembership(userId: string, leagueSlug: string) {
-  const league = await getLeagueBySlug(leagueSlug);
+  const league = await prisma.league.findUnique({
+    where: { slug: normalizeLeagueSlug(leagueSlug) }
+  });
 
   if (!league) {
     return { error: "League not found." as const };
@@ -71,7 +94,29 @@ export async function requireLeagueMembership(userId: string, leagueSlug: string
     return { error: "You are not a member of this league." as const };
   }
 
-  return { league };
+  if (league.isHidden) {
+    return { error: "This league is not available." as const };
+  }
+
+  return { league: toLeagueSummary(league) };
+}
+
+export async function requireActiveLeagueMembership(userId: string, leagueSlug: string) {
+  const membership = await requireLeagueMembership(userId, leagueSlug);
+
+  if ("error" in membership) {
+    return membership;
+  }
+
+  if (membership.league.isHidden) {
+    return { error: "This league is not available." as const };
+  }
+
+  if (membership.league.isPaused) {
+    return { error: "This league is temporarily paused." as const };
+  }
+
+  return membership;
 }
 
 export async function addUserToLeague(userId: string, leagueId: string) {
@@ -146,4 +191,49 @@ export async function listLeagues() {
   });
 
   return leagues.map(toLeagueSummary);
+}
+
+export async function getLeagueJoinEligibility(inviteCode: string) {
+  const normalized = normalizeInviteCode(inviteCode);
+  const league = await prisma.league.findFirst({
+    where: {
+      inviteCode: normalized
+    }
+  });
+
+  if (!league) {
+    return { kind: "not_found" as const };
+  }
+
+  if (league.isHidden) {
+    return { kind: "unavailable" as const };
+  }
+
+  if (league.isPaused) {
+    return { kind: "paused" as const };
+  }
+
+  return { kind: "ok" as const, league: toLeagueSummary(league) };
+}
+
+export async function getLeagueMemberDashboardAccess(userId: string, leagueSlug: string) {
+  const league = await prisma.league.findUnique({
+    where: { slug: normalizeLeagueSlug(leagueSlug) }
+  });
+
+  if (!league) {
+    return { kind: "not_found" as const };
+  }
+
+  const isMember = await userBelongsToLeague(userId, league.id);
+
+  if (!isMember) {
+    return { kind: "not_member" as const, league: toLeagueSummary(league) };
+  }
+
+  if (league.isHidden) {
+    return { kind: "hidden" as const, league: toLeagueSummary(league) };
+  }
+
+  return { kind: "ok" as const, league: toLeagueSummary(league) };
 }

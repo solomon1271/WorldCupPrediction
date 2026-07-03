@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { isMatchLocked } from "@/lib/match-lock";
-import { requireLeagueMembership } from "@/lib/leagues";
+import { requireActiveLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
 
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
   const { leagueSlug, matchId, homeScore, awayScore, winner, totalGoalsLine, totalCornersLine, yellowCardsLine, redCardsLine } =
     parsed.data;
-  const membership = await requireLeagueMembership(user.id, leagueSlug);
+  const membership = await requireActiveLeagueMembership(user.id, leagueSlug);
 
   if ("error" in membership) {
     return NextResponse.json({ error: membership.error }, { status: 403 });

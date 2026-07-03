@@ -28,6 +28,8 @@
     "matches:reset:test": "tsx scripts/reset-test-matches.ts",
     "matches:unlock": "tsx scripts/unlock-match-predictions.ts",
     "matches:unlock:prod": "npm run db:generate:prod && tsx scripts/unlock-match-predictions.ts -- --until-kickoff",
+    "tournament:unlock": "tsx scripts/unlock-tournament-picks.ts",
+    "league:status": "tsx scripts/set-league-status.ts",
     "tournament:reset": "tsx scripts/reset-for-tournament.ts",
     "matches:lock": "tsx scripts/lock-matches.ts",
     "matches:maintain": "tsx scripts/run-match-maintenance.ts",

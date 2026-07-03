@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSessionUser } from "@/lib/auth/session-user";
-import { addUserToLeague, getLeagueByInviteCode } from "@/lib/leagues";
+import { addUserToLeague, getLeagueJoinEligibility } from "@/lib/leagues";
 
 const schema = z.object({
   inviteCode: z.string().trim().min(1, "Invite code is required.")
@@ -22,11 +22,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message || "Invalid invite code." }, { status: 400 });
   }
 
-  const league = await getLeagueByInviteCode(parsed.data.inviteCode);
+  const eligibility = await getLeagueJoinEligibility(parsed.data.inviteCode);
 
-  if (!league) {
+  if (eligibility.kind === "not_found") {
     return NextResponse.json({ error: "Invite code does not match any league." }, { status: 400 });
   }
+
+  if (eligibility.kind === "unavailable") {
+    return NextResponse.json({ error: "This league is not accepting new members right now." }, { status: 400 });
+  }
+
+  if (eligibility.kind === "paused") {
+    return NextResponse.json({ error: "This league is temporarily paused. Try again later." }, { status: 400 });
+  }
+
+  const league = eligibility.league;
 
   await addUserToLeague(user.id, league.id);
 

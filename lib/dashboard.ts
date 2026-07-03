@@ -10,7 +10,10 @@ import {
 import { getMatchLockLeadMinutes, isMatchLocked } from "@/lib/match-lock";
 import {
   formatTournamentPicksLockLabel,
-  isTournamentPicksLocked
+  formatTournamentPicksUnlockUntilLabel,
+  getTournamentPicksUnlockUntil,
+  isTournamentPicksLocked,
+  isTournamentPicksTemporarilyUnlocked
 } from "@/lib/tournament-lock";
 import {
   getPredictionScoreBreakdown,
@@ -160,6 +163,12 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   const timezoneShortName = formatTimezoneShortName(predictionTimeZone, referenceNow);
   const tournamentPicksLocked = isTournamentPicksLocked(referenceNow, predictionTimeZone);
   const tournamentPicksLockLabel = formatTournamentPicksLockLabel(predictionTimeZone);
+  const tournamentPicksUnlockUntilLabel = formatTournamentPicksUnlockUntilLabel(
+    predictionTimeZone,
+    referenceNow
+  );
+  const tournamentPicksTemporarilyUnlocked = isTournamentPicksTemporarilyUnlocked(referenceNow);
+  const tournamentPicksUnlockUntil = getTournamentPicksUnlockUntil()?.toISOString() ?? null;
 
   const dashboardMatches = sortMatchesByUrgency(
     matches.map((match) => {
@@ -249,6 +258,9 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     tournamentPicksLocked,
     tournamentPicksLockLabel,
+    tournamentPicksUnlockUntilLabel,
+    tournamentPicksUnlockUntil,
+    tournamentPicksTemporarilyUnlocked,
     currentUserName: currentUser?.displayName || "Manager",
     trendSummary: currentUserStanding ? momentumLabel(currentUserStanding.trend) : "No change",
     totalMatches: matches.length,

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { addUserToLeague, getLeagueByInviteCode } from "@/lib/leagues";
+import { addUserToLeague, getLeagueJoinEligibility } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { attachSessionCookie, issueSessionToken } from "@/lib/auth/session";
 import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
@@ -32,11 +32,21 @@ export async function POST(request: Request) {
     }
 
     const { displayName, email, password, inviteCode } = parsed.data;
-    const league = await getLeagueByInviteCode(inviteCode);
+    const eligibility = await getLeagueJoinEligibility(inviteCode);
 
-    if (!league) {
+    if (eligibility.kind === "not_found") {
       return NextResponse.json({ error: "Invite code does not match any league." }, { status: 400 });
     }
+
+    if (eligibility.kind === "unavailable") {
+      return NextResponse.json({ error: "This league is not accepting new members right now." }, { status: 400 });
+    }
+
+    if (eligibility.kind === "paused") {
+      return NextResponse.json({ error: "This league is temporarily paused. Try again later." }, { status: 400 });
+    }
+
+    const league = eligibility.league;
 
     let existingUser;
     try {

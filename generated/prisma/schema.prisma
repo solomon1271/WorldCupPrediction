@@ -29,6 +29,8 @@ model League {
   name                     String
   inviteCode               String                    @unique
   subtitle                 String                    @default("2026 World Cup Challenge")
+  isPaused                 Boolean                   @default(false)
+  isHidden                 Boolean                   @default(false)
   officialAwardsJson       String                    @default("{}")
   createdAt                DateTime                  @default(now())
   updatedAt                DateTime                  @updatedAt

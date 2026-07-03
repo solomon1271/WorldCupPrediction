@@ -4,6 +4,8 @@ export type LeagueSummary = {
   name: string;
   subtitle: string;
   inviteCode: string;
+  isPaused: boolean;
+  isHidden: boolean;
 };
 
 export type LeagueBranding = Pick<LeagueSummary, "slug" | "name" | "subtitle">;

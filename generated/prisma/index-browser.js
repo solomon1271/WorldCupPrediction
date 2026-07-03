@@ -133,6 +133,8 @@ exports.Prisma.LeagueScalarFieldEnum = {
   name: 'name',
   inviteCode: 'inviteCode',
   subtitle: 'subtitle',
+  isPaused: 'isPaused',
+  isHidden: 'isHidden',
   officialAwardsJson: 'officialAwardsJson',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

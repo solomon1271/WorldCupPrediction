@@ -8,6 +8,7 @@ import { GroupStageCelebration } from "@/lib/group-stage-announcement";
 type GroupStageCelebrationModalProps = {
   leagueSlug: string;
   celebration: GroupStageCelebration;
+  onFinished?: () => void;
 };
 
 function formatWinnerLabel(winners: GroupStageCelebration["winners"]) {
@@ -18,7 +19,11 @@ function formatWinnerLabel(winners: GroupStageCelebration["winners"]) {
   return winners.map((winner) => winner.displayName).join(" & ");
 }
 
-export function GroupStageCelebrationModal({ leagueSlug, celebration }: GroupStageCelebrationModalProps) {
+export function GroupStageCelebrationModal({
+  leagueSlug,
+  celebration,
+  onFinished
+}: GroupStageCelebrationModalProps) {
   const [visible, setVisible] = useState(true);
   const [pending, startTransition] = useTransition();
   const isTie = celebration.winners.length > 1;
@@ -79,6 +84,7 @@ export function GroupStageCelebrationModal({ leagueSlug, celebration }: GroupSta
               });
 
               setVisible(false);
+              onFinished?.();
             });
           }}
         >

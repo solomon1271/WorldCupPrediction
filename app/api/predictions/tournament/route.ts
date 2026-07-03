@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { requireLeagueMembership } from "@/lib/leagues";
+import { requireActiveLeagueMembership } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth/session-user";
 import { isTournamentPicksLocked } from "@/lib/tournament-lock";
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message || "Invalid tournament prediction." }, { status: 400 });
   }
 
-  const membership = await requireLeagueMembership(user.id, parsed.data.leagueSlug);
+  const membership = await requireActiveLeagueMembership(user.id, parsed.data.leagueSlug);
 
   if ("error" in membership) {
     return NextResponse.json({ error: membership.error }, { status: 403 });

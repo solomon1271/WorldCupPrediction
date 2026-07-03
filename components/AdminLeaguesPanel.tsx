@@ -156,7 +156,11 @@ export function AdminLeaguesPanel({ initialLeagues }: AdminLeaguesPanelProps) {
 
                 return (
                   <div className="league-share-card" key={league.id}>
-                    <h3>{league.name}</h3>
+                    <h3>
+                      {league.name}
+                      {league.isHidden ? <span className="league-status-pill league-status-pill--hidden">Hidden</span> : null}
+                      {league.isPaused ? <span className="league-status-pill league-status-pill--paused">Paused</span> : null}
+                    </h3>
                     <dl className="details-list">
                       <div>
                         <dt>Invite code (share with the group)</dt>
