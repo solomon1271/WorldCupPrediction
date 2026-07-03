@@ -1138,7 +1138,7 @@ a {
 .top-picks-reminder {
   position: fixed;
   inset: 0 0 auto;
-  z-index: 60;
+  z-index: 70;
   display: flex;
   justify-content: center;
   padding: 0.85rem 0.85rem 0;
@@ -3950,6 +3950,11 @@ th {
   margin: 0.35rem 0 0;
   color: var(--muted);
   font-size: 0.88rem;
+}
+
+.leaderboard-detail__pick--private {
+  color: rgba(255, 231, 240, 0.78);
+  font-style: italic;
 }
 
 .auth-shell {

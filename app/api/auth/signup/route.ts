@@ -4,6 +4,7 @@ import { z } from "zod";
 import { addUserToLeague, getLeagueJoinEligibility } from "@/lib/leagues";
 import { prisma } from "@/lib/prisma";
 import { attachSessionCookie, issueSessionToken } from "@/lib/auth/session";
+import { attachTopPicksReminderPendingCookie } from "@/lib/top-picks-reminder-cookie";
 import { isConfiguredAdminEmail } from "@/lib/auth/admin-email";
 import { hashPassword } from "@/lib/auth/password";
 
@@ -110,6 +111,7 @@ export async function POST(request: Request) {
     try {
       const response = NextResponse.json({ ok: true, leagueSlug: league.slug });
       attachSessionCookie(response, token);
+      attachTopPicksReminderPendingCookie(response);
       return response;
     } catch (cookieErr) {
       console.error("signup set-cookie error", cookieErr);

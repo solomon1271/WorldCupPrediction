@@ -4,30 +4,21 @@ import { useState } from "react";
 
 import { GroupStageCelebrationModal } from "@/components/GroupStageCelebrationModal";
 import { MatchWinnerRevealModal } from "@/components/MatchWinnerRevealModal";
-import { TopPicksReminderBanner } from "@/components/TopPicksReminderBanner";
 import { GroupStageCelebration } from "@/lib/group-stage-announcement";
 import { MatchWinnerRevealAnnouncement } from "@/lib/match-winner-announcement";
-
-type TopPicksReminder = {
-  unlockUntil: string;
-  unlockUntilLabel: string;
-  savedPickCount: number;
-};
 
 type LeagueCelebrationsProps = {
   leagueSlug: string;
   matchAnnouncements: MatchWinnerRevealAnnouncement[];
   groupStageCelebration: GroupStageCelebration | null;
   predictionTimeZone: string;
-  topPicksReminder?: TopPicksReminder | null;
 };
 
 export function LeagueCelebrations({
   leagueSlug,
   matchAnnouncements,
   groupStageCelebration,
-  predictionTimeZone,
-  topPicksReminder = null
+  predictionTimeZone
 }: LeagueCelebrationsProps) {
   const [matchRevealsDone, setMatchRevealsDone] = useState(matchAnnouncements.length === 0);
   const [groupStageDone, setGroupStageDone] = useState(!groupStageCelebration);
@@ -51,10 +42,6 @@ export function LeagueCelebrations({
         onFinished={() => setGroupStageDone(true)}
       />
     );
-  }
-
-  if (topPicksReminder) {
-    return <TopPicksReminderBanner {...topPicksReminder} />;
   }
 
   return null;

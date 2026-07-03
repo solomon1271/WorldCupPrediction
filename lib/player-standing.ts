@@ -7,6 +7,7 @@ import {
 } from "@/lib/match-scoring";
 import { isGroupStageMatchId, isKnockoutMatchId } from "@/lib/knockout-stage";
 import {
+  countSavedTournamentTopPicks,
   parseOfficialAwards,
   scoreTournamentPrediction,
   type TournamentAwards
@@ -45,6 +46,7 @@ export type PlayerStandingDetail = {
   outcomes: number;
   bonusHits: number;
   scope: PlayerStandingScope;
+  predictionsRedacted: boolean;
   matches: PlayerMatchStanding[];
   tournament: {
     champion: string | null;
@@ -53,6 +55,7 @@ export type PlayerStandingDetail = {
     bestYoungPlayer: string | null;
     goldenGlove: string | null;
     bestPlayer: string | null;
+    savedPickCount: number;
     breakdown: ReturnType<typeof scoreTournamentPrediction>["items"];
     points: number;
   };
@@ -108,9 +111,10 @@ function toPredictionInput(prediction: BuildPlayerStandingInput["matchPrediction
 
 export function buildPlayerStandingDetail(
   input: BuildPlayerStandingInput,
-  options?: { scope?: PlayerStandingScope }
+  options?: { scope?: PlayerStandingScope; redactPicks?: boolean }
 ): PlayerStandingDetail {
   const scope = options?.scope ?? "knockout";
+  const redactPicks = options?.redactPicks ?? false;
   const matchPredictions = input.matchPredictions.filter((prediction) =>
     scope === "knockout"
       ? isKnockoutMatchId(prediction.matchId)
@@ -142,16 +146,18 @@ export function buildPlayerStandingDetail(
         isFinished,
         hasPrediction: true,
         points: score.points,
-        breakdown,
-        prediction: {
-          winner: prediction.winner,
-          homeScore: prediction.homeScore,
-          awayScore: prediction.awayScore,
-          totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
-          totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
-          yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
-          redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
-        }
+        breakdown: redactPicks ? null : breakdown,
+        prediction: redactPicks
+          ? null
+          : {
+              winner: prediction.winner,
+              homeScore: prediction.homeScore,
+              awayScore: prediction.awayScore,
+              totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
+              totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
+              yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
+              redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
+            }
       };
     })
     .filter((match) => match.isFinished)
@@ -165,6 +171,7 @@ export function buildPlayerStandingDetail(
     goldenGlove: null,
     bestPlayer: null
   };
+  const tournamentSavedPickCount = countSavedTournamentTopPicks(tournamentPrediction);
   const tournamentScore =
     scope === "group-stage"
       ? scoreTournamentPrediction(tournamentPrediction, input.officialAwards)
@@ -180,12 +187,26 @@ export function buildPlayerStandingDetail(
     outcomes,
     bonusHits: bonusHits + tournamentScore.hits,
     scope,
+    predictionsRedacted: redactPicks,
     matches,
-    tournament: {
-      ...tournamentPrediction,
-      breakdown: tournamentScore.items,
-      points: tournamentScore.points
-    }
+    tournament: redactPicks
+      ? {
+          champion: null,
+          runnerUp: null,
+          goldenBoot: null,
+          bestYoungPlayer: null,
+          goldenGlove: null,
+          bestPlayer: null,
+          savedPickCount: tournamentSavedPickCount,
+          breakdown: [],
+          points: tournamentScore.points
+        }
+      : {
+          ...tournamentPrediction,
+          savedPickCount: tournamentSavedPickCount,
+          breakdown: tournamentScore.items,
+          points: tournamentScore.points
+        }
   };
 }
 

@@ -1,48 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { TOURNAMENT_TOP_PICK_COUNT } from "@/lib/tournament-scoring";
 
 type TopPicksReminderBannerProps = {
-  unlockUntil: string;
   unlockUntilLabel: string;
   savedPickCount: number;
 };
 
-function getDismissStorageKey(unlockUntil: string) {
-  return `top-picks-reminder-dismissed:${unlockUntil}`;
-}
-
-export function TopPicksReminderBanner({
-  unlockUntil,
-  unlockUntilLabel,
-  savedPickCount
-}: TopPicksReminderBannerProps) {
-  const [visible, setVisible] = useState(false);
+export function TopPicksReminderBanner({ unlockUntilLabel, savedPickCount }: TopPicksReminderBannerProps) {
+  const [dismissed, setDismissed] = useState(false);
   const picksComplete = savedPickCount >= TOURNAMENT_TOP_PICK_COUNT;
 
-  useEffect(() => {
-    try {
-      const dismissed = sessionStorage.getItem(getDismissStorageKey(unlockUntil)) === "1";
-      setVisible(!dismissed);
-    } catch {
-      setVisible(true);
-    }
-  }, [unlockUntil]);
-
-  function dismiss() {
-    try {
-      sessionStorage.setItem(getDismissStorageKey(unlockUntil), "1");
-    } catch {
-      // Ignore storage failures and hide for this render.
-    }
-
-    setVisible(false);
+  if (dismissed) {
+    return null;
   }
 
   function goToTopPicks() {
-    dismiss();
+    setDismissed(true);
     const target = document.getElementById("tournament-picks");
 
     if (target) {
@@ -51,10 +27,6 @@ export function TopPicksReminderBanner({
     }
 
     window.location.hash = "tournament-picks";
-  }
-
-  if (!visible) {
-    return null;
   }
 
   return (
@@ -82,15 +54,15 @@ export function TopPicksReminderBanner({
           <button className="primary-button top-picks-reminder__cta" type="button" onClick={goToTopPicks}>
             {picksComplete ? "Review top picks" : "Pick and submit now"}
           </button>
-          <button className="ghost-button top-picks-reminder__dismiss" type="button" onClick={dismiss}>
-            Remind me later
+          <button className="ghost-button top-picks-reminder__dismiss" type="button" onClick={() => setDismissed(true)}>
+            Not now
           </button>
         </div>
         <button
           className="top-picks-reminder__close"
           type="button"
-          aria-label="Dismiss top picks reminder"
-          onClick={dismiss}
+          aria-label="Dismiss top picks reminder for now"
+          onClick={() => setDismissed(true)}
         >
           ×
         </button>

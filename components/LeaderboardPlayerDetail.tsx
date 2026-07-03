@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import type { PlayerStandingDetail, PlayerStandingScope } from "@/lib/player-standing";
+import { TOURNAMENT_TOP_PICK_COUNT } from "@/lib/tournament-scoring";
 import { formatKickoff } from "@/lib/utils";
 
 type LeaderboardPlayerDetailProps = {
@@ -94,7 +95,7 @@ export function LeaderboardPlayerDetail({
           </button>
         </div>
 
-        {loading ? <p className="section__copy">Loading picks and points...</p> : null}
+        {loading ? <p className="section__copy">Loading points...</p> : null}
         {error ? <p className="form-error">{error}</p> : null}
 
         {detail ? (
@@ -118,6 +119,11 @@ export function LeaderboardPlayerDetail({
 
             <section className="leaderboard-detail__section">
               <h4>{detail.scope === "knockout" ? "Knockout picks" : "Group stage picks"}</h4>
+              {detail.predictionsRedacted ? (
+                <p className="status-note">
+                  Other players&apos; picks stay private. You can see points earned after each match is finished.
+                </p>
+              ) : null}
               {detail.matches.length === 0 ? (
                 <p className="status-note">No finished match results to show yet.</p>
               ) : (
@@ -133,15 +139,25 @@ export function LeaderboardPlayerDetail({
                       <p className="leaderboard-detail__meta">
                         {match.stage} · {formatKickoff(match.kickoff)}
                       </p>
-                      {match.prediction ? (
-                        <p className="leaderboard-detail__pick">
-                          Pick: {match.prediction.winner}
-                          {match.prediction.homeScore !== null && match.prediction.awayScore !== null
-                            ? ` · ${match.prediction.homeScore}-${match.prediction.awayScore}`
-                            : ""}
+                      {match.hasPrediction ? (
+                        <p
+                          className={`leaderboard-detail__pick${detail.predictionsRedacted ? " leaderboard-detail__pick--private" : ""}`}
+                        >
+                          {detail.predictionsRedacted ? (
+                            "Pick saved"
+                          ) : match.prediction ? (
+                            <>
+                              Pick: {match.prediction.winner}
+                              {match.prediction.homeScore !== null && match.prediction.awayScore !== null
+                                ? ` · ${match.prediction.homeScore}-${match.prediction.awayScore}`
+                                : ""}
+                            </>
+                          ) : (
+                            "Pick saved"
+                          )}
                         </p>
                       ) : null}
-                      {match.breakdown ? (
+                      {!detail.predictionsRedacted && match.breakdown ? (
                         <div className="prediction-strip score-breakdown__strip">
                           {match.breakdown.items.map((item) => (
                             <div
@@ -176,20 +192,28 @@ export function LeaderboardPlayerDetail({
             {showTournament ? (
               <section className="leaderboard-detail__section">
                 <h4>Top picks</h4>
-                <div className="prediction-strip score-breakdown__strip">
-                  {detail.tournament.breakdown.map((item) => (
-                    <div
-                      className={`score-breakdown__cell${item.hit ? " score-breakdown__cell--hit" : ""}`}
-                      key={item.label}
-                    >
-                      <span>{item.label}</span>
-                      <strong className="score-breakdown__pick">{item.pickLabel}</strong>
-                      <strong className="score-breakdown__points">
-                        {item.points}/{item.maxPoints}
-                      </strong>
-                    </div>
-                  ))}
-                </div>
+                {detail.predictionsRedacted ? (
+                  <p className="leaderboard-detail__pick leaderboard-detail__pick--private">
+                    {detail.tournament.savedPickCount > 0
+                      ? `${detail.tournament.savedPickCount} of ${TOURNAMENT_TOP_PICK_COUNT} top picks saved`
+                      : "No top picks saved yet"}
+                  </p>
+                ) : (
+                  <div className="prediction-strip score-breakdown__strip">
+                    {detail.tournament.breakdown.map((item) => (
+                      <div
+                        className={`score-breakdown__cell${item.hit ? " score-breakdown__cell--hit" : ""}`}
+                        key={item.label}
+                      >
+                        <span>{item.label}</span>
+                        <strong className="score-breakdown__pick">{item.pickLabel}</strong>
+                        <strong className="score-breakdown__points">
+                          {item.points}/{item.maxPoints}
+                        </strong>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             ) : null}
           </div>

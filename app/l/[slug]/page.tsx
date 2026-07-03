@@ -9,6 +9,7 @@ import { Leaderboard } from "@/components/Leaderboard";
 import { LeaderboardNote } from "@/components/LeaderboardNote";
 import { LeagueCelebrations } from "@/components/LeagueCelebrations";
 import { MatchesBoard } from "@/components/MatchesBoard";
+import { TopPicksReminderBanner } from "@/components/TopPicksReminderBanner";
 import { TournamentPicks } from "@/components/TournamentPicks";
 import { countSavedTournamentTopPicks } from "@/lib/tournament-scoring";
 import { userHasAdminAccess } from "@/lib/auth/admin-email";
@@ -76,12 +77,18 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
           are disabled until the league reopens.
         </div>
       ) : null}
+      {topPicksReminder ? (
+        <TopPicksReminderBanner
+          key={dashboard.referenceNow}
+          unlockUntilLabel={topPicksReminder.unlockUntilLabel}
+          savedPickCount={topPicksReminder.savedPickCount}
+        />
+      ) : null}
       <LeagueCelebrations
         leagueSlug={league.slug}
         matchAnnouncements={dashboard.matchWinnerRevealAnnouncements}
         groupStageCelebration={dashboard.groupStageCelebration}
         predictionTimeZone={dashboard.predictionTimeZone}
-        topPicksReminder={topPicksReminder}
       />
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />
       <MatchesBoard

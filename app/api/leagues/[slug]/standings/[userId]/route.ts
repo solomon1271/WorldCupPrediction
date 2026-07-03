@@ -70,7 +70,7 @@ export async function GET(request: Request, { params }: RouteContext) {
       tournamentPrediction: playerMember.user.tournamentPredictions[0] || null,
       officialAwards: parseOfficialAwards(league?.officialAwardsJson)
     },
-    { scope }
+    { scope, redactPicks: user.id !== userId }
   );
 
   return NextResponse.json(

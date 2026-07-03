@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { isConfiguredAdminEmail, userHasAdminAccess } from "@/lib/auth/admin-email";
 import { getPostLoginRedirectPath } from "@/lib/auth/post-login-redirect";
 import { attachSessionCookie, issueSessionToken } from "@/lib/auth/session";
+import { attachTopPicksReminderPendingCookie } from "@/lib/top-picks-reminder-cookie";
 import { verifyPassword } from "@/lib/auth/password";
 
 export const runtime = "nodejs";
@@ -113,6 +114,7 @@ export async function POST(request: Request) {
         redirectPath
       });
       attachSessionCookie(response, token);
+      attachTopPicksReminderPendingCookie(response);
       return response;
     } catch (cookieErr) {
       console.error("login set-cookie error", cookieErr);
