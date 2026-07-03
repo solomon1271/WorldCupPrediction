@@ -1192,7 +1192,12 @@
       "venue": "Dallas Stadium, Arlington",
       "homeTeam": "Australia",
       "awayTeam": "Egypt",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 1,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 87,
