@@ -1164,7 +1164,12 @@
       "venue": "San Francisco Bay Area Stadium, Santa Clara",
       "homeTeam": "Portugal",
       "awayTeam": "Croatia",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 14,
+      "finalRedCards": 0
     },
     {
       "id": 85,
