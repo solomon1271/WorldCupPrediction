@@ -11,7 +11,6 @@ import { LeagueCelebrations } from "@/components/LeagueCelebrations";
 import { MatchesBoard } from "@/components/MatchesBoard";
 import { TopPicksReminderBanner } from "@/components/TopPicksReminderBanner";
 import { TournamentPicks } from "@/components/TournamentPicks";
-import { countSavedTournamentTopPicks } from "@/lib/tournament-scoring";
 import { userHasAdminAccess } from "@/lib/auth/admin-email";
 import { requireUser } from "@/lib/auth/user";
 import { getDashboardData } from "@/lib/dashboard";
@@ -60,12 +59,9 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
   const topPicksReminder =
     dashboard.tournamentPicksTemporarilyUnlocked &&
     !leaguePaused &&
-    dashboard.tournamentPicksUnlockUntil &&
     dashboard.tournamentPicksUnlockUntilLabel
       ? {
-          unlockUntil: dashboard.tournamentPicksUnlockUntil,
-          unlockUntilLabel: dashboard.tournamentPicksUnlockUntilLabel,
-          savedPickCount: countSavedTournamentTopPicks(dashboard.tournamentPrediction)
+          unlockUntilLabel: dashboard.tournamentPicksUnlockUntilLabel
         }
       : null;
 
@@ -81,7 +77,6 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         <TopPicksReminderBanner
           key={dashboard.referenceNow}
           unlockUntilLabel={topPicksReminder.unlockUntilLabel}
-          savedPickCount={topPicksReminder.savedPickCount}
         />
       ) : null}
       <LeagueCelebrations
