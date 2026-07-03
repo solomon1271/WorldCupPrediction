@@ -1178,7 +1178,12 @@
       "venue": "Vancouver Stadium, Vancouver",
       "homeTeam": "Switzerland",
       "awayTeam": "Algeria",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 0,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 6,
+      "finalRedCards": 0
     },
     {
       "id": 86,
