@@ -28,7 +28,7 @@ export async function GET(_request: Request, { params }: RouteContext) {
   const insights = await buildGroupStageInsights(membership.league.id);
 
   return NextResponse.json(
-    { ok: true, insights },
+    { ok: true, ...insights },
     {
       headers: {
         "Cache-Control": "no-store"
