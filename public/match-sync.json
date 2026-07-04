@@ -1220,7 +1220,12 @@
       "venue": "Mexico City Stadium, Mexico City",
       "homeTeam": "Colombia",
       "awayTeam": "Ghana",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 5,
+      "finalRedCards": 0
     },
     {
       "id": 89,
