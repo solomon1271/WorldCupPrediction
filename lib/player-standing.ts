@@ -46,7 +46,7 @@ export type PlayerStandingDetail = {
   outcomes: number;
   bonusHits: number;
   scope: PlayerStandingScope;
-  predictionsRedacted: boolean;
+  topPicksRedacted: boolean;
   matches: PlayerMatchStanding[];
   tournament: {
     champion: string | null;
@@ -111,10 +111,10 @@ function toPredictionInput(prediction: BuildPlayerStandingInput["matchPrediction
 
 export function buildPlayerStandingDetail(
   input: BuildPlayerStandingInput,
-  options?: { scope?: PlayerStandingScope; redactPicks?: boolean }
+  options?: { scope?: PlayerStandingScope; redactTopPicks?: boolean }
 ): PlayerStandingDetail {
   const scope = options?.scope ?? "knockout";
-  const redactPicks = options?.redactPicks ?? false;
+  const redactTopPicks = options?.redactTopPicks ?? false;
   const matchPredictions = input.matchPredictions.filter((prediction) =>
     scope === "knockout"
       ? isKnockoutMatchId(prediction.matchId)
@@ -146,18 +146,16 @@ export function buildPlayerStandingDetail(
         isFinished,
         hasPrediction: true,
         points: score.points,
-        breakdown: redactPicks ? null : breakdown,
-        prediction: redactPicks
-          ? null
-          : {
-              winner: prediction.winner,
-              homeScore: prediction.homeScore,
-              awayScore: prediction.awayScore,
-              totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
-              totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
-              yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
-              redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
-            }
+        breakdown,
+        prediction: {
+          winner: prediction.winner,
+          homeScore: prediction.homeScore,
+          awayScore: prediction.awayScore,
+          totalGoalsLine: normalizeThresholdLine(prediction.totalGoalsLine),
+          totalCornersLine: normalizeThresholdLine(prediction.totalCornersLine),
+          yellowCardsLine: normalizeThresholdLine(prediction.yellowCardsLine),
+          redCardsLine: normalizeRedCardsLine(prediction.redCardsLine)
+        }
       };
     })
     .filter((match) => match.isFinished)
@@ -187,9 +185,9 @@ export function buildPlayerStandingDetail(
     outcomes,
     bonusHits: bonusHits + tournamentScore.hits,
     scope,
-    predictionsRedacted: redactPicks,
+    topPicksRedacted: redactTopPicks,
     matches,
-    tournament: redactPicks
+    tournament: redactTopPicks
       ? {
           champion: null,
           runnerUp: null,
