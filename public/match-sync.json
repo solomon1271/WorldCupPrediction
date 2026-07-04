@@ -1206,7 +1206,12 @@
       "venue": "Miami Stadium, Miami",
       "homeTeam": "Argentina",
       "awayTeam": "Cape Verde",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 2,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 16,
+      "finalRedCards": 0
     },
     {
       "id": 88,
