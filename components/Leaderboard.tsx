@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 
+import { GroupStageInsights } from "@/components/GroupStageInsights";
 import { LeaderboardPlayerDetail } from "@/components/LeaderboardPlayerDetail";
 import { MomentumBadge } from "@/components/MomentumBadge";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
@@ -18,6 +19,7 @@ import type { PlayerStandingScope } from "@/lib/player-standing";
 import { formatRankChangeLabel } from "@/lib/utils";
 
 type LeaderboardTab = "knockout" | "group-stage";
+type GroupStageSubTab = "standings" | "insights";
 
 type LeaderboardProps = {
   leagueSlug: string;
@@ -93,7 +95,7 @@ const tabCopy: Record<
   "group-stage": {
     eyebrow: "Historical",
     title: "Group stage leaderboard",
-    copy: "Final group-stage standings frozen in history. Top picks and matches 1–72 are included here.",
+    copy: "Final group-stage standings frozen in history. Open Insights for the wildest prediction stories from matches 1–72.",
     chip: "Matches 1–72"
   }
 };
@@ -105,6 +107,7 @@ export function Leaderboard({
   currentUserId
 }: LeaderboardProps) {
   const [activeTab, setActiveTab] = useState<LeaderboardTab>("knockout");
+  const [groupStageSubTab, setGroupStageSubTab] = useState<GroupStageSubTab>("standings");
   const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
 
   const standings = activeTab === "knockout" ? knockoutStandings : groupStageStandings;
@@ -177,108 +180,139 @@ export function Leaderboard({
           </button>
         </div>
 
-        {chaseMessage ? (
-          <div
-            className={`leaderboard-chase-banner${currentUserZone ? ` leaderboard-chase-banner--${currentUserZone}` : ""}`}
-          >
-            <span className="leaderboard-chase-banner__icon" aria-hidden="true">
-              {currentUserZone === "crown" ? "👑" : currentUserZone?.startsWith("tail") ? "🔥" : "⚡"}
-            </span>
-            <p>{chaseMessage}</p>
+        {activeTab === "group-stage" ? (
+          <div className="leaderboard-subtabs" role="tablist" aria-label="Group stage views">
+            <button
+              className={`leaderboard-subtabs__button${groupStageSubTab === "standings" ? " leaderboard-subtabs__button--active" : ""}`}
+              type="button"
+              role="tab"
+              aria-selected={groupStageSubTab === "standings"}
+              onClick={() => setGroupStageSubTab("standings")}
+            >
+              Standings
+            </button>
+            <button
+              className={`leaderboard-subtabs__button${groupStageSubTab === "insights" ? " leaderboard-subtabs__button--active" : ""}`}
+              type="button"
+              role="tab"
+              aria-selected={groupStageSubTab === "insights"}
+              onClick={() => setGroupStageSubTab("insights")}
+            >
+              Insights
+            </button>
           </div>
         ) : null}
 
-        <LeaderboardZoneLegend totalPlayers={standings.length} />
+        {activeTab === "group-stage" && groupStageSubTab === "insights" ? (
+          <GroupStageInsights leagueSlug={leagueSlug} />
+        ) : (
+          <>
+            {chaseMessage && (activeTab === "knockout" || groupStageSubTab === "standings") ? (
+              <div
+                className={`leaderboard-chase-banner${currentUserZone ? ` leaderboard-chase-banner--${currentUserZone}` : ""}`}
+              >
+                <span className="leaderboard-chase-banner__icon" aria-hidden="true">
+                  {currentUserZone === "crown" ? "👑" : currentUserZone?.startsWith("tail") ? "🔥" : "⚡"}
+                </span>
+                <p>{chaseMessage}</p>
+              </div>
+            ) : null}
 
-        <div className="leaderboard-panel">
-          <div className="leaderboard-panel__glow" aria-hidden="true" />
-          <div className="table-shell leaderboard-table-shell">
-            <table className="leaderboard-table">
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Manager</th>
-                  <th>Points</th>
-                  <th>Exact</th>
-                  <th>Outcomes</th>
-                  <th>Bonus</th>
-                  <th>Momentum</th>
-                </tr>
-              </thead>
-              <tbody>
-                {standings.map((entry) => {
-                  const rank = entry.rank;
-                  const isCurrentUser = entry.id === currentUserId;
-                  const zone = getLeaderboardRankZone(rank, standings.length);
+            <LeaderboardZoneLegend totalPlayers={standings.length} />
 
-                  return (
-                    <tr
-                      key={entry.id}
-                      className={`leaderboard-table__row leaderboard-table__row--${zone}${isCurrentUser ? " leaderboard-table__row--you" : ""}`}
-                    >
-                      <td>
-                        <LeaderboardRankBadge rank={rank} totalPlayers={standings.length} />
-                      </td>
-                      <td>
-                        <button
-                          className="leaderboard-player-button leaderboard-player-button--rich"
-                          type="button"
-                          onClick={() => openPlayer(entry)}
-                        >
-                          <span
-                            className="leaderboard-avatar"
-                            style={
-                              {
-                                "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
-                              } as React.CSSProperties & Record<string, string>
-                            }
-                            aria-hidden="true"
-                          >
-                            {getPlayerInitials(entry.name)}
-                          </span>
-                          <span className="leaderboard-player-button__copy">
-                            <span className="leaderboard-player-button__name">{entry.name}</span>
-                            {isCurrentUser ? (
-                              <span className="leaderboard-player-button__tag">You</span>
-                            ) : null}
-                          </span>
-                        </button>
-                      </td>
-                      <td>
-                        <div className={`leaderboard-points leaderboard-points--${zone}`}>
-                          <strong>{entry.totalPoints}</strong>
-                          <span
-                            className="leaderboard-points__bar"
-                            style={{ width: `${Math.max(8, (entry.totalPoints / maxPoints) * 100)}%` }}
-                            aria-hidden="true"
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
-                          {entry.exactScores}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
-                          {entry.outcomes}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={`leaderboard-stat-pill leaderboard-stat-pill--bonus leaderboard-stat-pill--${zone}`}>
-                          {entry.bonusHits}
-                        </span>
-                      </td>
-                      <td>
-                        <RankChangeCell entry={entry} />
-                      </td>
+            <div className="leaderboard-panel">
+              <div className="leaderboard-panel__glow" aria-hidden="true" />
+              <div className="table-shell leaderboard-table-shell">
+                <table className="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Manager</th>
+                      <th>Points</th>
+                      <th>Exact</th>
+                      <th>Outcomes</th>
+                      <th>Bonus</th>
+                      <th>Momentum</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                  </thead>
+                  <tbody>
+                    {standings.map((entry) => {
+                      const rank = entry.rank;
+                      const isCurrentUser = entry.id === currentUserId;
+                      const zone = getLeaderboardRankZone(rank, standings.length);
+
+                      return (
+                        <tr
+                          key={entry.id}
+                          className={`leaderboard-table__row leaderboard-table__row--${zone}${isCurrentUser ? " leaderboard-table__row--you" : ""}`}
+                        >
+                          <td>
+                            <LeaderboardRankBadge rank={rank} totalPlayers={standings.length} />
+                          </td>
+                          <td>
+                            <button
+                              className="leaderboard-player-button leaderboard-player-button--rich"
+                              type="button"
+                              onClick={() => openPlayer(entry)}
+                            >
+                              <span
+                                className="leaderboard-avatar"
+                                style={
+                                  {
+                                    "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
+                                  } as React.CSSProperties & Record<string, string>
+                                }
+                                aria-hidden="true"
+                              >
+                                {getPlayerInitials(entry.name)}
+                              </span>
+                              <span className="leaderboard-player-button__copy">
+                                <span className="leaderboard-player-button__name">{entry.name}</span>
+                                {isCurrentUser ? (
+                                  <span className="leaderboard-player-button__tag">You</span>
+                                ) : null}
+                              </span>
+                            </button>
+                          </td>
+                          <td>
+                            <div className={`leaderboard-points leaderboard-points--${zone}`}>
+                              <strong>{entry.totalPoints}</strong>
+                              <span
+                                className="leaderboard-points__bar"
+                                style={{ width: `${Math.max(8, (entry.totalPoints / maxPoints) * 100)}%` }}
+                                aria-hidden="true"
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
+                              {entry.exactScores}
+                            </span>
+                          </td>
+                          <td>
+                            <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
+                              {entry.outcomes}
+                            </span>
+                          </td>
+                          <td>
+                            <span
+                              className={`leaderboard-stat-pill leaderboard-stat-pill--bonus leaderboard-stat-pill--${zone}`}
+                            >
+                              {entry.bonusHits}
+                            </span>
+                          </td>
+                          <td>
+                            <RankChangeCell entry={entry} />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </>
+        )}
 
         <a className="section__jump" href="#top">
           Back to top
