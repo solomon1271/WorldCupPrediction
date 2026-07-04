@@ -1243,7 +1243,12 @@
       "venue": "NRG Stadium, Houston",
       "homeTeam": "Canada",
       "awayTeam": "Morocco",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 3,
+      "finalYellowCards": 8,
+      "finalTotalCorners": 12,
+      "finalRedCards": 0
     },
     {
       "id": 91,
