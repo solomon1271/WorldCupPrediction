@@ -1946,14 +1946,6 @@ a {
   z-index: 1;
 }
 
-.section-note--leaderboard {
-  margin-top: 1rem;
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 61, 108, 0.18);
-  background: rgba(255, 61, 108, 0.06);
-}
-
 .leaderboard-ribbon {
   display: flex;
   flex-wrap: wrap;

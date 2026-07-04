@@ -75,28 +75,20 @@ export function TournamentPicks({
           </div>
           )
         ) : temporarilyUnlocked && unlockUntilLabel ? (
-          <>
-            <div className="tournament-deadline-banner tournament-deadline-banner--reopened" role="note">
-              <span className="tournament-deadline-banner__mark" aria-hidden="true">
-                ↻
+          <div className="tournament-deadline-banner tournament-deadline-banner--reopened" role="note">
+            <span className="tournament-deadline-banner__mark" aria-hidden="true">
+              ↻
+            </span>
+            <p className="tournament-deadline-banner__text">
+              <strong>Top picks are temporarily open.</strong>
+              <span>
+                You can update your saved picks until {unlockUntilLabel}. After that, this section locks again and
+                your picks become final.
               </span>
-              <p className="tournament-deadline-banner__text">
-                <strong>Top picks are temporarily open.</strong>
-                <span>
-                  You can update your saved picks until {unlockUntilLabel}. After that, this section locks again and
-                  your picks become final.
-                </span>
-              </p>
-            </div>
-            <p className="section__copy">
-              Each correct top pick earns {TOURNAMENT_AWARD_POINTS} points when official awards are announced.
             </p>
-          </>
+          </div>
         ) : (
           <>
-            <p className="section__copy">
-              Each correct top pick earns {TOURNAMENT_AWARD_POINTS} points when official awards are announced.
-            </p>
             {hasSavedPicks ? (
               <div className="tournament-deadline-banner tournament-deadline-banner--update" role="note">
                 <span className="tournament-deadline-banner__mark" aria-hidden="true">

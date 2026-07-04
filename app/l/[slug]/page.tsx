@@ -6,7 +6,6 @@ import { notFound, redirect } from "next/navigation";
 import { GroupStandings } from "@/components/GroupStandings";
 import { Header } from "@/components/Header";
 import { Leaderboard } from "@/components/Leaderboard";
-import { LeaderboardNote } from "@/components/LeaderboardNote";
 import { LeagueCelebrations } from "@/components/LeagueCelebrations";
 import { MatchesBoard } from "@/components/MatchesBoard";
 import { TopPicksReminderBanner } from "@/components/TopPicksReminderBanner";
@@ -107,7 +106,6 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         leaguePaused={leaguePaused}
       />
       <GroupStandings tables={dashboard.groupStandings} />
-      <LeaderboardNote />
       <Leaderboard
         leagueSlug={league.slug}
         knockoutStandings={dashboard.knockoutLeaderboard}
