@@ -21,6 +21,7 @@ model User {
   tournamentPredictions      TournamentPrediction[]
   matchWinnerRevealSeen      MatchWinnerRevealSeen[]
   groupStageRevealSeen       GroupStageRevealSeen[]
+  roundOf32RevealSeen        RoundOf32RevealSeen[]
 }
 
 model League {
@@ -39,8 +40,10 @@ model League {
   tournamentPredictions      TournamentPrediction[]
   leaderboardState           LeaderboardState?
   knockoutLeaderboardState   KnockoutLeaderboardState?
+  roundOf32LeaderboardState  RoundOf32LeaderboardState?
   matchWinnerRevealSeen      MatchWinnerRevealSeen[]
   groupStageRevealSeen       GroupStageRevealSeen[]
+  roundOf32RevealSeen        RoundOf32RevealSeen[]
 }
 
 model LeagueMember {
@@ -113,6 +116,14 @@ model KnockoutLeaderboardState {
   league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
 }
 
+model RoundOf32LeaderboardState {
+  leagueId          String   @id
+  ranksJson         String   @default("{}")
+  previousRanksJson String   @default("{}")
+  updatedAt         DateTime @updatedAt
+  league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+}
+
 model TournamentPrediction {
   id              String   @id @default(cuid())
   leagueId        String
@@ -147,6 +158,18 @@ model MatchWinnerRevealSeen {
 }
 
 model GroupStageRevealSeen {
+  id       String   @id @default(cuid())
+  leagueId String
+  userId   String
+  seenAt   DateTime @default(now())
+  league   League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId])
+  @@index([userId])
+}
+
+model RoundOf32RevealSeen {
   id       String   @id @default(cuid())
   leagueId String
   userId   String

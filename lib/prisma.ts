@@ -67,8 +67,12 @@ function isPrismaClientReady(client: PrismaClient) {
     Boolean(client.matchWinnerRevealSeen) &&
     "groupStageRevealSeen" in client &&
     Boolean(client.groupStageRevealSeen) &&
+    "roundOf32RevealSeen" in client &&
+    Boolean(client.roundOf32RevealSeen) &&
     "knockoutLeaderboardState" in client &&
-    Boolean(client.knockoutLeaderboardState)
+    Boolean(client.knockoutLeaderboardState) &&
+    "roundOf32LeaderboardState" in client &&
+    Boolean(client.roundOf32LeaderboardState)
   );
 }
 

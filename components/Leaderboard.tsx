@@ -18,12 +18,13 @@ import {
 import type { PlayerStandingScope } from "@/lib/player-standing";
 import { formatRankChangeLabel } from "@/lib/utils";
 
-type LeaderboardTab = "knockout" | "group-stage";
+type LeaderboardTab = "knockout" | "round-of-32" | "group-stage";
 type GroupStageSubTab = "standings" | "insights";
 
 type LeaderboardProps = {
   leagueSlug: string;
   knockoutStandings: DashboardStanding[];
+  roundOf32Standings: DashboardStanding[];
   groupStageStandings: DashboardStanding[];
   currentUserId: string;
 };
@@ -89,8 +90,14 @@ const tabCopy: Record<
   knockout: {
     eyebrow: "Knockout reset",
     title: "Knockout leaderboard",
-    copy: "Everyone starts at zero from match 73. Only Round of 32 picks and beyond count here.",
-    chip: "From match 73"
+    copy: "Everyone starts at zero from match 89. Only Round of 16 picks and beyond count here.",
+    chip: "From match 89"
+  },
+  "round-of-32": {
+    eyebrow: "Historical",
+    title: "Round of 32 leaderboard",
+    copy: "Final Round of 32 standings frozen in history. Matches 73–88 only.",
+    chip: "Matches 73–88"
   },
   "group-stage": {
     eyebrow: "Historical",
@@ -103,6 +110,7 @@ const tabCopy: Record<
 export function Leaderboard({
   leagueSlug,
   knockoutStandings,
+  roundOf32Standings,
   groupStageStandings,
   currentUserId
 }: LeaderboardProps) {
@@ -110,7 +118,12 @@ export function Leaderboard({
   const [groupStageSubTab, setGroupStageSubTab] = useState<GroupStageSubTab>("standings");
   const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
 
-  const standings = activeTab === "knockout" ? knockoutStandings : groupStageStandings;
+  const standings =
+    activeTab === "knockout"
+      ? knockoutStandings
+      : activeTab === "round-of-32"
+        ? roundOf32Standings
+        : groupStageStandings;
   const standingScope: PlayerStandingScope = activeTab;
   const copy = tabCopy[activeTab];
 
@@ -169,6 +182,16 @@ export function Leaderboard({
             <span className="leaderboard-tabs__count">{knockoutStandings.length}</span>
           </button>
           <button
+            className={`leaderboard-tabs__button leaderboard-tabs__button--history${activeTab === "round-of-32" ? " leaderboard-tabs__button--active" : ""}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "round-of-32"}
+            onClick={() => setActiveTab("round-of-32")}
+          >
+            Round of 32
+            <span className="leaderboard-tabs__count">{roundOf32Standings.length}</span>
+          </button>
+          <button
             className={`leaderboard-tabs__button leaderboard-tabs__button--history${activeTab === "group-stage" ? " leaderboard-tabs__button--active" : ""}`}
             type="button"
             role="tab"
@@ -207,7 +230,7 @@ export function Leaderboard({
           <GroupStageInsights leagueSlug={leagueSlug} />
         ) : (
           <>
-            {chaseMessage && (activeTab === "knockout" || groupStageSubTab === "standings") ? (
+            {chaseMessage && (activeTab !== "group-stage" || groupStageSubTab === "standings") ? (
               <div
                 className={`leaderboard-chase-banner${currentUserZone ? ` leaderboard-chase-banner--${currentUserZone}` : ""}`}
               >

@@ -21,26 +21,29 @@ model User {
   tournamentPredictions TournamentPrediction[]
   matchWinnerRevealSeen MatchWinnerRevealSeen[]
   groupStageRevealSeen  GroupStageRevealSeen[]
+  roundOf32RevealSeen   RoundOf32RevealSeen[]
 }
 
 model League {
-  id                       String                    @id @default(cuid())
-  slug                     String                    @unique
-  name                     String
-  inviteCode               String                    @unique
-  subtitle                 String                    @default("2026 World Cup Challenge")
-  isPaused                 Boolean                   @default(false)
-  isHidden                 Boolean                   @default(false)
-  officialAwardsJson       String                    @default("{}")
-  createdAt                DateTime                  @default(now())
-  updatedAt                DateTime                  @updatedAt
-  members                  LeagueMember[]
-  matchPredictions         MatchPrediction[]
-  tournamentPredictions    TournamentPrediction[]
-  leaderboardState         LeaderboardState?
-  knockoutLeaderboardState KnockoutLeaderboardState?
-  matchWinnerRevealSeen    MatchWinnerRevealSeen[]
-  groupStageRevealSeen     GroupStageRevealSeen[]
+  id                        String                     @id @default(cuid())
+  slug                      String                     @unique
+  name                      String
+  inviteCode                String                     @unique
+  subtitle                  String                     @default("2026 World Cup Challenge")
+  isPaused                  Boolean                    @default(false)
+  isHidden                  Boolean                    @default(false)
+  officialAwardsJson        String                     @default("{}")
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime                   @updatedAt
+  members                   LeagueMember[]
+  matchPredictions          MatchPrediction[]
+  tournamentPredictions     TournamentPrediction[]
+  leaderboardState          LeaderboardState?
+  knockoutLeaderboardState  KnockoutLeaderboardState?
+  roundOf32LeaderboardState RoundOf32LeaderboardState?
+  matchWinnerRevealSeen     MatchWinnerRevealSeen[]
+  groupStageRevealSeen      GroupStageRevealSeen[]
+  roundOf32RevealSeen       RoundOf32RevealSeen[]
 }
 
 model LeagueMember {
@@ -113,6 +116,14 @@ model KnockoutLeaderboardState {
   league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
 }
 
+model RoundOf32LeaderboardState {
+  leagueId          String   @id
+  ranksJson         String   @default("{}")
+  previousRanksJson String   @default("{}")
+  updatedAt         DateTime @updatedAt
+  league            League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+}
+
 model TournamentPrediction {
   id              String   @id @default(cuid())
   leagueId        String
@@ -147,6 +158,18 @@ model MatchWinnerRevealSeen {
 }
 
 model GroupStageRevealSeen {
+  id       String   @id @default(cuid())
+  leagueId String
+  userId   String
+  seenAt   DateTime @default(now())
+  league   League   @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, userId])
+  @@index([userId])
+}
+
+model RoundOf32RevealSeen {
   id       String   @id @default(cuid())
   leagueId String
   userId   String

@@ -101,7 +101,7 @@ export function buildChaseMessage(
   entry: DashboardStanding,
   leader: DashboardStanding | undefined,
   totalPlayers: number,
-  view: "knockout" | "group-stage" = "knockout"
+  view: "knockout" | "round-of-32" | "group-stage" = "knockout"
 ) {
   if (view === "group-stage") {
     if (!leader) {
@@ -116,12 +116,25 @@ export function buildChaseMessage(
     return `${gapToLeader} pts behind group-stage leader ${leader.name}. Knockout scoring starts from zero.`;
   }
 
+  if (view === "round-of-32") {
+    if (!leader) {
+      return "Round of 32 standings are frozen here for the record.";
+    }
+
+    if (entry.rank === 1) {
+      return `Round of 32 leader with ${leader.totalPoints} pts. The knockout board resets from match 89.`;
+    }
+
+    const gapToLeader = leader.totalPoints - entry.totalPoints;
+    return `${gapToLeader} pts behind Round of 32 leader ${leader.name}. Round of 16 scoring starts fresh.`;
+  }
+
   if (!leader) {
-    return "The knockout race is on — every Round of 32 pick counts toward a new crown.";
+    return "The knockout race is on — every Round of 16 pick counts toward a new crown.";
   }
 
   if (leader.totalPoints === 0) {
-    return "Everyone starts at zero. The first knockout results will shake up this table.";
+    return "Everyone starts at zero. The first Round of 16 results will shake up this table.";
   }
 
   if (entry.rank === 1) {

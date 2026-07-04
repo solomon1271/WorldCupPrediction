@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { isAbsolute, join } from "node:path";
 
-import { captureKnockoutLeaderboardSnapshotForMaintenance, finalizeKnockoutLeaderboardSnapshot } from "@/lib/leaderboard";
+import { captureKnockoutLeaderboardSnapshotForMaintenance, finalizeKnockoutLeaderboardSnapshot, finalizeRoundOf32PhaseIfComplete } from "@/lib/leaderboard";
 import { prisma } from "@/lib/prisma";
 import { seedMatches } from "@/lib/seed-data";
 import { getZonedDayBounds } from "@/lib/timezone";
@@ -306,6 +306,7 @@ export async function lockMatchesForDailyMaintenance(referenceDate = new Date())
 }
 
 export async function runDailyMatchMaintenance() {
+  await finalizeRoundOf32PhaseIfComplete();
   const ranksBefore = await captureKnockoutLeaderboardSnapshotForMaintenance();
   const sync = await syncMatchFixtures();
   const leaderboard = await finalizeKnockoutLeaderboardSnapshot(ranksBefore);

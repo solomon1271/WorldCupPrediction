@@ -1,6 +1,6 @@
 import { Prisma } from "../generated/prisma";
 
-import { isKnockoutMatchId } from "@/lib/knockout-stage";
+import { isActiveKnockoutMatchId, isGroupStageMatchId, isRoundOf32MatchId } from "@/lib/knockout-stage";
 import { scorePrediction } from "@/lib/match-scoring";
 import { prisma } from "@/lib/prisma";
 import {
@@ -23,7 +23,7 @@ export type LeaderboardEntry = LeaderboardTotals & {
   name: string;
 };
 
-export type LeaderboardScope = "knockout" | "group-stage";
+export type LeaderboardScope = "knockout" | "round-of-32" | "group-stage";
 
 type UserWithPredictions = Prisma.UserGetPayload<{
   include: {
@@ -41,10 +41,14 @@ function predictionsForScope(
   scope: LeaderboardScope
 ) {
   if (scope === "knockout") {
-    return predictions.filter((prediction) => isKnockoutMatchId(prediction.matchId));
+    return predictions.filter((prediction) => isActiveKnockoutMatchId(prediction.matchId));
   }
 
-  return predictions.filter((prediction) => !isKnockoutMatchId(prediction.matchId));
+  if (scope === "round-of-32") {
+    return predictions.filter((prediction) => isRoundOf32MatchId(prediction.matchId));
+  }
+
+  return predictions.filter((prediction) => isGroupStageMatchId(prediction.matchId));
 }
 
 export function sortLeaderboardEntries<T extends LeaderboardTotals>(entries: T[]) {
@@ -178,6 +182,14 @@ function getKnockoutLeaderboardStateClient() {
   return prisma.knockoutLeaderboardState;
 }
 
+function getRoundOf32LeaderboardStateClient() {
+  if (!("roundOf32LeaderboardState" in prisma) || !prisma.roundOf32LeaderboardState) {
+    return null;
+  }
+
+  return prisma.roundOf32LeaderboardState;
+}
+
 export async function loadGroupStageLeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
   const leaderboardState = getLeaderboardStateClient();
 
@@ -269,6 +281,77 @@ export async function recordKnockoutLeaderboardSnapshot(
   });
 }
 
+export async function loadRoundOf32LeaderboardSnapshot(leagueId: string): Promise<LeaderboardSnapshot> {
+  const roundOf32LeaderboardState = getRoundOf32LeaderboardStateClient();
+
+  if (!roundOf32LeaderboardState) {
+    return {
+      hasSnapshot: false,
+      previousRanks: {},
+      afterRanks: {}
+    };
+  }
+
+  const state = await roundOf32LeaderboardState.findUnique({
+    where: { leagueId }
+  });
+
+  if (!state) {
+    return {
+      hasSnapshot: false,
+      previousRanks: {},
+      afterRanks: {}
+    };
+  }
+
+  const afterRanks = parseRankMap(state.ranksJson);
+
+  return {
+    hasSnapshot: Object.keys(afterRanks).length > 0,
+    previousRanks: parseRankMap(state.previousRanksJson),
+    afterRanks
+  };
+}
+
+export async function recordRoundOf32LeaderboardSnapshot(
+  leagueId: string,
+  ranksBefore: Record<string, number>,
+  ranksAfter: Record<string, number>
+) {
+  const roundOf32LeaderboardState = getRoundOf32LeaderboardStateClient();
+
+  if (!roundOf32LeaderboardState) {
+    return;
+  }
+
+  await roundOf32LeaderboardState.upsert({
+    where: { leagueId },
+    create: {
+      leagueId,
+      ranksJson: JSON.stringify(ranksAfter),
+      previousRanksJson: JSON.stringify(ranksBefore)
+    },
+    update: {
+      ranksJson: JSON.stringify(ranksAfter),
+      previousRanksJson: JSON.stringify(ranksBefore)
+    }
+  });
+}
+
+export async function computeRoundOf32RankMap(leagueId: string) {
+  const [users, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return buildRankMap(buildLeaderboardEntries(users, officialAwards, "round-of-32"));
+}
+
+export async function isRoundOf32PhaseFinalized(leagueId: string) {
+  const snapshot = await loadRoundOf32LeaderboardSnapshot(leagueId);
+  return snapshot.hasSnapshot;
+}
+
 export async function captureKnockoutLeaderboardSnapshotForMaintenance() {
   const leagues = await prisma.league.findMany({
     select: { id: true }
@@ -356,6 +439,40 @@ export async function buildGroupStageLeaderboard(leagueId: string) {
   ]);
 
   return attachRankMomentum(buildLeaderboardEntries(users, officialAwards, "group-stage"), snapshot);
+}
+
+export async function buildRoundOf32Leaderboard(leagueId: string) {
+  const [users, snapshot, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    loadRoundOf32LeaderboardSnapshot(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return attachRankMomentum(buildLeaderboardEntries(users, officialAwards, "round-of-32"), snapshot);
+}
+
+export async function finalizeRoundOf32PhaseIfComplete() {
+  const { isRoundOf32Complete } = await import("@/lib/round-of-32");
+
+  if (!(await isRoundOf32Complete())) {
+    return { finalized: false, leagues: [] as string[] };
+  }
+
+  const leagues = await prisma.league.findMany({ select: { id: true } });
+  const finalizedLeagues: string[] = [];
+
+  for (const league of leagues) {
+    if (await isRoundOf32PhaseFinalized(league.id)) {
+      continue;
+    }
+
+    const ranksAfter = await computeRoundOf32RankMap(league.id);
+    await recordRoundOf32LeaderboardSnapshot(league.id, ranksAfter, ranksAfter);
+    await recordKnockoutLeaderboardSnapshot(league.id, {}, {});
+    finalizedLeagues.push(league.id);
+  }
+
+  return { finalized: finalizedLeagues.length > 0, leagues: finalizedLeagues };
 }
 
 /** @deprecated Use buildKnockoutLeaderboard */

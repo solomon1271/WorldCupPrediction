@@ -196,6 +196,13 @@ exports.Prisma.KnockoutLeaderboardStateScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RoundOf32LeaderboardStateScalarFieldEnum = {
+  leagueId: 'leagueId',
+  ranksJson: 'ranksJson',
+  previousRanksJson: 'previousRanksJson',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.TournamentPredictionScalarFieldEnum = {
   id: 'id',
   leagueId: 'leagueId',
@@ -226,6 +233,13 @@ exports.Prisma.GroupStageRevealSeenScalarFieldEnum = {
   seenAt: 'seenAt'
 };
 
+exports.Prisma.RoundOf32RevealSeenScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  seenAt: 'seenAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -245,9 +259,11 @@ exports.Prisma.ModelName = {
   MatchPrediction: 'MatchPrediction',
   LeaderboardState: 'LeaderboardState',
   KnockoutLeaderboardState: 'KnockoutLeaderboardState',
+  RoundOf32LeaderboardState: 'RoundOf32LeaderboardState',
   TournamentPrediction: 'TournamentPrediction',
   MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
-  GroupStageRevealSeen: 'GroupStageRevealSeen'
+  GroupStageRevealSeen: 'GroupStageRevealSeen',
+  RoundOf32RevealSeen: 'RoundOf32RevealSeen'
 };
 
 /**

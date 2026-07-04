@@ -1,4 +1,9 @@
-import { buildGroupStageLeaderboard, buildKnockoutLeaderboard } from "@/lib/leaderboard";
+import {
+  buildGroupStageLeaderboard,
+  buildKnockoutLeaderboard,
+  buildRoundOf32Leaderboard,
+  finalizeRoundOf32PhaseIfComplete
+} from "@/lib/leaderboard";
 import {
   formatTodayLabel,
   formatTimezoneShortName,
@@ -26,6 +31,10 @@ import {
   getPendingGroupStageCelebration,
   type GroupStageCelebration
 } from "@/lib/group-stage-announcement";
+import {
+  getPendingRoundOf32Celebration,
+  type RoundOf32Celebration
+} from "@/lib/round-of-32-announcement";
 import {
   getPendingMatchWinnerRevealAnnouncements,
   type MatchWinnerRevealAnnouncement
@@ -112,10 +121,12 @@ function normalizeTournamentPrediction(
   };
 }
 
-export type { GroupStandingTable, GroupStageCelebration, MatchWinnerRevealAnnouncement };
+export type { GroupStandingTable, GroupStageCelebration, MatchWinnerRevealAnnouncement, RoundOf32Celebration };
 
 export async function getDashboardData(leagueId: string, currentUserId: string) {
-  const [matches, currentMember, matchWinnerRevealAnnouncements, groupStageCelebration, groupStandings] =
+  await finalizeRoundOf32PhaseIfComplete();
+
+  const [matches, currentMember, matchWinnerRevealAnnouncements, groupStageCelebration, roundOf32Celebration, groupStandings] =
     await Promise.all([
     prisma.match.findMany({
       orderBy: [{ kickoff: "asc" }],
@@ -148,12 +159,14 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     }),
     getPendingMatchWinnerRevealAnnouncements(leagueId, currentUserId),
     getPendingGroupStageCelebration(leagueId, currentUserId),
+    getPendingRoundOf32Celebration(leagueId, currentUserId),
     getGroupStandings()
   ]);
 
   const currentUser = currentMember?.user;
-  const [knockoutLeaderboard, groupStageLeaderboard] = await Promise.all([
+  const [knockoutLeaderboard, roundOf32Leaderboard, groupStageLeaderboard] = await Promise.all([
     buildKnockoutLeaderboard(leagueId),
+    buildRoundOf32Leaderboard(leagueId),
     buildGroupStageLeaderboard(leagueId)
   ]);
   const currentUserStanding = knockoutLeaderboard.find((entry) => entry.id === currentUserId);
@@ -253,6 +266,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
         };
       }) as DashboardMatchPrediction[],
     knockoutLeaderboard,
+    roundOf32Leaderboard,
     groupStageLeaderboard,
     leaderboard: knockoutLeaderboard,
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
@@ -272,6 +286,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     lockLeadMinutes: getMatchLockLeadMinutes(),
     matchWinnerRevealAnnouncements,
     groupStageCelebration,
+    roundOf32Celebration,
     groupStandings
   };
 }

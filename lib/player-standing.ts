@@ -5,7 +5,7 @@ import {
   scorePrediction,
   type PredictionInput
 } from "@/lib/match-scoring";
-import { isGroupStageMatchId, isKnockoutMatchId } from "@/lib/knockout-stage";
+import { isActiveKnockoutMatchId, isGroupStageMatchId, isRoundOf32MatchId } from "@/lib/knockout-stage";
 import {
   countSavedTournamentTopPicks,
   parseOfficialAwards,
@@ -34,7 +34,7 @@ export type PlayerMatchStanding = {
   } | null;
 };
 
-export type PlayerStandingScope = "knockout" | "group-stage";
+export type PlayerStandingScope = "knockout" | "round-of-32" | "group-stage";
 
 export type PlayerStandingDetail = {
   playerId: string;
@@ -115,11 +115,17 @@ export function buildPlayerStandingDetail(
 ): PlayerStandingDetail {
   const scope = options?.scope ?? "knockout";
   const redactTopPicks = options?.redactTopPicks ?? false;
-  const matchPredictions = input.matchPredictions.filter((prediction) =>
-    scope === "knockout"
-      ? isKnockoutMatchId(prediction.matchId)
-      : isGroupStageMatchId(prediction.matchId)
-  );
+  const matchPredictions = input.matchPredictions.filter((prediction) => {
+    if (scope === "knockout") {
+      return isActiveKnockoutMatchId(prediction.matchId);
+    }
+
+    if (scope === "round-of-32") {
+      return isRoundOf32MatchId(prediction.matchId);
+    }
+
+    return isGroupStageMatchId(prediction.matchId);
+  });
 
   let matchPoints = 0;
   let exactScores = 0;

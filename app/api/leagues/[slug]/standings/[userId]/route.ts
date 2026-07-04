@@ -60,7 +60,12 @@ export async function GET(request: Request, { params }: RouteContext) {
   }
 
   const scopeParam = new URL(request.url).searchParams.get("scope");
-  const scope = scopeParam === "group-stage" ? "group-stage" : "knockout";
+  const scope =
+    scopeParam === "group-stage"
+      ? "group-stage"
+      : scopeParam === "round-of-32"
+        ? "round-of-32"
+        : "knockout";
 
   const detail = buildPlayerStandingDetail(
     {

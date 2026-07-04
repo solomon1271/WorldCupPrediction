@@ -49,6 +49,11 @@ export type LeaderboardState = $Result.DefaultSelection<Prisma.$LeaderboardState
  */
 export type KnockoutLeaderboardState = $Result.DefaultSelection<Prisma.$KnockoutLeaderboardStatePayload>
 /**
+ * Model RoundOf32LeaderboardState
+ * 
+ */
+export type RoundOf32LeaderboardState = $Result.DefaultSelection<Prisma.$RoundOf32LeaderboardStatePayload>
+/**
  * Model TournamentPrediction
  * 
  */
@@ -63,6 +68,11 @@ export type MatchWinnerRevealSeen = $Result.DefaultSelection<Prisma.$MatchWinner
  * 
  */
 export type GroupStageRevealSeen = $Result.DefaultSelection<Prisma.$GroupStageRevealSeenPayload>
+/**
+ * Model RoundOf32RevealSeen
+ * 
+ */
+export type RoundOf32RevealSeen = $Result.DefaultSelection<Prisma.$RoundOf32RevealSeenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -253,6 +263,16 @@ export class PrismaClient<
   get knockoutLeaderboardState(): Prisma.KnockoutLeaderboardStateDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.roundOf32LeaderboardState`: Exposes CRUD operations for the **RoundOf32LeaderboardState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RoundOf32LeaderboardStates
+    * const roundOf32LeaderboardStates = await prisma.roundOf32LeaderboardState.findMany()
+    * ```
+    */
+  get roundOf32LeaderboardState(): Prisma.RoundOf32LeaderboardStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.tournamentPrediction`: Exposes CRUD operations for the **TournamentPrediction** model.
     * Example usage:
     * ```ts
@@ -281,6 +301,16 @@ export class PrismaClient<
     * ```
     */
   get groupStageRevealSeen(): Prisma.GroupStageRevealSeenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.roundOf32RevealSeen`: Exposes CRUD operations for the **RoundOf32RevealSeen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RoundOf32RevealSeens
+    * const roundOf32RevealSeens = await prisma.roundOf32RevealSeen.findMany()
+    * ```
+    */
+  get roundOf32RevealSeen(): Prisma.RoundOf32RevealSeenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -728,9 +758,11 @@ export namespace Prisma {
     MatchPrediction: 'MatchPrediction',
     LeaderboardState: 'LeaderboardState',
     KnockoutLeaderboardState: 'KnockoutLeaderboardState',
+    RoundOf32LeaderboardState: 'RoundOf32LeaderboardState',
     TournamentPrediction: 'TournamentPrediction',
     MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
-    GroupStageRevealSeen: 'GroupStageRevealSeen'
+    GroupStageRevealSeen: 'GroupStageRevealSeen',
+    RoundOf32RevealSeen: 'RoundOf32RevealSeen'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -749,7 +781,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "knockoutLeaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen"
+      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "knockoutLeaderboardState" | "roundOf32LeaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen" | "roundOf32RevealSeen"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1271,6 +1303,80 @@ export namespace Prisma {
           }
         }
       }
+      RoundOf32LeaderboardState: {
+        payload: Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>
+        fields: Prisma.RoundOf32LeaderboardStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoundOf32LeaderboardStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoundOf32LeaderboardStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          findFirst: {
+            args: Prisma.RoundOf32LeaderboardStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoundOf32LeaderboardStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          findMany: {
+            args: Prisma.RoundOf32LeaderboardStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>[]
+          }
+          create: {
+            args: Prisma.RoundOf32LeaderboardStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          createMany: {
+            args: Prisma.RoundOf32LeaderboardStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoundOf32LeaderboardStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>[]
+          }
+          delete: {
+            args: Prisma.RoundOf32LeaderboardStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          update: {
+            args: Prisma.RoundOf32LeaderboardStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.RoundOf32LeaderboardStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoundOf32LeaderboardStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RoundOf32LeaderboardStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.RoundOf32LeaderboardStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32LeaderboardStatePayload>
+          }
+          aggregate: {
+            args: Prisma.RoundOf32LeaderboardStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoundOf32LeaderboardState>
+          }
+          groupBy: {
+            args: Prisma.RoundOf32LeaderboardStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoundOf32LeaderboardStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoundOf32LeaderboardStateCountArgs<ExtArgs>
+            result: $Utils.Optional<RoundOf32LeaderboardStateCountAggregateOutputType> | number
+          }
+        }
+      }
       TournamentPrediction: {
         payload: Prisma.$TournamentPredictionPayload<ExtArgs>
         fields: Prisma.TournamentPredictionFieldRefs
@@ -1493,6 +1599,80 @@ export namespace Prisma {
           }
         }
       }
+      RoundOf32RevealSeen: {
+        payload: Prisma.$RoundOf32RevealSeenPayload<ExtArgs>
+        fields: Prisma.RoundOf32RevealSeenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoundOf32RevealSeenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoundOf32RevealSeenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          findFirst: {
+            args: Prisma.RoundOf32RevealSeenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoundOf32RevealSeenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          findMany: {
+            args: Prisma.RoundOf32RevealSeenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>[]
+          }
+          create: {
+            args: Prisma.RoundOf32RevealSeenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          createMany: {
+            args: Prisma.RoundOf32RevealSeenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoundOf32RevealSeenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>[]
+          }
+          delete: {
+            args: Prisma.RoundOf32RevealSeenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          update: {
+            args: Prisma.RoundOf32RevealSeenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          deleteMany: {
+            args: Prisma.RoundOf32RevealSeenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoundOf32RevealSeenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RoundOf32RevealSeenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>[]
+          }
+          upsert: {
+            args: Prisma.RoundOf32RevealSeenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoundOf32RevealSeenPayload>
+          }
+          aggregate: {
+            args: Prisma.RoundOf32RevealSeenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoundOf32RevealSeen>
+          }
+          groupBy: {
+            args: Prisma.RoundOf32RevealSeenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoundOf32RevealSeenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoundOf32RevealSeenCountArgs<ExtArgs>
+            result: $Utils.Optional<RoundOf32RevealSeenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1596,9 +1776,11 @@ export namespace Prisma {
     matchPrediction?: MatchPredictionOmit
     leaderboardState?: LeaderboardStateOmit
     knockoutLeaderboardState?: KnockoutLeaderboardStateOmit
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateOmit
     tournamentPrediction?: TournamentPredictionOmit
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOmit
     groupStageRevealSeen?: GroupStageRevealSeenOmit
+    roundOf32RevealSeen?: RoundOf32RevealSeenOmit
   }
 
   /* Types for Logging */
@@ -1684,6 +1866,7 @@ export namespace Prisma {
     tournamentPredictions: number
     matchWinnerRevealSeen: number
     groupStageRevealSeen: number
+    roundOf32RevealSeen: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1692,6 +1875,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | UserCountOutputTypeCountTournamentPredictionsArgs
     matchWinnerRevealSeen?: boolean | UserCountOutputTypeCountMatchWinnerRevealSeenArgs
     groupStageRevealSeen?: boolean | UserCountOutputTypeCountGroupStageRevealSeenArgs
+    roundOf32RevealSeen?: boolean | UserCountOutputTypeCountRoundOf32RevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1740,6 +1924,13 @@ export namespace Prisma {
     where?: GroupStageRevealSeenWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRoundOf32RevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoundOf32RevealSeenWhereInput
+  }
+
 
   /**
    * Count Type LeagueCountOutputType
@@ -1751,6 +1942,7 @@ export namespace Prisma {
     tournamentPredictions: number
     matchWinnerRevealSeen: number
     groupStageRevealSeen: number
+    roundOf32RevealSeen: number
   }
 
   export type LeagueCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1759,6 +1951,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | LeagueCountOutputTypeCountTournamentPredictionsArgs
     matchWinnerRevealSeen?: boolean | LeagueCountOutputTypeCountMatchWinnerRevealSeenArgs
     groupStageRevealSeen?: boolean | LeagueCountOutputTypeCountGroupStageRevealSeenArgs
+    roundOf32RevealSeen?: boolean | LeagueCountOutputTypeCountRoundOf32RevealSeenArgs
   }
 
   // Custom InputTypes
@@ -1805,6 +1998,13 @@ export namespace Prisma {
    */
   export type LeagueCountOutputTypeCountGroupStageRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GroupStageRevealSeenWhereInput
+  }
+
+  /**
+   * LeagueCountOutputType without action
+   */
+  export type LeagueCountOutputTypeCountRoundOf32RevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoundOf32RevealSeenWhereInput
   }
 
 
@@ -2037,6 +2237,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
+    roundOf32RevealSeen?: boolean | User$roundOf32RevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2077,6 +2278,7 @@ export namespace Prisma {
     tournamentPredictions?: boolean | User$tournamentPredictionsArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | User$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
+    roundOf32RevealSeen?: boolean | User$roundOf32RevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2090,6 +2292,7 @@ export namespace Prisma {
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
       groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
+      roundOf32RevealSeen: Prisma.$RoundOf32RevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2498,6 +2701,7 @@ export namespace Prisma {
     tournamentPredictions<T extends User$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, User$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     matchWinnerRevealSeen<T extends User$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     groupStageRevealSeen<T extends User$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    roundOf32RevealSeen<T extends User$roundOf32RevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$roundOf32RevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3040,6 +3244,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.roundOf32RevealSeen
+   */
+  export type User$roundOf32RevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    where?: RoundOf32RevealSeenWhereInput
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoundOf32RevealSeenScalarFieldEnum | RoundOf32RevealSeenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3267,8 +3495,10 @@ export namespace Prisma {
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
     knockoutLeaderboardState?: boolean | League$knockoutLeaderboardStateArgs<ExtArgs>
+    roundOf32LeaderboardState?: boolean | League$roundOf32LeaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
+    roundOf32RevealSeen?: boolean | League$roundOf32RevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["league"]>
 
@@ -3318,8 +3548,10 @@ export namespace Prisma {
     tournamentPredictions?: boolean | League$tournamentPredictionsArgs<ExtArgs>
     leaderboardState?: boolean | League$leaderboardStateArgs<ExtArgs>
     knockoutLeaderboardState?: boolean | League$knockoutLeaderboardStateArgs<ExtArgs>
+    roundOf32LeaderboardState?: boolean | League$roundOf32LeaderboardStateArgs<ExtArgs>
     matchWinnerRevealSeen?: boolean | League$matchWinnerRevealSeenArgs<ExtArgs>
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
+    roundOf32RevealSeen?: boolean | League$roundOf32RevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeagueIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3333,8 +3565,10 @@ export namespace Prisma {
       tournamentPredictions: Prisma.$TournamentPredictionPayload<ExtArgs>[]
       leaderboardState: Prisma.$LeaderboardStatePayload<ExtArgs> | null
       knockoutLeaderboardState: Prisma.$KnockoutLeaderboardStatePayload<ExtArgs> | null
+      roundOf32LeaderboardState: Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs> | null
       matchWinnerRevealSeen: Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>[]
       groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
+      roundOf32RevealSeen: Prisma.$RoundOf32RevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3746,8 +3980,10 @@ export namespace Prisma {
     tournamentPredictions<T extends League$tournamentPredictionsArgs<ExtArgs> = {}>(args?: Subset<T, League$tournamentPredictionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentPredictionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaderboardState<T extends League$leaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$leaderboardStateArgs<ExtArgs>>): Prisma__LeaderboardStateClient<$Result.GetResult<Prisma.$LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     knockoutLeaderboardState<T extends League$knockoutLeaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$knockoutLeaderboardStateArgs<ExtArgs>>): Prisma__KnockoutLeaderboardStateClient<$Result.GetResult<Prisma.$KnockoutLeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    roundOf32LeaderboardState<T extends League$roundOf32LeaderboardStateArgs<ExtArgs> = {}>(args?: Subset<T, League$roundOf32LeaderboardStateArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     matchWinnerRevealSeen<T extends League$matchWinnerRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$matchWinnerRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MatchWinnerRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     groupStageRevealSeen<T extends League$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    roundOf32RevealSeen<T extends League$roundOf32RevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$roundOf32RevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4283,6 +4519,25 @@ export namespace Prisma {
   }
 
   /**
+   * League.roundOf32LeaderboardState
+   */
+  export type League$roundOf32LeaderboardStateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    where?: RoundOf32LeaderboardStateWhereInput
+  }
+
+  /**
    * League.matchWinnerRevealSeen
    */
   export type League$matchWinnerRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4328,6 +4583,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GroupStageRevealSeenScalarFieldEnum | GroupStageRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * League.roundOf32RevealSeen
+   */
+  export type League$roundOf32RevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    where?: RoundOf32RevealSeenWhereInput
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoundOf32RevealSeenScalarFieldEnum | RoundOf32RevealSeenScalarFieldEnum[]
   }
 
   /**
@@ -9998,6 +10277,1049 @@ export namespace Prisma {
 
 
   /**
+   * Model RoundOf32LeaderboardState
+   */
+
+  export type AggregateRoundOf32LeaderboardState = {
+    _count: RoundOf32LeaderboardStateCountAggregateOutputType | null
+    _min: RoundOf32LeaderboardStateMinAggregateOutputType | null
+    _max: RoundOf32LeaderboardStateMaxAggregateOutputType | null
+  }
+
+  export type RoundOf32LeaderboardStateMinAggregateOutputType = {
+    leagueId: string | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type RoundOf32LeaderboardStateMaxAggregateOutputType = {
+    leagueId: string | null
+    ranksJson: string | null
+    previousRanksJson: string | null
+    updatedAt: Date | null
+  }
+
+  export type RoundOf32LeaderboardStateCountAggregateOutputType = {
+    leagueId: number
+    ranksJson: number
+    previousRanksJson: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RoundOf32LeaderboardStateMinAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type RoundOf32LeaderboardStateMaxAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+  }
+
+  export type RoundOf32LeaderboardStateCountAggregateInputType = {
+    leagueId?: true
+    ranksJson?: true
+    previousRanksJson?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RoundOf32LeaderboardStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoundOf32LeaderboardState to aggregate.
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32LeaderboardStates to fetch.
+     */
+    orderBy?: RoundOf32LeaderboardStateOrderByWithRelationInput | RoundOf32LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoundOf32LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RoundOf32LeaderboardStates
+    **/
+    _count?: true | RoundOf32LeaderboardStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoundOf32LeaderboardStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoundOf32LeaderboardStateMaxAggregateInputType
+  }
+
+  export type GetRoundOf32LeaderboardStateAggregateType<T extends RoundOf32LeaderboardStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoundOf32LeaderboardState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoundOf32LeaderboardState[P]>
+      : GetScalarType<T[P], AggregateRoundOf32LeaderboardState[P]>
+  }
+
+
+
+
+  export type RoundOf32LeaderboardStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoundOf32LeaderboardStateWhereInput
+    orderBy?: RoundOf32LeaderboardStateOrderByWithAggregationInput | RoundOf32LeaderboardStateOrderByWithAggregationInput[]
+    by: RoundOf32LeaderboardStateScalarFieldEnum[] | RoundOf32LeaderboardStateScalarFieldEnum
+    having?: RoundOf32LeaderboardStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoundOf32LeaderboardStateCountAggregateInputType | true
+    _min?: RoundOf32LeaderboardStateMinAggregateInputType
+    _max?: RoundOf32LeaderboardStateMaxAggregateInputType
+  }
+
+  export type RoundOf32LeaderboardStateGroupByOutputType = {
+    leagueId: string
+    ranksJson: string
+    previousRanksJson: string
+    updatedAt: Date
+    _count: RoundOf32LeaderboardStateCountAggregateOutputType | null
+    _min: RoundOf32LeaderboardStateMinAggregateOutputType | null
+    _max: RoundOf32LeaderboardStateMaxAggregateOutputType | null
+  }
+
+  type GetRoundOf32LeaderboardStateGroupByPayload<T extends RoundOf32LeaderboardStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoundOf32LeaderboardStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoundOf32LeaderboardStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoundOf32LeaderboardStateGroupByOutputType[P]>
+            : GetScalarType<T[P], RoundOf32LeaderboardStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoundOf32LeaderboardStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32LeaderboardState"]>
+
+  export type RoundOf32LeaderboardStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32LeaderboardState"]>
+
+  export type RoundOf32LeaderboardStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32LeaderboardState"]>
+
+  export type RoundOf32LeaderboardStateSelectScalar = {
+    leagueId?: boolean
+    ranksJson?: boolean
+    previousRanksJson?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RoundOf32LeaderboardStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"leagueId" | "ranksJson" | "previousRanksJson" | "updatedAt", ExtArgs["result"]["roundOf32LeaderboardState"]>
+  export type RoundOf32LeaderboardStateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+  export type RoundOf32LeaderboardStateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+  export type RoundOf32LeaderboardStateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+  }
+
+  export type $RoundOf32LeaderboardStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RoundOf32LeaderboardState"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      leagueId: string
+      ranksJson: string
+      previousRanksJson: string
+      updatedAt: Date
+    }, ExtArgs["result"]["roundOf32LeaderboardState"]>
+    composites: {}
+  }
+
+  type RoundOf32LeaderboardStateGetPayload<S extends boolean | null | undefined | RoundOf32LeaderboardStateDefaultArgs> = $Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload, S>
+
+  type RoundOf32LeaderboardStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoundOf32LeaderboardStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoundOf32LeaderboardStateCountAggregateInputType | true
+    }
+
+  export interface RoundOf32LeaderboardStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoundOf32LeaderboardState'], meta: { name: 'RoundOf32LeaderboardState' } }
+    /**
+     * Find zero or one RoundOf32LeaderboardState that matches the filter.
+     * @param {RoundOf32LeaderboardStateFindUniqueArgs} args - Arguments to find a RoundOf32LeaderboardState
+     * @example
+     * // Get one RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoundOf32LeaderboardStateFindUniqueArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateFindUniqueArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RoundOf32LeaderboardState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RoundOf32LeaderboardStateFindUniqueOrThrowArgs} args - Arguments to find a RoundOf32LeaderboardState
+     * @example
+     * // Get one RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoundOf32LeaderboardStateFindUniqueOrThrowArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoundOf32LeaderboardState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateFindFirstArgs} args - Arguments to find a RoundOf32LeaderboardState
+     * @example
+     * // Get one RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoundOf32LeaderboardStateFindFirstArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateFindFirstArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoundOf32LeaderboardState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateFindFirstOrThrowArgs} args - Arguments to find a RoundOf32LeaderboardState
+     * @example
+     * // Get one RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoundOf32LeaderboardStateFindFirstOrThrowArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RoundOf32LeaderboardStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardStates = await prisma.roundOf32LeaderboardState.findMany()
+     * 
+     * // Get first 10 RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardStates = await prisma.roundOf32LeaderboardState.findMany({ take: 10 })
+     * 
+     * // Only select the `leagueId`
+     * const roundOf32LeaderboardStateWithLeagueIdOnly = await prisma.roundOf32LeaderboardState.findMany({ select: { leagueId: true } })
+     * 
+     */
+    findMany<T extends RoundOf32LeaderboardStateFindManyArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RoundOf32LeaderboardState.
+     * @param {RoundOf32LeaderboardStateCreateArgs} args - Arguments to create a RoundOf32LeaderboardState.
+     * @example
+     * // Create one RoundOf32LeaderboardState
+     * const RoundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.create({
+     *   data: {
+     *     // ... data to create a RoundOf32LeaderboardState
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoundOf32LeaderboardStateCreateArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateCreateArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RoundOf32LeaderboardStates.
+     * @param {RoundOf32LeaderboardStateCreateManyArgs} args - Arguments to create many RoundOf32LeaderboardStates.
+     * @example
+     * // Create many RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoundOf32LeaderboardStateCreateManyArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RoundOf32LeaderboardStates and returns the data saved in the database.
+     * @param {RoundOf32LeaderboardStateCreateManyAndReturnArgs} args - Arguments to create many RoundOf32LeaderboardStates.
+     * @example
+     * // Create many RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RoundOf32LeaderboardStates and only return the `leagueId`
+     * const roundOf32LeaderboardStateWithLeagueIdOnly = await prisma.roundOf32LeaderboardState.createManyAndReturn({
+     *   select: { leagueId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoundOf32LeaderboardStateCreateManyAndReturnArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RoundOf32LeaderboardState.
+     * @param {RoundOf32LeaderboardStateDeleteArgs} args - Arguments to delete one RoundOf32LeaderboardState.
+     * @example
+     * // Delete one RoundOf32LeaderboardState
+     * const RoundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.delete({
+     *   where: {
+     *     // ... filter to delete one RoundOf32LeaderboardState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoundOf32LeaderboardStateDeleteArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateDeleteArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RoundOf32LeaderboardState.
+     * @param {RoundOf32LeaderboardStateUpdateArgs} args - Arguments to update one RoundOf32LeaderboardState.
+     * @example
+     * // Update one RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoundOf32LeaderboardStateUpdateArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateUpdateArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RoundOf32LeaderboardStates.
+     * @param {RoundOf32LeaderboardStateDeleteManyArgs} args - Arguments to filter RoundOf32LeaderboardStates to delete.
+     * @example
+     * // Delete a few RoundOf32LeaderboardStates
+     * const { count } = await prisma.roundOf32LeaderboardState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoundOf32LeaderboardStateDeleteManyArgs>(args?: SelectSubset<T, RoundOf32LeaderboardStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoundOf32LeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoundOf32LeaderboardStateUpdateManyArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoundOf32LeaderboardStates and returns the data updated in the database.
+     * @param {RoundOf32LeaderboardStateUpdateManyAndReturnArgs} args - Arguments to update many RoundOf32LeaderboardStates.
+     * @example
+     * // Update many RoundOf32LeaderboardStates
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RoundOf32LeaderboardStates and only return the `leagueId`
+     * const roundOf32LeaderboardStateWithLeagueIdOnly = await prisma.roundOf32LeaderboardState.updateManyAndReturn({
+     *   select: { leagueId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RoundOf32LeaderboardStateUpdateManyAndReturnArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RoundOf32LeaderboardState.
+     * @param {RoundOf32LeaderboardStateUpsertArgs} args - Arguments to update or create a RoundOf32LeaderboardState.
+     * @example
+     * // Update or create a RoundOf32LeaderboardState
+     * const roundOf32LeaderboardState = await prisma.roundOf32LeaderboardState.upsert({
+     *   create: {
+     *     // ... data to create a RoundOf32LeaderboardState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RoundOf32LeaderboardState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoundOf32LeaderboardStateUpsertArgs>(args: SelectSubset<T, RoundOf32LeaderboardStateUpsertArgs<ExtArgs>>): Prisma__RoundOf32LeaderboardStateClient<$Result.GetResult<Prisma.$RoundOf32LeaderboardStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RoundOf32LeaderboardStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateCountArgs} args - Arguments to filter RoundOf32LeaderboardStates to count.
+     * @example
+     * // Count the number of RoundOf32LeaderboardStates
+     * const count = await prisma.roundOf32LeaderboardState.count({
+     *   where: {
+     *     // ... the filter for the RoundOf32LeaderboardStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoundOf32LeaderboardStateCountArgs>(
+      args?: Subset<T, RoundOf32LeaderboardStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoundOf32LeaderboardStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RoundOf32LeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoundOf32LeaderboardStateAggregateArgs>(args: Subset<T, RoundOf32LeaderboardStateAggregateArgs>): Prisma.PrismaPromise<GetRoundOf32LeaderboardStateAggregateType<T>>
+
+    /**
+     * Group by RoundOf32LeaderboardState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32LeaderboardStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoundOf32LeaderboardStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoundOf32LeaderboardStateGroupByArgs['orderBy'] }
+        : { orderBy?: RoundOf32LeaderboardStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoundOf32LeaderboardStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoundOf32LeaderboardStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RoundOf32LeaderboardState model
+   */
+  readonly fields: RoundOf32LeaderboardStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RoundOf32LeaderboardState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoundOf32LeaderboardStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RoundOf32LeaderboardState model
+   */
+  interface RoundOf32LeaderboardStateFieldRefs {
+    readonly leagueId: FieldRef<"RoundOf32LeaderboardState", 'String'>
+    readonly ranksJson: FieldRef<"RoundOf32LeaderboardState", 'String'>
+    readonly previousRanksJson: FieldRef<"RoundOf32LeaderboardState", 'String'>
+    readonly updatedAt: FieldRef<"RoundOf32LeaderboardState", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RoundOf32LeaderboardState findUnique
+   */
+  export type RoundOf32LeaderboardStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32LeaderboardState to fetch.
+     */
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32LeaderboardState findUniqueOrThrow
+   */
+  export type RoundOf32LeaderboardStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32LeaderboardState to fetch.
+     */
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32LeaderboardState findFirst
+   */
+  export type RoundOf32LeaderboardStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32LeaderboardState to fetch.
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32LeaderboardStates to fetch.
+     */
+    orderBy?: RoundOf32LeaderboardStateOrderByWithRelationInput | RoundOf32LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoundOf32LeaderboardStates.
+     */
+    cursor?: RoundOf32LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoundOf32LeaderboardStates.
+     */
+    distinct?: RoundOf32LeaderboardStateScalarFieldEnum | RoundOf32LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32LeaderboardState findFirstOrThrow
+   */
+  export type RoundOf32LeaderboardStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32LeaderboardState to fetch.
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32LeaderboardStates to fetch.
+     */
+    orderBy?: RoundOf32LeaderboardStateOrderByWithRelationInput | RoundOf32LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoundOf32LeaderboardStates.
+     */
+    cursor?: RoundOf32LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32LeaderboardStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoundOf32LeaderboardStates.
+     */
+    distinct?: RoundOf32LeaderboardStateScalarFieldEnum | RoundOf32LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32LeaderboardState findMany
+   */
+  export type RoundOf32LeaderboardStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32LeaderboardStates to fetch.
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32LeaderboardStates to fetch.
+     */
+    orderBy?: RoundOf32LeaderboardStateOrderByWithRelationInput | RoundOf32LeaderboardStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RoundOf32LeaderboardStates.
+     */
+    cursor?: RoundOf32LeaderboardStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32LeaderboardStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32LeaderboardStates.
+     */
+    skip?: number
+    distinct?: RoundOf32LeaderboardStateScalarFieldEnum | RoundOf32LeaderboardStateScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32LeaderboardState create
+   */
+  export type RoundOf32LeaderboardStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RoundOf32LeaderboardState.
+     */
+    data: XOR<RoundOf32LeaderboardStateCreateInput, RoundOf32LeaderboardStateUncheckedCreateInput>
+  }
+
+  /**
+   * RoundOf32LeaderboardState createMany
+   */
+  export type RoundOf32LeaderboardStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RoundOf32LeaderboardStates.
+     */
+    data: RoundOf32LeaderboardStateCreateManyInput | RoundOf32LeaderboardStateCreateManyInput[]
+  }
+
+  /**
+   * RoundOf32LeaderboardState createManyAndReturn
+   */
+  export type RoundOf32LeaderboardStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many RoundOf32LeaderboardStates.
+     */
+    data: RoundOf32LeaderboardStateCreateManyInput | RoundOf32LeaderboardStateCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoundOf32LeaderboardState update
+   */
+  export type RoundOf32LeaderboardStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RoundOf32LeaderboardState.
+     */
+    data: XOR<RoundOf32LeaderboardStateUpdateInput, RoundOf32LeaderboardStateUncheckedUpdateInput>
+    /**
+     * Choose, which RoundOf32LeaderboardState to update.
+     */
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32LeaderboardState updateMany
+   */
+  export type RoundOf32LeaderboardStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RoundOf32LeaderboardStates.
+     */
+    data: XOR<RoundOf32LeaderboardStateUpdateManyMutationInput, RoundOf32LeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which RoundOf32LeaderboardStates to update
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * Limit how many RoundOf32LeaderboardStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoundOf32LeaderboardState updateManyAndReturn
+   */
+  export type RoundOf32LeaderboardStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * The data used to update RoundOf32LeaderboardStates.
+     */
+    data: XOR<RoundOf32LeaderboardStateUpdateManyMutationInput, RoundOf32LeaderboardStateUncheckedUpdateManyInput>
+    /**
+     * Filter which RoundOf32LeaderboardStates to update
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * Limit how many RoundOf32LeaderboardStates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoundOf32LeaderboardState upsert
+   */
+  export type RoundOf32LeaderboardStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RoundOf32LeaderboardState to update in case it exists.
+     */
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+    /**
+     * In case the RoundOf32LeaderboardState found by the `where` argument doesn't exist, create a new RoundOf32LeaderboardState with this data.
+     */
+    create: XOR<RoundOf32LeaderboardStateCreateInput, RoundOf32LeaderboardStateUncheckedCreateInput>
+    /**
+     * In case the RoundOf32LeaderboardState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoundOf32LeaderboardStateUpdateInput, RoundOf32LeaderboardStateUncheckedUpdateInput>
+  }
+
+  /**
+   * RoundOf32LeaderboardState delete
+   */
+  export type RoundOf32LeaderboardStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+    /**
+     * Filter which RoundOf32LeaderboardState to delete.
+     */
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32LeaderboardState deleteMany
+   */
+  export type RoundOf32LeaderboardStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoundOf32LeaderboardStates to delete
+     */
+    where?: RoundOf32LeaderboardStateWhereInput
+    /**
+     * Limit how many RoundOf32LeaderboardStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoundOf32LeaderboardState without action
+   */
+  export type RoundOf32LeaderboardStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32LeaderboardState
+     */
+    select?: RoundOf32LeaderboardStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32LeaderboardState
+     */
+    omit?: RoundOf32LeaderboardStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32LeaderboardStateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model TournamentPrediction
    */
 
@@ -13310,6 +14632,1057 @@ export namespace Prisma {
 
 
   /**
+   * Model RoundOf32RevealSeen
+   */
+
+  export type AggregateRoundOf32RevealSeen = {
+    _count: RoundOf32RevealSeenCountAggregateOutputType | null
+    _min: RoundOf32RevealSeenMinAggregateOutputType | null
+    _max: RoundOf32RevealSeenMaxAggregateOutputType | null
+  }
+
+  export type RoundOf32RevealSeenMinAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type RoundOf32RevealSeenMaxAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type RoundOf32RevealSeenCountAggregateOutputType = {
+    id: number
+    leagueId: number
+    userId: number
+    seenAt: number
+    _all: number
+  }
+
+
+  export type RoundOf32RevealSeenMinAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type RoundOf32RevealSeenMaxAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type RoundOf32RevealSeenCountAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+    _all?: true
+  }
+
+  export type RoundOf32RevealSeenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoundOf32RevealSeen to aggregate.
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32RevealSeens to fetch.
+     */
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32RevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32RevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RoundOf32RevealSeens
+    **/
+    _count?: true | RoundOf32RevealSeenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoundOf32RevealSeenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoundOf32RevealSeenMaxAggregateInputType
+  }
+
+  export type GetRoundOf32RevealSeenAggregateType<T extends RoundOf32RevealSeenAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoundOf32RevealSeen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoundOf32RevealSeen[P]>
+      : GetScalarType<T[P], AggregateRoundOf32RevealSeen[P]>
+  }
+
+
+
+
+  export type RoundOf32RevealSeenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoundOf32RevealSeenWhereInput
+    orderBy?: RoundOf32RevealSeenOrderByWithAggregationInput | RoundOf32RevealSeenOrderByWithAggregationInput[]
+    by: RoundOf32RevealSeenScalarFieldEnum[] | RoundOf32RevealSeenScalarFieldEnum
+    having?: RoundOf32RevealSeenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoundOf32RevealSeenCountAggregateInputType | true
+    _min?: RoundOf32RevealSeenMinAggregateInputType
+    _max?: RoundOf32RevealSeenMaxAggregateInputType
+  }
+
+  export type RoundOf32RevealSeenGroupByOutputType = {
+    id: string
+    leagueId: string
+    userId: string
+    seenAt: Date
+    _count: RoundOf32RevealSeenCountAggregateOutputType | null
+    _min: RoundOf32RevealSeenMinAggregateOutputType | null
+    _max: RoundOf32RevealSeenMaxAggregateOutputType | null
+  }
+
+  type GetRoundOf32RevealSeenGroupByPayload<T extends RoundOf32RevealSeenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoundOf32RevealSeenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoundOf32RevealSeenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoundOf32RevealSeenGroupByOutputType[P]>
+            : GetScalarType<T[P], RoundOf32RevealSeenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoundOf32RevealSeenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32RevealSeen"]>
+
+  export type RoundOf32RevealSeenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32RevealSeen"]>
+
+  export type RoundOf32RevealSeenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roundOf32RevealSeen"]>
+
+  export type RoundOf32RevealSeenSelectScalar = {
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+  }
+
+  export type RoundOf32RevealSeenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "seenAt", ExtArgs["result"]["roundOf32RevealSeen"]>
+  export type RoundOf32RevealSeenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RoundOf32RevealSeenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RoundOf32RevealSeenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RoundOf32RevealSeenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RoundOf32RevealSeen"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      leagueId: string
+      userId: string
+      seenAt: Date
+    }, ExtArgs["result"]["roundOf32RevealSeen"]>
+    composites: {}
+  }
+
+  type RoundOf32RevealSeenGetPayload<S extends boolean | null | undefined | RoundOf32RevealSeenDefaultArgs> = $Result.GetResult<Prisma.$RoundOf32RevealSeenPayload, S>
+
+  type RoundOf32RevealSeenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoundOf32RevealSeenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoundOf32RevealSeenCountAggregateInputType | true
+    }
+
+  export interface RoundOf32RevealSeenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoundOf32RevealSeen'], meta: { name: 'RoundOf32RevealSeen' } }
+    /**
+     * Find zero or one RoundOf32RevealSeen that matches the filter.
+     * @param {RoundOf32RevealSeenFindUniqueArgs} args - Arguments to find a RoundOf32RevealSeen
+     * @example
+     * // Get one RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoundOf32RevealSeenFindUniqueArgs>(args: SelectSubset<T, RoundOf32RevealSeenFindUniqueArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RoundOf32RevealSeen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RoundOf32RevealSeenFindUniqueOrThrowArgs} args - Arguments to find a RoundOf32RevealSeen
+     * @example
+     * // Get one RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoundOf32RevealSeenFindUniqueOrThrowArgs>(args: SelectSubset<T, RoundOf32RevealSeenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoundOf32RevealSeen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenFindFirstArgs} args - Arguments to find a RoundOf32RevealSeen
+     * @example
+     * // Get one RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoundOf32RevealSeenFindFirstArgs>(args?: SelectSubset<T, RoundOf32RevealSeenFindFirstArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoundOf32RevealSeen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenFindFirstOrThrowArgs} args - Arguments to find a RoundOf32RevealSeen
+     * @example
+     * // Get one RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoundOf32RevealSeenFindFirstOrThrowArgs>(args?: SelectSubset<T, RoundOf32RevealSeenFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RoundOf32RevealSeens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RoundOf32RevealSeens
+     * const roundOf32RevealSeens = await prisma.roundOf32RevealSeen.findMany()
+     * 
+     * // Get first 10 RoundOf32RevealSeens
+     * const roundOf32RevealSeens = await prisma.roundOf32RevealSeen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const roundOf32RevealSeenWithIdOnly = await prisma.roundOf32RevealSeen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RoundOf32RevealSeenFindManyArgs>(args?: SelectSubset<T, RoundOf32RevealSeenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RoundOf32RevealSeen.
+     * @param {RoundOf32RevealSeenCreateArgs} args - Arguments to create a RoundOf32RevealSeen.
+     * @example
+     * // Create one RoundOf32RevealSeen
+     * const RoundOf32RevealSeen = await prisma.roundOf32RevealSeen.create({
+     *   data: {
+     *     // ... data to create a RoundOf32RevealSeen
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoundOf32RevealSeenCreateArgs>(args: SelectSubset<T, RoundOf32RevealSeenCreateArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RoundOf32RevealSeens.
+     * @param {RoundOf32RevealSeenCreateManyArgs} args - Arguments to create many RoundOf32RevealSeens.
+     * @example
+     * // Create many RoundOf32RevealSeens
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoundOf32RevealSeenCreateManyArgs>(args?: SelectSubset<T, RoundOf32RevealSeenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RoundOf32RevealSeens and returns the data saved in the database.
+     * @param {RoundOf32RevealSeenCreateManyAndReturnArgs} args - Arguments to create many RoundOf32RevealSeens.
+     * @example
+     * // Create many RoundOf32RevealSeens
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RoundOf32RevealSeens and only return the `id`
+     * const roundOf32RevealSeenWithIdOnly = await prisma.roundOf32RevealSeen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoundOf32RevealSeenCreateManyAndReturnArgs>(args?: SelectSubset<T, RoundOf32RevealSeenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RoundOf32RevealSeen.
+     * @param {RoundOf32RevealSeenDeleteArgs} args - Arguments to delete one RoundOf32RevealSeen.
+     * @example
+     * // Delete one RoundOf32RevealSeen
+     * const RoundOf32RevealSeen = await prisma.roundOf32RevealSeen.delete({
+     *   where: {
+     *     // ... filter to delete one RoundOf32RevealSeen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoundOf32RevealSeenDeleteArgs>(args: SelectSubset<T, RoundOf32RevealSeenDeleteArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RoundOf32RevealSeen.
+     * @param {RoundOf32RevealSeenUpdateArgs} args - Arguments to update one RoundOf32RevealSeen.
+     * @example
+     * // Update one RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoundOf32RevealSeenUpdateArgs>(args: SelectSubset<T, RoundOf32RevealSeenUpdateArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RoundOf32RevealSeens.
+     * @param {RoundOf32RevealSeenDeleteManyArgs} args - Arguments to filter RoundOf32RevealSeens to delete.
+     * @example
+     * // Delete a few RoundOf32RevealSeens
+     * const { count } = await prisma.roundOf32RevealSeen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoundOf32RevealSeenDeleteManyArgs>(args?: SelectSubset<T, RoundOf32RevealSeenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoundOf32RevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RoundOf32RevealSeens
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoundOf32RevealSeenUpdateManyArgs>(args: SelectSubset<T, RoundOf32RevealSeenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoundOf32RevealSeens and returns the data updated in the database.
+     * @param {RoundOf32RevealSeenUpdateManyAndReturnArgs} args - Arguments to update many RoundOf32RevealSeens.
+     * @example
+     * // Update many RoundOf32RevealSeens
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RoundOf32RevealSeens and only return the `id`
+     * const roundOf32RevealSeenWithIdOnly = await prisma.roundOf32RevealSeen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RoundOf32RevealSeenUpdateManyAndReturnArgs>(args: SelectSubset<T, RoundOf32RevealSeenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RoundOf32RevealSeen.
+     * @param {RoundOf32RevealSeenUpsertArgs} args - Arguments to update or create a RoundOf32RevealSeen.
+     * @example
+     * // Update or create a RoundOf32RevealSeen
+     * const roundOf32RevealSeen = await prisma.roundOf32RevealSeen.upsert({
+     *   create: {
+     *     // ... data to create a RoundOf32RevealSeen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RoundOf32RevealSeen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoundOf32RevealSeenUpsertArgs>(args: SelectSubset<T, RoundOf32RevealSeenUpsertArgs<ExtArgs>>): Prisma__RoundOf32RevealSeenClient<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RoundOf32RevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenCountArgs} args - Arguments to filter RoundOf32RevealSeens to count.
+     * @example
+     * // Count the number of RoundOf32RevealSeens
+     * const count = await prisma.roundOf32RevealSeen.count({
+     *   where: {
+     *     // ... the filter for the RoundOf32RevealSeens we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoundOf32RevealSeenCountArgs>(
+      args?: Subset<T, RoundOf32RevealSeenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoundOf32RevealSeenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RoundOf32RevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoundOf32RevealSeenAggregateArgs>(args: Subset<T, RoundOf32RevealSeenAggregateArgs>): Prisma.PrismaPromise<GetRoundOf32RevealSeenAggregateType<T>>
+
+    /**
+     * Group by RoundOf32RevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoundOf32RevealSeenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoundOf32RevealSeenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoundOf32RevealSeenGroupByArgs['orderBy'] }
+        : { orderBy?: RoundOf32RevealSeenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoundOf32RevealSeenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoundOf32RevealSeenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RoundOf32RevealSeen model
+   */
+  readonly fields: RoundOf32RevealSeenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RoundOf32RevealSeen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoundOf32RevealSeenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RoundOf32RevealSeen model
+   */
+  interface RoundOf32RevealSeenFieldRefs {
+    readonly id: FieldRef<"RoundOf32RevealSeen", 'String'>
+    readonly leagueId: FieldRef<"RoundOf32RevealSeen", 'String'>
+    readonly userId: FieldRef<"RoundOf32RevealSeen", 'String'>
+    readonly seenAt: FieldRef<"RoundOf32RevealSeen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RoundOf32RevealSeen findUnique
+   */
+  export type RoundOf32RevealSeenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32RevealSeen to fetch.
+     */
+    where: RoundOf32RevealSeenWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32RevealSeen findUniqueOrThrow
+   */
+  export type RoundOf32RevealSeenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32RevealSeen to fetch.
+     */
+    where: RoundOf32RevealSeenWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32RevealSeen findFirst
+   */
+  export type RoundOf32RevealSeenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32RevealSeen to fetch.
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32RevealSeens to fetch.
+     */
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoundOf32RevealSeens.
+     */
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32RevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32RevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoundOf32RevealSeens.
+     */
+    distinct?: RoundOf32RevealSeenScalarFieldEnum | RoundOf32RevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32RevealSeen findFirstOrThrow
+   */
+  export type RoundOf32RevealSeenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32RevealSeen to fetch.
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32RevealSeens to fetch.
+     */
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoundOf32RevealSeens.
+     */
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32RevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32RevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoundOf32RevealSeens.
+     */
+    distinct?: RoundOf32RevealSeenScalarFieldEnum | RoundOf32RevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32RevealSeen findMany
+   */
+  export type RoundOf32RevealSeenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which RoundOf32RevealSeens to fetch.
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoundOf32RevealSeens to fetch.
+     */
+    orderBy?: RoundOf32RevealSeenOrderByWithRelationInput | RoundOf32RevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RoundOf32RevealSeens.
+     */
+    cursor?: RoundOf32RevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoundOf32RevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoundOf32RevealSeens.
+     */
+    skip?: number
+    distinct?: RoundOf32RevealSeenScalarFieldEnum | RoundOf32RevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * RoundOf32RevealSeen create
+   */
+  export type RoundOf32RevealSeenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RoundOf32RevealSeen.
+     */
+    data: XOR<RoundOf32RevealSeenCreateInput, RoundOf32RevealSeenUncheckedCreateInput>
+  }
+
+  /**
+   * RoundOf32RevealSeen createMany
+   */
+  export type RoundOf32RevealSeenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RoundOf32RevealSeens.
+     */
+    data: RoundOf32RevealSeenCreateManyInput | RoundOf32RevealSeenCreateManyInput[]
+  }
+
+  /**
+   * RoundOf32RevealSeen createManyAndReturn
+   */
+  export type RoundOf32RevealSeenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to create many RoundOf32RevealSeens.
+     */
+    data: RoundOf32RevealSeenCreateManyInput | RoundOf32RevealSeenCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoundOf32RevealSeen update
+   */
+  export type RoundOf32RevealSeenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RoundOf32RevealSeen.
+     */
+    data: XOR<RoundOf32RevealSeenUpdateInput, RoundOf32RevealSeenUncheckedUpdateInput>
+    /**
+     * Choose, which RoundOf32RevealSeen to update.
+     */
+    where: RoundOf32RevealSeenWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32RevealSeen updateMany
+   */
+  export type RoundOf32RevealSeenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RoundOf32RevealSeens.
+     */
+    data: XOR<RoundOf32RevealSeenUpdateManyMutationInput, RoundOf32RevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which RoundOf32RevealSeens to update
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * Limit how many RoundOf32RevealSeens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoundOf32RevealSeen updateManyAndReturn
+   */
+  export type RoundOf32RevealSeenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to update RoundOf32RevealSeens.
+     */
+    data: XOR<RoundOf32RevealSeenUpdateManyMutationInput, RoundOf32RevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which RoundOf32RevealSeens to update
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * Limit how many RoundOf32RevealSeens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoundOf32RevealSeen upsert
+   */
+  export type RoundOf32RevealSeenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RoundOf32RevealSeen to update in case it exists.
+     */
+    where: RoundOf32RevealSeenWhereUniqueInput
+    /**
+     * In case the RoundOf32RevealSeen found by the `where` argument doesn't exist, create a new RoundOf32RevealSeen with this data.
+     */
+    create: XOR<RoundOf32RevealSeenCreateInput, RoundOf32RevealSeenUncheckedCreateInput>
+    /**
+     * In case the RoundOf32RevealSeen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoundOf32RevealSeenUpdateInput, RoundOf32RevealSeenUncheckedUpdateInput>
+  }
+
+  /**
+   * RoundOf32RevealSeen delete
+   */
+  export type RoundOf32RevealSeenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter which RoundOf32RevealSeen to delete.
+     */
+    where: RoundOf32RevealSeenWhereUniqueInput
+  }
+
+  /**
+   * RoundOf32RevealSeen deleteMany
+   */
+  export type RoundOf32RevealSeenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoundOf32RevealSeens to delete
+     */
+    where?: RoundOf32RevealSeenWhereInput
+    /**
+     * Limit how many RoundOf32RevealSeens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoundOf32RevealSeen without action
+   */
+  export type RoundOf32RevealSeenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoundOf32RevealSeen
+     */
+    select?: RoundOf32RevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoundOf32RevealSeen
+     */
+    omit?: RoundOf32RevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoundOf32RevealSeenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -13420,6 +15793,16 @@ export namespace Prisma {
   export type KnockoutLeaderboardStateScalarFieldEnum = (typeof KnockoutLeaderboardStateScalarFieldEnum)[keyof typeof KnockoutLeaderboardStateScalarFieldEnum]
 
 
+  export const RoundOf32LeaderboardStateScalarFieldEnum: {
+    leagueId: 'leagueId',
+    ranksJson: 'ranksJson',
+    previousRanksJson: 'previousRanksJson',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RoundOf32LeaderboardStateScalarFieldEnum = (typeof RoundOf32LeaderboardStateScalarFieldEnum)[keyof typeof RoundOf32LeaderboardStateScalarFieldEnum]
+
+
   export const TournamentPredictionScalarFieldEnum: {
     id: 'id',
     leagueId: 'leagueId',
@@ -13457,6 +15840,16 @@ export namespace Prisma {
   };
 
   export type GroupStageRevealSeenScalarFieldEnum = (typeof GroupStageRevealSeenScalarFieldEnum)[keyof typeof GroupStageRevealSeenScalarFieldEnum]
+
+
+  export const RoundOf32RevealSeenScalarFieldEnum: {
+    id: 'id',
+    leagueId: 'leagueId',
+    userId: 'userId',
+    seenAt: 'seenAt'
+  };
+
+  export type RoundOf32RevealSeenScalarFieldEnum = (typeof RoundOf32RevealSeenScalarFieldEnum)[keyof typeof RoundOf32RevealSeenScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13534,6 +15927,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
+    roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13549,6 +15943,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
     groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13567,6 +15962,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
+    roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13614,8 +16010,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
     knockoutLeaderboardState?: XOR<KnockoutLeaderboardStateNullableScalarRelationFilter, KnockoutLeaderboardStateWhereInput> | null
+    roundOf32LeaderboardState?: XOR<RoundOf32LeaderboardStateNullableScalarRelationFilter, RoundOf32LeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
+    roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
   }
 
   export type LeagueOrderByWithRelationInput = {
@@ -13634,8 +16032,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionOrderByRelationAggregateInput
     leaderboardState?: LeaderboardStateOrderByWithRelationInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateOrderByWithRelationInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateOrderByWithRelationInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenOrderByRelationAggregateInput
     groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenOrderByRelationAggregateInput
   }
 
   export type LeagueWhereUniqueInput = Prisma.AtLeast<{
@@ -13657,8 +16057,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionListRelationFilter
     leaderboardState?: XOR<LeaderboardStateNullableScalarRelationFilter, LeaderboardStateWhereInput> | null
     knockoutLeaderboardState?: XOR<KnockoutLeaderboardStateNullableScalarRelationFilter, KnockoutLeaderboardStateWhereInput> | null
+    roundOf32LeaderboardState?: XOR<RoundOf32LeaderboardStateNullableScalarRelationFilter, RoundOf32LeaderboardStateWhereInput> | null
     matchWinnerRevealSeen?: MatchWinnerRevealSeenListRelationFilter
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
+    roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
   }, "id" | "slug" | "inviteCode">
 
   export type LeagueOrderByWithAggregationInput = {
@@ -14066,6 +16468,56 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"KnockoutLeaderboardState"> | Date | string
   }
 
+  export type RoundOf32LeaderboardStateWhereInput = {
+    AND?: RoundOf32LeaderboardStateWhereInput | RoundOf32LeaderboardStateWhereInput[]
+    OR?: RoundOf32LeaderboardStateWhereInput[]
+    NOT?: RoundOf32LeaderboardStateWhereInput | RoundOf32LeaderboardStateWhereInput[]
+    leagueId?: StringFilter<"RoundOf32LeaderboardState"> | string
+    ranksJson?: StringFilter<"RoundOf32LeaderboardState"> | string
+    previousRanksJson?: StringFilter<"RoundOf32LeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"RoundOf32LeaderboardState"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+  }
+
+  export type RoundOf32LeaderboardStateOrderByWithRelationInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+  }
+
+  export type RoundOf32LeaderboardStateWhereUniqueInput = Prisma.AtLeast<{
+    leagueId?: string
+    AND?: RoundOf32LeaderboardStateWhereInput | RoundOf32LeaderboardStateWhereInput[]
+    OR?: RoundOf32LeaderboardStateWhereInput[]
+    NOT?: RoundOf32LeaderboardStateWhereInput | RoundOf32LeaderboardStateWhereInput[]
+    ranksJson?: StringFilter<"RoundOf32LeaderboardState"> | string
+    previousRanksJson?: StringFilter<"RoundOf32LeaderboardState"> | string
+    updatedAt?: DateTimeFilter<"RoundOf32LeaderboardState"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+  }, "leagueId">
+
+  export type RoundOf32LeaderboardStateOrderByWithAggregationInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RoundOf32LeaderboardStateCountOrderByAggregateInput
+    _max?: RoundOf32LeaderboardStateMaxOrderByAggregateInput
+    _min?: RoundOf32LeaderboardStateMinOrderByAggregateInput
+  }
+
+  export type RoundOf32LeaderboardStateScalarWhereWithAggregatesInput = {
+    AND?: RoundOf32LeaderboardStateScalarWhereWithAggregatesInput | RoundOf32LeaderboardStateScalarWhereWithAggregatesInput[]
+    OR?: RoundOf32LeaderboardStateScalarWhereWithAggregatesInput[]
+    NOT?: RoundOf32LeaderboardStateScalarWhereWithAggregatesInput | RoundOf32LeaderboardStateScalarWhereWithAggregatesInput[]
+    leagueId?: StringWithAggregatesFilter<"RoundOf32LeaderboardState"> | string
+    ranksJson?: StringWithAggregatesFilter<"RoundOf32LeaderboardState"> | string
+    previousRanksJson?: StringWithAggregatesFilter<"RoundOf32LeaderboardState"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RoundOf32LeaderboardState"> | Date | string
+  }
+
   export type TournamentPredictionWhereInput = {
     AND?: TournamentPredictionWhereInput | TournamentPredictionWhereInput[]
     OR?: TournamentPredictionWhereInput[]
@@ -14278,6 +16730,60 @@ export namespace Prisma {
     seenAt?: DateTimeWithAggregatesFilter<"GroupStageRevealSeen"> | Date | string
   }
 
+  export type RoundOf32RevealSeenWhereInput = {
+    AND?: RoundOf32RevealSeenWhereInput | RoundOf32RevealSeenWhereInput[]
+    OR?: RoundOf32RevealSeenWhereInput[]
+    NOT?: RoundOf32RevealSeenWhereInput | RoundOf32RevealSeenWhereInput[]
+    id?: StringFilter<"RoundOf32RevealSeen"> | string
+    leagueId?: StringFilter<"RoundOf32RevealSeen"> | string
+    userId?: StringFilter<"RoundOf32RevealSeen"> | string
+    seenAt?: DateTimeFilter<"RoundOf32RevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RoundOf32RevealSeenOrderByWithRelationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type RoundOf32RevealSeenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    leagueId_userId?: RoundOf32RevealSeenLeagueIdUserIdCompoundUniqueInput
+    AND?: RoundOf32RevealSeenWhereInput | RoundOf32RevealSeenWhereInput[]
+    OR?: RoundOf32RevealSeenWhereInput[]
+    NOT?: RoundOf32RevealSeenWhereInput | RoundOf32RevealSeenWhereInput[]
+    leagueId?: StringFilter<"RoundOf32RevealSeen"> | string
+    userId?: StringFilter<"RoundOf32RevealSeen"> | string
+    seenAt?: DateTimeFilter<"RoundOf32RevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "leagueId_userId">
+
+  export type RoundOf32RevealSeenOrderByWithAggregationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    _count?: RoundOf32RevealSeenCountOrderByAggregateInput
+    _max?: RoundOf32RevealSeenMaxOrderByAggregateInput
+    _min?: RoundOf32RevealSeenMinOrderByAggregateInput
+  }
+
+  export type RoundOf32RevealSeenScalarWhereWithAggregatesInput = {
+    AND?: RoundOf32RevealSeenScalarWhereWithAggregatesInput | RoundOf32RevealSeenScalarWhereWithAggregatesInput[]
+    OR?: RoundOf32RevealSeenScalarWhereWithAggregatesInput[]
+    NOT?: RoundOf32RevealSeenScalarWhereWithAggregatesInput | RoundOf32RevealSeenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RoundOf32RevealSeen"> | string
+    leagueId?: StringWithAggregatesFilter<"RoundOf32RevealSeen"> | string
+    userId?: StringWithAggregatesFilter<"RoundOf32RevealSeen"> | string
+    seenAt?: DateTimeWithAggregatesFilter<"RoundOf32RevealSeen"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -14291,6 +16797,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14306,6 +16813,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14321,6 +16829,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14336,6 +16845,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14384,8 +16894,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateInput = {
@@ -14404,8 +16916,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUpdateInput = {
@@ -14424,8 +16938,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateInput = {
@@ -14444,8 +16960,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateManyInput = {
@@ -14880,6 +17398,54 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoundOf32LeaderboardStateCreateInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+    league: LeagueCreateNestedOneWithoutRoundOf32LeaderboardStateInput
+  }
+
+  export type RoundOf32LeaderboardStateUncheckedCreateInput = {
+    leagueId: string
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type RoundOf32LeaderboardStateUpdateInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutRoundOf32LeaderboardStateNestedInput
+  }
+
+  export type RoundOf32LeaderboardStateUncheckedUpdateInput = {
+    leagueId?: StringFieldUpdateOperationsInput | string
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32LeaderboardStateCreateManyInput = {
+    leagueId: string
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type RoundOf32LeaderboardStateUpdateManyMutationInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32LeaderboardStateUncheckedUpdateManyInput = {
+    leagueId?: StringFieldUpdateOperationsInput | string
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TournamentPredictionCreateInput = {
     id?: string
     champion?: string | null
@@ -15083,6 +17649,53 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoundOf32RevealSeenCreateInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutRoundOf32RevealSeenInput
+    user: UserCreateNestedOneWithoutRoundOf32RevealSeenInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedCreateInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32RevealSeenCreateManyInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -15143,6 +17756,12 @@ export namespace Prisma {
     none?: GroupStageRevealSeenWhereInput
   }
 
+  export type RoundOf32RevealSeenListRelationFilter = {
+    every?: RoundOf32RevealSeenWhereInput
+    some?: RoundOf32RevealSeenWhereInput
+    none?: RoundOf32RevealSeenWhereInput
+  }
+
   export type LeagueMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15160,6 +17779,10 @@ export namespace Prisma {
   }
 
   export type GroupStageRevealSeenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RoundOf32RevealSeenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15240,6 +17863,11 @@ export namespace Prisma {
   export type KnockoutLeaderboardStateNullableScalarRelationFilter = {
     is?: KnockoutLeaderboardStateWhereInput | null
     isNot?: KnockoutLeaderboardStateWhereInput | null
+  }
+
+  export type RoundOf32LeaderboardStateNullableScalarRelationFilter = {
+    is?: RoundOf32LeaderboardStateWhereInput | null
+    isNot?: RoundOf32LeaderboardStateWhereInput | null
   }
 
   export type LeagueCountOrderByAggregateInput = {
@@ -15589,6 +18217,27 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type RoundOf32LeaderboardStateCountOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoundOf32LeaderboardStateMaxOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoundOf32LeaderboardStateMinOrderByAggregateInput = {
+    leagueId?: SortOrder
+    ranksJson?: SortOrder
+    previousRanksJson?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -15734,6 +18383,32 @@ export namespace Prisma {
     seenAt?: SortOrder
   }
 
+  export type RoundOf32RevealSeenLeagueIdUserIdCompoundUniqueInput = {
+    leagueId: string
+    userId: string
+  }
+
+  export type RoundOf32RevealSeenCountOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type RoundOf32RevealSeenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type RoundOf32RevealSeenMinOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
   export type LeagueMemberCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -15769,6 +18444,13 @@ export namespace Prisma {
     connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
   }
 
+  export type RoundOf32RevealSeenCreateNestedManyWithoutUserInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput> | RoundOf32RevealSeenCreateWithoutUserInput[] | RoundOf32RevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutUserInput | RoundOf32RevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: RoundOf32RevealSeenCreateManyUserInputEnvelope
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -15802,6 +18484,13 @@ export namespace Prisma {
     connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutUserInput | GroupStageRevealSeenCreateOrConnectWithoutUserInput[]
     createMany?: GroupStageRevealSeenCreateManyUserInputEnvelope
     connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+  }
+
+  export type RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput> | RoundOf32RevealSeenCreateWithoutUserInput[] | RoundOf32RevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutUserInput | RoundOf32RevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: RoundOf32RevealSeenCreateManyUserInputEnvelope
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15886,6 +18575,20 @@ export namespace Prisma {
     deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
   }
 
+  export type RoundOf32RevealSeenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput> | RoundOf32RevealSeenCreateWithoutUserInput[] | RoundOf32RevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutUserInput | RoundOf32RevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: RoundOf32RevealSeenUpsertWithWhereUniqueWithoutUserInput | RoundOf32RevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RoundOf32RevealSeenCreateManyUserInputEnvelope
+    set?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    disconnect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    delete?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    update?: RoundOf32RevealSeenUpdateWithWhereUniqueWithoutUserInput | RoundOf32RevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RoundOf32RevealSeenUpdateManyWithWhereWithoutUserInput | RoundOf32RevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -15956,6 +18659,20 @@ export namespace Prisma {
     deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
   }
 
+  export type RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput> | RoundOf32RevealSeenCreateWithoutUserInput[] | RoundOf32RevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutUserInput | RoundOf32RevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: RoundOf32RevealSeenUpsertWithWhereUniqueWithoutUserInput | RoundOf32RevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RoundOf32RevealSeenCreateManyUserInputEnvelope
+    set?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    disconnect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    delete?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    update?: RoundOf32RevealSeenUpdateWithWhereUniqueWithoutUserInput | RoundOf32RevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RoundOf32RevealSeenUpdateManyWithWhereWithoutUserInput | RoundOf32RevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -15989,6 +18706,12 @@ export namespace Prisma {
     connect?: KnockoutLeaderboardStateWhereUniqueInput
   }
 
+  export type RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput = {
+    create?: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: RoundOf32LeaderboardStateCreateOrConnectWithoutLeagueInput
+    connect?: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
   export type MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput = {
     create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
@@ -16001,6 +18724,13 @@ export namespace Prisma {
     connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
     createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
     connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+  }
+
+  export type RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput> | RoundOf32RevealSeenCreateWithoutLeagueInput[] | RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput | RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: RoundOf32RevealSeenCreateManyLeagueInputEnvelope
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
   }
 
   export type LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput = {
@@ -16036,6 +18766,12 @@ export namespace Prisma {
     connect?: KnockoutLeaderboardStateWhereUniqueInput
   }
 
+  export type RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput = {
+    create?: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: RoundOf32LeaderboardStateCreateOrConnectWithoutLeagueInput
+    connect?: RoundOf32LeaderboardStateWhereUniqueInput
+  }
+
   export type MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
     create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
@@ -16048,6 +18784,13 @@ export namespace Prisma {
     connectOrCreate?: GroupStageRevealSeenCreateOrConnectWithoutLeagueInput | GroupStageRevealSeenCreateOrConnectWithoutLeagueInput[]
     createMany?: GroupStageRevealSeenCreateManyLeagueInputEnvelope
     connect?: GroupStageRevealSeenWhereUniqueInput | GroupStageRevealSeenWhereUniqueInput[]
+  }
+
+  export type RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput> | RoundOf32RevealSeenCreateWithoutLeagueInput[] | RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput | RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: RoundOf32RevealSeenCreateManyLeagueInputEnvelope
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
   }
 
   export type LeagueMemberUpdateManyWithoutLeagueNestedInput = {
@@ -16112,6 +18855,16 @@ export namespace Prisma {
     update?: XOR<XOR<KnockoutLeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, KnockoutLeaderboardStateUpdateWithoutLeagueInput>, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
+  export type RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput = {
+    create?: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: RoundOf32LeaderboardStateCreateOrConnectWithoutLeagueInput
+    upsert?: RoundOf32LeaderboardStateUpsertWithoutLeagueInput
+    disconnect?: RoundOf32LeaderboardStateWhereInput | boolean
+    delete?: RoundOf32LeaderboardStateWhereInput | boolean
+    connect?: RoundOf32LeaderboardStateWhereUniqueInput
+    update?: XOR<XOR<RoundOf32LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, RoundOf32LeaderboardStateUpdateWithoutLeagueInput>, RoundOf32LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
   export type MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput = {
     create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
@@ -16138,6 +18891,20 @@ export namespace Prisma {
     update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
     updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput | GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
     deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+  }
+
+  export type RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput> | RoundOf32RevealSeenCreateWithoutLeagueInput[] | RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput | RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: RoundOf32RevealSeenUpsertWithWhereUniqueWithoutLeagueInput | RoundOf32RevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: RoundOf32RevealSeenCreateManyLeagueInputEnvelope
+    set?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    disconnect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    delete?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    update?: RoundOf32RevealSeenUpdateWithWhereUniqueWithoutLeagueInput | RoundOf32RevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: RoundOf32RevealSeenUpdateManyWithWhereWithoutLeagueInput | RoundOf32RevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
   }
 
   export type LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput = {
@@ -16202,6 +18969,16 @@ export namespace Prisma {
     update?: XOR<XOR<KnockoutLeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, KnockoutLeaderboardStateUpdateWithoutLeagueInput>, KnockoutLeaderboardStateUncheckedUpdateWithoutLeagueInput>
   }
 
+  export type RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput = {
+    create?: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+    connectOrCreate?: RoundOf32LeaderboardStateCreateOrConnectWithoutLeagueInput
+    upsert?: RoundOf32LeaderboardStateUpsertWithoutLeagueInput
+    disconnect?: RoundOf32LeaderboardStateWhereInput | boolean
+    delete?: RoundOf32LeaderboardStateWhereInput | boolean
+    connect?: RoundOf32LeaderboardStateWhereUniqueInput
+    update?: XOR<XOR<RoundOf32LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput, RoundOf32LeaderboardStateUpdateWithoutLeagueInput>, RoundOf32LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
   export type MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
     create?: XOR<MatchWinnerRevealSeenCreateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput> | MatchWinnerRevealSeenCreateWithoutLeagueInput[] | MatchWinnerRevealSeenUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput | MatchWinnerRevealSeenCreateOrConnectWithoutLeagueInput[]
@@ -16228,6 +19005,20 @@ export namespace Prisma {
     update?: GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | GroupStageRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
     updateMany?: GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput | GroupStageRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
     deleteMany?: GroupStageRevealSeenScalarWhereInput | GroupStageRevealSeenScalarWhereInput[]
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput> | RoundOf32RevealSeenCreateWithoutLeagueInput[] | RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput | RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: RoundOf32RevealSeenUpsertWithWhereUniqueWithoutLeagueInput | RoundOf32RevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: RoundOf32RevealSeenCreateManyLeagueInputEnvelope
+    set?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    disconnect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    delete?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    connect?: RoundOf32RevealSeenWhereUniqueInput | RoundOf32RevealSeenWhereUniqueInput[]
+    update?: RoundOf32RevealSeenUpdateWithWhereUniqueWithoutLeagueInput | RoundOf32RevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: RoundOf32RevealSeenUpdateManyWithWhereWithoutLeagueInput | RoundOf32RevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
   }
 
   export type LeagueCreateNestedOneWithoutMembersInput = {
@@ -16432,6 +19223,20 @@ export namespace Prisma {
     update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutKnockoutLeaderboardStateInput, LeagueUpdateWithoutKnockoutLeaderboardStateInput>, LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput>
   }
 
+  export type LeagueCreateNestedOneWithoutRoundOf32LeaderboardStateInput = {
+    create?: XOR<LeagueCreateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutRoundOf32LeaderboardStateInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutRoundOf32LeaderboardStateNestedInput = {
+    create?: XOR<LeagueCreateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutRoundOf32LeaderboardStateInput
+    upsert?: LeagueUpsertWithoutRoundOf32LeaderboardStateInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutRoundOf32LeaderboardStateInput, LeagueUpdateWithoutRoundOf32LeaderboardStateInput>, LeagueUncheckedUpdateWithoutRoundOf32LeaderboardStateInput>
+  }
+
   export type LeagueCreateNestedOneWithoutTournamentPredictionsInput = {
     create?: XOR<LeagueCreateWithoutTournamentPredictionsInput, LeagueUncheckedCreateWithoutTournamentPredictionsInput>
     connectOrCreate?: LeagueCreateOrConnectWithoutTournamentPredictionsInput
@@ -16532,6 +19337,34 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutGroupStageRevealSeenInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGroupStageRevealSeenInput, UserUpdateWithoutGroupStageRevealSeenInput>, UserUncheckedUpdateWithoutGroupStageRevealSeenInput>
+  }
+
+  export type LeagueCreateNestedOneWithoutRoundOf32RevealSeenInput = {
+    create?: XOR<LeagueCreateWithoutRoundOf32RevealSeenInput, LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutRoundOf32RevealSeenInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutRoundOf32RevealSeenInput = {
+    create?: XOR<UserCreateWithoutRoundOf32RevealSeenInput, UserUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRoundOf32RevealSeenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput = {
+    create?: XOR<LeagueCreateWithoutRoundOf32RevealSeenInput, LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutRoundOf32RevealSeenInput
+    upsert?: LeagueUpsertWithoutRoundOf32RevealSeenInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutRoundOf32RevealSeenInput, LeagueUpdateWithoutRoundOf32RevealSeenInput>, LeagueUncheckedUpdateWithoutRoundOf32RevealSeenInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput = {
+    create?: XOR<UserCreateWithoutRoundOf32RevealSeenInput, UserUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRoundOf32RevealSeenInput
+    upsert?: UserUpsertWithoutRoundOf32RevealSeenInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRoundOf32RevealSeenInput, UserUpdateWithoutRoundOf32RevealSeenInput>, UserUncheckedUpdateWithoutRoundOf32RevealSeenInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -16876,6 +19709,27 @@ export namespace Prisma {
     data: GroupStageRevealSeenCreateManyUserInput | GroupStageRevealSeenCreateManyUserInput[]
   }
 
+  export type RoundOf32RevealSeenCreateWithoutUserInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutRoundOf32RevealSeenInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedCreateWithoutUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenCreateOrConnectWithoutUserInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    create: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type RoundOf32RevealSeenCreateManyUserInputEnvelope = {
+    data: RoundOf32RevealSeenCreateManyUserInput | RoundOf32RevealSeenCreateManyUserInput[]
+  }
+
   export type LeagueMemberUpsertWithWhereUniqueWithoutUserInput = {
     where: LeagueMemberWhereUniqueInput
     update: XOR<LeagueMemberUpdateWithoutUserInput, LeagueMemberUncheckedUpdateWithoutUserInput>
@@ -17024,6 +19878,32 @@ export namespace Prisma {
     seenAt?: DateTimeFilter<"GroupStageRevealSeen"> | Date | string
   }
 
+  export type RoundOf32RevealSeenUpsertWithWhereUniqueWithoutUserInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    update: XOR<RoundOf32RevealSeenUpdateWithoutUserInput, RoundOf32RevealSeenUncheckedUpdateWithoutUserInput>
+    create: XOR<RoundOf32RevealSeenCreateWithoutUserInput, RoundOf32RevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type RoundOf32RevealSeenUpdateWithWhereUniqueWithoutUserInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    data: XOR<RoundOf32RevealSeenUpdateWithoutUserInput, RoundOf32RevealSeenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RoundOf32RevealSeenUpdateManyWithWhereWithoutUserInput = {
+    where: RoundOf32RevealSeenScalarWhereInput
+    data: XOR<RoundOf32RevealSeenUpdateManyMutationInput, RoundOf32RevealSeenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RoundOf32RevealSeenScalarWhereInput = {
+    AND?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
+    OR?: RoundOf32RevealSeenScalarWhereInput[]
+    NOT?: RoundOf32RevealSeenScalarWhereInput | RoundOf32RevealSeenScalarWhereInput[]
+    id?: StringFilter<"RoundOf32RevealSeen"> | string
+    leagueId?: StringFilter<"RoundOf32RevealSeen"> | string
+    userId?: StringFilter<"RoundOf32RevealSeen"> | string
+    seenAt?: DateTimeFilter<"RoundOf32RevealSeen"> | Date | string
+  }
+
   export type LeagueMemberCreateWithoutLeagueInput = {
     id?: string
     joinedAt?: Date | string
@@ -17155,6 +20035,23 @@ export namespace Prisma {
     create: XOR<KnockoutLeaderboardStateCreateWithoutLeagueInput, KnockoutLeaderboardStateUncheckedCreateWithoutLeagueInput>
   }
 
+  export type RoundOf32LeaderboardStateCreateWithoutLeagueInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput = {
+    ranksJson?: string
+    previousRanksJson?: string
+    updatedAt?: Date | string
+  }
+
+  export type RoundOf32LeaderboardStateCreateOrConnectWithoutLeagueInput = {
+    where: RoundOf32LeaderboardStateWhereUniqueInput
+    create: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+  }
+
   export type MatchWinnerRevealSeenCreateWithoutLeagueInput = {
     id?: string
     seenAt?: Date | string
@@ -17197,6 +20094,27 @@ export namespace Prisma {
 
   export type GroupStageRevealSeenCreateManyLeagueInputEnvelope = {
     data: GroupStageRevealSeenCreateManyLeagueInput | GroupStageRevealSeenCreateManyLeagueInput[]
+  }
+
+  export type RoundOf32RevealSeenCreateWithoutLeagueInput = {
+    id?: string
+    seenAt?: Date | string
+    user: UserCreateNestedOneWithoutRoundOf32RevealSeenInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenCreateOrConnectWithoutLeagueInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    create: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type RoundOf32RevealSeenCreateManyLeagueInputEnvelope = {
+    data: RoundOf32RevealSeenCreateManyLeagueInput | RoundOf32RevealSeenCreateManyLeagueInput[]
   }
 
   export type LeagueMemberUpsertWithWhereUniqueWithoutLeagueInput = {
@@ -17293,6 +20211,29 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoundOf32LeaderboardStateUpsertWithoutLeagueInput = {
+    update: XOR<RoundOf32LeaderboardStateUpdateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+    create: XOR<RoundOf32LeaderboardStateCreateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedCreateWithoutLeagueInput>
+    where?: RoundOf32LeaderboardStateWhereInput
+  }
+
+  export type RoundOf32LeaderboardStateUpdateToOneWithWhereWithoutLeagueInput = {
+    where?: RoundOf32LeaderboardStateWhereInput
+    data: XOR<RoundOf32LeaderboardStateUpdateWithoutLeagueInput, RoundOf32LeaderboardStateUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type RoundOf32LeaderboardStateUpdateWithoutLeagueInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32LeaderboardStateUncheckedUpdateWithoutLeagueInput = {
+    ranksJson?: StringFieldUpdateOperationsInput | string
+    previousRanksJson?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MatchWinnerRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
     where: MatchWinnerRevealSeenWhereUniqueInput
     update: XOR<MatchWinnerRevealSeenUpdateWithoutLeagueInput, MatchWinnerRevealSeenUncheckedUpdateWithoutLeagueInput>
@@ -17325,6 +20266,22 @@ export namespace Prisma {
     data: XOR<GroupStageRevealSeenUpdateManyMutationInput, GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueInput>
   }
 
+  export type RoundOf32RevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    update: XOR<RoundOf32RevealSeenUpdateWithoutLeagueInput, RoundOf32RevealSeenUncheckedUpdateWithoutLeagueInput>
+    create: XOR<RoundOf32RevealSeenCreateWithoutLeagueInput, RoundOf32RevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type RoundOf32RevealSeenUpdateWithWhereUniqueWithoutLeagueInput = {
+    where: RoundOf32RevealSeenWhereUniqueInput
+    data: XOR<RoundOf32RevealSeenUpdateWithoutLeagueInput, RoundOf32RevealSeenUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type RoundOf32RevealSeenUpdateManyWithWhereWithoutLeagueInput = {
+    where: RoundOf32RevealSeenScalarWhereInput
+    data: XOR<RoundOf32RevealSeenUpdateManyMutationInput, RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueInput>
+  }
+
   export type LeagueCreateWithoutMembersInput = {
     id?: string
     slug: string
@@ -17340,8 +20297,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMembersInput = {
@@ -17359,8 +20318,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMembersInput = {
@@ -17380,6 +20341,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLeagueMembersInput = {
@@ -17394,6 +20356,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLeagueMembersInput = {
@@ -17427,8 +20390,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMembersInput = {
@@ -17446,8 +20411,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutLeagueMembersInput = {
@@ -17473,6 +20440,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLeagueMembersInput = {
@@ -17487,6 +20455,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchPredictionCreateWithoutMatchInput = {
@@ -17598,8 +20567,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchPredictionsInput = {
@@ -17617,8 +20588,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchPredictionsInput = {
@@ -17683,6 +20656,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchPredictionsInput = {
@@ -17697,6 +20671,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchPredictionsInput = {
@@ -17730,8 +20705,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -17749,8 +20726,10 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type MatchUpsertWithoutPredictionsInput = {
@@ -17827,6 +20806,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -17841,6 +20821,7 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutLeaderboardStateInput = {
@@ -17858,8 +20839,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutLeaderboardStateInput = {
@@ -17877,8 +20860,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutLeaderboardStateInput = {
@@ -17912,8 +20897,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutLeaderboardStateInput = {
@@ -17931,8 +20918,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutKnockoutLeaderboardStateInput = {
@@ -17950,8 +20939,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput = {
@@ -17969,8 +20960,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutKnockoutLeaderboardStateInput = {
@@ -18004,8 +20997,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput = {
@@ -18023,8 +21018,110 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueCreateWithoutRoundOf32LeaderboardStateInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutRoundOf32LeaderboardStateInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput>
+  }
+
+  export type LeagueUpsertWithoutRoundOf32LeaderboardStateInput = {
+    update: XOR<LeagueUpdateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedUpdateWithoutRoundOf32LeaderboardStateInput>
+    create: XOR<LeagueCreateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutRoundOf32LeaderboardStateInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutRoundOf32LeaderboardStateInput, LeagueUncheckedUpdateWithoutRoundOf32LeaderboardStateInput>
+  }
+
+  export type LeagueUpdateWithoutRoundOf32LeaderboardStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutRoundOf32LeaderboardStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutTournamentPredictionsInput = {
@@ -18042,8 +21139,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -18061,8 +21160,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -18082,6 +21183,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -18096,6 +21198,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -18129,8 +21232,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -18148,8 +21253,10 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutTournamentPredictionsInput = {
@@ -18175,6 +21282,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -18189,6 +21297,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutMatchWinnerRevealSeenInput = {
@@ -18207,7 +21316,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -18226,7 +21337,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -18246,6 +21359,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -18260,6 +21374,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -18339,7 +21454,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -18358,7 +21475,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -18384,6 +21503,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -18398,6 +21518,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -18467,7 +21588,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutGroupStageRevealSeenInput = {
@@ -18486,7 +21609,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
     leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutGroupStageRevealSeenInput = {
@@ -18506,6 +21631,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGroupStageRevealSeenInput = {
@@ -18520,6 +21646,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
     tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGroupStageRevealSeenInput = {
@@ -18554,7 +21681,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput = {
@@ -18573,7 +21702,9 @@ export namespace Prisma {
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
     leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutGroupStageRevealSeenInput = {
@@ -18599,6 +21730,7 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGroupStageRevealSeenInput = {
@@ -18613,6 +21745,183 @@ export namespace Prisma {
     matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
     tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LeagueCreateWithoutRoundOf32RevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutRoundOf32RevealSeenInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutRoundOf32RevealSeenInput, LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput>
+  }
+
+  export type UserCreateWithoutRoundOf32RevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRoundOf32RevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRoundOf32RevealSeenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRoundOf32RevealSeenInput, UserUncheckedCreateWithoutRoundOf32RevealSeenInput>
+  }
+
+  export type LeagueUpsertWithoutRoundOf32RevealSeenInput = {
+    update: XOR<LeagueUpdateWithoutRoundOf32RevealSeenInput, LeagueUncheckedUpdateWithoutRoundOf32RevealSeenInput>
+    create: XOR<LeagueCreateWithoutRoundOf32RevealSeenInput, LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutRoundOf32RevealSeenInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutRoundOf32RevealSeenInput, LeagueUncheckedUpdateWithoutRoundOf32RevealSeenInput>
+  }
+
+  export type LeagueUpdateWithoutRoundOf32RevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutRoundOf32RevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type UserUpsertWithoutRoundOf32RevealSeenInput = {
+    update: XOR<UserUpdateWithoutRoundOf32RevealSeenInput, UserUncheckedUpdateWithoutRoundOf32RevealSeenInput>
+    create: XOR<UserCreateWithoutRoundOf32RevealSeenInput, UserUncheckedCreateWithoutRoundOf32RevealSeenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRoundOf32RevealSeenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRoundOf32RevealSeenInput, UserUncheckedUpdateWithoutRoundOf32RevealSeenInput>
+  }
+
+  export type UserUpdateWithoutRoundOf32RevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRoundOf32RevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueMemberCreateManyUserInput = {
@@ -18658,6 +21967,12 @@ export namespace Prisma {
   }
 
   export type GroupStageRevealSeenCreateManyUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenCreateManyUserInput = {
     id?: string
     leagueId: string
     seenAt?: Date | string
@@ -18807,6 +22122,24 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoundOf32RevealSeenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeagueMemberCreateManyLeagueInput = {
     id?: string
     userId: string
@@ -18850,6 +22183,12 @@ export namespace Prisma {
   }
 
   export type GroupStageRevealSeenCreateManyLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type RoundOf32RevealSeenCreateManyLeagueInput = {
     id?: string
     userId: string
     seenAt?: Date | string
@@ -18994,6 +22333,24 @@ export namespace Prisma {
   }
 
   export type GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32RevealSeenUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRoundOf32RevealSeenNestedInput
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
