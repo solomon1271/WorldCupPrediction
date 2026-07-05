@@ -1262,7 +1262,12 @@
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
       "homeTeam": "Brazil",
       "awayTeam": "Norway",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 2,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 92,
