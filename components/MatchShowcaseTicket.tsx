@@ -4,6 +4,7 @@ import {
   getMatchTicketTone,
   parseMatchStage
 } from "@/lib/match-presentation";
+import { formatTimezoneShortName } from "@/lib/match-urgency";
 
 type MatchShowcaseTicketProps = {
   stage: string;
@@ -43,7 +44,9 @@ export function MatchShowcaseTicket({
   isOpen
 }: MatchShowcaseTicketProps) {
   const stageMeta = parseMatchStage(stage);
+  const kickoffDate = new Date(kickoff);
   const kickoffParts = formatKickoffParts(kickoff, predictionTimeZone);
+  const timeZoneLabel = formatTimezoneShortName(predictionTimeZone, kickoffDate);
   const ticketTone = getMatchTicketTone(statusLabel, badgeClass);
   const scoreLabel = isFinished && finalScore ? `${finalScore.home} - ${finalScore.away}` : "VS";
   const ticketActionLabel = getTicketActionLabel(isFinished, statusLabel);
@@ -89,7 +92,9 @@ export function MatchShowcaseTicket({
 
       <div className="match-ticket__schedule">
         <span className="match-ticket__date">{kickoffParts.dateLine}</span>
-        <span className="match-ticket__time">{kickoffParts.timeLine}</span>
+        <span className="match-ticket__time">
+          {kickoffParts.timeLine} {timeZoneLabel}
+        </span>
       </div>
 
       {venue ? <p className="match-ticket__venue">{formatVenueShort(venue)}</p> : null}

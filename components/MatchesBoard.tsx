@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 
+import { useViewerTimezone } from "@/hooks/useViewerTimezone";
 import { MatchPredictionForm } from "@/components/MatchPredictionForm";
 import { MatchScoreBreakdown } from "@/components/MatchScoreBreakdown";
 import { MatchShowcaseHero } from "@/components/MatchShowcaseHero";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import { DashboardMatch, DashboardMatchPrediction } from "@/lib/dashboard";
-import { getMatchUrgency, MatchUrgency, sortMatchesByKickoffAsc } from "@/lib/match-urgency";
+import { formatTimezoneShortName, getMatchUrgency, MatchUrgency, sortMatchesByKickoffAsc } from "@/lib/match-urgency";
 import { getMatchShowcaseMode } from "@/lib/team-showcase";
 import { formatKickoff } from "@/lib/utils";
 
@@ -259,12 +260,10 @@ export function MatchesBoard({
   const [expandedMatchId, setExpandedMatchId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"upcoming" | "finished">("upcoming");
   const urgencyReferenceDate = new Date(referenceNow);
+  const viewerTimeZone = useViewerTimezone(predictionTimeZone);
+  const viewerTimezoneShortName = formatTimezoneShortName(viewerTimeZone, urgencyReferenceDate);
 
   const matchesWithUrgency = useMemo(() => {
-    if (localPredictions === predictions) {
-      return matches;
-    }
-
     return matches.map((match) => ({
       ...match,
       urgency: getMatchUrgency({
@@ -272,11 +271,11 @@ export function MatchesBoard({
         isLocked: match.locked,
         isFinished: Boolean(match.finalScore),
         hasPrediction: localPredictions.some((item) => item.matchId === match.id),
-        timeZone: predictionTimeZone,
+        timeZone: viewerTimeZone,
         referenceDate: urgencyReferenceDate
       })
     }));
-  }, [localPredictions, matches, predictions, predictionTimeZone, urgencyReferenceDate]);
+  }, [localPredictions, matches, viewerTimeZone, urgencyReferenceDate]);
 
   const upcomingMatches = useMemo(
     () => sortMatchesByKickoffAsc(matchesWithUrgency.filter((match) => !match.finalScore)),
@@ -314,7 +313,7 @@ export function MatchesBoard({
         tone="fixtures"
         eyebrow="Group stage to final"
         title="Every match, every pick"
-        copy={`Tap a fixture to open your prediction card. Locks ${lockLeadMinutes} minutes before kickoff.`}
+        copy={`Tap a fixture to open your prediction card. Kickoffs shown in your local time (${viewerTimezoneShortName}). Locks ${lockLeadMinutes} minutes before kickoff.`}
       />
 
       <div className="match-tabs" role="tablist" aria-label="Match lists">
@@ -388,7 +387,7 @@ export function MatchesBoard({
               expandedMatchId={expandedMatchId}
               onToggle={setExpandedMatchId}
               onSaved={handleSaved}
-              predictionTimeZone={predictionTimeZone}
+              predictionTimeZone={viewerTimeZone}
               leaguePaused={leaguePaused}
             />
           ))

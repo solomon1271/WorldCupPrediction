@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 
+import { useViewerTimezone } from "@/hooks/useViewerTimezone";
 import { MatchWinnerRevealAnnouncement } from "@/lib/match-winner-announcement";
 import { formatKickoff } from "@/lib/utils";
 
@@ -26,6 +27,7 @@ export function MatchWinnerRevealModal({
   predictionTimeZone,
   onFinished
 }: MatchWinnerRevealModalProps) {
+  const viewerTimeZone = useViewerTimezone(predictionTimeZone);
   const [queue, setQueue] = useState(announcements);
   const [pending, startTransition] = useTransition();
 
@@ -52,7 +54,7 @@ export function MatchWinnerRevealModal({
           {current.homeTeam} {current.finalScore.home} - {current.finalScore.away} {current.awayTeam}
         </p>
         <p className="match-winner-reveal__meta">
-          {current.stage} · {formatKickoff(current.kickoff, predictionTimeZone)}
+          {current.stage} · {formatKickoff(current.kickoff, viewerTimeZone)}
         </p>
 
         <div className="match-winner-reveal__hero">

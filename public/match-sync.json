@@ -1230,7 +1230,7 @@
     {
       "id": 89,
       "stage": "Round of 16",
-      "kickoff": "2026-07-04T20:00:00.000Z",
+      "kickoff": "2026-07-04T21:00:00.000Z",
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Paraguay",
       "awayTeam": "France",
@@ -1258,8 +1258,8 @@
     {
       "id": 91,
       "stage": "Round of 16",
-      "kickoff": "2026-07-05T19:00:00.000Z",
-      "venue": "MetLife Stadium, New York/New Jersey",
+      "kickoff": "2026-07-05T20:00:00.000Z",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
       "homeTeam": "Brazil",
       "awayTeam": "Norway",
       "isLocked": false
@@ -1277,7 +1277,7 @@
       "id": 93,
       "stage": "Round of 16",
       "kickoff": "2026-07-06T19:00:00.000Z",
-      "venue": "AT&T Stadium, Dallas",
+      "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "Portugal",
       "awayTeam": "Spain",
       "isLocked": false
@@ -1285,8 +1285,8 @@
     {
       "id": 94,
       "stage": "Round of 16",
-      "kickoff": "2026-07-07T02:00:00.000Z",
-      "venue": "Lumen Field, Seattle",
+      "kickoff": "2026-07-07T00:00:00.000Z",
+      "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "USA",
       "awayTeam": "Belgium",
       "isLocked": false
@@ -1294,8 +1294,8 @@
     {
       "id": 95,
       "stage": "Round of 16",
-      "kickoff": "2026-07-07T15:00:00.000Z",
-      "venue": "Mercedes-Benz Stadium, Atlanta",
+      "kickoff": "2026-07-07T16:00:00.000Z",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
       "homeTeam": "Argentina",
       "awayTeam": "Egypt",
       "isLocked": false
@@ -1303,8 +1303,8 @@
     {
       "id": 96,
       "stage": "Round of 16",
-      "kickoff": "2026-07-07T22:00:00.000Z",
-      "venue": "BC Place, Vancouver",
+      "kickoff": "2026-07-07T20:00:00.000Z",
+      "venue": "GEHA Field at Arrowhead Stadium, Kansas City, Missouri",
       "homeTeam": "Switzerland",
       "awayTeam": "Colombia",
       "isLocked": false
@@ -1313,16 +1313,16 @@
       "id": 97,
       "stage": "Quarterfinal",
       "kickoff": "2026-07-09T20:00:00.000Z",
-      "venue": "Gillette Stadium, Boston",
-      "homeTeam": "Winner Match 89",
-      "awayTeam": "Winner Match 90",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
+      "homeTeam": "France",
+      "awayTeam": "Morocco",
       "isLocked": false
     },
     {
       "id": 98,
       "stage": "Quarterfinal",
       "kickoff": "2026-07-10T19:00:00.000Z",
-      "venue": "Lumen Field, Seattle",
+      "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "Winner Match 93",
       "awayTeam": "Winner Match 94",
       "isLocked": false
@@ -1331,7 +1331,7 @@
       "id": 99,
       "stage": "Quarterfinal",
       "kickoff": "2026-07-11T21:00:00.000Z",
-      "venue": "Levi's Stadium, San Francisco Bay Area",
+      "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "Winner Match 91",
       "awayTeam": "Winner Match 92",
       "isLocked": false
@@ -1340,7 +1340,7 @@
       "id": 100,
       "stage": "Quarterfinal",
       "kickoff": "2026-07-12T01:00:00.000Z",
-      "venue": "Arrowhead Stadium, Kansas City",
+      "venue": "GEHA Field at Arrowhead Stadium, Kansas City, Missouri",
       "homeTeam": "Winner Match 95",
       "awayTeam": "Winner Match 96",
       "isLocked": false
@@ -1349,7 +1349,7 @@
       "id": 101,
       "stage": "Semifinal",
       "kickoff": "2026-07-14T19:00:00.000Z",
-      "venue": "AT&T Stadium, Dallas",
+      "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "Winner Match 97",
       "awayTeam": "Winner Match 98",
       "isLocked": false
@@ -1367,7 +1367,7 @@
       "id": 103,
       "stage": "Third Place",
       "kickoff": "2026-07-18T21:00:00.000Z",
-      "venue": "Hard Rock Stadium, Miami",
+      "venue": "Hard Rock Stadium, Miami Gardens, Florida",
       "homeTeam": "Loser Match 101",
       "awayTeam": "Loser Match 102",
       "isLocked": false
@@ -1376,7 +1376,7 @@
       "id": 104,
       "stage": "Final",
       "kickoff": "2026-07-19T19:00:00.000Z",
-      "venue": "MetLife Stadium, New York/New Jersey",
+      "venue": "MetLife Stadium, East Rutherford, New Jersey",
       "homeTeam": "Winner Match 101",
       "awayTeam": "Winner Match 102",
       "isLocked": false

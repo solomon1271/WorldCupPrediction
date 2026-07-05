@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { useViewerTimezone } from "@/hooks/useViewerTimezone";
 import type { PlayerStandingDetail, PlayerStandingScope } from "@/lib/player-standing";
 import { TOURNAMENT_TOP_PICK_COUNT } from "@/lib/tournament-scoring";
 import { formatKickoff } from "@/lib/utils";
@@ -21,6 +22,7 @@ export function LeaderboardPlayerDetail({
   scope,
   onClose
 }: LeaderboardPlayerDetailProps) {
+  const viewerTimeZone = useViewerTimezone();
   const [detail, setDetail] = useState<PlayerStandingDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -132,7 +134,7 @@ export function LeaderboardPlayerDetail({
                         <span>{match.points} pts</span>
                       </div>
                       <p className="leaderboard-detail__meta">
-                        {match.stage} · {formatKickoff(match.kickoff)}
+                        {match.stage} · {formatKickoff(match.kickoff, viewerTimeZone)}
                       </p>
                       {match.prediction ? (
                         <p className="leaderboard-detail__pick">
