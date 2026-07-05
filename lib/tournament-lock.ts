@@ -2,13 +2,14 @@ import { getAppTimezone } from "@/lib/match-urgency";
 import { getZonedDateStart } from "@/lib/timezone";
 
 const DEFAULT_TOURNAMENT_PICKS_LOCK_DATE = "2026-06-28";
+const DEFAULT_TOURNAMENT_PICKS_LOCK_AT = "2026-07-05T16:46:55.000Z";
 
 export function getTournamentPicksLockDateLabel() {
   return process.env.TOURNAMENT_PICKS_LOCK_DATE?.trim() || DEFAULT_TOURNAMENT_PICKS_LOCK_DATE;
 }
 
 export function getTournamentPicksLockAtIso() {
-  const raw = process.env.TOURNAMENT_PICKS_LOCK_AT?.trim();
+  const raw = process.env.TOURNAMENT_PICKS_LOCK_AT?.trim() || DEFAULT_TOURNAMENT_PICKS_LOCK_AT;
 
   if (!raw) {
     return null;
