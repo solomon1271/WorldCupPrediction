@@ -1234,7 +1234,12 @@
       "venue": "Lincoln Financial Field, Philadelphia",
       "homeTeam": "Paraguay",
       "awayTeam": "France",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 1,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 14,
+      "finalRedCards": 0
     },
     {
       "id": 90,
