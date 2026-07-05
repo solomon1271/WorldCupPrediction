@@ -1,3 +1,5 @@
+import { resolveCanonicalPlayerName } from "@/lib/world-cup-players";
+
 export const TOURNAMENT_AWARD_POINTS = 100;
 export const TOURNAMENT_TOP_PICK_COUNT = 6;
 
@@ -43,9 +45,20 @@ export function countSavedTournamentTopPicks(prediction: TournamentPredictionInp
   ].filter((value) => Boolean(value?.trim())).length;
 }
 
-function awardsMatch(pick: string | null | undefined, official: string | null | undefined) {
-  const normalizedPick = normalizeAward(pick);
-  const normalizedOfficial = normalizeAward(official);
+function normalizePlayerAward(value: string | null | undefined) {
+  const canonical = resolveCanonicalPlayerName(value) ?? value?.trim() ?? "";
+  return canonical.toLowerCase();
+}
+
+function awardsMatch(
+  pick: string | null | undefined,
+  official: string | null | undefined,
+  options?: { playerAward?: boolean }
+) {
+  const normalizedPick = options?.playerAward ? normalizePlayerAward(pick) : normalizeAward(pick);
+  const normalizedOfficial = options?.playerAward
+    ? normalizePlayerAward(official)
+    : normalizeAward(official);
 
   return normalizedPick.length > 0 && normalizedPick === normalizedOfficial;
 }
@@ -84,7 +97,9 @@ export function scoreTournamentPrediction(
   ];
 
   const items: TournamentScoreBreakdownItem[] = categories.map(({ label, pick, official }) => {
-    const hit = awardsMatch(pick, official);
+    const hit = awardsMatch(pick, official, {
+      playerAward: label !== "Champion" && label !== "Runner-up"
+    });
 
     return {
       label,

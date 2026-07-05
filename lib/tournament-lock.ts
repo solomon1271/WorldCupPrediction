@@ -7,7 +7,33 @@ export function getTournamentPicksLockDateLabel() {
   return process.env.TOURNAMENT_PICKS_LOCK_DATE?.trim() || DEFAULT_TOURNAMENT_PICKS_LOCK_DATE;
 }
 
+export function getTournamentPicksLockAtIso() {
+  const raw = process.env.TOURNAMENT_PICKS_LOCK_AT?.trim();
+
+  if (!raw) {
+    return null;
+  }
+
+  const lockAt = new Date(raw);
+
+  if (Number.isNaN(lockAt.getTime())) {
+    return null;
+  }
+
+  return lockAt;
+}
+
+export function hasPreciseTournamentPicksLockAt() {
+  return getTournamentPicksLockAtIso() !== null;
+}
+
 export function getTournamentPicksLockAt(timeZone = getAppTimezone()) {
+  const lockAtIso = getTournamentPicksLockAtIso();
+
+  if (lockAtIso) {
+    return lockAtIso;
+  }
+
   return getZonedDateStart(timeZone, getTournamentPicksLockDateLabel());
 }
 
@@ -51,6 +77,17 @@ export function isTournamentPicksLocked(referenceDate = new Date(), timeZone = g
 
 export function formatTournamentPicksLockLabel(timeZone = getAppTimezone()) {
   const lockAt = getTournamentPicksLockAt(timeZone);
+
+  if (hasPreciseTournamentPicksLockAt()) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      weekday: "short",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    }).format(lockAt);
+  }
 
   return new Intl.DateTimeFormat("en-US", {
     timeZone,

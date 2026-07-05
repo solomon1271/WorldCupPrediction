@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 
 import { DashboardTournamentPrediction } from "@/lib/dashboard";
+import { getWorldCupPlayers, getWorldCupPlayersByTeam, resolveCanonicalPlayerName } from "@/lib/world-cup-players";
 import { getWorldCupTeams } from "@/lib/world-cup-teams";
 
 type TournamentPredictionFormProps = {
@@ -22,15 +23,59 @@ type TournamentFormState = {
 };
 
 const worldCupTeams = getWorldCupTeams();
+const worldCupPlayers = getWorldCupPlayers();
+const worldCupPlayersByTeam = getWorldCupPlayersByTeam();
+
+function PlayerSelect({
+  name,
+  value,
+  disabled,
+  onChange
+}: {
+  name: string;
+  value: string;
+  disabled: boolean;
+  onChange: (value: string) => void;
+}) {
+  const showLegacyOption = value.length > 0 && !worldCupPlayers.includes(value);
+
+  return (
+    <select name={name} value={value} disabled={disabled} onChange={(event) => onChange(event.target.value)}>
+      <option value="">Select a player</option>
+      {showLegacyOption ? (
+        <option value={value}>{value}</option>
+      ) : null}
+      {worldCupTeams
+        .filter((team) => worldCupPlayersByTeam[team]?.length)
+        .map((team) => (
+          <optgroup key={team} label={team}>
+            {worldCupPlayersByTeam[team].map((player) => (
+              <option key={player} value={player}>
+                {player}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+    </select>
+  );
+}
+
+function canonicalPlayerField(value: string | null | undefined) {
+  if (!value?.trim()) {
+    return "";
+  }
+
+  return resolveCanonicalPlayerName(value) ?? value;
+}
 
 function toFormState(prediction: DashboardTournamentPrediction): TournamentFormState {
   return {
     champion: prediction.champion ?? "",
     runnerUp: prediction.runnerUp ?? "",
-    goldenBoot: prediction.goldenBoot ?? "",
-    bestYoungPlayer: prediction.bestYoungPlayer ?? "",
-    goldenGlove: prediction.goldenGlove ?? "",
-    bestPlayer: prediction.bestPlayer ?? ""
+    goldenBoot: canonicalPlayerField(prediction.goldenBoot),
+    bestYoungPlayer: canonicalPlayerField(prediction.bestYoungPlayer),
+    goldenGlove: canonicalPlayerField(prediction.goldenGlove),
+    bestPlayer: canonicalPlayerField(prediction.bestPlayer)
   };
 }
 
@@ -149,46 +194,38 @@ export function TournamentPredictionForm({
         </label>
         <label>
           <span>Golden Boot</span>
-          <input
+          <PlayerSelect
             name="goldenBoot"
-            type="text"
             value={form.goldenBoot}
             disabled={locked}
-            onChange={(event) => updateField("goldenBoot", event.target.value)}
-            placeholder="Player name"
+            onChange={(value) => updateField("goldenBoot", value)}
           />
         </label>
         <label>
           <span>Best Young Player</span>
-          <input
+          <PlayerSelect
             name="bestYoungPlayer"
-            type="text"
             value={form.bestYoungPlayer}
             disabled={locked}
-            onChange={(event) => updateField("bestYoungPlayer", event.target.value)}
-            placeholder="Player name"
+            onChange={(value) => updateField("bestYoungPlayer", value)}
           />
         </label>
         <label>
           <span>Golden Glove</span>
-          <input
+          <PlayerSelect
             name="goldenGlove"
-            type="text"
             value={form.goldenGlove}
             disabled={locked}
-            onChange={(event) => updateField("goldenGlove", event.target.value)}
-            placeholder="Player name"
+            onChange={(value) => updateField("goldenGlove", value)}
           />
         </label>
         <label>
           <span>Best Player</span>
-          <input
+          <PlayerSelect
             name="bestPlayer"
-            type="text"
             value={form.bestPlayer}
             disabled={locked}
-            onChange={(event) => updateField("bestPlayer", event.target.value)}
-            placeholder="Player name"
+            onChange={(value) => updateField("bestPlayer", value)}
           />
         </label>
       </div>

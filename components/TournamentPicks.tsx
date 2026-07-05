@@ -68,8 +68,7 @@ export function TournamentPicks({
             <p className="tournament-deadline-banner__text">
               <strong>Top picks are locked.</strong>
               <span>
-                This section closed on {lockLabel} when the knockout stage began. Your saved top picks below are final
-                and cannot be changed.
+                This section closed on {lockLabel}. Your saved top picks below are final and cannot be changed.
               </span>
             </p>
           </div>
@@ -133,8 +132,8 @@ export function TournamentPicks({
           </dl>
           {!locked ? (
             <p className="tournament-spelling-note" role="note">
-              <strong>Spell player names correctly.</strong> Golden Boot, Best Young Player, Golden Glove, and Best
-              Player picks must match the official spelling to count when awards are announced.
+              <strong>Use the official player list.</strong> Golden Boot, Best Young Player, Golden Glove, and Best
+              Player picks are chosen from the dropdown so your spelling matches when awards are announced.
             </p>
           ) : null}
         </article>
@@ -144,8 +143,8 @@ export function TournamentPicks({
             <h3>{hasSavedPicks ? "Update your tournament picks" : "Save your tournament picks"}</h3>
             <p className="section__copy section__copy--compact">
               {hasSavedPicks
-                ? "Change any saved pick below before the knockout stage begins. Champion and runner-up use the full World Cup country list."
-                : "Add one pick at a time or fill them all out. Champion and runner-up use the full World Cup country list."}
+                ? "Change any saved pick below before the knockout stage begins. Champion and runner-up use the full World Cup country list; award picks use the official player list."
+                : "Add one pick at a time or fill them all out. Champion and runner-up use the full World Cup country list; award picks use the official player list."}
             </p>
             <TournamentPredictionForm
               leagueSlug={leagueSlug}
