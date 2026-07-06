@@ -1276,7 +1276,12 @@
       "venue": "Estadio Azteca, Mexico City",
       "homeTeam": "Mexico",
       "awayTeam": "England",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 2,
+      "finalAwayScore": 3,
+      "finalYellowCards": 6,
+      "finalTotalCorners": 14,
+      "finalRedCards": 1
     },
     {
       "id": 93,
