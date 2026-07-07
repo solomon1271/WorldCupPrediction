@@ -1318,7 +1318,12 @@
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
       "homeTeam": "Argentina",
       "awayTeam": "Egypt",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 3,
+      "finalAwayScore": 2,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 96,
