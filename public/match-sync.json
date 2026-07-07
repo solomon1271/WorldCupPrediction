@@ -1304,7 +1304,12 @@
       "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "USA",
       "awayTeam": "Belgium",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 4,
+      "finalYellowCards": 2,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 95,
