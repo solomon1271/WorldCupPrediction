@@ -1332,7 +1332,12 @@
       "venue": "GEHA Field at Arrowhead Stadium, Kansas City, Missouri",
       "homeTeam": "Switzerland",
       "awayTeam": "Colombia",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 0,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 10,
+      "finalRedCards": 0
     },
     {
       "id": 97,
