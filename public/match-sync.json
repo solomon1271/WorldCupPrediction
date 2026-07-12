@@ -1413,8 +1413,8 @@
       "stage": "Third Place",
       "kickoff": "2026-07-18T21:00:00.000Z",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "homeTeam": "Loser Match 101",
-      "awayTeam": "Loser Match 102",
+      "homeTeam": "Spain",
+      "awayTeam": "Switzerland",
       "isLocked": false
     },
     {
@@ -1422,8 +1422,8 @@
       "stage": "Final",
       "kickoff": "2026-07-19T19:00:00.000Z",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "homeTeam": "Winner Match 101",
-      "awayTeam": "Winner Match 102",
+      "homeTeam": "France",
+      "awayTeam": "Argentina",
       "isLocked": false
     }
   ]
