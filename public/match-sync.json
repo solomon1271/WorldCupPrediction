@@ -1374,7 +1374,12 @@
       "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "Norway",
       "awayTeam": "England",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 2,
+      "finalYellowCards": 1,
+      "finalTotalCorners": 11,
+      "finalRedCards": 0
     },
     {
       "id": 100,
