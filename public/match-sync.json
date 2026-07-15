@@ -1402,7 +1402,12 @@
       "venue": "AT&T Stadium, Arlington, Texas",
       "homeTeam": "France",
       "awayTeam": "Spain",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 0,
+      "finalAwayScore": 2,
+      "finalYellowCards": 3,
+      "finalTotalCorners": 8,
+      "finalRedCards": 0
     },
     {
       "id": 102,
@@ -1411,15 +1416,20 @@
       "venue": "Mercedes-Benz Stadium, Atlanta",
       "homeTeam": "England",
       "awayTeam": "Argentina",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 2,
+      "finalYellowCards": 4,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 103,
       "stage": "Third Place",
       "kickoff": "2026-07-18T21:00:00.000Z",
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
-      "homeTeam": "Spain",
-      "awayTeam": "Switzerland",
+      "homeTeam": "France",
+      "awayTeam": "England",
       "isLocked": false
     },
     {
@@ -1427,7 +1437,7 @@
       "stage": "Final",
       "kickoff": "2026-07-19T19:00:00.000Z",
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
-      "homeTeam": "France",
+      "homeTeam": "Spain",
       "awayTeam": "Argentina",
       "isLocked": false
     }
