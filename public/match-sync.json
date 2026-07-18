@@ -1430,7 +1430,12 @@
       "venue": "Hard Rock Stadium, Miami Gardens, Florida",
       "homeTeam": "France",
       "awayTeam": "England",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 4,
+      "finalAwayScore": 6,
+      "finalYellowCards": 0,
+      "finalTotalCorners": 7,
+      "finalRedCards": 0
     },
     {
       "id": 104,
