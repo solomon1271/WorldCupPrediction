@@ -44,6 +44,7 @@ import {
 } from "@/lib/match-winner-announcement";
 import {
   getPendingTournamentCelebration,
+  isTournamentComplete,
   type TournamentCelebration
 } from "@/lib/tournament-announcement";
 import { prisma } from "@/lib/prisma";
@@ -206,6 +207,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   const tournamentPicksTemporarilyUnlocked = isTournamentPicksTemporarilyUnlocked(referenceNow);
   const tournamentPicksUnlockUntil = getTournamentPicksUnlockUntil()?.toISOString() ?? null;
   const officialAwardsConfigured = hasConfiguredOfficialAwards(officialAwards);
+  const knockoutComplete = await isTournamentComplete();
 
   const dashboardMatches = sortMatchesByUrgency(
     matches.map((match) => {
@@ -295,6 +297,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     topPicksLeaderboard,
     officialAwards,
     officialAwardsConfigured,
+    knockoutComplete,
     leaderboard: knockoutLeaderboard,
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     tournamentPicksLocked,

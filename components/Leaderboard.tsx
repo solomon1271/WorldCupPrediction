@@ -7,8 +7,8 @@ import { LeaderboardPlayerDetail } from "@/components/LeaderboardPlayerDetail";
 import { MomentumBadge } from "@/components/MomentumBadge";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import type { DashboardStanding } from "@/lib/dashboard";
+import type { TopPicksStanding } from "@/lib/leaderboard";
 import {
-  buildChaseMessage,
   getLeaderboardRankZone,
   getLeaderboardZoneLabel,
   getPlayerAvatarHue,
@@ -16,9 +16,14 @@ import {
   getVisibleLeaderboardZones
 } from "@/lib/leaderboard-presentation";
 import type { PlayerStandingScope } from "@/lib/player-standing";
+import {
+  TOURNAMENT_AWARD_POINTS,
+  TOURNAMENT_TOP_PICK_COUNT,
+  type TournamentAwards
+} from "@/lib/tournament-scoring";
 import { formatRankChangeLabel } from "@/lib/utils";
 
-type LeaderboardTab = "knockout" | "round-of-32" | "group-stage";
+type LeaderboardTab = "knockout" | "top-picks" | "round-of-32" | "group-stage";
 type GroupStageSubTab = "standings" | "insights";
 
 type LeaderboardProps = {
@@ -26,8 +31,21 @@ type LeaderboardProps = {
   knockoutStandings: DashboardStanding[];
   roundOf32Standings: DashboardStanding[];
   groupStageStandings: DashboardStanding[];
+  topPicksStandings: TopPicksStanding[];
+  officialAwards: TournamentAwards;
+  officialAwardsConfigured: boolean;
+  knockoutComplete: boolean;
   currentUserId: string;
 };
+
+const AWARD_FIELDS: Array<{ label: string; awardKey: keyof TournamentAwards }> = [
+  { label: "Champion", awardKey: "champion" },
+  { label: "Runner-up", awardKey: "runnerUp" },
+  { label: "Golden Boot", awardKey: "goldenBoot" },
+  { label: "Best Young Player", awardKey: "bestYoungPlayer" },
+  { label: "Golden Glove", awardKey: "goldenGlove" },
+  { label: "Best Player", awardKey: "bestPlayer" }
+];
 
 function RankChangeCell({ entry }: { entry: DashboardStanding }) {
   const displayRank = entry.afterRank ?? entry.rank;
@@ -83,15 +101,33 @@ function LeaderboardZoneLegend({ totalPlayers }: { totalPlayers: number }) {
   );
 }
 
+function formatWinners(entries: Array<{ name: string }>) {
+  if (entries.length === 0) {
+    return null;
+  }
+
+  if (entries.length === 1) {
+    return entries[0].name;
+  }
+
+  return entries.map((entry) => entry.name).join(" & ");
+}
+
 const tabCopy: Record<
   LeaderboardTab,
   { eyebrow: string; title: string; copy: string; chip: string }
 > = {
   knockout: {
-    eyebrow: "Knockout reset",
+    eyebrow: "Final standings",
     title: "Knockout leaderboard",
-    copy: "Everyone starts at zero from match 89. Only Round of 16 picks and beyond count here.",
-    chip: "From match 89"
+    copy: "Final knockout standings from match 89 through the World Cup Final.",
+    chip: "Matches 89–104"
+  },
+  "top-picks": {
+    eyebrow: "Awards race",
+    title: "Top picks leaders",
+    copy: "Champion, runner-up, and award picks only. Click a manager to see their predictions.",
+    chip: `${TOURNAMENT_AWARD_POINTS} pts × ${TOURNAMENT_TOP_PICK_COUNT}`
   },
   "round-of-32": {
     eyebrow: "Historical",
@@ -112,6 +148,10 @@ export function Leaderboard({
   knockoutStandings,
   roundOf32Standings,
   groupStageStandings,
+  topPicksStandings,
+  officialAwards,
+  officialAwardsConfigured,
+  knockoutComplete,
   currentUserId
 }: LeaderboardProps) {
   const [activeTab, setActiveTab] = useState<LeaderboardTab>("knockout");
@@ -123,8 +163,11 @@ export function Leaderboard({
       ? knockoutStandings
       : activeTab === "round-of-32"
         ? roundOf32Standings
-        : groupStageStandings;
-  const standingScope: PlayerStandingScope = activeTab;
+        : activeTab === "top-picks"
+          ? topPicksStandings
+          : groupStageStandings;
+  const standingScope: PlayerStandingScope =
+    activeTab === "top-picks" ? "top-picks" : activeTab;
   const copy = tabCopy[activeTab];
 
   const leader = standings[0];
@@ -133,14 +176,29 @@ export function Leaderboard({
     () => standings.find((entry) => entry.id === currentUserId),
     [currentUserId, standings]
   );
-  const chaseMessage = currentUserStanding
-    ? buildChaseMessage(currentUserStanding, leader, standings.length, activeTab)
-    : null;
   const currentUserZone = currentUserStanding
     ? getLeaderboardRankZone(currentUserStanding.rank, standings.length)
     : null;
 
-  function openPlayer(entry: DashboardStanding) {
+  const knockoutWinners = useMemo(() => {
+    const first = knockoutStandings[0];
+    if (!first || first.totalPoints <= 0) {
+      return [];
+    }
+
+    return knockoutStandings.filter((entry) => entry.totalPoints === first.totalPoints);
+  }, [knockoutStandings]);
+
+  const topPicksWinners = useMemo(() => {
+    const first = topPicksStandings[0];
+    if (!first || first.totalPoints <= 0) {
+      return [];
+    }
+
+    return topPicksStandings.filter((entry) => entry.totalPoints === first.totalPoints);
+  }, [topPicksStandings]);
+
+  function openPlayer(entry: { id: string; name: string }) {
     setSelectedPlayer({ id: entry.id, name: entry.name });
   }
 
@@ -173,6 +231,16 @@ export function Leaderboard({
           >
             Knockout
             <span className="leaderboard-tabs__count">{knockoutStandings.length}</span>
+          </button>
+          <button
+            className={`leaderboard-tabs__button leaderboard-tabs__button--awards${activeTab === "top-picks" ? " leaderboard-tabs__button--active" : ""}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "top-picks"}
+            onClick={() => setActiveTab("top-picks")}
+          >
+            Top picks
+            <span className="leaderboard-tabs__count">{topPicksStandings.length}</span>
           </button>
           <button
             className={`leaderboard-tabs__button leaderboard-tabs__button--history${activeTab === "round-of-32" ? " leaderboard-tabs__button--active" : ""}`}
@@ -223,106 +291,222 @@ export function Leaderboard({
           <GroupStageInsights leagueSlug={leagueSlug} />
         ) : (
           <>
-            {chaseMessage && (activeTab !== "group-stage" || groupStageSubTab === "standings") ? (
-              <div
-                className={`leaderboard-chase-banner${currentUserZone ? ` leaderboard-chase-banner--${currentUserZone}` : ""}`}
-              >
-                <span className="leaderboard-chase-banner__icon" aria-hidden="true">
-                  {currentUserZone === "crown" ? "👑" : currentUserZone?.startsWith("tail") ? "🔥" : "⚡"}
+            {activeTab === "knockout" && knockoutComplete && knockoutWinners.length > 0 ? (
+              <div className="leaderboard-winner-banner" role="status">
+                <span className="leaderboard-winner-banner__mark" aria-hidden="true">
+                  🏆
                 </span>
-                <p>{chaseMessage}</p>
+                <div>
+                  <p className="leaderboard-winner-banner__eyebrow">Knockout complete</p>
+                  <p className="leaderboard-winner-banner__title">
+                    {knockoutWinners.length > 1 ? "Knockout co-champions" : "Knockout champion"}:{" "}
+                    <strong>{formatWinners(knockoutWinners)}</strong>
+                  </p>
+                  <p className="leaderboard-winner-banner__copy">
+                    {knockoutWinners[0].totalPoints} points
+                    {knockoutWinners.length > 1 ? " each" : ""} from Round of 16 through the Final.
+                  </p>
+                </div>
               </div>
             ) : null}
 
-            <LeaderboardZoneLegend totalPlayers={standings.length} />
+            {activeTab === "top-picks" ? (
+              officialAwardsConfigured ? (
+                <div className="top-picks-awards-banner" role="note">
+                  <div>
+                    <p className="top-picks-awards-banner__eyebrow">Official awards</p>
+                    <h3>
+                      {topPicksWinners.length === 1
+                        ? `${topPicksWinners[0].name} leads Top picks`
+                        : topPicksWinners.length > 1
+                          ? `${formatWinners(topPicksWinners)} share the Top picks lead`
+                          : "Awards are in"}
+                    </h3>
+                    <p className="top-picks-awards-banner__hint">
+                      Click a manager below to open their Top picks predictions.
+                    </p>
+                  </div>
+                  <dl className="top-picks-awards-banner__grid">
+                    {AWARD_FIELDS.map(({ label, awardKey }) => (
+                      <div key={awardKey}>
+                        <dt>{label}</dt>
+                        <dd>{officialAwards[awardKey] || "—"}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ) : (
+                <div className="leaderboard-chase-banner">
+                  <span className="leaderboard-chase-banner__icon" aria-hidden="true">
+                    ⏳
+                  </span>
+                  <p>Official awards are not configured yet. Ranking appears once results are locked in.</p>
+                </div>
+              )
+            ) : null}
+
+            {activeTab !== "top-picks" ? <LeaderboardZoneLegend totalPlayers={standings.length} /> : null}
 
             <div className="leaderboard-panel">
               <div className="leaderboard-panel__glow" aria-hidden="true" />
               <div className="table-shell leaderboard-table-shell">
-                <table className="leaderboard-table">
+                <table
+                  className={`leaderboard-table${activeTab === "top-picks" ? " top-picks-leaders-table" : ""}`}
+                >
                   <thead>
                     <tr>
                       <th>Rank</th>
                       <th>Manager</th>
                       <th>Points</th>
-                      <th>Exact</th>
-                      <th>Outcomes</th>
-                      <th>Bonus</th>
-                      <th>Momentum</th>
+                      {activeTab === "top-picks" ? (
+                        <th>Hits</th>
+                      ) : (
+                        <>
+                          <th>Exact</th>
+                          <th>Outcomes</th>
+                          <th>Bonus</th>
+                          <th>Momentum</th>
+                        </>
+                      )}
                     </tr>
                   </thead>
                   <tbody>
-                    {standings.map((entry) => {
-                      const rank = entry.rank;
-                      const isCurrentUser = entry.id === currentUserId;
-                      const zone = getLeaderboardRankZone(rank, standings.length);
+                    {activeTab === "top-picks"
+                      ? topPicksStandings.map((entry) => {
+                          const isCurrentUser = entry.id === currentUserId;
+                          const zone = getLeaderboardRankZone(entry.rank, topPicksStandings.length);
 
-                      return (
-                        <tr
-                          key={entry.id}
-                          className={`leaderboard-table__row leaderboard-table__row--${zone}${isCurrentUser ? " leaderboard-table__row--you" : ""}`}
-                        >
-                          <td>
-                            <LeaderboardRankBadge rank={rank} totalPlayers={standings.length} />
-                          </td>
-                          <td>
-                            <button
-                              className="leaderboard-player-button leaderboard-player-button--rich"
-                              type="button"
-                              onClick={() => openPlayer(entry)}
+                          return (
+                            <tr
+                              key={entry.id}
+                              className={`leaderboard-table__row leaderboard-table__row--${zone}${isCurrentUser ? " leaderboard-table__row--you" : ""}`}
                             >
-                              <span
-                                className="leaderboard-avatar"
-                                style={
-                                  {
-                                    "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
-                                  } as React.CSSProperties & Record<string, string>
-                                }
-                                aria-hidden="true"
-                              >
-                                {getPlayerInitials(entry.name)}
-                              </span>
-                              <span className="leaderboard-player-button__copy">
-                                <span className="leaderboard-player-button__name">{entry.name}</span>
-                                {isCurrentUser ? (
-                                  <span className="leaderboard-player-button__tag">You</span>
-                                ) : null}
-                              </span>
-                            </button>
-                          </td>
-                          <td>
-                            <div className={`leaderboard-points leaderboard-points--${zone}`}>
-                              <strong>{entry.totalPoints}</strong>
-                              <span
-                                className="leaderboard-points__bar"
-                                style={{ width: `${Math.max(8, (entry.totalPoints / maxPoints) * 100)}%` }}
-                                aria-hidden="true"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
-                              {entry.exactScores}
-                            </span>
-                          </td>
-                          <td>
-                            <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
-                              {entry.outcomes}
-                            </span>
-                          </td>
-                          <td>
-                            <span
-                              className={`leaderboard-stat-pill leaderboard-stat-pill--bonus leaderboard-stat-pill--${zone}`}
+                              <td>
+                                <LeaderboardRankBadge
+                                  rank={entry.rank}
+                                  totalPlayers={topPicksStandings.length}
+                                />
+                              </td>
+                              <td>
+                                <button
+                                  className="leaderboard-player-button leaderboard-player-button--rich"
+                                  type="button"
+                                  onClick={() => openPlayer(entry)}
+                                >
+                                  <span
+                                    className="leaderboard-avatar"
+                                    style={
+                                      {
+                                        "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
+                                      } as React.CSSProperties & Record<string, string>
+                                    }
+                                    aria-hidden="true"
+                                  >
+                                    {getPlayerInitials(entry.name)}
+                                  </span>
+                                  <span className="leaderboard-player-button__copy">
+                                    <span className="leaderboard-player-button__name">{entry.name}</span>
+                                    {isCurrentUser ? (
+                                      <span className="leaderboard-player-button__tag">You</span>
+                                    ) : null}
+                                  </span>
+                                </button>
+                              </td>
+                              <td>
+                                <div className={`leaderboard-points leaderboard-points--${zone}`}>
+                                  <strong>{entry.totalPoints}</strong>
+                                  <span
+                                    className="leaderboard-points__bar"
+                                    style={{
+                                      width: `${Math.max(8, (entry.totalPoints / maxPoints) * 100)}%`
+                                    }}
+                                    aria-hidden="true"
+                                  />
+                                </div>
+                              </td>
+                              <td>
+                                <span
+                                  className={`leaderboard-stat-pill leaderboard-stat-pill--bonus leaderboard-stat-pill--${zone}`}
+                                >
+                                  {entry.hits}/{TOURNAMENT_TOP_PICK_COUNT}
+                                </span>
+                              </td>
+                            </tr>
+                          );
+                        })
+                      : (standings as DashboardStanding[]).map((entry) => {
+                          const rank = entry.rank;
+                          const isCurrentUser = entry.id === currentUserId;
+                          const zone = getLeaderboardRankZone(rank, standings.length);
+
+                          return (
+                            <tr
+                              key={entry.id}
+                              className={`leaderboard-table__row leaderboard-table__row--${zone}${isCurrentUser ? " leaderboard-table__row--you" : ""}`}
                             >
-                              {entry.bonusHits}
-                            </span>
-                          </td>
-                          <td>
-                            <RankChangeCell entry={entry} />
-                          </td>
-                        </tr>
-                      );
-                    })}
+                              <td>
+                                <LeaderboardRankBadge rank={rank} totalPlayers={standings.length} />
+                              </td>
+                              <td>
+                                <button
+                                  className="leaderboard-player-button leaderboard-player-button--rich"
+                                  type="button"
+                                  onClick={() => openPlayer(entry)}
+                                >
+                                  <span
+                                    className="leaderboard-avatar"
+                                    style={
+                                      {
+                                        "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
+                                      } as React.CSSProperties & Record<string, string>
+                                    }
+                                    aria-hidden="true"
+                                  >
+                                    {getPlayerInitials(entry.name)}
+                                  </span>
+                                  <span className="leaderboard-player-button__copy">
+                                    <span className="leaderboard-player-button__name">{entry.name}</span>
+                                    {isCurrentUser ? (
+                                      <span className="leaderboard-player-button__tag">You</span>
+                                    ) : null}
+                                  </span>
+                                </button>
+                              </td>
+                              <td>
+                                <div className={`leaderboard-points leaderboard-points--${zone}`}>
+                                  <strong>{entry.totalPoints}</strong>
+                                  <span
+                                    className="leaderboard-points__bar"
+                                    style={{
+                                      width: `${Math.max(8, (entry.totalPoints / maxPoints) * 100)}%`
+                                    }}
+                                    aria-hidden="true"
+                                  />
+                                </div>
+                              </td>
+                              <td>
+                                <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
+                                  {entry.exactScores}
+                                </span>
+                              </td>
+                              <td>
+                                <span className={`leaderboard-stat-pill leaderboard-stat-pill--${zone}`}>
+                                  {entry.outcomes}
+                                </span>
+                              </td>
+                              <td>
+                                <span
+                                  className={`leaderboard-stat-pill leaderboard-stat-pill--bonus leaderboard-stat-pill--${zone}`}
+                                >
+                                  {entry.bonusHits}
+                                </span>
+                              </td>
+                              <td>
+                                <RankChangeCell entry={entry} />
+                              </td>
+                            </tr>
+                          );
+                        })}
                   </tbody>
                 </table>
               </div>

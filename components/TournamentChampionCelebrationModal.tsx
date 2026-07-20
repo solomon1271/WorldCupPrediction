@@ -102,7 +102,7 @@ export function TournamentChampionCelebrationModal({
               setVisible(false);
               onFinished?.();
               window.setTimeout(() => {
-                document.getElementById("top-picks-leaders")?.scrollIntoView({
+                document.getElementById("leaderboard")?.scrollIntoView({
                   behavior: "smooth",
                   block: "start"
                 });
@@ -110,7 +110,7 @@ export function TournamentChampionCelebrationModal({
             });
           }}
         >
-          {pending ? "Saving..." : "See Top picks leaders"}
+          {pending ? "Saving..." : "See the leaderboards"}
         </button>
       </div>
     </div>
