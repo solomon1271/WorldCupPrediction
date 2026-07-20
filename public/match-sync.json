@@ -1444,7 +1444,12 @@
       "venue": "MetLife Stadium, East Rutherford, New Jersey",
       "homeTeam": "Spain",
       "awayTeam": "Argentina",
-      "isLocked": false
+      "isLocked": false,
+      "finalHomeScore": 1,
+      "finalAwayScore": 0,
+      "finalYellowCards": 5,
+      "finalTotalCorners": 13,
+      "finalRedCards": 1
     }
   ]
 }
