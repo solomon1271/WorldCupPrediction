@@ -43,6 +43,14 @@ import {
   type MatchWinnerRevealAnnouncement
 } from "@/lib/match-winner-announcement";
 import {
+  getPendingKnockoutCelebration,
+  type KnockoutCelebration
+} from "@/lib/knockout-announcement";
+import {
+  getPendingTopPicksCelebration,
+  type TopPicksCelebration
+} from "@/lib/top-picks-announcement";
+import {
   getPendingTournamentCelebration,
   isTournamentComplete,
   type TournamentCelebration
@@ -133,7 +141,7 @@ function normalizeTournamentPrediction(
   };
 }
 
-export type { GroupStandingTable, GroupStageCelebration, MatchWinnerRevealAnnouncement, RoundOf32Celebration, TournamentCelebration, TopPicksStanding, TournamentAwards };
+export type { GroupStandingTable, GroupStageCelebration, KnockoutCelebration, MatchWinnerRevealAnnouncement, RoundOf32Celebration, TopPicksCelebration, TournamentCelebration, TopPicksStanding, TournamentAwards };
 
 export async function getDashboardData(leagueId: string, currentUserId: string) {
   await finalizeRoundOf32PhaseIfComplete();
@@ -145,6 +153,8 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     groupStageCelebration,
     roundOf32Celebration,
     tournamentCelebration,
+    knockoutCelebration,
+    topPicksCelebration,
     groupStandings,
     officialAwards
   ] = await Promise.all([
@@ -181,6 +191,8 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     getPendingGroupStageCelebration(leagueId, currentUserId),
     getPendingRoundOf32Celebration(leagueId, currentUserId),
     getPendingTournamentCelebration(leagueId, currentUserId),
+    getPendingKnockoutCelebration(leagueId, currentUserId),
+    getPendingTopPicksCelebration(leagueId, currentUserId),
     getGroupStandings(),
     getOfficialAwardsForLeague(leagueId)
   ]);
@@ -318,6 +330,8 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     groupStageCelebration,
     roundOf32Celebration,
     tournamentCelebration,
+    knockoutCelebration,
+    topPicksCelebration,
     groupStandings
   };
 }

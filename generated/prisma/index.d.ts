@@ -78,6 +78,16 @@ export type RoundOf32RevealSeen = $Result.DefaultSelection<Prisma.$RoundOf32Reve
  * 
  */
 export type TournamentRevealSeen = $Result.DefaultSelection<Prisma.$TournamentRevealSeenPayload>
+/**
+ * Model KnockoutRevealSeen
+ * 
+ */
+export type KnockoutRevealSeen = $Result.DefaultSelection<Prisma.$KnockoutRevealSeenPayload>
+/**
+ * Model TopPicksRevealSeen
+ * 
+ */
+export type TopPicksRevealSeen = $Result.DefaultSelection<Prisma.$TopPicksRevealSeenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -326,6 +336,26 @@ export class PrismaClient<
     * ```
     */
   get tournamentRevealSeen(): Prisma.TournamentRevealSeenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.knockoutRevealSeen`: Exposes CRUD operations for the **KnockoutRevealSeen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more KnockoutRevealSeens
+    * const knockoutRevealSeens = await prisma.knockoutRevealSeen.findMany()
+    * ```
+    */
+  get knockoutRevealSeen(): Prisma.KnockoutRevealSeenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.topPicksRevealSeen`: Exposes CRUD operations for the **TopPicksRevealSeen** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TopPicksRevealSeens
+    * const topPicksRevealSeens = await prisma.topPicksRevealSeen.findMany()
+    * ```
+    */
+  get topPicksRevealSeen(): Prisma.TopPicksRevealSeenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -778,7 +808,9 @@ export namespace Prisma {
     MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
     GroupStageRevealSeen: 'GroupStageRevealSeen',
     RoundOf32RevealSeen: 'RoundOf32RevealSeen',
-    TournamentRevealSeen: 'TournamentRevealSeen'
+    TournamentRevealSeen: 'TournamentRevealSeen',
+    KnockoutRevealSeen: 'KnockoutRevealSeen',
+    TopPicksRevealSeen: 'TopPicksRevealSeen'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -797,7 +829,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "knockoutLeaderboardState" | "roundOf32LeaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen" | "roundOf32RevealSeen" | "tournamentRevealSeen"
+      modelProps: "user" | "league" | "leagueMember" | "match" | "matchPrediction" | "leaderboardState" | "knockoutLeaderboardState" | "roundOf32LeaderboardState" | "tournamentPrediction" | "matchWinnerRevealSeen" | "groupStageRevealSeen" | "roundOf32RevealSeen" | "tournamentRevealSeen" | "knockoutRevealSeen" | "topPicksRevealSeen"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1763,6 +1795,154 @@ export namespace Prisma {
           }
         }
       }
+      KnockoutRevealSeen: {
+        payload: Prisma.$KnockoutRevealSeenPayload<ExtArgs>
+        fields: Prisma.KnockoutRevealSeenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KnockoutRevealSeenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KnockoutRevealSeenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          findFirst: {
+            args: Prisma.KnockoutRevealSeenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KnockoutRevealSeenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          findMany: {
+            args: Prisma.KnockoutRevealSeenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>[]
+          }
+          create: {
+            args: Prisma.KnockoutRevealSeenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          createMany: {
+            args: Prisma.KnockoutRevealSeenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.KnockoutRevealSeenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>[]
+          }
+          delete: {
+            args: Prisma.KnockoutRevealSeenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          update: {
+            args: Prisma.KnockoutRevealSeenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          deleteMany: {
+            args: Prisma.KnockoutRevealSeenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KnockoutRevealSeenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.KnockoutRevealSeenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>[]
+          }
+          upsert: {
+            args: Prisma.KnockoutRevealSeenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnockoutRevealSeenPayload>
+          }
+          aggregate: {
+            args: Prisma.KnockoutRevealSeenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKnockoutRevealSeen>
+          }
+          groupBy: {
+            args: Prisma.KnockoutRevealSeenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KnockoutRevealSeenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KnockoutRevealSeenCountArgs<ExtArgs>
+            result: $Utils.Optional<KnockoutRevealSeenCountAggregateOutputType> | number
+          }
+        }
+      }
+      TopPicksRevealSeen: {
+        payload: Prisma.$TopPicksRevealSeenPayload<ExtArgs>
+        fields: Prisma.TopPicksRevealSeenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TopPicksRevealSeenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TopPicksRevealSeenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          findFirst: {
+            args: Prisma.TopPicksRevealSeenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TopPicksRevealSeenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          findMany: {
+            args: Prisma.TopPicksRevealSeenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>[]
+          }
+          create: {
+            args: Prisma.TopPicksRevealSeenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          createMany: {
+            args: Prisma.TopPicksRevealSeenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TopPicksRevealSeenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>[]
+          }
+          delete: {
+            args: Prisma.TopPicksRevealSeenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          update: {
+            args: Prisma.TopPicksRevealSeenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          deleteMany: {
+            args: Prisma.TopPicksRevealSeenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TopPicksRevealSeenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TopPicksRevealSeenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>[]
+          }
+          upsert: {
+            args: Prisma.TopPicksRevealSeenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TopPicksRevealSeenPayload>
+          }
+          aggregate: {
+            args: Prisma.TopPicksRevealSeenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTopPicksRevealSeen>
+          }
+          groupBy: {
+            args: Prisma.TopPicksRevealSeenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TopPicksRevealSeenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TopPicksRevealSeenCountArgs<ExtArgs>
+            result: $Utils.Optional<TopPicksRevealSeenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1872,6 +2052,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenOmit
     roundOf32RevealSeen?: RoundOf32RevealSeenOmit
     tournamentRevealSeen?: TournamentRevealSeenOmit
+    knockoutRevealSeen?: KnockoutRevealSeenOmit
+    topPicksRevealSeen?: TopPicksRevealSeenOmit
   }
 
   /* Types for Logging */
@@ -1959,6 +2141,8 @@ export namespace Prisma {
     groupStageRevealSeen: number
     roundOf32RevealSeen: number
     tournamentRevealSeen: number
+    knockoutRevealSeen: number
+    topPicksRevealSeen: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1969,6 +2153,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | UserCountOutputTypeCountGroupStageRevealSeenArgs
     roundOf32RevealSeen?: boolean | UserCountOutputTypeCountRoundOf32RevealSeenArgs
     tournamentRevealSeen?: boolean | UserCountOutputTypeCountTournamentRevealSeenArgs
+    knockoutRevealSeen?: boolean | UserCountOutputTypeCountKnockoutRevealSeenArgs
+    topPicksRevealSeen?: boolean | UserCountOutputTypeCountTopPicksRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -2031,6 +2217,20 @@ export namespace Prisma {
     where?: TournamentRevealSeenWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountKnockoutRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnockoutRevealSeenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTopPicksRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TopPicksRevealSeenWhereInput
+  }
+
 
   /**
    * Count Type LeagueCountOutputType
@@ -2044,6 +2244,8 @@ export namespace Prisma {
     groupStageRevealSeen: number
     roundOf32RevealSeen: number
     tournamentRevealSeen: number
+    knockoutRevealSeen: number
+    topPicksRevealSeen: number
   }
 
   export type LeagueCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2054,6 +2256,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | LeagueCountOutputTypeCountGroupStageRevealSeenArgs
     roundOf32RevealSeen?: boolean | LeagueCountOutputTypeCountRoundOf32RevealSeenArgs
     tournamentRevealSeen?: boolean | LeagueCountOutputTypeCountTournamentRevealSeenArgs
+    knockoutRevealSeen?: boolean | LeagueCountOutputTypeCountKnockoutRevealSeenArgs
+    topPicksRevealSeen?: boolean | LeagueCountOutputTypeCountTopPicksRevealSeenArgs
   }
 
   // Custom InputTypes
@@ -2114,6 +2318,20 @@ export namespace Prisma {
    */
   export type LeagueCountOutputTypeCountTournamentRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TournamentRevealSeenWhereInput
+  }
+
+  /**
+   * LeagueCountOutputType without action
+   */
+  export type LeagueCountOutputTypeCountKnockoutRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnockoutRevealSeenWhereInput
+  }
+
+  /**
+   * LeagueCountOutputType without action
+   */
+  export type LeagueCountOutputTypeCountTopPicksRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TopPicksRevealSeenWhereInput
   }
 
 
@@ -2348,6 +2566,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
     roundOf32RevealSeen?: boolean | User$roundOf32RevealSeenArgs<ExtArgs>
     tournamentRevealSeen?: boolean | User$tournamentRevealSeenArgs<ExtArgs>
+    knockoutRevealSeen?: boolean | User$knockoutRevealSeenArgs<ExtArgs>
+    topPicksRevealSeen?: boolean | User$topPicksRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2390,6 +2610,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | User$groupStageRevealSeenArgs<ExtArgs>
     roundOf32RevealSeen?: boolean | User$roundOf32RevealSeenArgs<ExtArgs>
     tournamentRevealSeen?: boolean | User$tournamentRevealSeenArgs<ExtArgs>
+    knockoutRevealSeen?: boolean | User$knockoutRevealSeenArgs<ExtArgs>
+    topPicksRevealSeen?: boolean | User$topPicksRevealSeenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2405,6 +2627,8 @@ export namespace Prisma {
       groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
       roundOf32RevealSeen: Prisma.$RoundOf32RevealSeenPayload<ExtArgs>[]
       tournamentRevealSeen: Prisma.$TournamentRevealSeenPayload<ExtArgs>[]
+      knockoutRevealSeen: Prisma.$KnockoutRevealSeenPayload<ExtArgs>[]
+      topPicksRevealSeen: Prisma.$TopPicksRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2815,6 +3039,8 @@ export namespace Prisma {
     groupStageRevealSeen<T extends User$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     roundOf32RevealSeen<T extends User$roundOf32RevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$roundOf32RevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentRevealSeen<T extends User$tournamentRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$tournamentRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    knockoutRevealSeen<T extends User$knockoutRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$knockoutRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    topPicksRevealSeen<T extends User$topPicksRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, User$topPicksRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3405,6 +3631,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.knockoutRevealSeen
+   */
+  export type User$knockoutRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    where?: KnockoutRevealSeenWhereInput
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KnockoutRevealSeenScalarFieldEnum | KnockoutRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * User.topPicksRevealSeen
+   */
+  export type User$topPicksRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    where?: TopPicksRevealSeenWhereInput
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TopPicksRevealSeenScalarFieldEnum | TopPicksRevealSeenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3637,6 +3911,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     roundOf32RevealSeen?: boolean | League$roundOf32RevealSeenArgs<ExtArgs>
     tournamentRevealSeen?: boolean | League$tournamentRevealSeenArgs<ExtArgs>
+    knockoutRevealSeen?: boolean | League$knockoutRevealSeenArgs<ExtArgs>
+    topPicksRevealSeen?: boolean | League$topPicksRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["league"]>
 
@@ -3691,6 +3967,8 @@ export namespace Prisma {
     groupStageRevealSeen?: boolean | League$groupStageRevealSeenArgs<ExtArgs>
     roundOf32RevealSeen?: boolean | League$roundOf32RevealSeenArgs<ExtArgs>
     tournamentRevealSeen?: boolean | League$tournamentRevealSeenArgs<ExtArgs>
+    knockoutRevealSeen?: boolean | League$knockoutRevealSeenArgs<ExtArgs>
+    topPicksRevealSeen?: boolean | League$topPicksRevealSeenArgs<ExtArgs>
     _count?: boolean | LeagueCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeagueIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3709,6 +3987,8 @@ export namespace Prisma {
       groupStageRevealSeen: Prisma.$GroupStageRevealSeenPayload<ExtArgs>[]
       roundOf32RevealSeen: Prisma.$RoundOf32RevealSeenPayload<ExtArgs>[]
       tournamentRevealSeen: Prisma.$TournamentRevealSeenPayload<ExtArgs>[]
+      knockoutRevealSeen: Prisma.$KnockoutRevealSeenPayload<ExtArgs>[]
+      topPicksRevealSeen: Prisma.$TopPicksRevealSeenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4125,6 +4405,8 @@ export namespace Prisma {
     groupStageRevealSeen<T extends League$groupStageRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$groupStageRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupStageRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     roundOf32RevealSeen<T extends League$roundOf32RevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$roundOf32RevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoundOf32RevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tournamentRevealSeen<T extends League$tournamentRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$tournamentRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    knockoutRevealSeen<T extends League$knockoutRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$knockoutRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    topPicksRevealSeen<T extends League$topPicksRevealSeenArgs<ExtArgs> = {}>(args?: Subset<T, League$topPicksRevealSeenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4772,6 +5054,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TournamentRevealSeenScalarFieldEnum | TournamentRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * League.knockoutRevealSeen
+   */
+  export type League$knockoutRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    where?: KnockoutRevealSeenWhereInput
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KnockoutRevealSeenScalarFieldEnum | KnockoutRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * League.topPicksRevealSeen
+   */
+  export type League$topPicksRevealSeenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    where?: TopPicksRevealSeenWhereInput
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TopPicksRevealSeenScalarFieldEnum | TopPicksRevealSeenScalarFieldEnum[]
   }
 
   /**
@@ -16899,6 +17229,2108 @@ export namespace Prisma {
 
 
   /**
+   * Model KnockoutRevealSeen
+   */
+
+  export type AggregateKnockoutRevealSeen = {
+    _count: KnockoutRevealSeenCountAggregateOutputType | null
+    _min: KnockoutRevealSeenMinAggregateOutputType | null
+    _max: KnockoutRevealSeenMaxAggregateOutputType | null
+  }
+
+  export type KnockoutRevealSeenMinAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type KnockoutRevealSeenMaxAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type KnockoutRevealSeenCountAggregateOutputType = {
+    id: number
+    leagueId: number
+    userId: number
+    seenAt: number
+    _all: number
+  }
+
+
+  export type KnockoutRevealSeenMinAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type KnockoutRevealSeenMaxAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type KnockoutRevealSeenCountAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+    _all?: true
+  }
+
+  export type KnockoutRevealSeenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnockoutRevealSeen to aggregate.
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutRevealSeens to fetch.
+     */
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned KnockoutRevealSeens
+    **/
+    _count?: true | KnockoutRevealSeenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KnockoutRevealSeenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KnockoutRevealSeenMaxAggregateInputType
+  }
+
+  export type GetKnockoutRevealSeenAggregateType<T extends KnockoutRevealSeenAggregateArgs> = {
+        [P in keyof T & keyof AggregateKnockoutRevealSeen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKnockoutRevealSeen[P]>
+      : GetScalarType<T[P], AggregateKnockoutRevealSeen[P]>
+  }
+
+
+
+
+  export type KnockoutRevealSeenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnockoutRevealSeenWhereInput
+    orderBy?: KnockoutRevealSeenOrderByWithAggregationInput | KnockoutRevealSeenOrderByWithAggregationInput[]
+    by: KnockoutRevealSeenScalarFieldEnum[] | KnockoutRevealSeenScalarFieldEnum
+    having?: KnockoutRevealSeenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KnockoutRevealSeenCountAggregateInputType | true
+    _min?: KnockoutRevealSeenMinAggregateInputType
+    _max?: KnockoutRevealSeenMaxAggregateInputType
+  }
+
+  export type KnockoutRevealSeenGroupByOutputType = {
+    id: string
+    leagueId: string
+    userId: string
+    seenAt: Date
+    _count: KnockoutRevealSeenCountAggregateOutputType | null
+    _min: KnockoutRevealSeenMinAggregateOutputType | null
+    _max: KnockoutRevealSeenMaxAggregateOutputType | null
+  }
+
+  type GetKnockoutRevealSeenGroupByPayload<T extends KnockoutRevealSeenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KnockoutRevealSeenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KnockoutRevealSeenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KnockoutRevealSeenGroupByOutputType[P]>
+            : GetScalarType<T[P], KnockoutRevealSeenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KnockoutRevealSeenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutRevealSeen"]>
+
+  export type KnockoutRevealSeenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutRevealSeen"]>
+
+  export type KnockoutRevealSeenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["knockoutRevealSeen"]>
+
+  export type KnockoutRevealSeenSelectScalar = {
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+  }
+
+  export type KnockoutRevealSeenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "seenAt", ExtArgs["result"]["knockoutRevealSeen"]>
+  export type KnockoutRevealSeenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type KnockoutRevealSeenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type KnockoutRevealSeenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $KnockoutRevealSeenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "KnockoutRevealSeen"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      leagueId: string
+      userId: string
+      seenAt: Date
+    }, ExtArgs["result"]["knockoutRevealSeen"]>
+    composites: {}
+  }
+
+  type KnockoutRevealSeenGetPayload<S extends boolean | null | undefined | KnockoutRevealSeenDefaultArgs> = $Result.GetResult<Prisma.$KnockoutRevealSeenPayload, S>
+
+  type KnockoutRevealSeenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<KnockoutRevealSeenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: KnockoutRevealSeenCountAggregateInputType | true
+    }
+
+  export interface KnockoutRevealSeenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['KnockoutRevealSeen'], meta: { name: 'KnockoutRevealSeen' } }
+    /**
+     * Find zero or one KnockoutRevealSeen that matches the filter.
+     * @param {KnockoutRevealSeenFindUniqueArgs} args - Arguments to find a KnockoutRevealSeen
+     * @example
+     * // Get one KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KnockoutRevealSeenFindUniqueArgs>(args: SelectSubset<T, KnockoutRevealSeenFindUniqueArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one KnockoutRevealSeen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {KnockoutRevealSeenFindUniqueOrThrowArgs} args - Arguments to find a KnockoutRevealSeen
+     * @example
+     * // Get one KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KnockoutRevealSeenFindUniqueOrThrowArgs>(args: SelectSubset<T, KnockoutRevealSeenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnockoutRevealSeen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenFindFirstArgs} args - Arguments to find a KnockoutRevealSeen
+     * @example
+     * // Get one KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KnockoutRevealSeenFindFirstArgs>(args?: SelectSubset<T, KnockoutRevealSeenFindFirstArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnockoutRevealSeen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenFindFirstOrThrowArgs} args - Arguments to find a KnockoutRevealSeen
+     * @example
+     * // Get one KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KnockoutRevealSeenFindFirstOrThrowArgs>(args?: SelectSubset<T, KnockoutRevealSeenFindFirstOrThrowArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more KnockoutRevealSeens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all KnockoutRevealSeens
+     * const knockoutRevealSeens = await prisma.knockoutRevealSeen.findMany()
+     * 
+     * // Get first 10 KnockoutRevealSeens
+     * const knockoutRevealSeens = await prisma.knockoutRevealSeen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const knockoutRevealSeenWithIdOnly = await prisma.knockoutRevealSeen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends KnockoutRevealSeenFindManyArgs>(args?: SelectSubset<T, KnockoutRevealSeenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a KnockoutRevealSeen.
+     * @param {KnockoutRevealSeenCreateArgs} args - Arguments to create a KnockoutRevealSeen.
+     * @example
+     * // Create one KnockoutRevealSeen
+     * const KnockoutRevealSeen = await prisma.knockoutRevealSeen.create({
+     *   data: {
+     *     // ... data to create a KnockoutRevealSeen
+     *   }
+     * })
+     * 
+     */
+    create<T extends KnockoutRevealSeenCreateArgs>(args: SelectSubset<T, KnockoutRevealSeenCreateArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many KnockoutRevealSeens.
+     * @param {KnockoutRevealSeenCreateManyArgs} args - Arguments to create many KnockoutRevealSeens.
+     * @example
+     * // Create many KnockoutRevealSeens
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KnockoutRevealSeenCreateManyArgs>(args?: SelectSubset<T, KnockoutRevealSeenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many KnockoutRevealSeens and returns the data saved in the database.
+     * @param {KnockoutRevealSeenCreateManyAndReturnArgs} args - Arguments to create many KnockoutRevealSeens.
+     * @example
+     * // Create many KnockoutRevealSeens
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many KnockoutRevealSeens and only return the `id`
+     * const knockoutRevealSeenWithIdOnly = await prisma.knockoutRevealSeen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends KnockoutRevealSeenCreateManyAndReturnArgs>(args?: SelectSubset<T, KnockoutRevealSeenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a KnockoutRevealSeen.
+     * @param {KnockoutRevealSeenDeleteArgs} args - Arguments to delete one KnockoutRevealSeen.
+     * @example
+     * // Delete one KnockoutRevealSeen
+     * const KnockoutRevealSeen = await prisma.knockoutRevealSeen.delete({
+     *   where: {
+     *     // ... filter to delete one KnockoutRevealSeen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KnockoutRevealSeenDeleteArgs>(args: SelectSubset<T, KnockoutRevealSeenDeleteArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one KnockoutRevealSeen.
+     * @param {KnockoutRevealSeenUpdateArgs} args - Arguments to update one KnockoutRevealSeen.
+     * @example
+     * // Update one KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KnockoutRevealSeenUpdateArgs>(args: SelectSubset<T, KnockoutRevealSeenUpdateArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more KnockoutRevealSeens.
+     * @param {KnockoutRevealSeenDeleteManyArgs} args - Arguments to filter KnockoutRevealSeens to delete.
+     * @example
+     * // Delete a few KnockoutRevealSeens
+     * const { count } = await prisma.knockoutRevealSeen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KnockoutRevealSeenDeleteManyArgs>(args?: SelectSubset<T, KnockoutRevealSeenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnockoutRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many KnockoutRevealSeens
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KnockoutRevealSeenUpdateManyArgs>(args: SelectSubset<T, KnockoutRevealSeenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnockoutRevealSeens and returns the data updated in the database.
+     * @param {KnockoutRevealSeenUpdateManyAndReturnArgs} args - Arguments to update many KnockoutRevealSeens.
+     * @example
+     * // Update many KnockoutRevealSeens
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more KnockoutRevealSeens and only return the `id`
+     * const knockoutRevealSeenWithIdOnly = await prisma.knockoutRevealSeen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends KnockoutRevealSeenUpdateManyAndReturnArgs>(args: SelectSubset<T, KnockoutRevealSeenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one KnockoutRevealSeen.
+     * @param {KnockoutRevealSeenUpsertArgs} args - Arguments to update or create a KnockoutRevealSeen.
+     * @example
+     * // Update or create a KnockoutRevealSeen
+     * const knockoutRevealSeen = await prisma.knockoutRevealSeen.upsert({
+     *   create: {
+     *     // ... data to create a KnockoutRevealSeen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the KnockoutRevealSeen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KnockoutRevealSeenUpsertArgs>(args: SelectSubset<T, KnockoutRevealSeenUpsertArgs<ExtArgs>>): Prisma__KnockoutRevealSeenClient<$Result.GetResult<Prisma.$KnockoutRevealSeenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of KnockoutRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenCountArgs} args - Arguments to filter KnockoutRevealSeens to count.
+     * @example
+     * // Count the number of KnockoutRevealSeens
+     * const count = await prisma.knockoutRevealSeen.count({
+     *   where: {
+     *     // ... the filter for the KnockoutRevealSeens we want to count
+     *   }
+     * })
+    **/
+    count<T extends KnockoutRevealSeenCountArgs>(
+      args?: Subset<T, KnockoutRevealSeenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KnockoutRevealSeenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a KnockoutRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KnockoutRevealSeenAggregateArgs>(args: Subset<T, KnockoutRevealSeenAggregateArgs>): Prisma.PrismaPromise<GetKnockoutRevealSeenAggregateType<T>>
+
+    /**
+     * Group by KnockoutRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnockoutRevealSeenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KnockoutRevealSeenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KnockoutRevealSeenGroupByArgs['orderBy'] }
+        : { orderBy?: KnockoutRevealSeenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KnockoutRevealSeenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKnockoutRevealSeenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the KnockoutRevealSeen model
+   */
+  readonly fields: KnockoutRevealSeenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for KnockoutRevealSeen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KnockoutRevealSeenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the KnockoutRevealSeen model
+   */
+  interface KnockoutRevealSeenFieldRefs {
+    readonly id: FieldRef<"KnockoutRevealSeen", 'String'>
+    readonly leagueId: FieldRef<"KnockoutRevealSeen", 'String'>
+    readonly userId: FieldRef<"KnockoutRevealSeen", 'String'>
+    readonly seenAt: FieldRef<"KnockoutRevealSeen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * KnockoutRevealSeen findUnique
+   */
+  export type KnockoutRevealSeenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutRevealSeen to fetch.
+     */
+    where: KnockoutRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * KnockoutRevealSeen findUniqueOrThrow
+   */
+  export type KnockoutRevealSeenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutRevealSeen to fetch.
+     */
+    where: KnockoutRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * KnockoutRevealSeen findFirst
+   */
+  export type KnockoutRevealSeenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutRevealSeen to fetch.
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutRevealSeens to fetch.
+     */
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnockoutRevealSeens.
+     */
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnockoutRevealSeens.
+     */
+    distinct?: KnockoutRevealSeenScalarFieldEnum | KnockoutRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutRevealSeen findFirstOrThrow
+   */
+  export type KnockoutRevealSeenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutRevealSeen to fetch.
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutRevealSeens to fetch.
+     */
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnockoutRevealSeens.
+     */
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnockoutRevealSeens.
+     */
+    distinct?: KnockoutRevealSeenScalarFieldEnum | KnockoutRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutRevealSeen findMany
+   */
+  export type KnockoutRevealSeenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which KnockoutRevealSeens to fetch.
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnockoutRevealSeens to fetch.
+     */
+    orderBy?: KnockoutRevealSeenOrderByWithRelationInput | KnockoutRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing KnockoutRevealSeens.
+     */
+    cursor?: KnockoutRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnockoutRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnockoutRevealSeens.
+     */
+    skip?: number
+    distinct?: KnockoutRevealSeenScalarFieldEnum | KnockoutRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * KnockoutRevealSeen create
+   */
+  export type KnockoutRevealSeenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a KnockoutRevealSeen.
+     */
+    data: XOR<KnockoutRevealSeenCreateInput, KnockoutRevealSeenUncheckedCreateInput>
+  }
+
+  /**
+   * KnockoutRevealSeen createMany
+   */
+  export type KnockoutRevealSeenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many KnockoutRevealSeens.
+     */
+    data: KnockoutRevealSeenCreateManyInput | KnockoutRevealSeenCreateManyInput[]
+  }
+
+  /**
+   * KnockoutRevealSeen createManyAndReturn
+   */
+  export type KnockoutRevealSeenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to create many KnockoutRevealSeens.
+     */
+    data: KnockoutRevealSeenCreateManyInput | KnockoutRevealSeenCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnockoutRevealSeen update
+   */
+  export type KnockoutRevealSeenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a KnockoutRevealSeen.
+     */
+    data: XOR<KnockoutRevealSeenUpdateInput, KnockoutRevealSeenUncheckedUpdateInput>
+    /**
+     * Choose, which KnockoutRevealSeen to update.
+     */
+    where: KnockoutRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * KnockoutRevealSeen updateMany
+   */
+  export type KnockoutRevealSeenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update KnockoutRevealSeens.
+     */
+    data: XOR<KnockoutRevealSeenUpdateManyMutationInput, KnockoutRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which KnockoutRevealSeens to update
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * Limit how many KnockoutRevealSeens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnockoutRevealSeen updateManyAndReturn
+   */
+  export type KnockoutRevealSeenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to update KnockoutRevealSeens.
+     */
+    data: XOR<KnockoutRevealSeenUpdateManyMutationInput, KnockoutRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which KnockoutRevealSeens to update
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * Limit how many KnockoutRevealSeens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnockoutRevealSeen upsert
+   */
+  export type KnockoutRevealSeenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the KnockoutRevealSeen to update in case it exists.
+     */
+    where: KnockoutRevealSeenWhereUniqueInput
+    /**
+     * In case the KnockoutRevealSeen found by the `where` argument doesn't exist, create a new KnockoutRevealSeen with this data.
+     */
+    create: XOR<KnockoutRevealSeenCreateInput, KnockoutRevealSeenUncheckedCreateInput>
+    /**
+     * In case the KnockoutRevealSeen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KnockoutRevealSeenUpdateInput, KnockoutRevealSeenUncheckedUpdateInput>
+  }
+
+  /**
+   * KnockoutRevealSeen delete
+   */
+  export type KnockoutRevealSeenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter which KnockoutRevealSeen to delete.
+     */
+    where: KnockoutRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * KnockoutRevealSeen deleteMany
+   */
+  export type KnockoutRevealSeenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnockoutRevealSeens to delete
+     */
+    where?: KnockoutRevealSeenWhereInput
+    /**
+     * Limit how many KnockoutRevealSeens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnockoutRevealSeen without action
+   */
+  export type KnockoutRevealSeenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnockoutRevealSeen
+     */
+    select?: KnockoutRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnockoutRevealSeen
+     */
+    omit?: KnockoutRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnockoutRevealSeenInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TopPicksRevealSeen
+   */
+
+  export type AggregateTopPicksRevealSeen = {
+    _count: TopPicksRevealSeenCountAggregateOutputType | null
+    _min: TopPicksRevealSeenMinAggregateOutputType | null
+    _max: TopPicksRevealSeenMaxAggregateOutputType | null
+  }
+
+  export type TopPicksRevealSeenMinAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type TopPicksRevealSeenMaxAggregateOutputType = {
+    id: string | null
+    leagueId: string | null
+    userId: string | null
+    seenAt: Date | null
+  }
+
+  export type TopPicksRevealSeenCountAggregateOutputType = {
+    id: number
+    leagueId: number
+    userId: number
+    seenAt: number
+    _all: number
+  }
+
+
+  export type TopPicksRevealSeenMinAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type TopPicksRevealSeenMaxAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+  }
+
+  export type TopPicksRevealSeenCountAggregateInputType = {
+    id?: true
+    leagueId?: true
+    userId?: true
+    seenAt?: true
+    _all?: true
+  }
+
+  export type TopPicksRevealSeenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TopPicksRevealSeen to aggregate.
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TopPicksRevealSeens to fetch.
+     */
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TopPicksRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TopPicksRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TopPicksRevealSeens
+    **/
+    _count?: true | TopPicksRevealSeenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TopPicksRevealSeenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TopPicksRevealSeenMaxAggregateInputType
+  }
+
+  export type GetTopPicksRevealSeenAggregateType<T extends TopPicksRevealSeenAggregateArgs> = {
+        [P in keyof T & keyof AggregateTopPicksRevealSeen]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTopPicksRevealSeen[P]>
+      : GetScalarType<T[P], AggregateTopPicksRevealSeen[P]>
+  }
+
+
+
+
+  export type TopPicksRevealSeenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TopPicksRevealSeenWhereInput
+    orderBy?: TopPicksRevealSeenOrderByWithAggregationInput | TopPicksRevealSeenOrderByWithAggregationInput[]
+    by: TopPicksRevealSeenScalarFieldEnum[] | TopPicksRevealSeenScalarFieldEnum
+    having?: TopPicksRevealSeenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TopPicksRevealSeenCountAggregateInputType | true
+    _min?: TopPicksRevealSeenMinAggregateInputType
+    _max?: TopPicksRevealSeenMaxAggregateInputType
+  }
+
+  export type TopPicksRevealSeenGroupByOutputType = {
+    id: string
+    leagueId: string
+    userId: string
+    seenAt: Date
+    _count: TopPicksRevealSeenCountAggregateOutputType | null
+    _min: TopPicksRevealSeenMinAggregateOutputType | null
+    _max: TopPicksRevealSeenMaxAggregateOutputType | null
+  }
+
+  type GetTopPicksRevealSeenGroupByPayload<T extends TopPicksRevealSeenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TopPicksRevealSeenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TopPicksRevealSeenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TopPicksRevealSeenGroupByOutputType[P]>
+            : GetScalarType<T[P], TopPicksRevealSeenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TopPicksRevealSeenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["topPicksRevealSeen"]>
+
+  export type TopPicksRevealSeenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["topPicksRevealSeen"]>
+
+  export type TopPicksRevealSeenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["topPicksRevealSeen"]>
+
+  export type TopPicksRevealSeenSelectScalar = {
+    id?: boolean
+    leagueId?: boolean
+    userId?: boolean
+    seenAt?: boolean
+  }
+
+  export type TopPicksRevealSeenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "leagueId" | "userId" | "seenAt", ExtArgs["result"]["topPicksRevealSeen"]>
+  export type TopPicksRevealSeenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TopPicksRevealSeenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TopPicksRevealSeenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    league?: boolean | LeagueDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TopPicksRevealSeenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TopPicksRevealSeen"
+    objects: {
+      league: Prisma.$LeaguePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      leagueId: string
+      userId: string
+      seenAt: Date
+    }, ExtArgs["result"]["topPicksRevealSeen"]>
+    composites: {}
+  }
+
+  type TopPicksRevealSeenGetPayload<S extends boolean | null | undefined | TopPicksRevealSeenDefaultArgs> = $Result.GetResult<Prisma.$TopPicksRevealSeenPayload, S>
+
+  type TopPicksRevealSeenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TopPicksRevealSeenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TopPicksRevealSeenCountAggregateInputType | true
+    }
+
+  export interface TopPicksRevealSeenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TopPicksRevealSeen'], meta: { name: 'TopPicksRevealSeen' } }
+    /**
+     * Find zero or one TopPicksRevealSeen that matches the filter.
+     * @param {TopPicksRevealSeenFindUniqueArgs} args - Arguments to find a TopPicksRevealSeen
+     * @example
+     * // Get one TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TopPicksRevealSeenFindUniqueArgs>(args: SelectSubset<T, TopPicksRevealSeenFindUniqueArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TopPicksRevealSeen that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TopPicksRevealSeenFindUniqueOrThrowArgs} args - Arguments to find a TopPicksRevealSeen
+     * @example
+     * // Get one TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TopPicksRevealSeenFindUniqueOrThrowArgs>(args: SelectSubset<T, TopPicksRevealSeenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TopPicksRevealSeen that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenFindFirstArgs} args - Arguments to find a TopPicksRevealSeen
+     * @example
+     * // Get one TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TopPicksRevealSeenFindFirstArgs>(args?: SelectSubset<T, TopPicksRevealSeenFindFirstArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TopPicksRevealSeen that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenFindFirstOrThrowArgs} args - Arguments to find a TopPicksRevealSeen
+     * @example
+     * // Get one TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TopPicksRevealSeenFindFirstOrThrowArgs>(args?: SelectSubset<T, TopPicksRevealSeenFindFirstOrThrowArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TopPicksRevealSeens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TopPicksRevealSeens
+     * const topPicksRevealSeens = await prisma.topPicksRevealSeen.findMany()
+     * 
+     * // Get first 10 TopPicksRevealSeens
+     * const topPicksRevealSeens = await prisma.topPicksRevealSeen.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const topPicksRevealSeenWithIdOnly = await prisma.topPicksRevealSeen.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TopPicksRevealSeenFindManyArgs>(args?: SelectSubset<T, TopPicksRevealSeenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TopPicksRevealSeen.
+     * @param {TopPicksRevealSeenCreateArgs} args - Arguments to create a TopPicksRevealSeen.
+     * @example
+     * // Create one TopPicksRevealSeen
+     * const TopPicksRevealSeen = await prisma.topPicksRevealSeen.create({
+     *   data: {
+     *     // ... data to create a TopPicksRevealSeen
+     *   }
+     * })
+     * 
+     */
+    create<T extends TopPicksRevealSeenCreateArgs>(args: SelectSubset<T, TopPicksRevealSeenCreateArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TopPicksRevealSeens.
+     * @param {TopPicksRevealSeenCreateManyArgs} args - Arguments to create many TopPicksRevealSeens.
+     * @example
+     * // Create many TopPicksRevealSeens
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TopPicksRevealSeenCreateManyArgs>(args?: SelectSubset<T, TopPicksRevealSeenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TopPicksRevealSeens and returns the data saved in the database.
+     * @param {TopPicksRevealSeenCreateManyAndReturnArgs} args - Arguments to create many TopPicksRevealSeens.
+     * @example
+     * // Create many TopPicksRevealSeens
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TopPicksRevealSeens and only return the `id`
+     * const topPicksRevealSeenWithIdOnly = await prisma.topPicksRevealSeen.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TopPicksRevealSeenCreateManyAndReturnArgs>(args?: SelectSubset<T, TopPicksRevealSeenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TopPicksRevealSeen.
+     * @param {TopPicksRevealSeenDeleteArgs} args - Arguments to delete one TopPicksRevealSeen.
+     * @example
+     * // Delete one TopPicksRevealSeen
+     * const TopPicksRevealSeen = await prisma.topPicksRevealSeen.delete({
+     *   where: {
+     *     // ... filter to delete one TopPicksRevealSeen
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TopPicksRevealSeenDeleteArgs>(args: SelectSubset<T, TopPicksRevealSeenDeleteArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TopPicksRevealSeen.
+     * @param {TopPicksRevealSeenUpdateArgs} args - Arguments to update one TopPicksRevealSeen.
+     * @example
+     * // Update one TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TopPicksRevealSeenUpdateArgs>(args: SelectSubset<T, TopPicksRevealSeenUpdateArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TopPicksRevealSeens.
+     * @param {TopPicksRevealSeenDeleteManyArgs} args - Arguments to filter TopPicksRevealSeens to delete.
+     * @example
+     * // Delete a few TopPicksRevealSeens
+     * const { count } = await prisma.topPicksRevealSeen.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TopPicksRevealSeenDeleteManyArgs>(args?: SelectSubset<T, TopPicksRevealSeenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TopPicksRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TopPicksRevealSeens
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TopPicksRevealSeenUpdateManyArgs>(args: SelectSubset<T, TopPicksRevealSeenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TopPicksRevealSeens and returns the data updated in the database.
+     * @param {TopPicksRevealSeenUpdateManyAndReturnArgs} args - Arguments to update many TopPicksRevealSeens.
+     * @example
+     * // Update many TopPicksRevealSeens
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TopPicksRevealSeens and only return the `id`
+     * const topPicksRevealSeenWithIdOnly = await prisma.topPicksRevealSeen.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TopPicksRevealSeenUpdateManyAndReturnArgs>(args: SelectSubset<T, TopPicksRevealSeenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TopPicksRevealSeen.
+     * @param {TopPicksRevealSeenUpsertArgs} args - Arguments to update or create a TopPicksRevealSeen.
+     * @example
+     * // Update or create a TopPicksRevealSeen
+     * const topPicksRevealSeen = await prisma.topPicksRevealSeen.upsert({
+     *   create: {
+     *     // ... data to create a TopPicksRevealSeen
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TopPicksRevealSeen we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TopPicksRevealSeenUpsertArgs>(args: SelectSubset<T, TopPicksRevealSeenUpsertArgs<ExtArgs>>): Prisma__TopPicksRevealSeenClient<$Result.GetResult<Prisma.$TopPicksRevealSeenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TopPicksRevealSeens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenCountArgs} args - Arguments to filter TopPicksRevealSeens to count.
+     * @example
+     * // Count the number of TopPicksRevealSeens
+     * const count = await prisma.topPicksRevealSeen.count({
+     *   where: {
+     *     // ... the filter for the TopPicksRevealSeens we want to count
+     *   }
+     * })
+    **/
+    count<T extends TopPicksRevealSeenCountArgs>(
+      args?: Subset<T, TopPicksRevealSeenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TopPicksRevealSeenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TopPicksRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TopPicksRevealSeenAggregateArgs>(args: Subset<T, TopPicksRevealSeenAggregateArgs>): Prisma.PrismaPromise<GetTopPicksRevealSeenAggregateType<T>>
+
+    /**
+     * Group by TopPicksRevealSeen.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TopPicksRevealSeenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TopPicksRevealSeenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TopPicksRevealSeenGroupByArgs['orderBy'] }
+        : { orderBy?: TopPicksRevealSeenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TopPicksRevealSeenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTopPicksRevealSeenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TopPicksRevealSeen model
+   */
+  readonly fields: TopPicksRevealSeenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TopPicksRevealSeen.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TopPicksRevealSeenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    league<T extends LeagueDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeagueDefaultArgs<ExtArgs>>): Prisma__LeagueClient<$Result.GetResult<Prisma.$LeaguePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TopPicksRevealSeen model
+   */
+  interface TopPicksRevealSeenFieldRefs {
+    readonly id: FieldRef<"TopPicksRevealSeen", 'String'>
+    readonly leagueId: FieldRef<"TopPicksRevealSeen", 'String'>
+    readonly userId: FieldRef<"TopPicksRevealSeen", 'String'>
+    readonly seenAt: FieldRef<"TopPicksRevealSeen", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TopPicksRevealSeen findUnique
+   */
+  export type TopPicksRevealSeenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which TopPicksRevealSeen to fetch.
+     */
+    where: TopPicksRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * TopPicksRevealSeen findUniqueOrThrow
+   */
+  export type TopPicksRevealSeenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which TopPicksRevealSeen to fetch.
+     */
+    where: TopPicksRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * TopPicksRevealSeen findFirst
+   */
+  export type TopPicksRevealSeenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which TopPicksRevealSeen to fetch.
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TopPicksRevealSeens to fetch.
+     */
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TopPicksRevealSeens.
+     */
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TopPicksRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TopPicksRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TopPicksRevealSeens.
+     */
+    distinct?: TopPicksRevealSeenScalarFieldEnum | TopPicksRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * TopPicksRevealSeen findFirstOrThrow
+   */
+  export type TopPicksRevealSeenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which TopPicksRevealSeen to fetch.
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TopPicksRevealSeens to fetch.
+     */
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TopPicksRevealSeens.
+     */
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TopPicksRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TopPicksRevealSeens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TopPicksRevealSeens.
+     */
+    distinct?: TopPicksRevealSeenScalarFieldEnum | TopPicksRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * TopPicksRevealSeen findMany
+   */
+  export type TopPicksRevealSeenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter, which TopPicksRevealSeens to fetch.
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TopPicksRevealSeens to fetch.
+     */
+    orderBy?: TopPicksRevealSeenOrderByWithRelationInput | TopPicksRevealSeenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TopPicksRevealSeens.
+     */
+    cursor?: TopPicksRevealSeenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TopPicksRevealSeens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TopPicksRevealSeens.
+     */
+    skip?: number
+    distinct?: TopPicksRevealSeenScalarFieldEnum | TopPicksRevealSeenScalarFieldEnum[]
+  }
+
+  /**
+   * TopPicksRevealSeen create
+   */
+  export type TopPicksRevealSeenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TopPicksRevealSeen.
+     */
+    data: XOR<TopPicksRevealSeenCreateInput, TopPicksRevealSeenUncheckedCreateInput>
+  }
+
+  /**
+   * TopPicksRevealSeen createMany
+   */
+  export type TopPicksRevealSeenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TopPicksRevealSeens.
+     */
+    data: TopPicksRevealSeenCreateManyInput | TopPicksRevealSeenCreateManyInput[]
+  }
+
+  /**
+   * TopPicksRevealSeen createManyAndReturn
+   */
+  export type TopPicksRevealSeenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to create many TopPicksRevealSeens.
+     */
+    data: TopPicksRevealSeenCreateManyInput | TopPicksRevealSeenCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TopPicksRevealSeen update
+   */
+  export type TopPicksRevealSeenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TopPicksRevealSeen.
+     */
+    data: XOR<TopPicksRevealSeenUpdateInput, TopPicksRevealSeenUncheckedUpdateInput>
+    /**
+     * Choose, which TopPicksRevealSeen to update.
+     */
+    where: TopPicksRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * TopPicksRevealSeen updateMany
+   */
+  export type TopPicksRevealSeenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TopPicksRevealSeens.
+     */
+    data: XOR<TopPicksRevealSeenUpdateManyMutationInput, TopPicksRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which TopPicksRevealSeens to update
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * Limit how many TopPicksRevealSeens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TopPicksRevealSeen updateManyAndReturn
+   */
+  export type TopPicksRevealSeenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * The data used to update TopPicksRevealSeens.
+     */
+    data: XOR<TopPicksRevealSeenUpdateManyMutationInput, TopPicksRevealSeenUncheckedUpdateManyInput>
+    /**
+     * Filter which TopPicksRevealSeens to update
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * Limit how many TopPicksRevealSeens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TopPicksRevealSeen upsert
+   */
+  export type TopPicksRevealSeenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TopPicksRevealSeen to update in case it exists.
+     */
+    where: TopPicksRevealSeenWhereUniqueInput
+    /**
+     * In case the TopPicksRevealSeen found by the `where` argument doesn't exist, create a new TopPicksRevealSeen with this data.
+     */
+    create: XOR<TopPicksRevealSeenCreateInput, TopPicksRevealSeenUncheckedCreateInput>
+    /**
+     * In case the TopPicksRevealSeen was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TopPicksRevealSeenUpdateInput, TopPicksRevealSeenUncheckedUpdateInput>
+  }
+
+  /**
+   * TopPicksRevealSeen delete
+   */
+  export type TopPicksRevealSeenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+    /**
+     * Filter which TopPicksRevealSeen to delete.
+     */
+    where: TopPicksRevealSeenWhereUniqueInput
+  }
+
+  /**
+   * TopPicksRevealSeen deleteMany
+   */
+  export type TopPicksRevealSeenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TopPicksRevealSeens to delete
+     */
+    where?: TopPicksRevealSeenWhereInput
+    /**
+     * Limit how many TopPicksRevealSeens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TopPicksRevealSeen without action
+   */
+  export type TopPicksRevealSeenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TopPicksRevealSeen
+     */
+    select?: TopPicksRevealSeenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TopPicksRevealSeen
+     */
+    omit?: TopPicksRevealSeenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TopPicksRevealSeenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17078,6 +19510,26 @@ export namespace Prisma {
   export type TournamentRevealSeenScalarFieldEnum = (typeof TournamentRevealSeenScalarFieldEnum)[keyof typeof TournamentRevealSeenScalarFieldEnum]
 
 
+  export const KnockoutRevealSeenScalarFieldEnum: {
+    id: 'id',
+    leagueId: 'leagueId',
+    userId: 'userId',
+    seenAt: 'seenAt'
+  };
+
+  export type KnockoutRevealSeenScalarFieldEnum = (typeof KnockoutRevealSeenScalarFieldEnum)[keyof typeof KnockoutRevealSeenScalarFieldEnum]
+
+
+  export const TopPicksRevealSeenScalarFieldEnum: {
+    id: 'id',
+    leagueId: 'leagueId',
+    userId: 'userId',
+    seenAt: 'seenAt'
+  };
+
+  export type TopPicksRevealSeenScalarFieldEnum = (typeof TopPicksRevealSeenScalarFieldEnum)[keyof typeof TopPicksRevealSeenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -17155,6 +19607,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
     roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
     tournamentRevealSeen?: TournamentRevealSeenListRelationFilter
+    knockoutRevealSeen?: KnockoutRevealSeenListRelationFilter
+    topPicksRevealSeen?: TopPicksRevealSeenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17172,6 +19626,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
     roundOf32RevealSeen?: RoundOf32RevealSeenOrderByRelationAggregateInput
     tournamentRevealSeen?: TournamentRevealSeenOrderByRelationAggregateInput
+    knockoutRevealSeen?: KnockoutRevealSeenOrderByRelationAggregateInput
+    topPicksRevealSeen?: TopPicksRevealSeenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -17192,6 +19648,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
     roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
     tournamentRevealSeen?: TournamentRevealSeenListRelationFilter
+    knockoutRevealSeen?: KnockoutRevealSeenListRelationFilter
+    topPicksRevealSeen?: TopPicksRevealSeenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -17244,6 +19702,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
     roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
     tournamentRevealSeen?: TournamentRevealSeenListRelationFilter
+    knockoutRevealSeen?: KnockoutRevealSeenListRelationFilter
+    topPicksRevealSeen?: TopPicksRevealSeenListRelationFilter
   }
 
   export type LeagueOrderByWithRelationInput = {
@@ -17267,6 +19727,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenOrderByRelationAggregateInput
     roundOf32RevealSeen?: RoundOf32RevealSeenOrderByRelationAggregateInput
     tournamentRevealSeen?: TournamentRevealSeenOrderByRelationAggregateInput
+    knockoutRevealSeen?: KnockoutRevealSeenOrderByRelationAggregateInput
+    topPicksRevealSeen?: TopPicksRevealSeenOrderByRelationAggregateInput
   }
 
   export type LeagueWhereUniqueInput = Prisma.AtLeast<{
@@ -17293,6 +19755,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenListRelationFilter
     roundOf32RevealSeen?: RoundOf32RevealSeenListRelationFilter
     tournamentRevealSeen?: TournamentRevealSeenListRelationFilter
+    knockoutRevealSeen?: KnockoutRevealSeenListRelationFilter
+    topPicksRevealSeen?: TopPicksRevealSeenListRelationFilter
   }, "id" | "slug" | "inviteCode">
 
   export type LeagueOrderByWithAggregationInput = {
@@ -18070,6 +20534,114 @@ export namespace Prisma {
     seenAt?: DateTimeWithAggregatesFilter<"TournamentRevealSeen"> | Date | string
   }
 
+  export type KnockoutRevealSeenWhereInput = {
+    AND?: KnockoutRevealSeenWhereInput | KnockoutRevealSeenWhereInput[]
+    OR?: KnockoutRevealSeenWhereInput[]
+    NOT?: KnockoutRevealSeenWhereInput | KnockoutRevealSeenWhereInput[]
+    id?: StringFilter<"KnockoutRevealSeen"> | string
+    leagueId?: StringFilter<"KnockoutRevealSeen"> | string
+    userId?: StringFilter<"KnockoutRevealSeen"> | string
+    seenAt?: DateTimeFilter<"KnockoutRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type KnockoutRevealSeenOrderByWithRelationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type KnockoutRevealSeenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    leagueId_userId?: KnockoutRevealSeenLeagueIdUserIdCompoundUniqueInput
+    AND?: KnockoutRevealSeenWhereInput | KnockoutRevealSeenWhereInput[]
+    OR?: KnockoutRevealSeenWhereInput[]
+    NOT?: KnockoutRevealSeenWhereInput | KnockoutRevealSeenWhereInput[]
+    leagueId?: StringFilter<"KnockoutRevealSeen"> | string
+    userId?: StringFilter<"KnockoutRevealSeen"> | string
+    seenAt?: DateTimeFilter<"KnockoutRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "leagueId_userId">
+
+  export type KnockoutRevealSeenOrderByWithAggregationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    _count?: KnockoutRevealSeenCountOrderByAggregateInput
+    _max?: KnockoutRevealSeenMaxOrderByAggregateInput
+    _min?: KnockoutRevealSeenMinOrderByAggregateInput
+  }
+
+  export type KnockoutRevealSeenScalarWhereWithAggregatesInput = {
+    AND?: KnockoutRevealSeenScalarWhereWithAggregatesInput | KnockoutRevealSeenScalarWhereWithAggregatesInput[]
+    OR?: KnockoutRevealSeenScalarWhereWithAggregatesInput[]
+    NOT?: KnockoutRevealSeenScalarWhereWithAggregatesInput | KnockoutRevealSeenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"KnockoutRevealSeen"> | string
+    leagueId?: StringWithAggregatesFilter<"KnockoutRevealSeen"> | string
+    userId?: StringWithAggregatesFilter<"KnockoutRevealSeen"> | string
+    seenAt?: DateTimeWithAggregatesFilter<"KnockoutRevealSeen"> | Date | string
+  }
+
+  export type TopPicksRevealSeenWhereInput = {
+    AND?: TopPicksRevealSeenWhereInput | TopPicksRevealSeenWhereInput[]
+    OR?: TopPicksRevealSeenWhereInput[]
+    NOT?: TopPicksRevealSeenWhereInput | TopPicksRevealSeenWhereInput[]
+    id?: StringFilter<"TopPicksRevealSeen"> | string
+    leagueId?: StringFilter<"TopPicksRevealSeen"> | string
+    userId?: StringFilter<"TopPicksRevealSeen"> | string
+    seenAt?: DateTimeFilter<"TopPicksRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TopPicksRevealSeenOrderByWithRelationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    league?: LeagueOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TopPicksRevealSeenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    leagueId_userId?: TopPicksRevealSeenLeagueIdUserIdCompoundUniqueInput
+    AND?: TopPicksRevealSeenWhereInput | TopPicksRevealSeenWhereInput[]
+    OR?: TopPicksRevealSeenWhereInput[]
+    NOT?: TopPicksRevealSeenWhereInput | TopPicksRevealSeenWhereInput[]
+    leagueId?: StringFilter<"TopPicksRevealSeen"> | string
+    userId?: StringFilter<"TopPicksRevealSeen"> | string
+    seenAt?: DateTimeFilter<"TopPicksRevealSeen"> | Date | string
+    league?: XOR<LeagueScalarRelationFilter, LeagueWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "leagueId_userId">
+
+  export type TopPicksRevealSeenOrderByWithAggregationInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+    _count?: TopPicksRevealSeenCountOrderByAggregateInput
+    _max?: TopPicksRevealSeenMaxOrderByAggregateInput
+    _min?: TopPicksRevealSeenMinOrderByAggregateInput
+  }
+
+  export type TopPicksRevealSeenScalarWhereWithAggregatesInput = {
+    AND?: TopPicksRevealSeenScalarWhereWithAggregatesInput | TopPicksRevealSeenScalarWhereWithAggregatesInput[]
+    OR?: TopPicksRevealSeenScalarWhereWithAggregatesInput[]
+    NOT?: TopPicksRevealSeenScalarWhereWithAggregatesInput | TopPicksRevealSeenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TopPicksRevealSeen"> | string
+    leagueId?: StringWithAggregatesFilter<"TopPicksRevealSeen"> | string
+    userId?: StringWithAggregatesFilter<"TopPicksRevealSeen"> | string
+    seenAt?: DateTimeWithAggregatesFilter<"TopPicksRevealSeen"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -18085,6 +20657,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18102,6 +20676,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -18119,6 +20695,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18136,6 +20714,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18189,6 +20769,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateInput = {
@@ -18212,6 +20794,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUpdateInput = {
@@ -18235,6 +20819,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateInput = {
@@ -18258,6 +20844,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateManyInput = {
@@ -19037,6 +21625,100 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type KnockoutRevealSeenCreateInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutKnockoutRevealSeenInput
+    user: UserCreateNestedOneWithoutKnockoutRevealSeenInput
+  }
+
+  export type KnockoutRevealSeenUncheckedCreateInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutRevealSeenCreateManyInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenCreateInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutTopPicksRevealSeenInput
+    user: UserCreateNestedOneWithoutTopPicksRevealSeenInput
+  }
+
+  export type TopPicksRevealSeenUncheckedCreateInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput
+    user?: UserUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenCreateManyInput = {
+    id?: string
+    leagueId: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -19109,6 +21791,18 @@ export namespace Prisma {
     none?: TournamentRevealSeenWhereInput
   }
 
+  export type KnockoutRevealSeenListRelationFilter = {
+    every?: KnockoutRevealSeenWhereInput
+    some?: KnockoutRevealSeenWhereInput
+    none?: KnockoutRevealSeenWhereInput
+  }
+
+  export type TopPicksRevealSeenListRelationFilter = {
+    every?: TopPicksRevealSeenWhereInput
+    some?: TopPicksRevealSeenWhereInput
+    none?: TopPicksRevealSeenWhereInput
+  }
+
   export type LeagueMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -19134,6 +21828,14 @@ export namespace Prisma {
   }
 
   export type TournamentRevealSeenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type KnockoutRevealSeenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TopPicksRevealSeenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19786,6 +22488,58 @@ export namespace Prisma {
     seenAt?: SortOrder
   }
 
+  export type KnockoutRevealSeenLeagueIdUserIdCompoundUniqueInput = {
+    leagueId: string
+    userId: string
+  }
+
+  export type KnockoutRevealSeenCountOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type KnockoutRevealSeenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type KnockoutRevealSeenMinOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type TopPicksRevealSeenLeagueIdUserIdCompoundUniqueInput = {
+    leagueId: string
+    userId: string
+  }
+
+  export type TopPicksRevealSeenCountOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type TopPicksRevealSeenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
+  export type TopPicksRevealSeenMinOrderByAggregateInput = {
+    id?: SortOrder
+    leagueId?: SortOrder
+    userId?: SortOrder
+    seenAt?: SortOrder
+  }
+
   export type LeagueMemberCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -19835,6 +22589,20 @@ export namespace Prisma {
     connect?: TournamentRevealSeenWhereUniqueInput | TournamentRevealSeenWhereUniqueInput[]
   }
 
+  export type KnockoutRevealSeenCreateNestedManyWithoutUserInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput> | KnockoutRevealSeenCreateWithoutUserInput[] | KnockoutRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutUserInput | KnockoutRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: KnockoutRevealSeenCreateManyUserInputEnvelope
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+  }
+
+  export type TopPicksRevealSeenCreateNestedManyWithoutUserInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput> | TopPicksRevealSeenCreateWithoutUserInput[] | TopPicksRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutUserInput | TopPicksRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: TopPicksRevealSeenCreateManyUserInputEnvelope
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -19882,6 +22650,20 @@ export namespace Prisma {
     connectOrCreate?: TournamentRevealSeenCreateOrConnectWithoutUserInput | TournamentRevealSeenCreateOrConnectWithoutUserInput[]
     createMany?: TournamentRevealSeenCreateManyUserInputEnvelope
     connect?: TournamentRevealSeenWhereUniqueInput | TournamentRevealSeenWhereUniqueInput[]
+  }
+
+  export type KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput> | KnockoutRevealSeenCreateWithoutUserInput[] | KnockoutRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutUserInput | KnockoutRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: KnockoutRevealSeenCreateManyUserInputEnvelope
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+  }
+
+  export type TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput> | TopPicksRevealSeenCreateWithoutUserInput[] | TopPicksRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutUserInput | TopPicksRevealSeenCreateOrConnectWithoutUserInput[]
+    createMany?: TopPicksRevealSeenCreateManyUserInputEnvelope
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -19994,6 +22776,34 @@ export namespace Prisma {
     deleteMany?: TournamentRevealSeenScalarWhereInput | TournamentRevealSeenScalarWhereInput[]
   }
 
+  export type KnockoutRevealSeenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput> | KnockoutRevealSeenCreateWithoutUserInput[] | KnockoutRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutUserInput | KnockoutRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: KnockoutRevealSeenUpsertWithWhereUniqueWithoutUserInput | KnockoutRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: KnockoutRevealSeenCreateManyUserInputEnvelope
+    set?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    disconnect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    delete?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    update?: KnockoutRevealSeenUpdateWithWhereUniqueWithoutUserInput | KnockoutRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: KnockoutRevealSeenUpdateManyWithWhereWithoutUserInput | KnockoutRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+  }
+
+  export type TopPicksRevealSeenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput> | TopPicksRevealSeenCreateWithoutUserInput[] | TopPicksRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutUserInput | TopPicksRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: TopPicksRevealSeenUpsertWithWhereUniqueWithoutUserInput | TopPicksRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TopPicksRevealSeenCreateManyUserInputEnvelope
+    set?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    disconnect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    delete?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    update?: TopPicksRevealSeenUpdateWithWhereUniqueWithoutUserInput | TopPicksRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TopPicksRevealSeenUpdateManyWithWhereWithoutUserInput | TopPicksRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutUserInput, LeagueMemberUncheckedCreateWithoutUserInput> | LeagueMemberCreateWithoutUserInput[] | LeagueMemberUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutUserInput | LeagueMemberCreateOrConnectWithoutUserInput[]
@@ -20092,6 +22902,34 @@ export namespace Prisma {
     deleteMany?: TournamentRevealSeenScalarWhereInput | TournamentRevealSeenScalarWhereInput[]
   }
 
+  export type KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput> | KnockoutRevealSeenCreateWithoutUserInput[] | KnockoutRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutUserInput | KnockoutRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: KnockoutRevealSeenUpsertWithWhereUniqueWithoutUserInput | KnockoutRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: KnockoutRevealSeenCreateManyUserInputEnvelope
+    set?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    disconnect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    delete?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    update?: KnockoutRevealSeenUpdateWithWhereUniqueWithoutUserInput | KnockoutRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: KnockoutRevealSeenUpdateManyWithWhereWithoutUserInput | KnockoutRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput> | TopPicksRevealSeenCreateWithoutUserInput[] | TopPicksRevealSeenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutUserInput | TopPicksRevealSeenCreateOrConnectWithoutUserInput[]
+    upsert?: TopPicksRevealSeenUpsertWithWhereUniqueWithoutUserInput | TopPicksRevealSeenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TopPicksRevealSeenCreateManyUserInputEnvelope
+    set?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    disconnect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    delete?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    update?: TopPicksRevealSeenUpdateWithWhereUniqueWithoutUserInput | TopPicksRevealSeenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TopPicksRevealSeenUpdateManyWithWhereWithoutUserInput | TopPicksRevealSeenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -20159,6 +22997,20 @@ export namespace Prisma {
     connect?: TournamentRevealSeenWhereUniqueInput | TournamentRevealSeenWhereUniqueInput[]
   }
 
+  export type KnockoutRevealSeenCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput> | KnockoutRevealSeenCreateWithoutLeagueInput[] | KnockoutRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutLeagueInput | KnockoutRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: KnockoutRevealSeenCreateManyLeagueInputEnvelope
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+  }
+
+  export type TopPicksRevealSeenCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput> | TopPicksRevealSeenCreateWithoutLeagueInput[] | TopPicksRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutLeagueInput | TopPicksRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: TopPicksRevealSeenCreateManyLeagueInputEnvelope
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+  }
+
   export type LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -20224,6 +23076,20 @@ export namespace Prisma {
     connectOrCreate?: TournamentRevealSeenCreateOrConnectWithoutLeagueInput | TournamentRevealSeenCreateOrConnectWithoutLeagueInput[]
     createMany?: TournamentRevealSeenCreateManyLeagueInputEnvelope
     connect?: TournamentRevealSeenWhereUniqueInput | TournamentRevealSeenWhereUniqueInput[]
+  }
+
+  export type KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput> | KnockoutRevealSeenCreateWithoutLeagueInput[] | KnockoutRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutLeagueInput | KnockoutRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: KnockoutRevealSeenCreateManyLeagueInputEnvelope
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+  }
+
+  export type TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput> | TopPicksRevealSeenCreateWithoutLeagueInput[] | TopPicksRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutLeagueInput | TopPicksRevealSeenCreateOrConnectWithoutLeagueInput[]
+    createMany?: TopPicksRevealSeenCreateManyLeagueInputEnvelope
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
   }
 
   export type LeagueMemberUpdateManyWithoutLeagueNestedInput = {
@@ -20354,6 +23220,34 @@ export namespace Prisma {
     deleteMany?: TournamentRevealSeenScalarWhereInput | TournamentRevealSeenScalarWhereInput[]
   }
 
+  export type KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput> | KnockoutRevealSeenCreateWithoutLeagueInput[] | KnockoutRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutLeagueInput | KnockoutRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: KnockoutRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | KnockoutRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: KnockoutRevealSeenCreateManyLeagueInputEnvelope
+    set?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    disconnect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    delete?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    update?: KnockoutRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | KnockoutRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: KnockoutRevealSeenUpdateManyWithWhereWithoutLeagueInput | KnockoutRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+  }
+
+  export type TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput> | TopPicksRevealSeenCreateWithoutLeagueInput[] | TopPicksRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutLeagueInput | TopPicksRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: TopPicksRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | TopPicksRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: TopPicksRevealSeenCreateManyLeagueInputEnvelope
+    set?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    disconnect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    delete?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    update?: TopPicksRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | TopPicksRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: TopPicksRevealSeenUpdateManyWithWhereWithoutLeagueInput | TopPicksRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
+  }
+
   export type LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput = {
     create?: XOR<LeagueMemberCreateWithoutLeagueInput, LeagueMemberUncheckedCreateWithoutLeagueInput> | LeagueMemberCreateWithoutLeagueInput[] | LeagueMemberUncheckedCreateWithoutLeagueInput[]
     connectOrCreate?: LeagueMemberCreateOrConnectWithoutLeagueInput | LeagueMemberCreateOrConnectWithoutLeagueInput[]
@@ -20480,6 +23374,34 @@ export namespace Prisma {
     update?: TournamentRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | TournamentRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
     updateMany?: TournamentRevealSeenUpdateManyWithWhereWithoutLeagueInput | TournamentRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
     deleteMany?: TournamentRevealSeenScalarWhereInput | TournamentRevealSeenScalarWhereInput[]
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput> | KnockoutRevealSeenCreateWithoutLeagueInput[] | KnockoutRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: KnockoutRevealSeenCreateOrConnectWithoutLeagueInput | KnockoutRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: KnockoutRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | KnockoutRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: KnockoutRevealSeenCreateManyLeagueInputEnvelope
+    set?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    disconnect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    delete?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    connect?: KnockoutRevealSeenWhereUniqueInput | KnockoutRevealSeenWhereUniqueInput[]
+    update?: KnockoutRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | KnockoutRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: KnockoutRevealSeenUpdateManyWithWhereWithoutLeagueInput | KnockoutRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput = {
+    create?: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput> | TopPicksRevealSeenCreateWithoutLeagueInput[] | TopPicksRevealSeenUncheckedCreateWithoutLeagueInput[]
+    connectOrCreate?: TopPicksRevealSeenCreateOrConnectWithoutLeagueInput | TopPicksRevealSeenCreateOrConnectWithoutLeagueInput[]
+    upsert?: TopPicksRevealSeenUpsertWithWhereUniqueWithoutLeagueInput | TopPicksRevealSeenUpsertWithWhereUniqueWithoutLeagueInput[]
+    createMany?: TopPicksRevealSeenCreateManyLeagueInputEnvelope
+    set?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    disconnect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    delete?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    connect?: TopPicksRevealSeenWhereUniqueInput | TopPicksRevealSeenWhereUniqueInput[]
+    update?: TopPicksRevealSeenUpdateWithWhereUniqueWithoutLeagueInput | TopPicksRevealSeenUpdateWithWhereUniqueWithoutLeagueInput[]
+    updateMany?: TopPicksRevealSeenUpdateManyWithWhereWithoutLeagueInput | TopPicksRevealSeenUpdateManyWithWhereWithoutLeagueInput[]
+    deleteMany?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
   }
 
   export type LeagueCreateNestedOneWithoutMembersInput = {
@@ -20854,6 +23776,62 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutTournamentRevealSeenInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTournamentRevealSeenInput, UserUpdateWithoutTournamentRevealSeenInput>, UserUncheckedUpdateWithoutTournamentRevealSeenInput>
+  }
+
+  export type LeagueCreateNestedOneWithoutKnockoutRevealSeenInput = {
+    create?: XOR<LeagueCreateWithoutKnockoutRevealSeenInput, LeagueUncheckedCreateWithoutKnockoutRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutKnockoutRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutKnockoutRevealSeenInput = {
+    create?: XOR<UserCreateWithoutKnockoutRevealSeenInput, UserUncheckedCreateWithoutKnockoutRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutKnockoutRevealSeenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput = {
+    create?: XOR<LeagueCreateWithoutKnockoutRevealSeenInput, LeagueUncheckedCreateWithoutKnockoutRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutKnockoutRevealSeenInput
+    upsert?: LeagueUpsertWithoutKnockoutRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutKnockoutRevealSeenInput, LeagueUpdateWithoutKnockoutRevealSeenInput>, LeagueUncheckedUpdateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput = {
+    create?: XOR<UserCreateWithoutKnockoutRevealSeenInput, UserUncheckedCreateWithoutKnockoutRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutKnockoutRevealSeenInput
+    upsert?: UserUpsertWithoutKnockoutRevealSeenInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutKnockoutRevealSeenInput, UserUpdateWithoutKnockoutRevealSeenInput>, UserUncheckedUpdateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type LeagueCreateNestedOneWithoutTopPicksRevealSeenInput = {
+    create?: XOR<LeagueCreateWithoutTopPicksRevealSeenInput, LeagueUncheckedCreateWithoutTopPicksRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutTopPicksRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutTopPicksRevealSeenInput = {
+    create?: XOR<UserCreateWithoutTopPicksRevealSeenInput, UserUncheckedCreateWithoutTopPicksRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTopPicksRevealSeenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LeagueUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput = {
+    create?: XOR<LeagueCreateWithoutTopPicksRevealSeenInput, LeagueUncheckedCreateWithoutTopPicksRevealSeenInput>
+    connectOrCreate?: LeagueCreateOrConnectWithoutTopPicksRevealSeenInput
+    upsert?: LeagueUpsertWithoutTopPicksRevealSeenInput
+    connect?: LeagueWhereUniqueInput
+    update?: XOR<XOR<LeagueUpdateToOneWithWhereWithoutTopPicksRevealSeenInput, LeagueUpdateWithoutTopPicksRevealSeenInput>, LeagueUncheckedUpdateWithoutTopPicksRevealSeenInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput = {
+    create?: XOR<UserCreateWithoutTopPicksRevealSeenInput, UserUncheckedCreateWithoutTopPicksRevealSeenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTopPicksRevealSeenInput
+    upsert?: UserUpsertWithoutTopPicksRevealSeenInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTopPicksRevealSeenInput, UserUpdateWithoutTopPicksRevealSeenInput>, UserUncheckedUpdateWithoutTopPicksRevealSeenInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21240,6 +24218,48 @@ export namespace Prisma {
     data: TournamentRevealSeenCreateManyUserInput | TournamentRevealSeenCreateManyUserInput[]
   }
 
+  export type KnockoutRevealSeenCreateWithoutUserInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutKnockoutRevealSeenInput
+  }
+
+  export type KnockoutRevealSeenUncheckedCreateWithoutUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenCreateOrConnectWithoutUserInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    create: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type KnockoutRevealSeenCreateManyUserInputEnvelope = {
+    data: KnockoutRevealSeenCreateManyUserInput | KnockoutRevealSeenCreateManyUserInput[]
+  }
+
+  export type TopPicksRevealSeenCreateWithoutUserInput = {
+    id?: string
+    seenAt?: Date | string
+    league: LeagueCreateNestedOneWithoutTopPicksRevealSeenInput
+  }
+
+  export type TopPicksRevealSeenUncheckedCreateWithoutUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenCreateOrConnectWithoutUserInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    create: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type TopPicksRevealSeenCreateManyUserInputEnvelope = {
+    data: TopPicksRevealSeenCreateManyUserInput | TopPicksRevealSeenCreateManyUserInput[]
+  }
+
   export type LeagueMemberUpsertWithWhereUniqueWithoutUserInput = {
     where: LeagueMemberWhereUniqueInput
     update: XOR<LeagueMemberUpdateWithoutUserInput, LeagueMemberUncheckedUpdateWithoutUserInput>
@@ -21438,6 +24458,58 @@ export namespace Prisma {
     leagueId?: StringFilter<"TournamentRevealSeen"> | string
     userId?: StringFilter<"TournamentRevealSeen"> | string
     seenAt?: DateTimeFilter<"TournamentRevealSeen"> | Date | string
+  }
+
+  export type KnockoutRevealSeenUpsertWithWhereUniqueWithoutUserInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    update: XOR<KnockoutRevealSeenUpdateWithoutUserInput, KnockoutRevealSeenUncheckedUpdateWithoutUserInput>
+    create: XOR<KnockoutRevealSeenCreateWithoutUserInput, KnockoutRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type KnockoutRevealSeenUpdateWithWhereUniqueWithoutUserInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    data: XOR<KnockoutRevealSeenUpdateWithoutUserInput, KnockoutRevealSeenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type KnockoutRevealSeenUpdateManyWithWhereWithoutUserInput = {
+    where: KnockoutRevealSeenScalarWhereInput
+    data: XOR<KnockoutRevealSeenUpdateManyMutationInput, KnockoutRevealSeenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type KnockoutRevealSeenScalarWhereInput = {
+    AND?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+    OR?: KnockoutRevealSeenScalarWhereInput[]
+    NOT?: KnockoutRevealSeenScalarWhereInput | KnockoutRevealSeenScalarWhereInput[]
+    id?: StringFilter<"KnockoutRevealSeen"> | string
+    leagueId?: StringFilter<"KnockoutRevealSeen"> | string
+    userId?: StringFilter<"KnockoutRevealSeen"> | string
+    seenAt?: DateTimeFilter<"KnockoutRevealSeen"> | Date | string
+  }
+
+  export type TopPicksRevealSeenUpsertWithWhereUniqueWithoutUserInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    update: XOR<TopPicksRevealSeenUpdateWithoutUserInput, TopPicksRevealSeenUncheckedUpdateWithoutUserInput>
+    create: XOR<TopPicksRevealSeenCreateWithoutUserInput, TopPicksRevealSeenUncheckedCreateWithoutUserInput>
+  }
+
+  export type TopPicksRevealSeenUpdateWithWhereUniqueWithoutUserInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    data: XOR<TopPicksRevealSeenUpdateWithoutUserInput, TopPicksRevealSeenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TopPicksRevealSeenUpdateManyWithWhereWithoutUserInput = {
+    where: TopPicksRevealSeenScalarWhereInput
+    data: XOR<TopPicksRevealSeenUpdateManyMutationInput, TopPicksRevealSeenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TopPicksRevealSeenScalarWhereInput = {
+    AND?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
+    OR?: TopPicksRevealSeenScalarWhereInput[]
+    NOT?: TopPicksRevealSeenScalarWhereInput | TopPicksRevealSeenScalarWhereInput[]
+    id?: StringFilter<"TopPicksRevealSeen"> | string
+    leagueId?: StringFilter<"TopPicksRevealSeen"> | string
+    userId?: StringFilter<"TopPicksRevealSeen"> | string
+    seenAt?: DateTimeFilter<"TopPicksRevealSeen"> | Date | string
   }
 
   export type LeagueMemberCreateWithoutLeagueInput = {
@@ -21674,6 +24746,48 @@ export namespace Prisma {
     data: TournamentRevealSeenCreateManyLeagueInput | TournamentRevealSeenCreateManyLeagueInput[]
   }
 
+  export type KnockoutRevealSeenCreateWithoutLeagueInput = {
+    id?: string
+    seenAt?: Date | string
+    user: UserCreateNestedOneWithoutKnockoutRevealSeenInput
+  }
+
+  export type KnockoutRevealSeenUncheckedCreateWithoutLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenCreateOrConnectWithoutLeagueInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    create: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type KnockoutRevealSeenCreateManyLeagueInputEnvelope = {
+    data: KnockoutRevealSeenCreateManyLeagueInput | KnockoutRevealSeenCreateManyLeagueInput[]
+  }
+
+  export type TopPicksRevealSeenCreateWithoutLeagueInput = {
+    id?: string
+    seenAt?: Date | string
+    user: UserCreateNestedOneWithoutTopPicksRevealSeenInput
+  }
+
+  export type TopPicksRevealSeenUncheckedCreateWithoutLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenCreateOrConnectWithoutLeagueInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    create: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type TopPicksRevealSeenCreateManyLeagueInputEnvelope = {
+    data: TopPicksRevealSeenCreateManyLeagueInput | TopPicksRevealSeenCreateManyLeagueInput[]
+  }
+
   export type LeagueMemberUpsertWithWhereUniqueWithoutLeagueInput = {
     where: LeagueMemberWhereUniqueInput
     update: XOR<LeagueMemberUpdateWithoutLeagueInput, LeagueMemberUncheckedUpdateWithoutLeagueInput>
@@ -21855,6 +24969,38 @@ export namespace Prisma {
     data: XOR<TournamentRevealSeenUpdateManyMutationInput, TournamentRevealSeenUncheckedUpdateManyWithoutLeagueInput>
   }
 
+  export type KnockoutRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    update: XOR<KnockoutRevealSeenUpdateWithoutLeagueInput, KnockoutRevealSeenUncheckedUpdateWithoutLeagueInput>
+    create: XOR<KnockoutRevealSeenCreateWithoutLeagueInput, KnockoutRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type KnockoutRevealSeenUpdateWithWhereUniqueWithoutLeagueInput = {
+    where: KnockoutRevealSeenWhereUniqueInput
+    data: XOR<KnockoutRevealSeenUpdateWithoutLeagueInput, KnockoutRevealSeenUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type KnockoutRevealSeenUpdateManyWithWhereWithoutLeagueInput = {
+    where: KnockoutRevealSeenScalarWhereInput
+    data: XOR<KnockoutRevealSeenUpdateManyMutationInput, KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueInput>
+  }
+
+  export type TopPicksRevealSeenUpsertWithWhereUniqueWithoutLeagueInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    update: XOR<TopPicksRevealSeenUpdateWithoutLeagueInput, TopPicksRevealSeenUncheckedUpdateWithoutLeagueInput>
+    create: XOR<TopPicksRevealSeenCreateWithoutLeagueInput, TopPicksRevealSeenUncheckedCreateWithoutLeagueInput>
+  }
+
+  export type TopPicksRevealSeenUpdateWithWhereUniqueWithoutLeagueInput = {
+    where: TopPicksRevealSeenWhereUniqueInput
+    data: XOR<TopPicksRevealSeenUpdateWithoutLeagueInput, TopPicksRevealSeenUncheckedUpdateWithoutLeagueInput>
+  }
+
+  export type TopPicksRevealSeenUpdateManyWithWhereWithoutLeagueInput = {
+    where: TopPicksRevealSeenScalarWhereInput
+    data: XOR<TopPicksRevealSeenUpdateManyMutationInput, TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueInput>
+  }
+
   export type LeagueCreateWithoutMembersInput = {
     id?: string
     slug: string
@@ -21875,6 +25021,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMembersInput = {
@@ -21897,6 +25045,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMembersInput = {
@@ -21918,6 +25068,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLeagueMembersInput = {
@@ -21934,6 +25086,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLeagueMembersInput = {
@@ -21972,6 +25126,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMembersInput = {
@@ -21994,6 +25150,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutLeagueMembersInput = {
@@ -22021,6 +25179,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLeagueMembersInput = {
@@ -22037,6 +25197,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchPredictionCreateWithoutMatchInput = {
@@ -22153,6 +25315,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchPredictionsInput = {
@@ -22175,6 +25339,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchPredictionsInput = {
@@ -22241,6 +25407,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchPredictionsInput = {
@@ -22257,6 +25425,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchPredictionsInput = {
@@ -22295,6 +25465,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -22317,6 +25489,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type MatchUpsertWithoutPredictionsInput = {
@@ -22395,6 +25569,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchPredictionsInput = {
@@ -22411,6 +25587,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutLeaderboardStateInput = {
@@ -22433,6 +25611,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutLeaderboardStateInput = {
@@ -22455,6 +25635,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutLeaderboardStateInput = {
@@ -22493,6 +25675,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutLeaderboardStateInput = {
@@ -22515,6 +25699,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutKnockoutLeaderboardStateInput = {
@@ -22537,6 +25723,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutKnockoutLeaderboardStateInput = {
@@ -22559,6 +25747,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutKnockoutLeaderboardStateInput = {
@@ -22597,6 +25787,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutKnockoutLeaderboardStateInput = {
@@ -22619,6 +25811,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutRoundOf32LeaderboardStateInput = {
@@ -22641,6 +25835,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutRoundOf32LeaderboardStateInput = {
@@ -22663,6 +25859,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutRoundOf32LeaderboardStateInput = {
@@ -22701,6 +25899,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutRoundOf32LeaderboardStateInput = {
@@ -22723,6 +25923,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueCreateWithoutTournamentPredictionsInput = {
@@ -22745,6 +25947,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -22767,6 +25971,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -22788,6 +25994,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentPredictionsInput = {
@@ -22804,6 +26012,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentPredictionsInput = {
@@ -22842,6 +26052,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -22864,6 +26076,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutTournamentPredictionsInput = {
@@ -22891,6 +26105,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentPredictionsInput = {
@@ -22907,6 +26123,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutMatchWinnerRevealSeenInput = {
@@ -22929,6 +26147,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -22951,6 +26171,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -22972,6 +26194,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMatchWinnerRevealSeenInput = {
@@ -22988,6 +26212,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMatchWinnerRevealSeenInput = {
@@ -23071,6 +26297,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -23093,6 +26321,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -23120,6 +26350,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMatchWinnerRevealSeenInput = {
@@ -23136,6 +26368,8 @@ export namespace Prisma {
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MatchUpsertWithoutMatchWinnerRevealSeenInput = {
@@ -23209,6 +26443,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutGroupStageRevealSeenInput = {
@@ -23231,6 +26467,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutGroupStageRevealSeenInput = {
@@ -23252,6 +26490,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGroupStageRevealSeenInput = {
@@ -23268,6 +26508,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGroupStageRevealSeenInput = {
@@ -23306,6 +26548,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutGroupStageRevealSeenInput = {
@@ -23328,6 +26572,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutGroupStageRevealSeenInput = {
@@ -23355,6 +26601,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGroupStageRevealSeenInput = {
@@ -23371,6 +26619,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutRoundOf32RevealSeenInput = {
@@ -23393,6 +26643,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutRoundOf32RevealSeenInput = {
@@ -23415,6 +26667,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutRoundOf32RevealSeenInput = {
@@ -23436,6 +26690,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoundOf32RevealSeenInput = {
@@ -23452,6 +26708,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRoundOf32RevealSeenInput = {
@@ -23490,6 +26748,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutRoundOf32RevealSeenInput = {
@@ -23512,6 +26772,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutRoundOf32RevealSeenInput = {
@@ -23539,6 +26801,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoundOf32RevealSeenInput = {
@@ -23555,6 +26819,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueCreateWithoutTournamentRevealSeenInput = {
@@ -23577,6 +26843,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueUncheckedCreateWithoutTournamentRevealSeenInput = {
@@ -23599,6 +26867,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
   }
 
   export type LeagueCreateOrConnectWithoutTournamentRevealSeenInput = {
@@ -23620,6 +26890,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentRevealSeenInput = {
@@ -23636,6 +26908,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentRevealSeenInput = {
@@ -23674,6 +26948,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
   }
 
   export type LeagueUncheckedUpdateWithoutTournamentRevealSeenInput = {
@@ -23696,6 +26972,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
   }
 
   export type UserUpsertWithoutTournamentRevealSeenInput = {
@@ -23723,6 +27001,8 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentRevealSeenInput = {
@@ -23739,6 +27019,408 @@ export namespace Prisma {
     matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
     roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LeagueCreateWithoutKnockoutRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
+    tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutKnockoutRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutKnockoutRevealSeenInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutKnockoutRevealSeenInput, LeagueUncheckedCreateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type UserCreateWithoutKnockoutRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
+    tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutKnockoutRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutKnockoutRevealSeenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutKnockoutRevealSeenInput, UserUncheckedCreateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type LeagueUpsertWithoutKnockoutRevealSeenInput = {
+    update: XOR<LeagueUpdateWithoutKnockoutRevealSeenInput, LeagueUncheckedUpdateWithoutKnockoutRevealSeenInput>
+    create: XOR<LeagueCreateWithoutKnockoutRevealSeenInput, LeagueUncheckedCreateWithoutKnockoutRevealSeenInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutKnockoutRevealSeenInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutKnockoutRevealSeenInput, LeagueUncheckedUpdateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type LeagueUpdateWithoutKnockoutRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutKnockoutRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type UserUpsertWithoutKnockoutRevealSeenInput = {
+    update: XOR<UserUpdateWithoutKnockoutRevealSeenInput, UserUncheckedUpdateWithoutKnockoutRevealSeenInput>
+    create: XOR<UserCreateWithoutKnockoutRevealSeenInput, UserUncheckedCreateWithoutKnockoutRevealSeenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutKnockoutRevealSeenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutKnockoutRevealSeenInput, UserUncheckedUpdateWithoutKnockoutRevealSeenInput>
+  }
+
+  export type UserUpdateWithoutKnockoutRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutKnockoutRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    topPicksRevealSeen?: TopPicksRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LeagueCreateWithoutTopPicksRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutLeagueInput
+    tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueUncheckedCreateWithoutTopPicksRevealSeenInput = {
+    id?: string
+    slug: string
+    name: string
+    inviteCode: string
+    subtitle?: string
+    isPaused?: boolean
+    isHidden?: boolean
+    officialAwardsJson?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutLeagueInput
+    leaderboardState?: LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedCreateNestedOneWithoutLeagueInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutLeagueInput
+  }
+
+  export type LeagueCreateOrConnectWithoutTopPicksRevealSeenInput = {
+    where: LeagueWhereUniqueInput
+    create: XOR<LeagueCreateWithoutTopPicksRevealSeenInput, LeagueUncheckedCreateWithoutTopPicksRevealSeenInput>
+  }
+
+  export type UserCreateWithoutTopPicksRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenCreateNestedManyWithoutUserInput
+    tournamentRevealSeen?: TournamentRevealSeenCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTopPicksRevealSeenInput = {
+    id?: string
+    email: string
+    displayName: string
+    passwordHash: string
+    isAdmin?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leagueMembers?: LeagueMemberUncheckedCreateNestedManyWithoutUserInput
+    matchPredictions?: MatchPredictionUncheckedCreateNestedManyWithoutUserInput
+    tournamentPredictions?: TournamentPredictionUncheckedCreateNestedManyWithoutUserInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedCreateNestedManyWithoutUserInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedCreateNestedManyWithoutUserInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTopPicksRevealSeenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTopPicksRevealSeenInput, UserUncheckedCreateWithoutTopPicksRevealSeenInput>
+  }
+
+  export type LeagueUpsertWithoutTopPicksRevealSeenInput = {
+    update: XOR<LeagueUpdateWithoutTopPicksRevealSeenInput, LeagueUncheckedUpdateWithoutTopPicksRevealSeenInput>
+    create: XOR<LeagueCreateWithoutTopPicksRevealSeenInput, LeagueUncheckedCreateWithoutTopPicksRevealSeenInput>
+    where?: LeagueWhereInput
+  }
+
+  export type LeagueUpdateToOneWithWhereWithoutTopPicksRevealSeenInput = {
+    where?: LeagueWhereInput
+    data: XOR<LeagueUpdateWithoutTopPicksRevealSeenInput, LeagueUncheckedUpdateWithoutTopPicksRevealSeenInput>
+  }
+
+  export type LeagueUpdateWithoutTopPicksRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutLeagueNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type LeagueUncheckedUpdateWithoutTopPicksRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    inviteCode?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    isPaused?: BoolFieldUpdateOperationsInput | boolean
+    isHidden?: BoolFieldUpdateOperationsInput | boolean
+    officialAwardsJson?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutLeagueNestedInput
+    leaderboardState?: LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    knockoutLeaderboardState?: KnockoutLeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    roundOf32LeaderboardState?: RoundOf32LeaderboardStateUncheckedUpdateOneWithoutLeagueNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueNestedInput
+  }
+
+  export type UserUpsertWithoutTopPicksRevealSeenInput = {
+    update: XOR<UserUpdateWithoutTopPicksRevealSeenInput, UserUncheckedUpdateWithoutTopPicksRevealSeenInput>
+    create: XOR<UserCreateWithoutTopPicksRevealSeenInput, UserUncheckedCreateWithoutTopPicksRevealSeenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTopPicksRevealSeenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTopPicksRevealSeenInput, UserUncheckedUpdateWithoutTopPicksRevealSeenInput>
+  }
+
+  export type UserUpdateWithoutTopPicksRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUpdateManyWithoutUserNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTopPicksRevealSeenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leagueMembers?: LeagueMemberUncheckedUpdateManyWithoutUserNestedInput
+    matchPredictions?: MatchPredictionUncheckedUpdateManyWithoutUserNestedInput
+    tournamentPredictions?: TournamentPredictionUncheckedUpdateManyWithoutUserNestedInput
+    matchWinnerRevealSeen?: MatchWinnerRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    groupStageRevealSeen?: GroupStageRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    roundOf32RevealSeen?: RoundOf32RevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    tournamentRevealSeen?: TournamentRevealSeenUncheckedUpdateManyWithoutUserNestedInput
+    knockoutRevealSeen?: KnockoutRevealSeenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LeagueMemberCreateManyUserInput = {
@@ -23796,6 +27478,18 @@ export namespace Prisma {
   }
 
   export type TournamentRevealSeenCreateManyUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenCreateManyUserInput = {
+    id?: string
+    leagueId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenCreateManyUserInput = {
     id?: string
     leagueId: string
     seenAt?: Date | string
@@ -23981,6 +27675,42 @@ export namespace Prisma {
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type KnockoutRevealSeenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    league?: LeagueUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leagueId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeagueMemberCreateManyLeagueInput = {
     id?: string
     userId: string
@@ -24036,6 +27766,18 @@ export namespace Prisma {
   }
 
   export type TournamentRevealSeenCreateManyLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type KnockoutRevealSeenCreateManyLeagueInput = {
+    id?: string
+    userId: string
+    seenAt?: Date | string
+  }
+
+  export type TopPicksRevealSeenCreateManyLeagueInput = {
     id?: string
     userId: string
     seenAt?: Date | string
@@ -24216,6 +27958,42 @@ export namespace Prisma {
   }
 
   export type TournamentRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutRevealSeenUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutKnockoutRevealSeenNestedInput
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnockoutRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTopPicksRevealSeenNestedInput
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateWithoutLeagueInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    seenAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TopPicksRevealSeenUncheckedUpdateManyWithoutLeagueInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     seenAt?: DateTimeFieldUpdateOperationsInput | Date | string

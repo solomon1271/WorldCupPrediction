@@ -4187,6 +4187,27 @@ th {
   font-size: 0.86rem;
 }
 
+.group-stage-celebration__awards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  text-align: left;
+}
+
+.group-stage-celebration__awards dt {
+  color: rgba(255, 231, 180, 0.78);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.group-stage-celebration__awards dd {
+  margin: 0.15rem 0 0;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
 .leaderboard-tabs__button--awards.leaderboard-tabs__button--active {
   border-color: rgba(241, 191, 0, 0.5);
   background: linear-gradient(135deg, rgba(170, 21, 27, 0.28), rgba(241, 191, 0, 0.16));

@@ -247,6 +247,20 @@ exports.Prisma.TournamentRevealSeenScalarFieldEnum = {
   seenAt: 'seenAt'
 };
 
+exports.Prisma.KnockoutRevealSeenScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  seenAt: 'seenAt'
+};
+
+exports.Prisma.TopPicksRevealSeenScalarFieldEnum = {
+  id: 'id',
+  leagueId: 'leagueId',
+  userId: 'userId',
+  seenAt: 'seenAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -271,7 +285,9 @@ exports.Prisma.ModelName = {
   MatchWinnerRevealSeen: 'MatchWinnerRevealSeen',
   GroupStageRevealSeen: 'GroupStageRevealSeen',
   RoundOf32RevealSeen: 'RoundOf32RevealSeen',
-  TournamentRevealSeen: 'TournamentRevealSeen'
+  TournamentRevealSeen: 'TournamentRevealSeen',
+  KnockoutRevealSeen: 'KnockoutRevealSeen',
+  TopPicksRevealSeen: 'TopPicksRevealSeen'
 };
 
 /**

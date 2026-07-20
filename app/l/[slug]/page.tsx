@@ -84,6 +84,8 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         groupStageCelebration={dashboard.groupStageCelebration}
         roundOf32Celebration={dashboard.roundOf32Celebration}
         tournamentCelebration={dashboard.tournamentCelebration}
+        knockoutCelebration={dashboard.knockoutCelebration}
+        topPicksCelebration={dashboard.topPicksCelebration}
         predictionTimeZone={dashboard.predictionTimeZone}
       />
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />
