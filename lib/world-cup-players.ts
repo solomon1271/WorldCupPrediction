@@ -42,7 +42,7 @@ const ADDITIONAL_PLAYERS_BY_TEAM: Record<string, readonly string[]> = {
   Senegal: ["Nicolas Jackson", "Édouard Mendy", "Idrissa Gueye"],
   "South Africa": ["Ronwen Williams", "Themba Zwane"],
   "South Korea": ["Hwang Hee-chan", "Kim Min-jae", "Cho Gue-sung"],
-  Spain: ["Rodri", "Pedri", "Álvaro Morata", "Unai Simón", "Nico Williams"],
+  Spain: ["Rodri", "Pedri", "Álvaro Morata", "Unai Simón", "Nico Williams", "Pau Cubarsí", "Ferran Torres"],
   Sweden: ["Viktor Gyökeres", "Robin Olsen", "Emil Forsberg"],
   Switzerland: ["Breel Embolo", "Yann Sommer", "Manuel Akanji"],
   Tunisia: ["Wahbi Khazri", "Aymen Dahmen"],
@@ -71,7 +71,10 @@ const PLAYER_ALIASES: Record<string, string> = {
   "jamal musiala": "Jamal Musiala",
   vinicius: "Vinícius Júnior",
   "vinicius junior": "Vinícius Júnior",
-  "vinícius júnior": "Vinícius Júnior"
+  "vinícius júnior": "Vinícius Júnior",
+  "unai simon": "Unai Simón",
+  "pau cubarsi": "Pau Cubarsí",
+  "pau cubarsí": "Pau Cubarsí"
 };
 
 let cachedPlayersByTeam: Record<string, string[]> | null = null;

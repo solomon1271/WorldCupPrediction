@@ -7,18 +7,24 @@ import { LeaderboardPlayerDetail } from "@/components/LeaderboardPlayerDetail";
 import { MomentumBadge } from "@/components/MomentumBadge";
 import { SectionStoryHeader } from "@/components/SectionStoryHeader";
 import type { DashboardStanding } from "@/lib/dashboard";
+import type { TopPicksStanding } from "@/lib/leaderboard";
 import {
   buildChaseMessage,
   getLeaderboardRankZone,
   getLeaderboardZoneLabel,
   getPlayerAvatarHue,
   getPlayerInitials,
-  getVisibleLeaderboardZones,
+  getVisibleLeaderboardZones
 } from "@/lib/leaderboard-presentation";
 import type { PlayerStandingScope } from "@/lib/player-standing";
+import {
+  TOURNAMENT_AWARD_POINTS,
+  TOURNAMENT_TOP_PICK_COUNT,
+  type TournamentAwards
+} from "@/lib/tournament-scoring";
 import { formatRankChangeLabel } from "@/lib/utils";
 
-type LeaderboardTab = "knockout" | "round-of-32" | "group-stage";
+type LeaderboardTab = "knockout" | "top-picks" | "round-of-32" | "group-stage";
 type GroupStageSubTab = "standings" | "insights";
 
 type LeaderboardProps = {
@@ -26,8 +32,24 @@ type LeaderboardProps = {
   knockoutStandings: DashboardStanding[];
   roundOf32Standings: DashboardStanding[];
   groupStageStandings: DashboardStanding[];
+  topPicksStandings: TopPicksStanding[];
+  officialAwards: TournamentAwards;
+  officialAwardsConfigured: boolean;
   currentUserId: string;
 };
+
+const AWARD_FIELDS: Array<{
+  key: keyof TopPicksStanding["picks"];
+  label: string;
+  awardKey: keyof TournamentAwards;
+}> = [
+  { key: "champion", label: "Champion", awardKey: "champion" },
+  { key: "runnerUp", label: "Runner-up", awardKey: "runnerUp" },
+  { key: "goldenBoot", label: "Golden Boot", awardKey: "goldenBoot" },
+  { key: "bestYoungPlayer", label: "Best Young Player", awardKey: "bestYoungPlayer" },
+  { key: "goldenGlove", label: "Golden Glove", awardKey: "goldenGlove" },
+  { key: "bestPlayer", label: "Best Player", awardKey: "bestPlayer" }
+];
 
 function RankChangeCell({ entry }: { entry: DashboardStanding }) {
   const displayRank = entry.afterRank ?? entry.rank;
@@ -93,6 +115,12 @@ const tabCopy: Record<
     copy: "Everyone starts at zero from match 89. Only Round of 16 picks and beyond count here.",
     chip: "From match 89"
   },
+  "top-picks": {
+    eyebrow: "Awards race",
+    title: "Top picks leaderboard",
+    copy: "Champion, runner-up, and award picks only. Each correct award is worth 100 points.",
+    chip: `${TOURNAMENT_AWARD_POINTS} pts × ${TOURNAMENT_TOP_PICK_COUNT}`
+  },
   "round-of-32": {
     eyebrow: "Historical",
     title: "Round of 32 leaderboard",
@@ -112,9 +140,14 @@ export function Leaderboard({
   knockoutStandings,
   roundOf32Standings,
   groupStageStandings,
+  topPicksStandings,
+  officialAwards,
+  officialAwardsConfigured,
   currentUserId
 }: LeaderboardProps) {
-  const [activeTab, setActiveTab] = useState<LeaderboardTab>("knockout");
+  const [activeTab, setActiveTab] = useState<LeaderboardTab>(
+    officialAwardsConfigured ? "top-picks" : "knockout"
+  );
   const [groupStageSubTab, setGroupStageSubTab] = useState<GroupStageSubTab>("standings");
   const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
 
@@ -123,8 +156,11 @@ export function Leaderboard({
       ? knockoutStandings
       : activeTab === "round-of-32"
         ? roundOf32Standings
-        : groupStageStandings;
-  const standingScope: PlayerStandingScope = activeTab;
+        : activeTab === "top-picks"
+          ? topPicksStandings
+          : groupStageStandings;
+  const standingScope: PlayerStandingScope =
+    activeTab === "top-picks" ? "top-picks" : activeTab === "knockout" ? "knockout" : activeTab;
   const copy = tabCopy[activeTab];
 
   const leader = standings[0];
@@ -133,33 +169,35 @@ export function Leaderboard({
     () => standings.find((entry) => entry.id === currentUserId),
     [currentUserId, standings]
   );
-  const chaseMessage = currentUserStanding
-    ? buildChaseMessage(currentUserStanding, leader, standings.length, activeTab)
-    : null;
+  const chaseMessage =
+    activeTab !== "top-picks" && currentUserStanding
+      ? buildChaseMessage(
+          currentUserStanding as DashboardStanding,
+          leader as DashboardStanding | undefined,
+          standings.length,
+          activeTab === "knockout" || activeTab === "round-of-32" || activeTab === "group-stage"
+            ? activeTab
+            : "knockout"
+        )
+      : null;
   const currentUserZone = currentUserStanding
     ? getLeaderboardRankZone(currentUserStanding.rank, standings.length)
     : null;
+  const topPicksLeader = topPicksStandings[0];
 
-  function openPlayer(entry: DashboardStanding) {
+  function openPlayer(entry: { id: string; name: string }) {
     setSelectedPlayer({ id: entry.id, name: entry.name });
   }
 
   return (
     <>
       <section id="leaderboard" className="section section--leaderboard">
-        <SectionStoryHeader
-          tone="leaderboard"
-          eyebrow={copy.eyebrow}
-          title={copy.title}
-          copy={copy.copy}
-        >
+        <SectionStoryHeader tone="leaderboard" eyebrow={copy.eyebrow} title={copy.title} copy={copy.copy}>
           <div className="leaderboard-ribbon">
             <span className="leaderboard-ribbon__chip">
               <strong>{standings.length}</strong> managers
             </span>
-            <span className="leaderboard-ribbon__chip leaderboard-ribbon__chip--leader">
-              {copy.chip}
-            </span>
+            <span className="leaderboard-ribbon__chip leaderboard-ribbon__chip--leader">{copy.chip}</span>
             {currentUserStanding ? (
               <span
                 className={`leaderboard-ribbon__chip leaderboard-ribbon__chip--you${currentUserZone ? ` leaderboard-ribbon__chip--${currentUserZone}` : ""}`}
@@ -180,6 +218,16 @@ export function Leaderboard({
           >
             Knockout
             <span className="leaderboard-tabs__count">{knockoutStandings.length}</span>
+          </button>
+          <button
+            className={`leaderboard-tabs__button leaderboard-tabs__button--awards${activeTab === "top-picks" ? " leaderboard-tabs__button--active" : ""}`}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "top-picks"}
+            onClick={() => setActiveTab("top-picks")}
+          >
+            Top picks
+            <span className="leaderboard-tabs__count">{topPicksStandings.length}</span>
           </button>
           <button
             className={`leaderboard-tabs__button leaderboard-tabs__button--history${activeTab === "round-of-32" ? " leaderboard-tabs__button--active" : ""}`}
@@ -228,6 +276,104 @@ export function Leaderboard({
 
         {activeTab === "group-stage" && groupStageSubTab === "insights" ? (
           <GroupStageInsights leagueSlug={leagueSlug} />
+        ) : activeTab === "top-picks" ? (
+          <div className="top-picks-board">
+            {officialAwardsConfigured ? (
+              <div className="top-picks-awards-banner" role="note">
+                <div>
+                  <p className="top-picks-awards-banner__eyebrow">Official awards</p>
+                  <h3>
+                    {topPicksLeader && topPicksLeader.totalPoints > 0
+                      ? `${topPicksLeader.name} leads Top picks`
+                      : "Awards are in"}
+                  </h3>
+                </div>
+                <dl className="top-picks-awards-banner__grid">
+                  {AWARD_FIELDS.map(({ label, awardKey }) => (
+                    <div key={awardKey}>
+                      <dt>{label}</dt>
+                      <dd>{officialAwards[awardKey] || "—"}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ) : (
+              <div className="leaderboard-chase-banner">
+                <span className="leaderboard-chase-banner__icon" aria-hidden="true">
+                  ⏳
+                </span>
+                <p>Official awards are not configured yet. Ranking appears once results are locked in.</p>
+              </div>
+            )}
+
+            <div className="top-picks-standings">
+              {topPicksStandings.map((entry) => {
+                const isCurrentUser = entry.id === currentUserId;
+                const zone = getLeaderboardRankZone(entry.rank, topPicksStandings.length);
+
+                return (
+                  <article
+                    key={entry.id}
+                    className={`top-picks-card top-picks-card--${zone}${isCurrentUser ? " top-picks-card--you" : ""}`}
+                  >
+                    <header className="top-picks-card__header">
+                      <LeaderboardRankBadge rank={entry.rank} totalPlayers={topPicksStandings.length} />
+                      <button
+                        className="leaderboard-player-button leaderboard-player-button--rich"
+                        type="button"
+                        onClick={() => openPlayer(entry)}
+                      >
+                        <span
+                          className="leaderboard-avatar"
+                          style={
+                            {
+                              "--avatar-hue": `${getPlayerAvatarHue(entry.name)}deg`
+                            } as React.CSSProperties & Record<string, string>
+                          }
+                          aria-hidden="true"
+                        >
+                          {getPlayerInitials(entry.name)}
+                        </span>
+                        <span className="leaderboard-player-button__copy">
+                          <span className="leaderboard-player-button__name">{entry.name}</span>
+                          {isCurrentUser ? <span className="leaderboard-player-button__tag">You</span> : null}
+                        </span>
+                      </button>
+                      <div className="top-picks-card__score">
+                        <strong>{entry.totalPoints}</strong>
+                        <span>
+                          {entry.hits}/{TOURNAMENT_TOP_PICK_COUNT} hits
+                        </span>
+                      </div>
+                    </header>
+
+                    <dl className="top-picks-card__picks">
+                      {AWARD_FIELDS.map(({ key, label }) => {
+                        const breakdownItem = entry.breakdown.find((item) => item.label === label);
+                        const hit = Boolean(breakdownItem?.hit);
+                        const pick = entry.picks[key];
+
+                        return (
+                          <div
+                            key={key}
+                            className={`top-picks-card__pick${hit ? " top-picks-card__pick--hit" : ""}${!pick ? " top-picks-card__pick--empty" : ""}`}
+                          >
+                            <dt>{label}</dt>
+                            <dd>
+                              <span>{pick || "Not picked"}</span>
+                              {officialAwardsConfigured ? (
+                                <em>{hit ? "Correct" : breakdownItem?.resultLabel || "Miss"}</em>
+                              ) : null}
+                            </dd>
+                          </div>
+                        );
+                      })}
+                    </dl>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         ) : (
           <>
             {chaseMessage && (activeTab !== "group-stage" || groupStageSubTab === "standings") ? (
@@ -259,7 +405,7 @@ export function Leaderboard({
                     </tr>
                   </thead>
                   <tbody>
-                    {standings.map((entry) => {
+                    {(standings as DashboardStanding[]).map((entry) => {
                       const rank = entry.rank;
                       const isCurrentUser = entry.id === currentUserId;
                       const zone = getLeaderboardRankZone(rank, standings.length);

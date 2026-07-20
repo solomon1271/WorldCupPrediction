@@ -7,6 +7,7 @@ import { getSessionUser } from "@/lib/auth/session-user";
 import { requireLeagueMembership } from "@/lib/leagues";
 import { buildPlayerStandingDetail, parseOfficialAwards } from "@/lib/player-standing";
 import { prisma } from "@/lib/prisma";
+import { hasConfiguredOfficialAwards } from "@/lib/tournament-scoring";
 
 type RouteContext = {
   params: Promise<{ slug: string; userId: string }>;
@@ -65,7 +66,12 @@ export async function GET(request: Request, { params }: RouteContext) {
       ? "group-stage"
       : scopeParam === "round-of-32"
         ? "round-of-32"
-        : "knockout";
+        : scopeParam === "top-picks"
+          ? "top-picks"
+          : "knockout";
+
+  const officialAwards = parseOfficialAwards(league?.officialAwardsJson);
+  const awardsLive = hasConfiguredOfficialAwards(officialAwards);
 
   const detail = buildPlayerStandingDetail(
     {
@@ -73,9 +79,9 @@ export async function GET(request: Request, { params }: RouteContext) {
       playerName: playerMember.user.displayName,
       matchPredictions: playerMember.user.matchPredictions,
       tournamentPrediction: playerMember.user.tournamentPredictions[0] || null,
-      officialAwards: parseOfficialAwards(league?.officialAwardsJson)
+      officialAwards
     },
-    { scope, redactTopPicks: user.id !== userId }
+    { scope, redactTopPicks: user.id !== userId && !awardsLive }
   );
 
   return NextResponse.json(

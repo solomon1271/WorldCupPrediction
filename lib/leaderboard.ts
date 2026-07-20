@@ -23,7 +23,32 @@ export type LeaderboardEntry = LeaderboardTotals & {
   name: string;
 };
 
-export type LeaderboardScope = "knockout" | "round-of-32" | "group-stage";
+export type LeaderboardScope = "knockout" | "round-of-32" | "group-stage" | "top-picks";
+
+export type TopPicksStanding = {
+  id: string;
+  name: string;
+  totalPoints: number;
+  hits: number;
+  exactScores: number;
+  outcomes: number;
+  bonusHits: number;
+  rank: number;
+  previousRank?: number;
+  afterRank?: number;
+  hasSnapshot: boolean;
+  trend: PlayerMomentum;
+  rankChange?: number;
+  picks: {
+    champion: string | null;
+    runnerUp: string | null;
+    goldenBoot: string | null;
+    bestYoungPlayer: string | null;
+    goldenGlove: string | null;
+    bestPlayer: string | null;
+  };
+  breakdown: ReturnType<typeof scoreTournamentPrediction>["items"];
+};
 
 type UserWithPredictions = Prisma.UserGetPayload<{
   include: {
@@ -38,7 +63,7 @@ type UserWithPredictions = Prisma.UserGetPayload<{
 
 function predictionsForScope(
   predictions: UserWithPredictions["matchPredictions"],
-  scope: LeaderboardScope
+  scope: Exclude<LeaderboardScope, "top-picks">
 ) {
   if (scope === "knockout") {
     return predictions.filter((prediction) => isActiveKnockoutMatchId(prediction.matchId));
@@ -61,9 +86,9 @@ export function sortLeaderboardEntries<T extends LeaderboardTotals>(entries: T[]
 export function buildLeaderboardEntries(
   users: UserWithPredictions[],
   officialAwards: TournamentAwards = {},
-  scope: LeaderboardScope = "knockout"
+  scope: Exclude<LeaderboardScope, "top-picks"> = "knockout"
 ): LeaderboardEntry[] {
-  const includeTournamentPoints = scope === "group-stage" && hasConfiguredOfficialAwards(officialAwards);
+  void officialAwards;
 
   return sortLeaderboardEntries(
     users.map((user) => {
@@ -84,22 +109,56 @@ export function buildLeaderboardEntries(
         }
       );
 
-      if (includeTournamentPoints) {
-        const tournamentPrediction = user.tournamentPredictions[0];
-
-        if (tournamentPrediction) {
-          const tournamentScore = scoreTournamentPrediction(tournamentPrediction, officialAwards);
-          totals.totalPoints += tournamentScore.points;
-          totals.bonusHits += tournamentScore.hits;
-        }
-      }
-
       return {
         id: user.id,
         name: user.displayName,
         ...totals
       };
     })
+  );
+}
+
+export function buildTopPicksEntries(
+  users: UserWithPredictions[],
+  officialAwards: TournamentAwards
+): Omit<TopPicksStanding, "rank" | "previousRank" | "afterRank" | "hasSnapshot" | "trend" | "rankChange">[] {
+  const awardsConfigured = hasConfiguredOfficialAwards(officialAwards);
+
+  const entries = users.map((user) => {
+    const prediction = user.tournamentPredictions[0] ?? {
+      champion: null,
+      runnerUp: null,
+      goldenBoot: null,
+      bestYoungPlayer: null,
+      goldenGlove: null,
+      bestPlayer: null
+    };
+    const score = awardsConfigured
+      ? scoreTournamentPrediction(prediction, officialAwards)
+      : { points: 0, hits: 0, items: [] as ReturnType<typeof scoreTournamentPrediction>["items"] };
+
+    return {
+      id: user.id,
+      name: user.displayName,
+      totalPoints: score.points,
+      hits: score.hits,
+      exactScores: score.hits,
+      outcomes: 0,
+      bonusHits: score.hits,
+      picks: {
+        champion: prediction.champion,
+        runnerUp: prediction.runnerUp,
+        goldenBoot: prediction.goldenBoot,
+        bestYoungPlayer: prediction.bestYoungPlayer,
+        goldenGlove: prediction.goldenGlove,
+        bestPlayer: prediction.bestPlayer
+      },
+      breakdown: score.items
+    };
+  });
+
+  return [...entries].sort(
+    (a, b) => b.totalPoints - a.totalPoints || b.hits - a.hits || a.name.localeCompare(b.name)
   );
 }
 
@@ -449,6 +508,24 @@ export async function buildRoundOf32Leaderboard(leagueId: string) {
   ]);
 
   return attachRankMomentum(buildLeaderboardEntries(users, officialAwards, "round-of-32"), snapshot);
+}
+
+export async function buildTopPicksLeaderboard(leagueId: string): Promise<TopPicksStanding[]> {
+  const [users, officialAwards] = await Promise.all([
+    getLeagueUsersWithPredictions(leagueId),
+    getLeagueOfficialAwards(leagueId)
+  ]);
+
+  return buildTopPicksEntries(users, officialAwards).map((entry, index) => ({
+    ...entry,
+    rank: index + 1,
+    hasSnapshot: false,
+    trend: "neutral" as PlayerMomentum
+  }));
+}
+
+export async function getOfficialAwardsForLeague(leagueId: string) {
+  return getLeagueOfficialAwards(leagueId);
 }
 
 export async function finalizeRoundOf32PhaseIfComplete() {

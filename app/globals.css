@@ -4141,6 +4141,200 @@ th {
   width: 100%;
 }
 
+.group-stage-celebration--spain {
+  border-color: rgba(241, 191, 0, 0.55);
+  background: linear-gradient(165deg, rgba(88, 12, 18, 0.98), rgba(18, 10, 20, 0.97));
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(241, 191, 0, 0.12) inset;
+}
+
+.group-stage-celebration--spain .group-stage-celebration__eyebrow {
+  color: #f1bf00;
+}
+
+.group-stage-celebration--spain .group-stage-celebration__hero {
+  border-color: rgba(170, 21, 27, 0.45);
+  background: linear-gradient(135deg, rgba(170, 21, 27, 0.28), rgba(241, 191, 0, 0.12));
+}
+
+.group-stage-celebration__top-picks {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: center;
+  margin: 0 0 1rem;
+  padding: 0.85rem 0.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 191, 0, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.group-stage-celebration__top-picks-label {
+  margin: 0;
+  color: #f1bf00;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.group-stage-celebration__top-picks strong {
+  font-size: 1.1rem;
+}
+
+.group-stage-celebration__top-picks span {
+  color: #d8e7ff;
+  font-size: 0.86rem;
+}
+
+.leaderboard-tabs__button--awards.leaderboard-tabs__button--active {
+  border-color: rgba(241, 191, 0, 0.5);
+  background: linear-gradient(135deg, rgba(170, 21, 27, 0.28), rgba(241, 191, 0, 0.16));
+}
+
+.top-picks-board {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.top-picks-awards-banner {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem 1.15rem;
+  border-radius: 20px;
+  border: 1px solid rgba(241, 191, 0, 0.35);
+  background: linear-gradient(135deg, rgba(170, 21, 27, 0.22), rgba(18, 24, 48, 0.92));
+}
+
+.top-picks-awards-banner__eyebrow {
+  margin: 0 0 0.25rem;
+  color: #f1bf00;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.top-picks-awards-banner h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.top-picks-awards-banner__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.top-picks-awards-banner__grid dt {
+  color: rgba(255, 231, 180, 0.78);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.top-picks-awards-banner__grid dd {
+  margin: 0.2rem 0 0;
+  font-weight: 700;
+}
+
+.top-picks-standings {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.top-picks-card {
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(12, 18, 40, 0.72);
+}
+
+.top-picks-card--crown {
+  border-color: rgba(241, 191, 0, 0.45);
+  box-shadow: 0 0 0 1px rgba(241, 191, 0, 0.12);
+}
+
+.top-picks-card--you {
+  outline: 1px solid rgba(125, 211, 252, 0.35);
+}
+
+.top-picks-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.top-picks-card__score {
+  margin-left: auto;
+  display: grid;
+  justify-items: end;
+  gap: 0.1rem;
+}
+
+.top-picks-card__score strong {
+  font-size: 1.2rem;
+}
+
+.top-picks-card__score span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.top-picks-card__picks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.top-picks-card__pick {
+  padding: 0.55rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.top-picks-card__pick dt {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.top-picks-card__pick dd {
+  margin: 0.2rem 0 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.top-picks-card__pick dd span {
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.top-picks-card__pick dd em {
+  color: rgba(248, 180, 180, 0.9);
+  font-style: normal;
+  font-size: 0.75rem;
+}
+
+.top-picks-card__pick--hit {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.top-picks-card__pick--hit dd em {
+  color: #86efac;
+}
+
+.top-picks-card__pick--empty dd span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
 .leaderboard-detail__card {
   padding: 1rem;
   border-radius: 18px;

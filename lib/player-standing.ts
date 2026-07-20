@@ -34,7 +34,7 @@ export type PlayerMatchStanding = {
   } | null;
 };
 
-export type PlayerStandingScope = "knockout" | "round-of-32" | "group-stage";
+export type PlayerStandingScope = "knockout" | "round-of-32" | "group-stage" | "top-picks";
 
 export type PlayerStandingDetail = {
   playerId: string;
@@ -115,17 +115,20 @@ export function buildPlayerStandingDetail(
 ): PlayerStandingDetail {
   const scope = options?.scope ?? "knockout";
   const redactTopPicks = options?.redactTopPicks ?? false;
-  const matchPredictions = input.matchPredictions.filter((prediction) => {
-    if (scope === "knockout") {
-      return isActiveKnockoutMatchId(prediction.matchId);
-    }
+  const matchPredictions =
+    scope === "top-picks"
+      ? []
+      : input.matchPredictions.filter((prediction) => {
+          if (scope === "knockout") {
+            return isActiveKnockoutMatchId(prediction.matchId);
+          }
 
-    if (scope === "round-of-32") {
-      return isRoundOf32MatchId(prediction.matchId);
-    }
+          if (scope === "round-of-32") {
+            return isRoundOf32MatchId(prediction.matchId);
+          }
 
-    return isGroupStageMatchId(prediction.matchId);
-  });
+          return isGroupStageMatchId(prediction.matchId);
+        });
 
   let matchPoints = 0;
   let exactScores = 0;
@@ -177,19 +180,19 @@ export function buildPlayerStandingDetail(
   };
   const tournamentSavedPickCount = countSavedTournamentTopPicks(tournamentPrediction);
   const tournamentScore =
-    scope === "group-stage"
+    scope === "group-stage" || scope === "top-picks"
       ? scoreTournamentPrediction(tournamentPrediction, input.officialAwards)
       : { points: 0, hits: 0, items: [] as ReturnType<typeof scoreTournamentPrediction>["items"] };
 
   return {
     playerId: input.playerId,
     playerName: input.playerName,
-    totalPoints: matchPoints + tournamentScore.points,
-    matchPoints,
+    totalPoints: scope === "top-picks" ? tournamentScore.points : matchPoints + tournamentScore.points,
+    matchPoints: scope === "top-picks" ? 0 : matchPoints,
     tournamentPoints: tournamentScore.points,
-    exactScores,
-    outcomes,
-    bonusHits: bonusHits + tournamentScore.hits,
+    exactScores: scope === "top-picks" ? tournamentScore.hits : exactScores,
+    outcomes: scope === "top-picks" ? 0 : outcomes,
+    bonusHits: scope === "top-picks" ? tournamentScore.hits : bonusHits + tournamentScore.hits,
     scope,
     topPicksRedacted: redactTopPicks,
     matches,

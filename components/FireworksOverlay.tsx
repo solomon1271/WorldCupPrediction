@@ -15,13 +15,22 @@ type Particle = {
 
 type FireworksOverlayProps = {
   active: boolean;
+  hues?: number[];
 };
 
 function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
 }
 
-export function FireworksOverlay({ active }: FireworksOverlayProps) {
+function pickHue(hues?: number[]) {
+  if (!hues || hues.length === 0) {
+    return randomBetween(18, 58);
+  }
+
+  return hues[Math.floor(Math.random() * hues.length)] + randomBetween(-8, 8);
+}
+
+export function FireworksOverlay({ active, hues }: FireworksOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -68,7 +77,7 @@ export function FireworksOverlay({ active }: FireworksOverlayProps) {
       const height = canvas.clientHeight;
       const originX = randomBetween(width * 0.18, width * 0.82);
       const originY = randomBetween(height * 0.18, height * 0.48);
-      const hue = randomBetween(18, 58);
+      const hue = pickHue(hues);
       const count = Math.floor(randomBetween(28, 44));
 
       for (let index = 0; index < count; index += 1) {
@@ -81,7 +90,7 @@ export function FireworksOverlay({ active }: FireworksOverlayProps) {
           vy: Math.sin(angle) * speed,
           life: 0,
           maxLife: randomBetween(42, 72),
-          hue: hue + randomBetween(-16, 16),
+          hue: hue + randomBetween(-10, 10),
           size: randomBetween(1.4, 2.8)
         });
       }
@@ -113,7 +122,7 @@ export function FireworksOverlay({ active }: FireworksOverlayProps) {
         }
 
         context.beginPath();
-        context.fillStyle = `hsla(${particle.hue}, 92%, 62%, ${alpha})`;
+        context.fillStyle = `hsla(${particle.hue}, 92%, 58%, ${alpha})`;
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();
 
@@ -136,7 +145,7 @@ export function FireworksOverlay({ active }: FireworksOverlayProps) {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener("resize", resize);
     };
-  }, [active]);
+  }, [active, hues]);
 
   if (!active) {
     return null;

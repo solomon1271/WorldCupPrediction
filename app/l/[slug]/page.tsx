@@ -83,6 +83,7 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         matchAnnouncements={dashboard.matchWinnerRevealAnnouncements}
         groupStageCelebration={dashboard.groupStageCelebration}
         roundOf32Celebration={dashboard.roundOf32Celebration}
+        tournamentCelebration={dashboard.tournamentCelebration}
         predictionTimeZone={dashboard.predictionTimeZone}
       />
       <Header currentUserName={dashboard.currentUserName} isAdmin={isAdmin} league={league} />
@@ -112,6 +113,9 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         knockoutStandings={dashboard.knockoutLeaderboard}
         roundOf32Standings={dashboard.roundOf32Leaderboard}
         groupStageStandings={dashboard.groupStageLeaderboard}
+        topPicksStandings={dashboard.topPicksLeaderboard}
+        officialAwards={dashboard.officialAwards}
+        officialAwardsConfigured={dashboard.officialAwardsConfigured}
         currentUserId={user.id}
       />
     </main>

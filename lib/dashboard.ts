@@ -2,7 +2,10 @@ import {
   buildGroupStageLeaderboard,
   buildKnockoutLeaderboard,
   buildRoundOf32Leaderboard,
-  finalizeRoundOf32PhaseIfComplete
+  buildTopPicksLeaderboard,
+  finalizeRoundOf32PhaseIfComplete,
+  getOfficialAwardsForLeague,
+  type TopPicksStanding
 } from "@/lib/leaderboard";
 import {
   formatTodayLabel,
@@ -39,8 +42,16 @@ import {
   getPendingMatchWinnerRevealAnnouncements,
   type MatchWinnerRevealAnnouncement
 } from "@/lib/match-winner-announcement";
+import {
+  getPendingTournamentCelebration,
+  type TournamentCelebration
+} from "@/lib/tournament-announcement";
 import { prisma } from "@/lib/prisma";
 import { momentumLabel, PlayerMomentum } from "@/lib/utils";
+import {
+  hasConfiguredOfficialAwards,
+  type TournamentAwards
+} from "@/lib/tournament-scoring";
 
 export type DashboardMatchPrediction = {
   matchId: number;
@@ -121,13 +132,21 @@ function normalizeTournamentPrediction(
   };
 }
 
-export type { GroupStandingTable, GroupStageCelebration, MatchWinnerRevealAnnouncement, RoundOf32Celebration };
+export type { GroupStandingTable, GroupStageCelebration, MatchWinnerRevealAnnouncement, RoundOf32Celebration, TournamentCelebration, TopPicksStanding, TournamentAwards };
 
 export async function getDashboardData(leagueId: string, currentUserId: string) {
   await finalizeRoundOf32PhaseIfComplete();
 
-  const [matches, currentMember, matchWinnerRevealAnnouncements, groupStageCelebration, roundOf32Celebration, groupStandings] =
-    await Promise.all([
+  const [
+    matches,
+    currentMember,
+    matchWinnerRevealAnnouncements,
+    groupStageCelebration,
+    roundOf32Celebration,
+    tournamentCelebration,
+    groupStandings,
+    officialAwards
+  ] = await Promise.all([
     prisma.match.findMany({
       orderBy: [{ kickoff: "asc" }],
       include: {
@@ -160,15 +179,19 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     getPendingMatchWinnerRevealAnnouncements(leagueId, currentUserId),
     getPendingGroupStageCelebration(leagueId, currentUserId),
     getPendingRoundOf32Celebration(leagueId, currentUserId),
-    getGroupStandings()
+    getPendingTournamentCelebration(leagueId, currentUserId),
+    getGroupStandings(),
+    getOfficialAwardsForLeague(leagueId)
   ]);
 
   const currentUser = currentMember?.user;
-  const [knockoutLeaderboard, roundOf32Leaderboard, groupStageLeaderboard] = await Promise.all([
-    buildKnockoutLeaderboard(leagueId),
-    buildRoundOf32Leaderboard(leagueId),
-    buildGroupStageLeaderboard(leagueId)
-  ]);
+  const [knockoutLeaderboard, roundOf32Leaderboard, groupStageLeaderboard, topPicksLeaderboard] =
+    await Promise.all([
+      buildKnockoutLeaderboard(leagueId),
+      buildRoundOf32Leaderboard(leagueId),
+      buildGroupStageLeaderboard(leagueId),
+      buildTopPicksLeaderboard(leagueId)
+    ]);
   const currentUserStanding = knockoutLeaderboard.find((entry) => entry.id === currentUserId);
   const referenceNow = new Date();
   const predictionTimeZone = getAppTimezone();
@@ -182,6 +205,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
   );
   const tournamentPicksTemporarilyUnlocked = isTournamentPicksTemporarilyUnlocked(referenceNow);
   const tournamentPicksUnlockUntil = getTournamentPicksUnlockUntil()?.toISOString() ?? null;
+  const officialAwardsConfigured = hasConfiguredOfficialAwards(officialAwards);
 
   const dashboardMatches = sortMatchesByUrgency(
     matches.map((match) => {
@@ -268,6 +292,9 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     knockoutLeaderboard,
     roundOf32Leaderboard,
     groupStageLeaderboard,
+    topPicksLeaderboard,
+    officialAwards,
+    officialAwardsConfigured,
     leaderboard: knockoutLeaderboard,
     tournamentPrediction: normalizeTournamentPrediction(currentUser?.tournamentPredictions[0] || null),
     tournamentPicksLocked,
@@ -287,6 +314,7 @@ export async function getDashboardData(leagueId: string, currentUserId: string) 
     matchWinnerRevealAnnouncements,
     groupStageCelebration,
     roundOf32Celebration,
+    tournamentCelebration,
     groupStandings
   };
 }

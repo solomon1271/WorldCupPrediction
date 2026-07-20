@@ -76,7 +76,8 @@ export function LeaderboardPlayerDetail({
     return null;
   }
 
-  const showTournament = detail?.scope === "group-stage";
+  const showTournament = detail?.scope === "group-stage" || detail?.scope === "top-picks";
+  const showMatches = detail?.scope !== "top-picks";
 
   return (
     <div className="leaderboard-detail-backdrop" onClick={onClose}>
@@ -107,10 +108,12 @@ export function LeaderboardPlayerDetail({
                 <span>Total points</span>
                 <strong>{detail.totalPoints}</strong>
               </div>
-              <div>
-                <span>From matches</span>
-                <strong>{detail.matchPoints}</strong>
-              </div>
+              {showMatches ? (
+                <div>
+                  <span>From matches</span>
+                  <strong>{detail.matchPoints}</strong>
+                </div>
+              ) : null}
               {showTournament ? (
                 <div>
                   <span>From top picks</span>
@@ -119,8 +122,15 @@ export function LeaderboardPlayerDetail({
               ) : null}
             </div>
 
+            {showMatches ? (
             <section className="leaderboard-detail__section">
-              <h4>{detail.scope === "knockout" ? "Knockout picks" : "Group stage picks"}</h4>
+              <h4>
+                {detail.scope === "knockout"
+                  ? "Knockout picks"
+                  : detail.scope === "round-of-32"
+                    ? "Round of 32 picks"
+                    : "Group stage picks"}
+              </h4>
               {detail.matches.length === 0 ? (
                 <p className="status-note">No finished match results to show yet.</p>
               ) : (
@@ -175,6 +185,7 @@ export function LeaderboardPlayerDetail({
                 </div>
               )}
             </section>
+            ) : null}
 
             {showTournament ? (
               <section className="leaderboard-detail__section">
@@ -197,6 +208,9 @@ export function LeaderboardPlayerDetail({
                       >
                         <span>{item.label}</span>
                         <strong className="score-breakdown__pick">{item.pickLabel}</strong>
+                        {item.resultLabel ? (
+                          <strong className="score-breakdown__actual">{item.resultLabel}</strong>
+                        ) : null}
                         <strong className="score-breakdown__points">
                           {item.points}/{item.maxPoints}
                         </strong>
