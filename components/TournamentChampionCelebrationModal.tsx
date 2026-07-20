@@ -101,10 +101,16 @@ export function TournamentChampionCelebrationModal({
 
               setVisible(false);
               onFinished?.();
+              window.setTimeout(() => {
+                document.getElementById("top-picks-leaders")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }, 50);
             });
           }}
         >
-          {pending ? "Saving..." : "See the Top picks ranking"}
+          {pending ? "Saving..." : "See Top picks leaders"}
         </button>
       </div>
     </div>

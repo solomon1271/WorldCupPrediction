@@ -90,7 +90,7 @@ export function LeaderboardPlayerDetail({
       >
         <div className="leaderboard-detail__header">
           <div>
-            <p className="eyebrow">Player profile</p>
+            <p className="eyebrow">{scope === "top-picks" ? "Top picks" : "Player profile"}</p>
             <h3 id="leaderboard-detail-title">{playerName || detail?.playerName || "Player"}</h3>
           </div>
           <button className="ghost-button" type="button" onClick={onClose}>

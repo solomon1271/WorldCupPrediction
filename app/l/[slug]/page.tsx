@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { Leaderboard } from "@/components/Leaderboard";
 import { LeagueCelebrations } from "@/components/LeagueCelebrations";
 import { MatchesBoard } from "@/components/MatchesBoard";
+import { TopPicksLeadersSection } from "@/components/TopPicksLeadersSection";
 import { TopPicksReminderBanner } from "@/components/TopPicksReminderBanner";
 import { TournamentPicks } from "@/components/TournamentPicks";
 import { userHasAdminAccess } from "@/lib/auth/admin-email";
@@ -107,15 +108,19 @@ export default async function LeagueDashboardPage({ params }: LeagueDashboardPag
         temporarilyUnlocked={dashboard.tournamentPicksTemporarilyUnlocked && !leaguePaused}
         leaguePaused={leaguePaused}
       />
+      <TopPicksLeadersSection
+        leagueSlug={league.slug}
+        standings={dashboard.topPicksLeaderboard}
+        officialAwards={dashboard.officialAwards}
+        officialAwardsConfigured={dashboard.officialAwardsConfigured}
+        currentUserId={user.id}
+      />
       <GroupStandings tables={dashboard.groupStandings} />
       <Leaderboard
         leagueSlug={league.slug}
         knockoutStandings={dashboard.knockoutLeaderboard}
         roundOf32Standings={dashboard.roundOf32Leaderboard}
         groupStageStandings={dashboard.groupStageLeaderboard}
-        topPicksStandings={dashboard.topPicksLeaderboard}
-        officialAwards={dashboard.officialAwards}
-        officialAwardsConfigured={dashboard.officialAwardsConfigured}
         currentUserId={user.id}
       />
     </main>
